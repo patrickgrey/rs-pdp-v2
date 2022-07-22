@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+
+:root {
+  --size-25: 0.25rem;
+  --size-50: 0.5rem;
+  --size-75: 0.75rem;
+  --size-80: 0.8rem;
+  --size-100: 1rem;
+  --size-120: 1.1rem;
+  --size-200: 1.5rem;
+  --size-300: 2rem;
+  --size-400: 2.25rem;
+  --size-500: 3rem;
+
+  --column-max-width: 75ch;
+
+  --colour-ians-highlight: #2990ea;
+  --colour-ians-dark-highlight: yellow;
+  --colour-ians-header: #05a;
+  --colour-ians-darkblue: #0f1120;
+
+  --ians-colour-blue-light: #2990ea;
+  --ians-colour-blue-mid: #05a;
+  --ians-colour-blue-dark: #0f1120;
+
+  --ians-colour-grey-light: #fafafa;
+  --ians-colour-grey-mid: #ccc;
+  --ians-colour-grey-dark: #333;
+
+  --ians-colour-highlight-light: yellow;
+  --ians-colour-highlight-mid: gold;
+  --ians-colour-highlight-dark: darkorange;
+
+  --ians-size-sides-small: 0.5rem;
+  --ians-grid-gaps: 0.5rem;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #fff;
+  color: var(--ians-colour-grey-dark);
+  line-height: 1.7;
+  font-family: roboto, -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+  font-weight: 300;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: var(--ians-colour-blue-mid);
+  margin-top: var(--size-200);
+  margin-bottom: var(--size-100);
+}
+
+h1 {
+  font-size: var(--size-300);
+  line-height: 1em;
+  margin-top: 0rem;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: var(--size-200);
+  font-weight: 400;
+  margin-top: var(--size-400);
+}
+
+h3 {
+  color: var(--ians-colour-blue-dark);
+  font-size: var(--size-100);
+  font-weight: 700;
+  margin-top: var(--size-400);
+  margin-bottom: var(--size-75);
+}
+
+h4 {
+  font-size: var(--size-100);
+}
+
+/* ..######...########..####.########.
+	/* .##....##..##.....##..##..##.....##
+	/* .##........##.....##..##..##.....##
+	/* .##...####.########...##..##.....##
+	/* .##....##..##...##....##..##.....##
+	/* .##....##..##....##...##..##.....##
+	/* ..######...##.....##.####.########. */
+
+.ians-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: var(--ians-grid-gaps);
+  grid-row-gap: var(--ians-grid-gaps);
+}
+
+.ians-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: var(--ians-grid-gaps);
+  grid-row-gap: var(--ians-grid-gaps);
+}
+
+.ians-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: var(--ians-grid-gaps);
+  grid-row-gap: var(--ians-grid-gaps);
+}
+
+.ians-grid-5 {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: var(--ians-grid-gaps);
+  grid-row-gap: var(--ians-grid-gaps);
+}
+
+.ians-grid-5 > *:nth-child(-1n + 3) {
+  grid-column: span 5;
+}
+.ians-grid-5 > *:nth-last-child(2) {
+  grid-row-start: 2;
+  grid-column: 3 / span 5;
+}
+.ians-grid-5 > *:nth-last-child(1) {
+  grid-row-start: 2;
+  grid-column: 8 / span 5;
+}

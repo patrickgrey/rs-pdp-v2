@@ -10,7 +10,7 @@ const filteredTree = dirTree(source, {
   exclude: /_data/,
 });
 
-console.log("filteredTree", filteredTree);
+// console.log("filteredTree", filteredTree);
 
 // Recursive traverse object utility function.
 const traverse = function (o, fn, scope = []) {
@@ -41,7 +41,7 @@ traverse(filteredTree, (key, value, scope) => {
   }
 });
 
-console.log("pathArray", pathArray);
+// console.log("pathArray", pathArray);
 
 // Remove the contents and template files.
 let filteredPaths = pathArray.filter(function (path) {
