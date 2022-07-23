@@ -1,5 +1,6 @@
 import { DuetDatePicker } from "@duetds/date-picker/custom-element";
 import Sortable from 'sortablejs';
+import Tree from '@widgetjs/tree';
 
 // AUTOSAVE
 // How should it function?
@@ -23,6 +24,31 @@ const savingOptions = {
   saved: "saved",
   saving: "saving",
   error: "error"
+}
+
+function initTree() {
+  let tree = new Tree('.pdp-tree-container', {
+    data: [
+      {
+        id: '-1',
+        text: 'root',
+        children: data
+      }
+    ],
+    closeDepth: 3,
+    loaded: function () {
+      this.values = ['0-0-0', '0-1-1'];
+      setTreeValue(this.values);
+    },
+    onChange: function () {
+      setTreeValue(this.values);
+    }
+  })
+}
+
+function setTreeValue(data) {
+  const pdpTreeData = document.querySelector("#pdpTreeData");
+  pdpTreeData.value = data.toString();
 }
 
 function setSavingState(state) {
@@ -81,7 +107,6 @@ async function postFormDataAsJson({ url, formData }) {
  */
 async function handleFormSubmit(event) {
   event.preventDefault();
-
 
   const form = event.currentTarget;
   const url = form.action;
@@ -145,6 +170,8 @@ var pageModule = (function () {
     document.addEventListener("keyup", event => {
       timerStart();
     });
+
+    initTree();
   };
   return module;
 })();

@@ -54,3 +54,8 @@ main {
 .pdp-save-saving {
   display: none;
 }
+
+.pdp-tree-container {
+  max-height: 80vh;
+  overflow-y: auto;
+}

@@ -56,6 +56,7 @@
   },
   "dependencies": {
     "@duetds/date-picker": "^1.4.0",
+    "@widgetjs/tree": "^1.8.3",
     "sortablejs": "^1.15.0"
   }
 }
