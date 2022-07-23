@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 header {
   background-image: url(images/ilp.jpg);
   width: 100%;
@@ -5,8 +9,48 @@ header {
   position: fixed;
   top: 0;
   background-color: #036;
+  z-index: 100;
 }
 
 main {
   margin-top: 85px;
+  padding: 0 0.5rem;
+}
+
+.pd-date-container {
+  max-width: 75ch;
+}
+
+.pd-obj-live-container li {
+  background-color: #09c;
+  color: white;
+  border-radius: 5px;
+  padding: 0.25rem 0.5rem;
+  list-style: none;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.pd-obj-live-container li > button {
+  cursor: move;
+  cursor: grab;
+}
+
+.pdp-autosave {
+  font-size: 2rem;
+  display: inline-block;
+  background-color: #eee;
+  margin: 0;
+  position: fixed;
+  right: 0;
+  z-index: 200;
+}
+
+.pdp-save-tick,
+.pdp-save-saving {
+  height: 1em;
+}
+
+.pdp-save-saving {
+  display: none;
 }
