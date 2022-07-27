@@ -246,28 +246,6 @@
             </div>
           </form>
 
-          {# <div class="ians-grid-2">
-                <div>
-                  <label for="pdpDescriptionObjective1">Description.<span>What is the goal and desired results that you would like to achieve?</span></label>
-                  <textarea id="pdpDescriptionObjective1" rows="5"></textarea>
-                </div>
-                <div>
-                  <label for="pdpActionsObjective1">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
-                  <textarea id="pdpActionsObjective1" rows="5"></textarea>
-                </div>
-              </div>
-
-              <div class="ians-grid-2">
-                <div>
-                  <label for="pdpPersonalInsightsObjective1">PersonalInsights.<span>What is the goal and desired results that you would like to achieve?</span></label>
-                  <textarea id="pdpPersonalInsightsObjective1" rows="5"></textarea>
-                </div>
-                <div>
-                  <label for="pdpCompetencyObjective1">Competency<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
-                  <textarea id="pdpCompetencyObjective1" rows="5"></textarea>
-                </div>
-              </div> #}
-
           <form action="https://reqbin.com/echo/post/json" id="pdpFormObjectives">
             <h2>Edit Objective<span>s</span></h2>
 
@@ -275,11 +253,38 @@
               <input type="hidden" class="pd-obj-live-order" type="text">
               <ul id="pdpObjectivesLive">
                 <li data-order="1">
+
                   <details open>
                     <summary>Objective here 1</summary>
-                    <div>
+                    <div class="pdp-objective-form-container">
                       <label for="pdpTitleObjective1">Title</label>
                       <input id="pdpTitleObjective1" type="text">
+
+                      <div class="ians-grid-2">
+                        <div>
+                          <div>
+                            <label for="pdpDescriptionObjective1">Description<span>What is the goal and desired results that you would like to achieve?</span></label>
+                            <textarea id="pdpDescriptionObjective1" rows="5"></textarea>
+                          </div>
+                          <div>
+                            <label for="pdpActionsObjective1">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                            <textarea id="pdpActionsObjective1" rows="5"></textarea>
+                          </div>
+                          <div>
+                            <label for="pdpPersonalInsightsObjective1">Personal Insights<span>What is the goal and desired results that you would like to achieve?</span></label>
+                            <textarea id="pdpPersonalInsightsObjective1" rows="5"></textarea>
+                          </div>
+                        </div>
+                        <div>
+                          <label for="pdpTreeData">Competency<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                          {# <textarea id="pdpCompetencyObjective1" rows="5"></textarea> #}
+                          <input id="pdpTreeData" type="hidden">
+                          <div class="pdp-tree-container"></div>
+                          <button>Toggle all</button>
+                        </div>
+                      </div>
+
+                      <button>Save Objective</button>
                     </div>
                   </details>
 
@@ -290,47 +295,44 @@
 
                 </li>
                 <li data-order="2">
-                  <button class="pdp-drag-handle">
-                    <img aria-hidden="true" src="images/pdp-icon-drag.svg" alt="Drag me!">
-                    <span class="ians-visually-hidden">Drag</span>
-                  </button>
 
                   <details>
                     <summary>Objective here 2</summary>
 
                   </details>
-                </li>
-                <li data-order="3">
+
                   <button class="pdp-drag-handle">
                     <img aria-hidden="true" src="images/pdp-icon-drag.svg" alt="Drag me!">
                     <span class="ians-visually-hidden">Drag</span>
                   </button>
+                </li>
+                <li data-order="3">
 
                   <details>
                     <summary>Objective here 3</summary>
                     <div>Form</div>
                   </details>
-                </li>
-                <li data-order="4">
+
                   <button class="pdp-drag-handle">
                     <img aria-hidden="true" src="images/pdp-icon-drag.svg" alt="Drag me!">
                     <span class="ians-visually-hidden">Drag</span>
                   </button>
+                </li>
+                <li data-order="4">
 
                   <details>
                     <summary>Objective here 4</summary>
                     <div>Form</div>
                   </details>
+
+                  <button class="pdp-drag-handle">
+                    <img aria-hidden="true" src="images/pdp-icon-drag.svg" alt="Drag me!">
+                    <span class="ians-visually-hidden">Drag</span>
+                  </button>
                 </li>
               </ul>
             </div>
 
-            <input id="pdpSubmitButton" type="submit" value="Save form">
-            <input type="text">
-            <h1>Design v1</h1>
-            <h2>Category Tree</h2>
-            <input id="pdpTreeData" type="hidden">
-            <div class="pdp-tree-container"></div>
           </form>
         </article>
       </div>

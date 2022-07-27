@@ -68,7 +68,7 @@ body {
   line-height: 1.7;
   font-family: var(--ians-font-family);
   font-size: var(--size-100);
-  word-break: break-all;
+
   /* font-weight: 300; */
   padding: 0;
 }

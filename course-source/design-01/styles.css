@@ -155,6 +155,10 @@ article {
   padding-right: 0.5rem;
 }
 
+aside {
+  word-break: break-all;
+}
+
 aside ul {
   list-style: none;
   padding-left: 0;
@@ -206,7 +210,8 @@ aside ul {
   margin-bottom: 0.25em;
 }
 
-#pdpFormNew label > span {
+#pdpFormNew label > span,
+#pdpFormObjectives label > span {
   font-size: small;
   font-weight: normal;
   color: #999;
@@ -301,19 +306,19 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   padding-left: 0;
 }
 
-#pdpFormObjectives #pdpObjectivesLive li {
+#pdpFormObjectives #pdpObjectivesLive > li {
   position: relative;
   background-color: white;
   color: var(--ians-colour-blue-mid);
   border-radius: var(--border-radius);
-  padding: 0 0.5rem 0 calc(var(--pdp-objective-drag-size) + 1rem);
+  padding: 0 0.5rem 0 0.5rem;
   list-style: none;
   margin-bottom: 0.5rem;
   font-weight: bold;
   min-height: var(--pdp-objective-drag-size);
 }
 
-#pdpFormObjectives #pdpObjectivesLive li button.pdp-drag-handle {
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle {
   cursor: n-resize;
   width: var(--pdp-objective-drag-size);
   height: var(--pdp-objective-drag-size);
@@ -336,7 +341,23 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   border-bottom-left-radius: 0;
 }
 
+#pdpFormObjectives #pdpObjectivesLive > li summary {
+  font-size: 1.3rem;
+  cursor: pointer;
+  height: var(--pdp-objective-drag-size);
+  line-height: var(--pdp-objective-drag-size);
+  padding-left: calc(var(--pdp-objective-drag-size) + 0.5rem);
+}
+
+#pdpFormObjectives #pdpObjectivesLive .pdp-objective-form-container {
+  padding: 0.5rem;
+}
+
 .pdp-tree-container {
   max-height: 80vh;
   overflow-y: auto;
+}
+
+.pdp-tree-container ul:first-child {
+  padding-left: 0;
 }
