@@ -252,6 +252,8 @@
 
               </div>
 
+              <p>What about just having the title and date here then moving it to the edit section for autosave.</p>
+
               <div class="ians-grid-2">
                 <div>
                   <label for="pdpDescriptionObjective1">Description.<span>What is the goal and desired results that you would like to achieve?</span></label>
@@ -263,10 +265,19 @@
                 </div>
               </div>
 
-              <div>
-                <label for="pdpSatisfiedObjective1">I am satisfied</label>
-                <input id="pdpSatisfiedObjective1" type="checkbox">
+              <div class="ians-grid-2">
+                <div>
+                  <label for="pdpPersonalInsightsObjective1">PersonalInsights.<span>What is the goal and desired results that you would like to achieve?</span></label>
+                  <textarea id="pdpPersonalInsightsObjective1" rows="5"></textarea>
+                </div>
+                <div>
+                  <label for="pdpCompetencyObjective1">Competency<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                  <textarea id="pdpCompetencyObjective1" rows="5"></textarea>
+                </div>
               </div>
+
+              <button>Cancel</button>
+              <button>Save</button>
 
             </form>
 
@@ -274,7 +285,7 @@
 
           <form action="https://reqbin.com/echo/post/json" id="pdpFormObjectives">
 
-            <h2 class="mt-0">Objectives (live)</h2>
+            <h2 class="mt-0">Edit Objectives (live)</h2>
             <div class="pd-obj-live-container">
               <input type="hidden" class="pd-obj-live-order" type="text">
               <ul id="pdpObjectivesLive">
