@@ -149,17 +149,37 @@ aside ul {
 }
 
 .pdp-details-new summary {
-  /* display: inline-block; */
   background-color: white;
   width: fit-content;
   padding: 0.25rem 0.5rem;
+  margin-right: 0;
+  margin-left: auto;
+  border-radius: var(--border-radius);
+  font-size: var(--size-200);
+  font-weight: 400;
+  color: var(--ians-colour-blue-mid);
+  cursor: pointer;
 }
+
+.pdp-details-new[open] summary {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* .pdp-details-new summary::marker {
+  font-size: 1rem;
+  margin: 0 2rem 0.5rem 1rem;
+} */
 
 /* 
 * NEW OBJECTIVE FORM
 */
+
 #pdpFormNew {
-  margin-top: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: var(--border-radius);
+  border-top-right-radius: 0;
 }
 
 #pdpFormNew label {
@@ -194,20 +214,18 @@ aside ul {
   border-radius: var(--border-radius);
 }
 
-#pdpObjectiveNew {
-  padding: 1rem;
-  background-color: white;
-  border-radius: var(--border-radius);
+#pdpFormNew .pdp-grid-title {
+  grid-template-columns: 72% 1fr;
 }
 
-#pdpObjectiveNew summary {
+/* #pdpObjectiveNew summary {
   cursor: pointer;
 }
 
 #pdpObjectiveNew h2 {
   display: inline-block;
   margin-top: 0;
-}
+} */
 
 .pd-obj-live-container li {
   background-color: #09c;

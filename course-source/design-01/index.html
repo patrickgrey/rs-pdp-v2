@@ -173,7 +173,7 @@
   <body>
     <div class="pdp-ilp-header">
       <button id="pdpRemedial">Toggle remedial</button>
-      <button id="pdpObjectives">Toggle no objectives</button>
+      <button id="pdpObjectives">Toggle first objective</button>
     </div>
     <header>
       <div>
@@ -218,10 +218,14 @@
             </li>
           </ul>
           <hr>
-          <p>
+
+          <label for="pdpNextMeetingDate">
             <strong>Date of next meeting:</strong>
-          </p>
-          <p>Date widget</p>
+          </label>
+          <duet-date-picker identifier="pdpNextMeetingDate"></duet-date-picker>
+          <noscript>
+            <input id="pdpNextMeetingDate" type="date">
+          </noscript>
           <hr>
           <ul>
             <li>My coach: N/A </li>
@@ -233,38 +237,35 @@
             <summary>Add an Objective</summary>
             <form action="https://reqbin.com/echo/post/json" id="pdpFormNew">
 
-              <div id="pdpObjectiveNew">
-
-                <div class="ians-grid-2 pdp-grid-title">
-                  <div>
-                    <label for="pdpTitleObjective1">Title</label>
-                    <input id="pdpTitleObjective1" type="text">
-                  </div>
-                  <div>
-                    <label for="pdpTargetDate">Target date</label>
-                    <duet-date-picker identifier="pdpTargetDate"></duet-date-picker>
-                    <noscript>
-                      <input id="pdpTargetDate" type="date">
-                    </noscript>
-                  </div>
-
-                </div>
-
-                <div class="ians-grid-2">
-                  <div>
-                    <label for="pdpDescriptionObjective1">Description.<span>What is the goal and desired results that you would like to achieve?</span></label>
-                    <textarea id="pdpDescriptionObjective1" rows="5"></textarea>
-                  </div>
-                  <div>
-                    <label for="pdpActionsObjective1">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
-                    <textarea id="pdpActionsObjective1" rows="5"></textarea>
-                  </div>
-                </div>
-
+              <div class="ians-grid-2 pdp-grid-title">
                 <div>
-                  <label for="pdpSatisfiedObjective1">I am satisfied</label>
-                  <input id="pdpSatisfiedObjective1" type="checkbox">
+                  <label for="pdpTitleObjective1">Title</label>
+                  <input id="pdpTitleObjective1" type="text">
                 </div>
+                <div>
+                  <label for="pdpTargetDate">Target date</label>
+                  <duet-date-picker identifier="pdpTargetDate"></duet-date-picker>
+                  <noscript>
+                    <input id="pdpTargetDate" type="date">
+                  </noscript>
+                </div>
+
+              </div>
+
+              <div class="ians-grid-2">
+                <div>
+                  <label for="pdpDescriptionObjective1">Description.<span>What is the goal and desired results that you would like to achieve?</span></label>
+                  <textarea id="pdpDescriptionObjective1" rows="5"></textarea>
+                </div>
+                <div>
+                  <label for="pdpActionsObjective1">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                  <textarea id="pdpActionsObjective1" rows="5"></textarea>
+                </div>
+              </div>
+
+              <div>
+                <label for="pdpSatisfiedObjective1">I am satisfied</label>
+                <input id="pdpSatisfiedObjective1" type="checkbox">
               </div>
 
             </form>
