@@ -1,6 +1,7 @@
 import { DuetDatePicker } from "@duetds/date-picker/custom-element";
 import Sortable from 'sortablejs';
 import Tree from '@widgetjs/tree';
+import { sayhellotomylittlefriend } from './autosave.js';
 
 // AUTOSAVE
 // How should it function?
@@ -13,13 +14,18 @@ import Tree from '@widgetjs/tree';
 // --Need to get notification back from server to confirm.
 // ---on Fail, ask user to press save button or allow to submit?
 
+// Sanitize input client or server? Server. textContent 
+
 
 // What if...
 // -Page closes before saved?
 // --Warn user to press save button if not saved yet.
 
 const savingDelay = 2000;
-const pdpForm = document.querySelector("#pdpForm");
+const pdpFormNew = document.querySelector("#pdpFormNew");
+const pdpFormObjectives = document.querySelector("#pdpFormObjectives");
+
+
 const savingOptions = {
   saved: "saved",
   saving: "saving",
@@ -123,8 +129,8 @@ async function handleFormSubmit(event) {
 }
 
 function saveForm() {
-  // const pdpSubmitButton = document.querySelector("#pdpSubmitButton");
-  // pdpSubmitButton.click();
+  // NEED TO PREVENT OVERLAPPING SAVES!!
+  // document.querySelector("#pdpSubmitButton").click();
 }
 
 let timer = null;
@@ -151,8 +157,16 @@ function setOrder() {
 var pageModule = (function () {
   var module = {};
   module.init = function () {
+
+    const pdpRemedial = document.querySelector("#pdpRemedial");
+    pdpRemedial.addEventListener("click", function (event) {
+      document.querySelector("body").classList.toggle("pdp-show-remedial");
+    });
+
+
+    sayhellotomylittlefriend("boo!");
     // Init form
-    pdpForm.addEventListener("submit", handleFormSubmit);
+    pdpFormNew.addEventListener("submit", handleFormSubmit);
     // Init date input
     customElements.define("duet-date-picker", DuetDatePicker);
     // https://www.duetds.com/components/collapsible/

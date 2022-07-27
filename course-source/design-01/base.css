@@ -32,21 +32,44 @@
   --ians-colour-highlight-dark: darkorange;
 
   --ians-size-sides-small: 0.5rem;
-  --ians-grid-gaps: 0.5rem;
+  --ians-grid-gaps: 1rem;
+
+  --ians-font-family: roboto, -apple-system, BlinkMacSystemFont, avenir next,
+    avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial,
+    sans-serif;
+
+  --ilp-height: 85px;
+}
+
+.pdp-ilp-header {
+  background-image: url(images/ilp.jpg);
+  width: 100%;
+  height: var(--ilp-height);
+  position: fixed;
+  top: 0;
+  background-color: #036;
+  z-index: 100;
+  text-align: right;
+}
+
+.pdp-ilp-header button {
+  margin-right: 0.25rem;
 }
 
 html,
 body {
   height: 100%;
+  margin: 0;
 }
 
 body {
-  background: #fff;
+  background-color: #eeeeee;
   color: var(--ians-colour-grey-dark);
   line-height: 1.7;
-  font-family: roboto, -apple-system, BlinkMacSystemFont, avenir next, avenir,
-    segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
-  font-weight: 300;
+  font-family: var(--ians-font-family);
+  font-size: var(--size-100);
+  word-break: break-all;
+  /* font-weight: 300; */
   padding: 0;
 }
 
@@ -93,46 +116,48 @@ h4 {
 	/* .##....##..##....##...##..##.....##
 	/* ..######...##.....##.####.########. */
 
-.ians-grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: var(--ians-grid-gaps);
-  grid-row-gap: var(--ians-grid-gaps);
-}
+@screen md {
+  .ians-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: var(--ians-grid-gaps);
+    grid-row-gap: var(--ians-grid-gaps);
+  }
 
-.ians-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: var(--ians-grid-gaps);
-  grid-row-gap: var(--ians-grid-gaps);
-}
+  .ians-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: var(--ians-grid-gaps);
+    grid-row-gap: var(--ians-grid-gaps);
+  }
 
-.ians-grid-4 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: var(--ians-grid-gaps);
-  grid-row-gap: var(--ians-grid-gaps);
-}
+  .ians-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: var(--ians-grid-gaps);
+    grid-row-gap: var(--ians-grid-gaps);
+  }
 
-.ians-grid-5 {
-  display: grid;
-  grid-template-columns: repeat(15, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: var(--ians-grid-gaps);
-  grid-row-gap: var(--ians-grid-gaps);
-}
+  .ians-grid-5 {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: var(--ians-grid-gaps);
+    grid-row-gap: var(--ians-grid-gaps);
+  }
 
-.ians-grid-5 > *:nth-child(-1n + 3) {
-  grid-column: span 5;
-}
-.ians-grid-5 > *:nth-last-child(2) {
-  grid-row-start: 2;
-  grid-column: 3 / span 5;
-}
-.ians-grid-5 > *:nth-last-child(1) {
-  grid-row-start: 2;
-  grid-column: 8 / span 5;
+  .ians-grid-5 > *:nth-child(-1n + 3) {
+    grid-column: span 5;
+  }
+  .ians-grid-5 > *:nth-last-child(2) {
+    grid-row-start: 2;
+    grid-column: 3 / span 5;
+  }
+  .ians-grid-5 > *:nth-last-child(1) {
+    grid-row-start: 2;
+    grid-column: 8 / span 5;
+  }
 }

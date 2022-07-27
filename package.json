@@ -1,6 +1,6 @@
 {
-  "name": "dev-template",
-  "version": "1.3.0",
+  "name": "pdp-v2",
+  "version": "2.0.0",
   "description": "A template to create e-learning content at IANS.",
   "scripts": {
     "clean": "dotenv -- cross-var rimraf %COURSE_PRODUCTION_FOLDER%",

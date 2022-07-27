@@ -170,103 +170,203 @@
     </script>
 
   </head>
-  <body class="relative">
-    <header></header>
-    <main>
-      <p class="pdp-autosave">
+  <body>
+    <div class="pdp-ilp-header">
+      <button id="pdpRemedial">Toggle remedial</button>
+      <button id="pdpObjectives">Toggle no objectives</button>
+    </div>
+    <header>
+      <div>
+        <h1>Patrick Grey</h1>
+        <img src="images/profile.jpg" alt="Profile photo">
+        <p class="pdp-remedial pdp-remedial-label">Remedial</p>
+      </div>
+      <div class="pdp-autosave">
         <img class="pdp-save-tick" aria-hidden="true" src="images/pdp-save-tick.svg" alt="Form saved">
         <img class="pdp-save-saving" aria-hidden="true" src="images/pdp-save-saving.svg" alt="Form saving">
-        Saved</p>
-      <div class="ians-column">
-        <form action="https://reqbin.com/echo/post/json" id="pdpForm">
-          <input id="pdpSubmitButton" type="submit" value="Save form">
-          <input type="text">
-          <h1>Design v1</h1>
-          <h2>Category Tree</h2>
-          <input id="pdpTreeData" type="hidden">
-          <div class="pdp-tree-container"></div>
-          <h2>Date picker</h2>
-          <div class="pd-date-container">
-            <label for="date">Choose a date</label>
-            <duet-date-picker identifier="date"></duet-date-picker>
-          </div>
-          <h2>Objectives list live</h2>
-          <div class="pd-obj-live-container">
-            <input type="hidden" class="pd-obj-live-order" type="text">
-            <ul id="pdpObjectivesLive">
-              <li data-order="1">
-                <button class="pdp-drag-handle">Drag</button>
-                <details>
-                  <summary>Objective here 1</summary>
-                  <div>Form</div>
-                </details>
-              </li>
-              <li data-order="2">
-                <button class="pdp-drag-handle">Drag</button>
-                <details>
-                  <summary>Objective here 2</summary>
-                  <div>Form</div>
-                </details>
-              </li>
-              <li data-order="3">
-                <button class="pdp-drag-handle">Drag</button>
-                <details>
-                  <summary>Objective here 3</summary>
-                  <div>Form</div>
-                </details>
-              </li>
-              <li data-order="4">
-                <button class="pdp-drag-handle">Drag</button>
-                <details>
-                  <summary>Objective here 4</summary>
-                  <div>Form</div>
-                </details>
-              </li>
-              <li data-order="5">
-                <button class="pdp-drag-handle">Drag</button>
-                <details>
-                  <summary>Objective here 5</summary>
-                  <div>Form</div>
-                </details>
-              </li>
-              <li data-order="6">
-                <button class="pdp-drag-handle">Drag</button>
-                <details>
-                  <summary>Objective here 6</summary>
-                  <div>Form</div>
-                </details>
-              </li>
-              <li data-order="7">
-                <button class="pdp-drag-handle">Drag</button>
-                <details>
-                  <summary>Objective here 7</summary>
-                  <div>Form</div>
-                </details>
-              </li>
-              <li data-order="8">
-                <button class="pdp-drag-handle">Drag</button>
-                <details>
-                  <summary>Objective here 8</summary>
-                  <div>Form</div>
-                </details>
-              </li>
-              <li data-order="9">
-                <button class="pdp-drag-handle">Drag</button>
-                <details>
-                  <summary>Objective here 9</summary>
-                  <div>Form</div>
-                </details>
-              </li>
-              <li data-order="10">
-                <button class="pdp-drag-handle">Drag</button>
-                <details>
-                  <summary>Objective here 10</summary>
-                  <div>Form</div>
-                </details>
-              </li>
-            </ul>
-          </div>
-        </form>
+        <p>Saved</p>
+      </div>
+    </header>
+    <main>
+
+      <div class="ians-grid-2 pdp-layout">
+        <aside>
+          <p>
+            <strong>Help</strong>
+          </p>
+          <ul>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+          </ul>
+          <hr>
+          <p>
+            <strong>Information</strong>
+          </p>
+          <ul>
+            <li>Unit: EXT/LUX</li>
+            <li>Email: <a href="mailto:patrick.grey.ext@eurocontrol.int">patrick.grey.ext@eurocontrol.int</a>
+            </li>
+          </ul>
+          <hr>
+          <p>
+            <strong>Date of next meeting:</strong>
+          </p>
+          <p>Date widget</p>
+          <hr>
+          <ul>
+            <li>My coach: N/A </li>
+            <li>My mentor: N/A</li>
+          </ul>
+        </aside>
+        <article>
+          <details class="pdp-details-new" open>
+            <summary>Add an Objective</summary>
+            <form action="https://reqbin.com/echo/post/json" id="pdpFormNew">
+
+              <div id="pdpObjectiveNew">
+
+                <div class="ians-grid-2 pdp-grid-title">
+                  <div>
+                    <label for="pdpTitleObjective1">Title</label>
+                    <input id="pdpTitleObjective1" type="text">
+                  </div>
+                  <div>
+                    <label for="pdpTargetDate">Target date</label>
+                    <duet-date-picker identifier="pdpTargetDate"></duet-date-picker>
+                    <noscript>
+                      <input id="pdpTargetDate" type="date">
+                    </noscript>
+                  </div>
+
+                </div>
+
+                <div class="ians-grid-2">
+                  <div>
+                    <label for="pdpDescriptionObjective1">Description.<span>What is the goal and desired results that you would like to achieve?</span></label>
+                    <textarea id="pdpDescriptionObjective1" rows="5"></textarea>
+                  </div>
+                  <div>
+                    <label for="pdpActionsObjective1">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                    <textarea id="pdpActionsObjective1" rows="5"></textarea>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="pdpSatisfiedObjective1">I am satisfied</label>
+                  <input id="pdpSatisfiedObjective1" type="checkbox">
+                </div>
+              </div>
+
+            </form>
+
+          </details>
+
+          <form action="https://reqbin.com/echo/post/json" id="pdpFormObjectives">
+
+            <h2 class="mt-0">Objectives (live)</h2>
+            <div class="pd-obj-live-container">
+              <input type="hidden" class="pd-obj-live-order" type="text">
+              <ul id="pdpObjectivesLive">
+                <li data-order="1">
+                  <button class="pdp-drag-handle">Drag</button>
+                  <details>
+                    <summary>Objective here 1</summary>
+                    <div class="ians-grid-2">
+                      <div>
+                        <label for="pdpDescriptionObjective1">Description.<span>What is the goal and desired results that you would like to achieve?</span></label>
+                        <textarea id="pdpDescriptionObjective1" rows="5"></textarea>
+                      </div>
+                      <div>
+                        <label for="pdpActionsObjective1">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                        <textarea id="pdpActionsObjective1" rows="5"></textarea>
+                      </div>
+                    </div>
+                  </details>
+                </li>
+                <li data-order="2">
+                  <button class="pdp-drag-handle">Drag</button>
+                  <details>
+                    <summary>Objective here 2</summary>
+                    <div>Form</div>
+                  </details>
+                </li>
+                <li data-order="3">
+                  <button class="pdp-drag-handle">Drag</button>
+                  <details>
+                    <summary>Objective here 3</summary>
+                    <div>Form</div>
+                  </details>
+                </li>
+                <li data-order="4">
+                  <button class="pdp-drag-handle">Drag</button>
+                  <details>
+                    <summary>Objective here 4</summary>
+                    <div>Form</div>
+                  </details>
+                </li>
+                <li data-order="5">
+                  <button class="pdp-drag-handle">Drag</button>
+                  <details>
+                    <summary>Objective here 5</summary>
+                    <div>Form</div>
+                  </details>
+                </li>
+                <li data-order="6">
+                  <button class="pdp-drag-handle">Drag</button>
+                  <details>
+                    <summary>Objective here 6</summary>
+                    <div>Form</div>
+                  </details>
+                </li>
+                <li data-order="7">
+                  <button class="pdp-drag-handle">Drag</button>
+                  <details>
+                    <summary>Objective here 7</summary>
+                    <div>Form</div>
+                  </details>
+                </li>
+                <li data-order="8">
+                  <button class="pdp-drag-handle">Drag</button>
+                  <details>
+                    <summary>Objective here 8</summary>
+                    <div>Form</div>
+                  </details>
+                </li>
+                <li data-order="9">
+                  <button class="pdp-drag-handle">Drag</button>
+                  <details>
+                    <summary>Objective here 9</summary>
+                    <div>Form</div>
+                  </details>
+                </li>
+                <li data-order="10">
+                  <button class="pdp-drag-handle">Drag</button>
+                  <details>
+                    <summary>Objective here 10</summary>
+                    <div>Form</div>
+                  </details>
+                </li>
+              </ul>
+            </div>
+
+            <input id="pdpSubmitButton" type="submit" value="Save form">
+            <input type="text">
+            <h1>Design v1</h1>
+            <h2>Category Tree</h2>
+            <input id="pdpTreeData" type="hidden">
+            <div class="pdp-tree-container"></div>
+          </form>
+        </article>
       </div>
     </main>
 

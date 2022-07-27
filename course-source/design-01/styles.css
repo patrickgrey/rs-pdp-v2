@@ -1,30 +1,218 @@
-body {
-  margin: 0;
+:root {
+  --col-max-width: 1024px;
+  --border-radius: 5px;
+
+  --pdp-input-outline: hotpink;
+  --pdp-input-border: dodgerblue;
+  --pdp-input-background: #e6f8ff;
+  --pdp-input-padding-vertical: 14px;
+  --pdp-header-height: 85px;
+
+  --duet-color-primary: var(--pdp-input-outline);
+  --duet-color-text: #333;
+  --duet-color-text-active: #fff;
+  --duet-color-placeholder: #666;
+  --duet-color-button: #f5f5f5;
+  --duet-color-surface: var(--pdp-input-background);
+  --duet-color-overlay: rgba(0, 0, 0, 0.8);
+  --duet-color-border: var(--pdp-input-border);
+  --duet-font: var(--ians-font-family);
+  --duet-font-normal: 400;
+  --duet-font-bold: 600;
+  --duet-radius: var(--border-radius);
+  --duet-z-index: 600;
 }
+
+/* 
+* REMEDIAL
+*/
+
+.pdp-remedial {
+  display: none;
+}
+
+body.pdp-show-remedial .pdp-remedial {
+  display: block;
+}
+
+.pdp-remedial-label {
+  margin: 0 0 0 1rem;
+  background-color: #9f1931;
+  color: white;
+  border-radius: var(--border-radius);
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+/* 
+* HEADER
+*/
 
 header {
-  background-image: url(images/ilp.jpg);
   width: 100%;
-  height: 85px;
+  background-color: white;
+  min-height: var(--pdp-header-height);
+  border-bottom: thin solid #ccc;
+  padding: 0 0.5rem;
   position: fixed;
-  top: 0;
-  background-color: #036;
-  z-index: 100;
+  top: var(--ilp-height);
+  z-index: 200;
 }
 
-main {
-  margin-top: 85px;
+header > div:nth-child(1) {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: var(--col-max-width);
+  height: var(--pdp-header-height);
+  margin: 0 auto;
+}
+
+header > div:nth-child(1) h1 {
+  margin: 0;
+  padding-right: 1rem;
+  margin-right: 1rem;
+  border-right: thin solid #ccc;
+}
+
+header > div:nth-child(1) img {
+  width: calc(var(--pdp-header-height) - 20px);
+  height: calc(var(--pdp-header-height) - 20px);
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* 
+* AUTOSAVE
+*/
+
+header .pdp-autosave {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  right: 1rem;
+  bottom: 0;
+  width: fit-content;
+  background-color: white;
+  margin: 0;
   padding: 0 0.5rem;
 }
 
-.pd-date-container {
-  max-width: 75ch;
+header .pdp-autosave p {
+  margin: 0;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  color: var(--ians-colour-blue-light);
+}
+
+header .pdp-autosave .pdp-save-tick,
+header .pdp-autosave .pdp-save-saving {
+  height: 1.25rem;
+}
+
+header .pdp-autosave .pdp-save-saving {
+  display: none;
+}
+
+main {
+  position: relative;
+  padding: 0 0.5rem;
+  max-width: var(--col-max-width);
+  margin: 0 auto;
+  margin-top: calc(var(--ilp-height) + var(--pdp-header-height));
+}
+
+.pdp-layout {
+  grid-template-columns: 25% 1fr;
+}
+
+aside,
+article {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+aside ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* 
+* NEW OBJECTIVE DETAILS COMPONENT
+*/
+.pdp-details-new {
+  margin-top: 1rem;
+}
+
+.pdp-details-new summary {
+  /* display: inline-block; */
+  background-color: white;
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+}
+
+/* 
+* NEW OBJECTIVE FORM
+*/
+#pdpFormNew {
+  margin-top: 1rem;
+}
+
+#pdpFormNew label {
+  display: block;
+  /* font-weight: bold; */
+  color: var(--ians-colour-blue-mid);
+  margin-bottom: 0.5em;
+}
+
+#pdpFormNew label > span {
+  font-size: small;
+  font-weight: normal;
+  color: #999;
+  display: block;
+  line-height: 1em;
+  margin-bottom: 0.5em;
+}
+
+#pdpFormNew input[type="text"],
+#pdpFormNew input[type="date"],
+#pdpFormNew textarea {
+  display: block;
+  width: calc(100% - 1rem);
+  resize: vertical;
+  font-family: var(--ians-font-family);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--pdp-input-background);
+  border: thin solid var(--pdp-input-border);
+  outline-color: var(--pdp-input-outline);
+  padding: var(--pdp-input-padding-vertical) 0.5rem;
+  border-radius: var(--border-radius);
+}
+
+#pdpObjectiveNew {
+  padding: 1rem;
+  background-color: white;
+  border-radius: var(--border-radius);
+}
+
+#pdpObjectiveNew summary {
+  cursor: pointer;
+}
+
+#pdpObjectiveNew h2 {
+  display: inline-block;
+  margin-top: 0;
 }
 
 .pd-obj-live-container li {
   background-color: #09c;
   color: white;
-  border-radius: 5px;
+  border-radius: var(--border-radius);
   padding: 0.25rem 0.5rem;
   list-style: none;
   margin-bottom: 0.5rem;
@@ -34,25 +222,6 @@ main {
 .pd-obj-live-container li > button {
   cursor: move;
   cursor: grab;
-}
-
-.pdp-autosave {
-  font-size: 2rem;
-  display: inline-block;
-  background-color: #eee;
-  margin: 0;
-  position: fixed;
-  right: 0;
-  z-index: 200;
-}
-
-.pdp-save-tick,
-.pdp-save-saving {
-  height: 1em;
-}
-
-.pdp-save-saving {
-  display: none;
 }
 
 .pdp-tree-container {
