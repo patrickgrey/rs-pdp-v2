@@ -7,6 +7,7 @@
   --pdp-input-background: #e6f8ff;
   --pdp-input-padding-vertical: 14px;
   --pdp-header-height: 85px;
+  --pdp-objective-drag-size: 60px;
 
   --duet-color-primary: var(--pdp-input-outline);
   --duet-color-text: #333;
@@ -118,12 +119,30 @@ header .pdp-autosave .pdp-save-saving {
   display: none;
 }
 
+header .pdp-error {
+  display: none;
+  background-color: red;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+  margin-left: -0.5rem;
+}
+
+.pdp-show-error header .pdp-error {
+  display: block;
+}
+
 main {
   position: relative;
   padding: 0 0.5rem;
   max-width: var(--col-max-width);
   margin: 0 auto;
   margin-top: calc(var(--ilp-height) + var(--pdp-header-height));
+}
+
+h2 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .pdp-layout {
@@ -144,7 +163,7 @@ aside ul {
 /* 
 * NEW OBJECTIVE DETAILS COMPONENT
 */
-.pdp-details-new {
+/* .pdp-details-new {
   margin-top: 1rem;
 }
 
@@ -164,7 +183,7 @@ aside ul {
 .pdp-details-new[open] summary {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-}
+} */
 
 /* .pdp-details-new summary::marker {
   font-size: 1rem;
@@ -176,17 +195,15 @@ aside ul {
 */
 
 #pdpFormNew {
-  padding: 1rem;
+  padding: 0.5rem 1rem 0.25rem 1rem;
   background-color: white;
   border-radius: var(--border-radius);
-  border-top-right-radius: 0;
 }
 
 #pdpFormNew label {
   display: block;
-  /* font-weight: bold; */
   color: var(--ians-colour-blue-mid);
-  margin-bottom: 0.5em;
+  margin-bottom: 0.25em;
 }
 
 #pdpFormNew label > span {
@@ -200,7 +217,10 @@ aside ul {
 
 #pdpFormNew input[type="text"],
 #pdpFormNew input[type="date"],
-#pdpFormNew textarea {
+#pdpFormNew textarea,
+#pdpFormObjectives input[type="text"],
+#pdpFormObjectives input[type="date"],
+#pdpFormObjectives textarea {
   display: block;
   width: calc(100% - 1rem);
   resize: vertical;
@@ -208,38 +228,112 @@ aside ul {
   font-size: 1rem;
   margin-bottom: 1rem;
   background-color: var(--pdp-input-background);
-  border: thin solid var(--pdp-input-border);
+  border: 1px solid var(--pdp-input-border);
   outline-color: var(--pdp-input-outline);
   padding: var(--pdp-input-padding-vertical) 0.5rem;
   border-radius: var(--border-radius);
 }
 
-#pdpFormNew .pdp-grid-title {
-  grid-template-columns: 72% 1fr;
+#pdpFormNew input[type="text"]:focus,
+#pdpFormNew input[type="date"]:focus,
+#pdpFormNew textarea:focus,
+#pdpFormObjectives input[type="text"]:focus,
+#pdpFormObjectives input[type="date"]:focus,
+#pdpFormObjectives textarea:focus {
+  border-color: var(--duet-color-primary);
+  box-shadow: 0 0 0 1px var(--duet-color-primary);
+  outline: 0;
 }
 
-/* #pdpObjectiveNew summary {
-  cursor: pointer;
+#pdpFormNew .pdp-fieldset-title {
+  position: relative;
 }
 
-#pdpObjectiveNew h2 {
-  display: inline-block;
-  margin-top: 0;
-} */
-
-.pd-obj-live-container li {
-  background-color: #09c;
+#pdpFormNew #pdpTitleAddButton {
+  width: fit-content;
+  height: calc(100% - 2px);
+  min-height: 0;
+  position: absolute;
+  right: -1px;
+  top: 1px;
+  font-family: var(--ians-font-family);
+  font-size: 1rem;
+  background-color: var(--ians-colour-blue-light);
   color: white;
+  border: 0;
+  outline-color: var(--pdp-input-outline);
+  padding: var(--pdp-input-padding-vertical) 01rem;
+  border-top-right-radius: calc(var(--border-radius) - 1px);
+  border-bottom-right-radius: calc(var(--border-radius) - 1px);
+}
+
+#pdpFormNew #pdpTitleAddButton:focus {
+  border-color: var(--duet-color-primary);
+  box-shadow: 0 0 0 2px var(--duet-color-primary);
+  outline: 0;
+}
+
+#pdpFormNew #pdpTitleAddButton:hover {
+  background-color: var(--ians-colour-blue-mid);
+}
+
+/* 
+* EXISTING OBJECTIVE FORM
+*/
+
+/* 
+* Show hide objectives section and plural for title
+*/
+/* body[data-objective-count="0"] #pdpFormObjectives { */
+body[data-objective-count="99"] #pdpFormObjectives {
+  display: none;
+}
+
+#pdpFormObjectives h2:first-child > span {
+  display: inline;
+}
+
+body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
+  display: none;
+}
+
+#pdpFormObjectives #pdpObjectivesLive {
+  padding-left: 0;
+}
+
+#pdpFormObjectives #pdpObjectivesLive li {
+  position: relative;
+  background-color: white;
+  color: var(--ians-colour-blue-mid);
   border-radius: var(--border-radius);
-  padding: 0.25rem 0.5rem;
+  padding: 0 0.5rem 0 calc(var(--pdp-objective-drag-size) + 1rem);
   list-style: none;
   margin-bottom: 0.5rem;
   font-weight: bold;
+  min-height: var(--pdp-objective-drag-size);
 }
 
-.pd-obj-live-container li > button {
-  cursor: move;
-  cursor: grab;
+#pdpFormObjectives #pdpObjectivesLive li button.pdp-drag-handle {
+  cursor: n-resize;
+  width: var(--pdp-objective-drag-size);
+  height: var(--pdp-objective-drag-size);
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0;
+  /* border-right: 1px solid var(--pdp-input-background); */
+  border-top-left-radius: calc(var(--border-radius) - 1px);
+  border-bottom-left-radius: calc(var(--border-radius) - 1px);
+  background-color: var(--ians-colour-blue-light);
+  color: white;
+}
+
+#pdpFormObjectives
+  #pdpObjectivesLive
+  li
+  details[open]
+  ~ button.pdp-drag-handle {
+  border-bottom-left-radius: 0;
 }
 
 .pdp-tree-container {

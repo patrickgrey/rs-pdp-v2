@@ -108,6 +108,20 @@ h4 {
   font-size: var(--size-100);
 }
 
+button {
+  cursor: pointer;
+}
+
+.ians-visually-hidden:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 /* ..######...########..####.########.
 	/* .##....##..##.....##..##..##.....##
 	/* .##........##.....##..##..##.....##

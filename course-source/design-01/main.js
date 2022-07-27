@@ -24,7 +24,7 @@ import { sayhellotomylittlefriend } from './autosave.js';
 const savingDelay = 2000;
 const pdpFormNew = document.querySelector("#pdpFormNew");
 const pdpFormObjectives = document.querySelector("#pdpFormObjectives");
-
+let objectiveCount = 0;
 
 const savingOptions = {
   saved: "saved",
@@ -158,10 +158,22 @@ var pageModule = (function () {
   var module = {};
   module.init = function () {
 
-    const pdpRemedial = document.querySelector("#pdpRemedial");
-    pdpRemedial.addEventListener("click", function (event) {
+    document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
       document.querySelector("body").classList.toggle("pdp-show-remedial");
     });
+
+    const pdpObjectiveCount = document.querySelector("#pdpObjectiveCount");
+    pdpObjectiveCount.addEventListener("click", function (event) {
+      objectiveCount = objectiveCount < 4 ? objectiveCount + 1 : 0;
+      document.querySelector("body").dataset.objectiveCount = objectiveCount;
+      pdpObjectiveCount.innerHTML = `Change objective count: ${objectiveCount}`;
+    });
+
+    document.querySelector("#pdpError").addEventListener("click", function (event) {
+      document.querySelector("body").classList.toggle("pdp-show-error");
+    });
+
+
 
 
     sayhellotomylittlefriend("boo!");
