@@ -8,19 +8,21 @@
 // Emit 'added' event.
 
 import * as customEvents from './customEvents.js';
+import * as htmlComponents from './htmlComponents.js';
+import * as errorFeedback from './errorFeedback.js';
 
 const pdpTitleAdd = document.querySelector("#pdpTitleAdd");
 const pdpTitleAddButton = document.querySelector("#pdpTitleAddButton");
 const pdpFormNew = document.querySelector("#pdpFormNew");
 
 function disableForm() {
-  pdpTitleAdd.disabled = true;
-  pdpTitleAddButton.disabled = true;
+  htmlComponents.pdpTitleAdd.disabled = true;
+  htmlComponents.pdpTitleAddButton.disabled = true;
 }
 
 function enableForm() {
-  pdpTitleAdd.disabled = false;
-  pdpTitleAddButton.disabled = false;
+  htmlComponents.pdpTitleAdd.disabled = false;
+  htmlComponents.pdpTitleAddButton.disabled = false;
 }
 
 function postForm() {
@@ -37,20 +39,21 @@ function serverWait() {
 
 function getResponse(response) {
   if (response.status === "ok") {
-    console.log("It's OK");
-    enableForm()
+    htmlComponents.pdpFormNew.dispatchEvent(customEvents.savedEvent);
+    enableForm();
+    console.log(response.id);
   }
   else {
-    console.log("It's error");
-    console.log(response.message);
+    // htmlComponents.pdpFormNew.dispatchEvent(customEvents.errorEvent);
+    errorFeedback.showError(response.message)
   }
 }
 
 function init() {
-  pdpTitleAddButton.addEventListener("click", function (event) {
+  htmlComponents.pdpTitleAddButton.addEventListener("click", function (event) {
     event.preventDefault();
     disableForm();
-    pdpFormNew.dispatchEvent(customEvents.addingEvent);
+    htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
     postForm();
   });
 }
