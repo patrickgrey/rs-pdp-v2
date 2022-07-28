@@ -182,7 +182,7 @@
         <img src="images/profile.jpg" alt="Profile photo">
         <p class="pdp-remedial pdp-remedial-label">Remedial</p>
       </div>
-      <div class="pdp-autosave">
+      <div class="pdp-activity-feedback" id="pdpActivityFeedback">
         <img class="pdp-save-tick" aria-hidden="true" src="images/pdp-save-tick.svg" alt="Form saved">
         <img class="pdp-save-saving" aria-hidden="true" src="images/pdp-save-saving.svg" alt="Form saving">
         <p>0 objectives</p>
@@ -208,7 +208,7 @@
             <label for="pdpTitleAdd">Title</label>
             <div class="pdp-fieldset-title">
               <input id="pdpTitleAdd" type="text">
-              <button id="pdpTitleAddButton" type="button">Add</button>
+              <button id="pdpTitleAddButton" type="submit">Add</button>
             </div>
           </form>
 
@@ -224,9 +224,7 @@
 
             <div class="pd-obj-live-container">
               <input type="hidden" class="pd-obj-live-order" type="text">
-              <ul id="pdpObjectivesLive">
-                <li data-order="1"></li>
-              </ul>
+              <ul id="pdpObjectivesLive"></ul>
             </div>
 
           </form>

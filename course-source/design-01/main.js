@@ -1,7 +1,11 @@
 import { DuetDatePicker } from "@duetds/date-picker/custom-element";
 import Sortable from 'sortablejs';
 import Tree from '@widgetjs/tree';
-import { sayhellotomylittlefriend } from './autosave.js';
+import { sayhellotomylittlefriend } from './components/autosave.js';
+import * as objectiveDrag from './components/objectiveDrag.js';
+import * as addObjective from './components/addObjective.js';
+import * as activityFeedback from './components/activityFeedback.js';
+
 
 // TODO
 // Mock autosave properly
@@ -181,19 +185,15 @@ function timerStart() {
   timer = setTimeout(saveForm, savingDelay);
 }
 
-function closeAllObjectives() {
-  document.querySelectorAll("#pdpObjectivesLive li details[open]").forEach(detail => {
-    detail.open = false;
-  });
-}
 
-function setOrder() {
-  let orderArray = [];
-  document.querySelectorAll("#pdpObjectivesLive > li").forEach(li => {
-    orderArray.push(li.dataset.order);
-  });
-  document.querySelector(".pd-obj-live-order").value = orderArray.toString();
-}
+
+// function setHiddenOrder() {
+//   let orderArray = [];
+//   document.querySelectorAll("#pdpObjectivesLive > li").forEach(li => {
+//     orderArray.push(li.dataset.order);
+//   });
+//   document.querySelector(".pd-obj-live-order").value = orderArray.toString();
+// }
 
 var pageModule = (function () {
   var module = {};
@@ -203,13 +203,6 @@ var pageModule = (function () {
       document.querySelector("body").classList.toggle("pdp-show-remedial");
     });
 
-    // const pdpObjectiveCount = document.querySelector("#pdpObjectiveCount");
-    // pdpObjectiveCount.addEventListener("click", function (event) {
-    //   objectiveCount = objectiveCount < 4 ? objectiveCount + 1 : 0;
-    //   document.querySelector("body").dataset.objectiveCount = objectiveCount;
-    //   pdpObjectiveCount.innerHTML = `Change objective count: ${objectiveCount}`;
-    // });
-
     document.querySelector("#pdpError").addEventListener("click", function (event) {
       document.querySelector("body").classList.toggle("pdp-show-error");
     });
@@ -217,31 +210,34 @@ var pageModule = (function () {
 
 
 
-    sayhellotomylittlefriend("boo!");
     // Init form
     pdpFormNew.addEventListener("submit", handleFormSubmit);
     // Init date input
     customElements.define("duet-date-picker", DuetDatePicker);
     // https://www.duetds.com/components/collapsible/
     // Init sortable objectives, setting order and triggering save
-    var sortable = Sortable.create(document.getElementById('pdpObjectivesLive'), {
-      handle: '.pdp-drag-handle',
-      onChoose: function () {
-        closeAllObjectives();
-      },
-      onEnd: function () {
-        setOrder();
-        timerStart();
-      }
-    });
+    // var sortable = Sortable.create(document.getElementById('pdpObjectivesLive'), {
+    //   handle: '.pdp-drag-handle',
+    //   onChoose: function () {
+    //     closeAllObjectives();
+    //   },
+    //   onEnd: function () {
+    //     setHiddenOrder();
+    //     timerStart();
+    //   }
+    // });
+    objectiveDrag.init(timerStart);
     // Record objectives order
-    setOrder();
+    objectiveDrag.setHiddenOrder();
     // Capture key up to trigger save
     document.addEventListener("keyup", event => {
       timerStart();
     });
 
     initTree();
+
+    addObjective.init();
+    activityFeedback.init();
   };
   return module;
 })();

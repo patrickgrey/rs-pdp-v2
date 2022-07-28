@@ -101,7 +101,7 @@ header > div:nth-child(1) img {
 * AUTOSAVE
 */
 
-header .pdp-autosave {
+header .pdp-activity-feedback {
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -114,19 +114,19 @@ header .pdp-autosave {
   padding: 0 0.5rem;
 }
 
-header .pdp-autosave p {
+header .pdp-activity-feedback p {
   margin: 0;
   margin-left: 0.5rem;
   font-weight: bold;
   color: var(--ians-colour-blue-light);
 }
 
-header .pdp-autosave .pdp-save-tick,
-header .pdp-autosave .pdp-save-saving {
+header .pdp-activity-feedback .pdp-save-tick,
+header .pdp-activity-feedback .pdp-save-saving {
   height: 1.25rem;
 }
 
-header .pdp-autosave .pdp-save-saving {
+header .pdp-activity-feedback .pdp-save-saving {
   display: none;
 }
 
