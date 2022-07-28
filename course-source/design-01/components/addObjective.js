@@ -31,8 +31,8 @@ function postForm() {
 
 function serverWait() {
   setTimeout(function () {
-    // const response = { status: "error", message: "It all went horribly wrong!" }
-    const response = { status: "ok", id: 1 };
+    const response = { status: "error", message: "It all went horribly wrong!" }
+    // const response = { status: "ok", id: 1 };
     getResponse(response);
   }, 2000);
 }
@@ -45,7 +45,8 @@ function getResponse(response) {
   }
   else {
     // htmlComponents.pdpFormNew.dispatchEvent(customEvents.errorEvent);
-    errorFeedback.showError(response.message)
+    errorFeedback.showError(response.message);
+    enableForm();
   }
 }
 
