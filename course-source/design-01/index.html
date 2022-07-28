@@ -194,48 +194,7 @@
     <main>
 
       <div class="ians-grid-2 pdp-layout">
-        <aside>
-          <p>
-            <strong>Help</strong>
-          </p>
-          <ul>
-            <li>
-              <a href="#">Linkety link link</a>
-            </li>
-            <li>
-              <a href="#">Linkety link link</a>
-            </li>
-            <li>
-              <a href="#">Linkety link link</a>
-            </li>
-            <li>
-              <a href="#">Linkety link link</a>
-            </li>
-          </ul>
-          <hr>
-          <p>
-            <strong>Information</strong>
-          </p>
-          <ul>
-            <li>Unit: EXT/LUX</li>
-            <li>Email: <a href="mailto:patrick.grey.ext@eurocontrol.int">patrick.grey.ext@eurocontrol.int</a>
-            </li>
-          </ul>
-          <hr>
 
-          <label for="pdpNextMeetingDate">
-            <strong>Date of next meeting:</strong>
-          </label>
-          <duet-date-picker identifier="pdpNextMeetingDate"></duet-date-picker>
-          <noscript>
-            <input id="pdpNextMeetingDate" type="date">
-          </noscript>
-          <hr>
-          <ul>
-            <li>My coach: N/A </li>
-            <li>My mentor: N/A</li>
-          </ul>
-        </aside>
         <article>
           <h2>
             {# <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -309,11 +268,11 @@
                           {# <textarea id="pdpCompetencyObjective1" rows="5"></textarea> #}
                           <input id="pdpTreeData" type="hidden">
                           <div class="pdp-tree-container"></div>
-                          <button type="button" class="pdp-tree-toggle">Toggle all</button>
+                          {# <button type="button" class="pdp-tree-toggle">Toggle all</button> #}
                         </div>
                       </div>
 
-                      <button>Save Objective</button>
+                      <button type="button" class="pdp-save-objective">Save Objective</button>
                     </div>
                   </details>
 
@@ -364,6 +323,49 @@
 
           </form>
         </article>
+
+        <aside>
+          <p>
+            <strong>Help</strong>
+          </p>
+          <ul>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+          </ul>
+          <hr>
+          <p>
+            <strong>Information</strong>
+          </p>
+          <ul>
+            <li>Unit: EXT/LUX</li>
+            <li>Email: <a href="mailto:patrick.grey.ext@eurocontrol.int">patrick.grey.ext@eurocontrol.int</a>
+            </li>
+          </ul>
+          <hr>
+
+          <label for="pdpNextMeetingDate">
+            <strong>Date of next meeting:</strong>
+          </label>
+          <duet-date-picker identifier="pdpNextMeetingDate"></duet-date-picker>
+          <noscript>
+            <input id="pdpNextMeetingDate" type="date">
+          </noscript>
+          <hr>
+          <ul>
+            <li>My coach: N/A </li>
+            <li>My mentor: N/A</li>
+          </ul>
+        </aside>
       </div>
     </main>
 

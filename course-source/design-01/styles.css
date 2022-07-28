@@ -156,6 +156,10 @@ h2 svg {
   grid-template-columns: 25% 1fr;
 }
 
+.pdp-layout aside {
+  order: -1;
+}
+
 aside,
 article {
   padding-left: 0.5rem;
@@ -164,7 +168,13 @@ article {
 
 aside {
   word-break: break-all;
-  min-height: calc(100vh - var(--pdp-header-height));
+}
+
+@screen md {
+  aside {
+    word-break: break-all;
+    min-height: calc(100vh - var(--pdp-header-height));
+  }
 }
 
 aside ul {
@@ -328,7 +338,8 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
 }
 
 .pdp-tree-container {
-  max-height: 80vh;
+  /* height: 80%; */
+  max-height: 55vh;
   overflow-y: auto;
 }
 
@@ -336,12 +347,17 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   padding-left: 0;
 }
 
-.pdp-tree-toggle {
+/* .pdp-tree-toggle, */
+.pdp-save-objective {
   display: block;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
   margin-right: 0;
   margin-left: auto;
+}
+
+.pdp-save-objective {
+  margin: 1rem auto;
 }
 
 footer {

@@ -20,7 +20,7 @@ import { sayhellotomylittlefriend } from './autosave.js';
 // Mark an objective Remedial
 // Tree
 //    Need to add dataset for each tree
-//    Toggle all
+//    Toggle all DONE - removed feature
 // Save button align
 // pdp-autosave structure
 
@@ -63,7 +63,7 @@ function initTree() {
         children: data
       }
     ],
-    closeDepth: 3,
+    // closeDepth: 3,
     loaded: function () {
       this.values = ['0-0-0', '0-1-1'];
       setTreeValue(this.values);
@@ -71,16 +71,20 @@ function initTree() {
     onChange: function () {
       setTreeValue(this.values);
     }
-  })
+  });
 
-  function handleTreeToggle(event) {
-    // console.log(event.target.closest(".pdp-tree-container"));
-    console.log(event.target.parentElement.querySelector(".pdp-tree-container"));
-  }
+  // tree.disables = ['0-1'];
 
-  document.querySelectorAll(".pdp-tree-toggle").forEach(button => {
-    button.addEventListener("click", handleTreeToggle)
-  })
+  // tree.expandAll();
+
+  // function handleTreeToggle(event) {
+  //   // console.log(event.target.closest(".pdp-tree-container"));
+  //   console.log(event.target.parentElement.querySelector(".pdp-tree-container"));
+  // }
+
+  // document.querySelectorAll(".pdp-tree-toggle").forEach(button => {
+  //   button.addEventListener("click", handleTreeToggle)
+  // })
 
 }
 
