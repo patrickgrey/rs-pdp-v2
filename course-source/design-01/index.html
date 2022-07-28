@@ -173,7 +173,7 @@
   <body data-objective-count="0">
     <div class="pdp-ilp-header">
       <button id="pdpRemedial">Toggle remedial</button>
-      <button id="pdpObjectiveCount">Change objective count: 0</button>
+      {# <button id="pdpObjectiveCount">Change objective count: 0</button> #}
       <button id="pdpError">Toggle error</button>
     </div>
     <header>
@@ -237,7 +237,14 @@
           </ul>
         </aside>
         <article>
-          <h2>Add an Objective</h2>
+          <h2>
+            {# <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg> #}
+
+             Add an Objective</h2>
           <form action="https://reqbin.com/echo/post/json" id="pdpFormNew">
             <label for="pdpTitleAdd">Title</label>
             <div class="pdp-fieldset-title">
@@ -247,7 +254,14 @@
           </form>
 
           <form action="https://reqbin.com/echo/post/json" id="pdpFormObjectives">
-            <h2>Edit Objective<span>s</span></h2>
+            <h2>
+              {# <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"/>
+                <line x1="13.5" y1="6.5" x2="17.5" y2="10.5"/>
+              </svg> #}
+               Edit Objective<span>s</span>
+            </h2>
 
             <div class="pd-obj-live-container">
               <input type="hidden" class="pd-obj-live-order" type="text">
@@ -257,20 +271,35 @@
                   <details open>
                     <summary>Objective here 1</summary>
                     <div class="pdp-objective-form-container">
-                      <label for="pdpTitleObjective1">Title</label>
-                      <input id="pdpTitleObjective1" type="text">
 
-                      <div class="ians-grid-2">
+                      <div class="ians-grid-2 pdp-fieldset-edit-title mt-1">
+                        <div>
+                          <label for="pdpTitleObjective1">Title</label>
+                          <input id="pdpTitleObjective1" type="text">
+                        </div>
+
+                        <div>
+                          <label for="pdpDueDateObjective1">
+                            <strong>Due date:</strong>
+                          </label>
+                          <duet-date-picker identifier="pdpDueDateObjective1"></duet-date-picker>
+                          <noscript>
+                            <input id="pdpDueDateObjective1" type="date">
+                          </noscript>
+                        </div>
+                      </div>
+
+                      <div class="ians-grid-2 mt-1-5">
                         <div>
                           <div>
                             <label for="pdpDescriptionObjective1">Description<span>What is the goal and desired results that you would like to achieve?</span></label>
                             <textarea id="pdpDescriptionObjective1" rows="5"></textarea>
                           </div>
-                          <div>
+                          <div class="mt-1-5">
                             <label for="pdpActionsObjective1">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
                             <textarea id="pdpActionsObjective1" rows="5"></textarea>
                           </div>
-                          <div>
+                          <div class="mt-1-5">
                             <label for="pdpPersonalInsightsObjective1">Personal Insights<span>What is the goal and desired results that you would like to achieve?</span></label>
                             <textarea id="pdpPersonalInsightsObjective1" rows="5"></textarea>
                           </div>
@@ -280,7 +309,7 @@
                           {# <textarea id="pdpCompetencyObjective1" rows="5"></textarea> #}
                           <input id="pdpTreeData" type="hidden">
                           <div class="pdp-tree-container"></div>
-                          <button>Toggle all</button>
+                          <button type="button" class="pdp-tree-toggle">Toggle all</button>
                         </div>
                       </div>
 

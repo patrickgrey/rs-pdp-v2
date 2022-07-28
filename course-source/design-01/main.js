@@ -3,6 +3,27 @@ import Sortable from 'sortablejs';
 import Tree from '@widgetjs/tree';
 import { sayhellotomylittlefriend } from './autosave.js';
 
+// TODO
+// Mock autosave properly
+//    *Something* triggers a call to save
+//    Start a timer running
+//    If timer not reset, send data and await response
+//        Response is timeout function
+//        Set flag so function can't be called again until response.
+// Start with 0 objectives
+//    On add, mock wait, on success build model and clone hidden to list and open
+// Start with 1 objective server side rendered
+//    Build model with IDs. Show only selected tree items.
+// Start with 2 objectives server side rendered
+//    Extract drag order IDs.
+// On drag, close details DONE
+// Mark an objective Remedial
+// Tree
+//    Need to add dataset for each tree
+//    Toggle all
+// Save button align
+// pdp-autosave structure
+
 // AUTOSAVE
 // How should it function?
 // -On leave focus? Brittle.
@@ -32,6 +53,7 @@ const savingOptions = {
   error: "error"
 }
 
+// These should be put into an array or add button function on tree creation?
 function initTree() {
   let tree = new Tree('.pdp-tree-container', {
     data: [
@@ -50,6 +72,16 @@ function initTree() {
       setTreeValue(this.values);
     }
   })
+
+  function handleTreeToggle(event) {
+    // console.log(event.target.closest(".pdp-tree-container"));
+    console.log(event.target.parentElement.querySelector(".pdp-tree-container"));
+  }
+
+  document.querySelectorAll(".pdp-tree-toggle").forEach(button => {
+    button.addEventListener("click", handleTreeToggle)
+  })
+
 }
 
 function setTreeValue(data) {
@@ -145,10 +177,15 @@ function timerStart() {
   timer = setTimeout(saveForm, savingDelay);
 }
 
+function closeAllObjectives() {
+  document.querySelectorAll("#pdpObjectivesLive li details[open]").forEach(detail => {
+    detail.open = false;
+  });
+}
+
 function setOrder() {
-  const objectivesListItems = document.querySelectorAll("#pdpObjectivesLive li");
   let orderArray = [];
-  objectivesListItems.forEach(li => {
+  document.querySelectorAll("#pdpObjectivesLive > li").forEach(li => {
     orderArray.push(li.dataset.order);
   });
   document.querySelector(".pd-obj-live-order").value = orderArray.toString();
@@ -162,12 +199,12 @@ var pageModule = (function () {
       document.querySelector("body").classList.toggle("pdp-show-remedial");
     });
 
-    const pdpObjectiveCount = document.querySelector("#pdpObjectiveCount");
-    pdpObjectiveCount.addEventListener("click", function (event) {
-      objectiveCount = objectiveCount < 4 ? objectiveCount + 1 : 0;
-      document.querySelector("body").dataset.objectiveCount = objectiveCount;
-      pdpObjectiveCount.innerHTML = `Change objective count: ${objectiveCount}`;
-    });
+    // const pdpObjectiveCount = document.querySelector("#pdpObjectiveCount");
+    // pdpObjectiveCount.addEventListener("click", function (event) {
+    //   objectiveCount = objectiveCount < 4 ? objectiveCount + 1 : 0;
+    //   document.querySelector("body").dataset.objectiveCount = objectiveCount;
+    //   pdpObjectiveCount.innerHTML = `Change objective count: ${objectiveCount}`;
+    // });
 
     document.querySelector("#pdpError").addEventListener("click", function (event) {
       document.querySelector("body").classList.toggle("pdp-show-error");
@@ -185,6 +222,9 @@ var pageModule = (function () {
     // Init sortable objectives, setting order and triggering save
     var sortable = Sortable.create(document.getElementById('pdpObjectivesLive'), {
       handle: '.pdp-drag-handle',
+      onChoose: function () {
+        closeAllObjectives();
+      },
       onEnd: function () {
         setOrder();
         timerStart();

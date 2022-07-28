@@ -145,6 +145,13 @@ h2 {
   margin-bottom: 0.5rem;
 }
 
+h2 svg {
+  width: var(--size-200);
+  vertical-align: middle;
+  padding-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .pdp-layout {
   grid-template-columns: 25% 1fr;
 }
@@ -157,42 +164,13 @@ article {
 
 aside {
   word-break: break-all;
+  min-height: calc(100vh - var(--pdp-header-height));
 }
 
 aside ul {
   list-style: none;
   padding-left: 0;
 }
-
-/* 
-* NEW OBJECTIVE DETAILS COMPONENT
-*/
-/* .pdp-details-new {
-  margin-top: 1rem;
-}
-
-.pdp-details-new summary {
-  background-color: white;
-  width: fit-content;
-  padding: 0.25rem 0.5rem;
-  margin-right: 0;
-  margin-left: auto;
-  border-radius: var(--border-radius);
-  font-size: var(--size-200);
-  font-weight: 400;
-  color: var(--ians-colour-blue-mid);
-  cursor: pointer;
-}
-
-.pdp-details-new[open] summary {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-} */
-
-/* .pdp-details-new summary::marker {
-  font-size: 1rem;
-  margin: 0 2rem 0.5rem 1rem;
-} */
 
 /* 
 * NEW OBJECTIVE FORM
@@ -202,6 +180,7 @@ aside ul {
   padding: 0.5rem 1rem 0.25rem 1rem;
   background-color: white;
   border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
 }
 
 #pdpFormNew label {
@@ -244,7 +223,9 @@ aside ul {
 #pdpFormNew textarea:focus,
 #pdpFormObjectives input[type="text"]:focus,
 #pdpFormObjectives input[type="date"]:focus,
-#pdpFormObjectives textarea:focus {
+#pdpFormObjectives textarea:focus,
+#pdpFormObjectives #pdpObjectivesLive > li summary:focus,
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle:focus {
   border-color: var(--duet-color-primary);
   box-shadow: 0 0 0 1px var(--duet-color-primary);
   outline: 0;
@@ -261,25 +242,9 @@ aside ul {
   position: absolute;
   right: -1px;
   top: 1px;
-  font-family: var(--ians-font-family);
-  font-size: 1rem;
-  background-color: var(--ians-colour-blue-light);
-  color: white;
   border: 0;
-  outline-color: var(--pdp-input-outline);
-  padding: var(--pdp-input-padding-vertical) 01rem;
   border-top-right-radius: calc(var(--border-radius) - 1px);
   border-bottom-right-radius: calc(var(--border-radius) - 1px);
-}
-
-#pdpFormNew #pdpTitleAddButton:focus {
-  border-color: var(--duet-color-primary);
-  box-shadow: 0 0 0 2px var(--duet-color-primary);
-  outline: 0;
-}
-
-#pdpFormNew #pdpTitleAddButton:hover {
-  background-color: var(--ians-colour-blue-mid);
 }
 
 /* 
@@ -304,6 +269,7 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
 
 #pdpFormObjectives #pdpObjectivesLive {
   padding-left: 0;
+  margin-top: 0;
 }
 
 #pdpFormObjectives #pdpObjectivesLive > li {
@@ -311,7 +277,7 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   background-color: white;
   color: var(--ians-colour-blue-mid);
   border-radius: var(--border-radius);
-  padding: 0 0.5rem 0 0.5rem;
+  padding: 0;
   list-style: none;
   margin-bottom: 0.5rem;
   font-weight: bold;
@@ -320,6 +286,8 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
 
 #pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle {
   cursor: n-resize;
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
   width: var(--pdp-objective-drag-size);
   height: var(--pdp-objective-drag-size);
   position: absolute;
@@ -347,10 +315,16 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   height: var(--pdp-objective-drag-size);
   line-height: var(--pdp-objective-drag-size);
   padding-left: calc(var(--pdp-objective-drag-size) + 0.5rem);
+  border-top-right-radius: calc(var(--border-radius) - 1px);
+  border-top-left-radius: calc(var(--border-radius) - 1px);
 }
 
 #pdpFormObjectives #pdpObjectivesLive .pdp-objective-form-container {
   padding: 0.5rem;
+}
+
+#pdpFormObjectives #pdpObjectivesLive .pdp-fieldset-edit-title {
+  grid-template-columns: 1fr 12rem;
 }
 
 .pdp-tree-container {
@@ -360,4 +334,20 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
 
 .pdp-tree-container ul:first-child {
   padding-left: 0;
+}
+
+.pdp-tree-toggle {
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+footer {
+  background-color: var(--colour-ians-darkblue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
