@@ -121,13 +121,13 @@ header .pdp-activity-feedback p {
   color: var(--ians-colour-blue-light);
 }
 
-header .pdp-activity-feedback .pdp-save-tick,
-header .pdp-activity-feedback .pdp-save-saving {
+header .pdp-activity-feedback img {
   height: 1.25rem;
+  display: none;
 }
 
-header .pdp-activity-feedback .pdp-save-saving {
-  display: none;
+header .pdp-activity-feedback img.pdp-activity-feedback-show {
+  display: block;
 }
 
 header .pdp-error {

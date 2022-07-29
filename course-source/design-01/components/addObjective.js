@@ -12,7 +12,6 @@ import * as htmlComponents from './htmlComponents.js';
 import * as errorFeedback from './errorFeedback.js';
 
 
-
 function disableForm() {
   htmlComponents.pdpTitleAdd.disabled = true;
   htmlComponents.pdpTitleAddButton.disabled = true;
@@ -34,14 +33,20 @@ function serverWait() {
   }, 2000);
 }
 
+function cloneObjective(id) {
+  // clone and add to list
+  const clone = document.querySelector(".pdp-objective-clone-daddy details").cloneNode(true);
+  document.querySelector("#pdpObjectivesLive").prepend(clone);
+  document.querySelector("body").dataset.objectiveCount++;
+}
+
 function getResponse(response) {
   if (response.status === "ok") {
+    cloneObjective(response.id);
     htmlComponents.pdpFormNew.dispatchEvent(customEvents.savedEvent);
     enableForm();
-    console.log(response.id);
   }
   else {
-    // htmlComponents.pdpFormNew.dispatchEvent(customEvents.errorEvent);
     errorFeedback.showError(response.message);
     enableForm();
   }
