@@ -57,9 +57,14 @@ function getResponse(response) {
 function init() {
   htmlComponents.pdpTitleAddButton.addEventListener("click", function (event) {
     event.preventDefault();
-    disableForm();
-    htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
-    postForm();
+    if (htmlComponents.pdpFormNew.querySelector("input").value === "") {
+      htmlComponents.pdpFormNew.reportValidity()
+    }
+    else {
+      disableForm();
+      htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
+      postForm();
+    }
   });
 }
 
