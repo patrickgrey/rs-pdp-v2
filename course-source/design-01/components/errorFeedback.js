@@ -1,5 +1,11 @@
 import * as htmlComponents from './htmlComponents.js';
 
+export let isError = false;
+
+export const toggleError = function () {
+  isError = !isError;
+}
+
 export const showError = function (message) {
   const pdpErrorFeedbackSpan = htmlComponents.pdpErrorFeedback.querySelector("span");
   pdpErrorFeedbackSpan.textContent = message;

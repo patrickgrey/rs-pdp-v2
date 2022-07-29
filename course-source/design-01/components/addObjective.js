@@ -11,9 +11,7 @@ import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
 import * as errorFeedback from './errorFeedback.js';
 
-const pdpTitleAdd = document.querySelector("#pdpTitleAdd");
-const pdpTitleAddButton = document.querySelector("#pdpTitleAddButton");
-const pdpFormNew = document.querySelector("#pdpFormNew");
+
 
 function disableForm() {
   htmlComponents.pdpTitleAdd.disabled = true;
@@ -31,8 +29,7 @@ function postForm() {
 
 function serverWait() {
   setTimeout(function () {
-    const response = { status: "error", message: "It all went horribly wrong!" }
-    // const response = { status: "ok", id: 1 };
+    const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok", id: 1 };
     getResponse(response);
   }, 2000);
 }

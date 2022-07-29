@@ -5,6 +5,7 @@ import { sayhellotomylittlefriend } from './components/autosave.js';
 import * as objectiveDrag from './components/objectiveDrag.js';
 import * as addObjective from './components/addObjective.js';
 import * as activityFeedback from './components/activityFeedback.js';
+import * as errorFeedback from './components/errorFeedback.js';
 
 
 // TODO
@@ -27,6 +28,7 @@ import * as activityFeedback from './components/activityFeedback.js';
 //    Toggle all DONE - removed feature
 // Save button align DONE
 // pdp-autosave structure
+// Toggle errors DONE
 
 // AUTOSAVE
 // How should it function?
@@ -204,7 +206,8 @@ var pageModule = (function () {
     });
 
     document.querySelector("#pdpError").addEventListener("click", function (event) {
-      document.querySelector("body").classList.toggle("pdp-show-error");
+      // document.querySelector("body").classList.toggle("pdp-show-error");
+      errorFeedback.toggleError();
     });
 
 
