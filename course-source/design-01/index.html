@@ -183,9 +183,16 @@
         <p class="pdp-remedial pdp-remedial-label">Remedial</p>
       </div>
       <div class="pdp-activity-feedback" id="pdpActivityFeedback">
+
         <img class="pdp-save-tick pdp-activity-feedback-show" aria-hidden="true" src="images/pdp-save-tick.svg" alt="Form saved">
+
         <img class="pdp-save-saving" aria-hidden="true" src="images/pdp-save-saving.svg" alt="Form saving">
-        <p>0 objectives</p>
+
+        <img class="pdp-save-warning" aria-hidden="true" src="images/pdp-save-warning.svg" alt="Warning!">
+
+        <img class="pdp-save-error" aria-hidden="true" src="images/pdp-save-error.svg" alt="Error!">
+
+        <p>Ready to add</p>
       </div>
       <div class="pdp-error" id="pdpErrorFeedback">
         <p>Please copy this error for debugging: <strong>
@@ -283,60 +290,62 @@
     </footer>
 
     <div class="pdp-objective-clone-daddy">
-      <details open>
-        <summary>Objective 1<span class="pdp-remedial pdp-remedial-label"> Remedial</span></summary>
-        <div class="pdp-objective-form-container">
+      <li>
+        <details open>
+          <summary>Objective 1<span class="pdp-remedial pdp-remedial-label"> Remedial</span></summary>
+          <div class="pdp-objective-form-container">
 
-          <div class="ians-grid-2 pdp-fieldset-edit-title mt-1">
-            <div>
-              <label for="pdpTitleObjective1">Title</label>
-              <input id="pdpTitleObjective1" type="text">
-            </div>
-
-            <div>
-              <label for="pdpDueDateObjective1">
-                <strong>Due date:</strong>
-              </label>
-              <duet-date-picker required identifier="pdpDueDateObjective1"></duet-date-picker>
-              <noscript>
-                <input id="pdpDueDateObjective1" type="date">
-              </noscript>
-              <p class="pdp-validation-label pdp-remedial">* required</p>
-            </div>
-          </div>
-
-          <div class="ians-grid-2 mt-1-5">
-            <div>
+            <div class="ians-grid-2 pdp-fieldset-edit-title mt-1">
               <div>
-                <label for="pdpDescriptionObjective1">Description<span>What is the goal and desired results that you would like to achieve?</span></label>
-                <textarea id="pdpDescriptionObjective1" rows="5"></textarea>
+                <label for="">Title</label>
+                <input id="" type="text">
               </div>
-              <div class="mt-1-5">
-                <label for="pdpActionsObjective1">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
-                <textarea id="pdpActionsObjective1" rows="5"></textarea>
-              </div>
-              <div class="mt-1-5">
-                <label for="pdpPersonalInsightsObjective1">Personal Insights<span>What is the goal and desired results that you would like to achieve?</span></label>
-                <textarea id="pdpPersonalInsightsObjective1" rows="5"></textarea>
+
+              <div>
+                <label for="">
+                  <strong>Due date:</strong>
+                </label>
+                <duet-date-picker required identifier=""></duet-date-picker>
+                <noscript>
+                  <input id="" type="date">
+                </noscript>
+                <p class="pdp-validation-label pdp-remedial">* required</p>
               </div>
             </div>
-            <div>
-              <label for="pdpTreeData">Competency<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
-              {# <textarea id="pdpCompetencyObjective1" rows="5"></textarea> #}
-              <input id="pdpTreeData" type="hidden">
-              <div class="pdp-tree-container"></div>
-              {# <button type="button" class="pdp-tree-toggle">Toggle all</button> #}
+
+            <div class="ians-grid-2 mt-1-5">
+              <div>
+                <div>
+                  <label for="">Description<span>What is the goal and desired results that you would like to achieve?</span></label>
+                  <textarea id="" rows="5"></textarea>
+                </div>
+                <div class="mt-1-5">
+                  <label for="">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                  <textarea id="" rows="5"></textarea>
+                </div>
+                <div class="mt-1-5">
+                  <label for="">Personal Insights<span>What is the goal and desired results that you would like to achieve?</span></label>
+                  <textarea id="" rows="5"></textarea>
+                </div>
+              </div>
+              <div>
+                <label for="">Competency<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                {# <textarea id="" rows="5"></textarea> #}
+                <input id="" type="hidden">
+                <div class="pdp-tree-container"></div>
+                {# <button type="button" class="pdp-tree-toggle">Toggle all</button> #}
+              </div>
             </div>
+
+            <button type="submit" class="pdp-save-objective">Save Objective</button>
           </div>
+        </details>
 
-          <button type="submit" class="pdp-save-objective">Save Objective</button>
-        </div>
-      </details>
-
-      <button class="pdp-drag-handle">
-        <img aria-hidden="true" src="images/pdp-icon-drag.svg" alt="Drag me!">
-        <span class="ians-visually-hidden">Drag</span>
-      </button>
+        <button class="pdp-drag-handle">
+          <img aria-hidden="true" src="images/pdp-icon-drag.svg" alt="Drag me!">
+          <span class="ians-visually-hidden">Drag</span>
+        </button>
+      </li>
     </div>
 
     <script src="main.js"></script>

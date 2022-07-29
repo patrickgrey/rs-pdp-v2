@@ -95,8 +95,8 @@ function initTree() {
 }
 
 function setTreeValue(data) {
-  const pdpTreeData = document.querySelector("#pdpTreeData");
-  pdpTreeData.value = data.toString();
+  // const pdpTreeData = document.querySelector("#pdpTreeData");
+  // pdpTreeData.value = data.toString();
 }
 
 function setSavingState(state) {

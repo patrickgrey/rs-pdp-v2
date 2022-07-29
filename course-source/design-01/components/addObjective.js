@@ -1,9 +1,9 @@
 // Prevent submit DONE
 // Disable button & input DONE
-// Emit 'adding' status event
-// Send data and await response
-//    Settimeout with OK and ID and error responses.
-// On error, emit 'error' event
+// Emit 'adding' status event DONE
+// Send data and await response DONE
+//    Settimeout with OK and ID and error responses. DONE
+// On error, emit 'error' event DONE
 // On OK, clone objective with ID and init
 // Emit 'added' event.
 
@@ -34,20 +34,22 @@ function serverWait() {
 }
 
 function cloneObjective(id) {
-  // clone and add to list
-  const clone = document.querySelector(".pdp-objective-clone-daddy details").cloneNode(true);
+  const clone = document.querySelector(".pdp-objective-clone-daddy li").cloneNode(true);
   document.querySelector("#pdpObjectivesLive").prepend(clone);
+  // Add ids and fors
+  // Dynamic date picker?
   document.querySelector("body").dataset.objectiveCount++;
 }
 
 function getResponse(response) {
   if (response.status === "ok") {
     cloneObjective(response.id);
-    htmlComponents.pdpFormNew.dispatchEvent(customEvents.savedEvent);
+    htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent);
     enableForm();
   }
   else {
     errorFeedback.showError(response.message);
+    htmlComponents.pdpFormNew.dispatchEvent(customEvents.errorEvent);
     enableForm();
   }
 }
