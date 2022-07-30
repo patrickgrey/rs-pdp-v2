@@ -1,11 +1,14 @@
 import { DuetDatePicker } from "@duetds/date-picker/custom-element";
 import Sortable from 'sortablejs';
-import Tree from '@widgetjs/tree';
-import { sayhellotomylittlefriend } from './components/autosave.js';
+
+import * as autosave from './components/autosave.js';
 import * as objectiveDrag from './components/objectiveDrag.js';
 import * as addObjective from './components/addObjective.js';
+import * as objectiveStore from './components/objectiveStore.js';
 import * as activityFeedback from './components/activityFeedback.js';
 import * as errorFeedback from './components/errorFeedback.js';
+import * as htmlComponents from './components/htmlComponents.js';
+import * as helpers from './components/helpers.js';
 
 
 // TODO
@@ -17,6 +20,7 @@ import * as errorFeedback from './components/errorFeedback.js';
 //        Set flag so function can't be called again until response.
 // Start with 0 objectives
 //    On add, mock wait, on success build model and clone hidden to list and open
+//    serverWait should respond with an id and the title.
 // Start with 1 objective server side rendered
 //    Build model with IDs. Show only selected tree items.
 // Start with 2 objectives server side rendered
@@ -27,7 +31,7 @@ import * as errorFeedback from './components/errorFeedback.js';
 //    Need to add dataset for each tree
 //    Toggle all DONE - removed feature
 // Save button align DONE
-// pdp-autosave structure
+// pdp-autosave structure DONE
 // Toggle errors DONE
 
 // AUTOSAVE
@@ -48,71 +52,71 @@ import * as errorFeedback from './components/errorFeedback.js';
 // -Page closes before saved?
 // --Warn user to press save button if not saved yet.
 
-const savingDelay = 2000;
-const pdpFormNew = document.querySelector("#pdpFormNew");
-const pdpFormObjectives = document.querySelector("#pdpFormObjectives");
-let objectiveCount = 0;
+// const savingDelay = 2000;
+// const pdpFormNew = document.querySelector("#pdpFormNew");
+// const pdpFormObjectives = document.querySelector("#pdpFormObjectives");
+// let objectiveCount = 0;
 
-const savingOptions = {
-  saved: "saved",
-  saving: "saving",
-  error: "error"
-}
+// const savingOptions = {
+//   saved: "saved",
+//   saving: "saving",
+//   error: "error"
+// }
 
 // These should be put into an array or add button function on tree creation?
-function initTree() {
-  let tree = new Tree('.pdp-tree-container', {
-    data: [
-      {
-        id: '-1',
-        text: 'root',
-        children: data
-      }
-    ],
-    // closeDepth: 3,
-    loaded: function () {
-      this.values = ['0-0-0', '0-1-1'];
-      setTreeValue(this.values);
-    },
-    onChange: function () {
-      setTreeValue(this.values);
-    }
-  });
+// function initTree() {
+//   // let tree = new Tree('.pdp-tree-container', {
+//   //   data: [
+//   //     {
+//   //       id: '-1',
+//   //       text: 'root',
+//   //       children: data
+//   //     }
+//   //   ],
+//   //   // closeDepth: 3,
+//   //   loaded: function () {
+//   //     this.values = ['0-0-0', '0-1-1'];
+//   //     setTreeValue(this.values);
+//   //   },
+//   //   onChange: function () {
+//   //     setTreeValue(this.values);
+//   //   }
+//   // });
 
-  // tree.disables = ['0-1'];
+//   // tree.disables = ['0-1'];
 
-  // tree.expandAll();
+//   // tree.expandAll();
 
-  // function handleTreeToggle(event) {
-  //   // console.log(event.target.closest(".pdp-tree-container"));
-  //   console.log(event.target.parentElement.querySelector(".pdp-tree-container"));
-  // }
+//   // function handleTreeToggle(event) {
+//   //   // console.log(event.target.closest(".pdp-tree-container"));
+//   //   console.log(event.target.parentElement.querySelector(".pdp-tree-container"));
+//   // }
 
-  // document.querySelectorAll(".pdp-tree-toggle").forEach(button => {
-  //   button.addEventListener("click", handleTreeToggle)
-  // })
+//   // document.querySelectorAll(".pdp-tree-toggle").forEach(button => {
+//   //   button.addEventListener("click", handleTreeToggle)
+//   // })
 
-}
+// }
 
-function setTreeValue(data) {
-  // const pdpTreeData = document.querySelector("#pdpTreeData");
-  // pdpTreeData.value = data.toString();
-}
+// function setTreeValue(data) {
+//   // const pdpTreeData = document.querySelector("#pdpTreeData");
+//   // pdpTreeData.value = data.toString();
+// }
 
-function setSavingState(state) {
-  if (state === savingOptions.saved) {
-    // Tick
-    console.log(savingOptions.saved);
-  }
-  else if (state === savingOptions.saving) {
-    // Rotate
-    console.log(savingOptions.saving);
-  }
-  else if (state === savingOptions.error) {
-    // Warn and instruct
-    console.log(savingOptions.error);
-  }
-}
+// function setSavingState(state) {
+//   if (state === savingOptions.saved) {
+//     // Tick
+//     console.log(savingOptions.saved);
+//   }
+//   else if (state === savingOptions.saving) {
+//     // Rotate
+//     console.log(savingOptions.saving);
+//   }
+//   else if (state === savingOptions.error) {
+//     // Warn and instruct
+//     console.log(savingOptions.error);
+//   }
+// }
 
 // https://simonplend.com/how-to-use-fetch-to-post-form-data-as-json-to-your-api/
 /**
@@ -170,22 +174,22 @@ async function handleFormSubmit(event) {
   }
 }
 
-function saveForm() {
-  // NEED TO PREVENT OVERLAPPING SAVES!!
-  // document.querySelector("#pdpSubmitButton").click();
-}
+// function saveForm() {
+//   // NEED TO PREVENT OVERLAPPING SAVES!!
+//   // document.querySelector("#pdpSubmitButton").click();
+// }
 
-let timer = null;
+// let timer = null;
 
-function timerStart() {
-  setSavingState(savingOptions.saving);
-  if (timer != null) {
-    clearTimeout(timer);
-    timer = null;
-  }
-  // Update component to "saving.."
-  timer = setTimeout(saveForm, savingDelay);
-}
+// function timerStart() {
+//   setSavingState(savingOptions.saving);
+//   if (timer != null) {
+//     clearTimeout(timer);
+//     timer = null;
+//   }
+//   // Update component to "saving.."
+//   timer = setTimeout(saveForm, savingDelay);
+// }
 
 
 
@@ -200,6 +204,15 @@ function timerStart() {
 var pageModule = (function () {
   var module = {};
   module.init = function () {
+    // JUST FOR DEV
+    htmlComponents.pdpTitleAdd.value = helpers.generateString(5);
+
+    customElements.define("duet-date-picker", DuetDatePicker);
+
+    addObjective.init();
+    activityFeedback.init();
+    objectiveStore.init();
+    autosave.init();
 
     document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
       document.querySelector("body").classList.toggle("pdp-show-remedial");
@@ -210,37 +223,35 @@ var pageModule = (function () {
       errorFeedback.toggleError();
     });
 
-
-
+    // JUST FOR DEV
+    htmlComponents.pdpTitleAddButton.click();
 
     // Init form
-    pdpFormNew.addEventListener("submit", handleFormSubmit);
-    // Init date input
-    customElements.define("duet-date-picker", DuetDatePicker);
-    // https://www.duetds.com/components/collapsible/
-    // Init sortable objectives, setting order and triggering save
-    // var sortable = Sortable.create(document.getElementById('pdpObjectivesLive'), {
-    //   handle: '.pdp-drag-handle',
-    //   onChoose: function () {
-    //     closeAllObjectives();
-    //   },
-    //   onEnd: function () {
-    //     setHiddenOrder();
-    //     timerStart();
-    //   }
+    // pdpFormNew.addEventListener("submit", handleFormSubmit);
+    // // Init date input
+    // // https://www.duetds.com/components/collapsible/
+    // // Init sortable objectives, setting order and triggering save
+    // // var sortable = Sortable.create(document.getElementById('pdpObjectivesLive'), {
+    // //   handle: '.pdp-drag-handle',
+    // //   onChoose: function () {
+    // //     closeAllObjectives();
+    // //   },
+    // //   onEnd: function () {
+    // //     setHiddenOrder();
+    // //     timerStart();
+    // //   }
+    // // });
+    // objectiveDrag.init(timerStart);
+    // // Record objectives order
+    // objectiveDrag.setHiddenOrder();
+    // // Capture key up to trigger save
+    // document.addEventListener("keyup", event => {
+    //   timerStart();
     // });
-    objectiveDrag.init(timerStart);
-    // Record objectives order
-    objectiveDrag.setHiddenOrder();
-    // Capture key up to trigger save
-    document.addEventListener("keyup", event => {
-      timerStart();
-    });
 
-    initTree();
+    // initTree();
 
-    addObjective.init();
-    activityFeedback.init();
+
   };
   return module;
 })();

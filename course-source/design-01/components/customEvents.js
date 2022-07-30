@@ -2,7 +2,17 @@ export const adding = 'adding';
 export const addingEvent = new CustomEvent(adding);
 
 export const added = 'added';
-export const addedEvent = new CustomEvent(added);
+export const addedEvent = function (id) {
+  return new CustomEvent(added, { detail: { id } });
+}
+
+export const updating = 'updating';
+export const updatingEvent = new CustomEvent(updating);
+
+export const updated = 'updated';
+export const updatedEvent = function (id) {
+  return new CustomEvent(updated, { detail: { id } });
+}
 
 export const saved = 'saved';
 export const savedEvent = new CustomEvent(saved);

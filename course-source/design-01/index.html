@@ -11,7 +11,7 @@
 
     <script>
       // prettier-ignore
-      let data = [
+      let pdpTreeData = [
         {
           "id": "0",
           "text": "node-0",
@@ -290,50 +290,48 @@
     </footer>
 
     <div class="pdp-objective-clone-daddy">
-      <li>
+      <li data-objective-id="">
         <details open>
-          <summary>Objective 1<span class="pdp-remedial pdp-remedial-label"> Remedial</span></summary>
+          <summary>
+            <span>Title</span>
+            <span class="pdp-remedial pdp-remedial-label"> Remedial</span></summary>
           <div class="pdp-objective-form-container">
 
             <div class="ians-grid-2 pdp-fieldset-edit-title mt-1">
               <div>
                 <label for="">Title</label>
-                <input id="" type="text">
+                <input data-objective-type="title" id="" autocomplete="off" required type="text">
               </div>
 
-              <div>
+              <div class="pdp-edit-datepicker">
                 <label for="">
                   <strong>Due date:</strong>
                 </label>
-                <duet-date-picker required identifier=""></duet-date-picker>
-                <noscript>
-                  <input id="" type="date">
-                </noscript>
+                <span class="pdp-date-picker-container"></span>
+                {# <duet-date-picker required identifier=""></duet-date-picker> #}
                 <p class="pdp-validation-label pdp-remedial">* required</p>
               </div>
             </div>
 
             <div class="ians-grid-2 mt-1-5">
               <div>
-                <div>
+                <div class="pdp-objective-edit-description">
                   <label for="">Description<span>What is the goal and desired results that you would like to achieve?</span></label>
-                  <textarea id="" rows="5"></textarea>
+                  <textarea data-objective-type="description" id="" rows="5"></textarea>
                 </div>
-                <div class="mt-1-5">
+                <div class="mt-1-5 pdp-objective-edit-actions">
                   <label for="">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
-                  <textarea id="" rows="5"></textarea>
+                  <textarea data-objective-type="actions" id="" rows="5"></textarea>
                 </div>
-                <div class="mt-1-5">
+                <div class="mt-1-5 pdp-objective-edit-insights">
                   <label for="">Personal Insights<span>What is the goal and desired results that you would like to achieve?</span></label>
-                  <textarea id="" rows="5"></textarea>
+                  <textarea data-objective-type="insights" id="" rows="5"></textarea>
                 </div>
               </div>
-              <div>
+              <div class="pdp-tree-fieldset">
                 <label for="">Competency<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
-                {# <textarea id="" rows="5"></textarea> #}
-                <input id="" type="hidden">
+                <input data-objective-type="competency" id="" type="hidden">
                 <div class="pdp-tree-container"></div>
-                {# <button type="button" class="pdp-tree-toggle">Toggle all</button> #}
               </div>
             </div>
 
@@ -351,156 +349,3 @@
     <script src="main.js"></script>
   </body>
 </html>
-
-{# <ul>
-            <li class="pdp-drag-handle">
-              <img src="images/pdp-drag.svg" alt="Drag to reorder" aria-hidden="true"/>
-              <div class="pdp-keyboard-navigation">
-                <a href="#" data-direction="up" onclick="moveUp">
-                  <img src="images/pdp-up-arrow.svg" alt="Move item up"/>
-                </a>
-                <a href="#" data-direction="down" onclick="moveDown">
-                  <img src="images/pdp-down-arrow.svg" alt="Move item down"/>
-                </a>
-                <p>Objective</p>
-            <details>
-              <summarydisummary>
-                <div>Form</div>
-                </details>
-            </li>
-            <li class="pdp-drag-handle">
-              <img src="images/pdp-drag.svg" alt="Drag to reorder" aria-hidden="true"/>
-              <div class="pdp-keyboard-navigation">
-                <a href="#" data-direction="up" onclick="moveUp">
-                  <img src="images/pdp-up-arrow.svg" alt="Move item up"/>
-                </a>
-                <a href="#" data-direction="down" onclick="moveDown">
-                  <img src="images/pdp-down-arrow.svg" alt="Move item down"/>
-                </a>
-                <p>Objective</p>
-            <details>
-              <summarydisummary>
-                <div>Form</div>
-                </details>
-            </li>
-            <li class="pdp-drag-handle">
-              <img src="images/pdp-drag.svg" alt="Drag to reorder" aria-hidden="true"/>
-              <div class="pdp-keyboard-navigation">
-                <a href="#" data-direction="up" onclick="moveUp">
-                  <img src="images/pdp-up-arrow.svg" alt="Move item up"/>
-                </a>
-                <a href="#" data-direction="down" onclick="moveDown">
-                  <img src="images/pdp-down-arrow.svg" alt="Move item down"/>
-                </a>
-                <p>Objective</p>
-            <details>
-              <summarydisummary>
-                <div>Form</div>
-                </details>
-            </li>
-            <li class="pdp-drag-handle">
-              <img src="images/pdp-drag.svg" alt="Drag to reorder" aria-hidden="true"/>
-              <div class="pdp-keyboard-navigation">
-                <a href="#" data-direction="up" onclick="moveUp">
-                  <img src="images/pdp-up-arrow.svg" alt="Move item up"/>
-                </a>
-                <a href="#" data-direction="down" onclick="moveDown">
-                  <img src="images/pdp-down-arrow.svg" alt="Move item down"/>
-                </a>
-                <p>Objective</p>
-            <details>
-              <summarydisummary>
-                <div>Form</div>
-                </details>
-            </li>
-            <li class="pdp-drag-handle">
-              <img src="images/pdp-drag.svg" alt="Drag to reorder" aria-hidden="true"/>
-              <div class="pdp-keyboard-navigation">
-                <a href="#" data-direction="up" onclick="moveUp">
-                  <img src="images/pdp-up-arrow.svg" alt="Move item up"/>
-                </a>
-                <a href="#" data-direction="down" onclick="moveDown">
-                  <img src="images/pdp-down-arrow.svg" alt="Move item down"/>
-                </a>
-                <p>Objective</p>
-            <details>
-              <summarydisummary>
-                <div>Form</div>
-                </details>
-            </li>
-            <li class="pdp-drag-handle">
-              <img src="images/pdp-drag.svg" alt="Drag to reorder" aria-hidden="true"/>
-              <div class="pdp-keyboard-navigation">
-                <a href="#" data-direction="up" onclick="moveUp">
-                  <img src="images/pdp-up-arrow.svg" alt="Move item up"/>
-                </a>
-                <a href="#" data-direction="down" onclick="moveDown">
-                  <img src="images/pdp-down-arrow.svg" alt="Move item down"/>
-                </a>
-                <p>Objective</p>
-            <details>
-              <summarydisummary>
-                <div>Form</div>
-                </details>
-            </li>
-            <li class="pdp-drag-handle">
-              <img src="images/pdp-drag.svg" alt="Drag to reorder" aria-hidden="true"/>
-              <div class="pdp-keyboard-navigation">
-                <a href="#" data-direction="up" onclick="moveUp">
-                  <img src="images/pdp-up-arrow.svg" alt="Move item up"/>
-                </a>
-                <a href="#" data-direction="down" onclick="moveDown">
-                  <img src="images/pdp-down-arrow.svg" alt="Move item down"/>
-                </a>
-                <p>Objective</p>
-            <details>
-              <summarydisummary>
-                <div>Form</div>
-                </details>
-            </li>
-            <li class="pdp-drag-handle">
-              <img src="images/pdp-drag.svg" alt="Drag to reorder" aria-hidden="true"/>
-              <div class="pdp-keyboard-navigation">
-                <a href="#" data-direction="up" onclick="moveUp">
-                  <img src="images/pdp-up-arrow.svg" alt="Move item up"/>
-                </a>
-                <a href="#" data-direction="down" onclick="moveDown">
-                  <img src="images/pdp-down-arrow.svg" alt="Move item down"/>
-                </a>
-                <p>Objective</p>
-            <details>
-              <summarydisummary>
-                <div>Form</div>
-                </details>
-            </li>
-            <li class="pdp-drag-handle">
-              <img src="images/pdp-drag.svg" alt="Drag to reorder" aria-hidden="true"/>
-              <div class="pdp-keyboard-navigation">
-                <a href="#" data-direction="up" onclick="moveUp">
-                  <img src="images/pdp-up-arrow.svg" alt="Move item up"/>
-                </a>
-                <a href="#" data-direction="down" onclick="moveDown">
-                  <img src="images/pdp-down-arrow.svg" alt="Move item down"/>
-                </a>
-                <p>Objective</p>
-            <details>
-              <summarydisummary>
-                <div>Form</div>
-                </details>
-            </li>
-            <li class="pdp-drag-handle">
-              <img src="images/pdp-drag.svg" alt="Drag to reorder" aria-hidden="true"/>
-              <div class="pdp-keyboard-navigation">
-                <a href="#" data-direction="up" onclick="moveUp">
-                  <img src="images/pdp-up-arrow.svg" alt="Move item up"/>
-                </a>
-                <a href="#" data-direction="down" onclick="moveDown">
-                  <img src="images/pdp-down-arrow.svg" alt="Move item down"/>
-                </a>
-                <p>Objective</p>
-            <details>
-              <summarydisummary>
-                <div>Form</div>
-                </details>
-            </li>
-          </ul> #}
