@@ -331,9 +331,12 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
 }
 
 #pdpFormObjectives #pdpObjectivesLive > li summary {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  height: var(--pdp-objective-drag-size);
+  max-height: var(--pdp-objective-drag-size);
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
   line-height: var(--pdp-objective-drag-size);
   padding-left: calc(var(--pdp-objective-drag-size) + 0.5rem);
   border-top-right-radius: calc(var(--border-radius) - 1px);

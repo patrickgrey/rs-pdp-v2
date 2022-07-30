@@ -3,7 +3,7 @@ import * as htmlComponents from './htmlComponents.js';
 import * as objectiveStore from './objectiveStore.js';
 import * as errorFeedback from './errorFeedback.js';
 
-let isSaving = false;
+// let isSaving = false;
 let changedIds = [];
 let timer = null;
 const savingDelay = 3000;
@@ -24,24 +24,27 @@ function checkValueHasChanged(id, type, newValue) {
 }
 
 function startSave(id, type, newValue) {
-  if (isSaving) return;
+  // if (isSaving) return;
   if (!checkValueHasChanged(id, type, newValue)) return;
   console.log("Starting save");
-  isSaving = true;
-  if (!changedIds.contains(id)) changedIds.push(id);
-  startTimer();
+  // htmlComponents.pdpFormObjectives
+  htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);
+  // isSaving = true;
+  console.log(changedIds);
+  if (!changedIds.includes(id)) changedIds.push(id);
+  resetTimer();
 }
 
-function startTimer() {
+function resetTimer() {
   if (timer != null) {
     clearTimeout(timer);
     timer = null;
   }
-  // Update component to "saving.."
   timer = setTimeout(postData, savingDelay);
 }
 
 function postData() {
+  console.log("posting");
   // build object array to post as JSON based on array.
   serverWait();
 }
@@ -49,7 +52,20 @@ function postData() {
 function serverWait() {
   setTimeout(function () {
     const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok" };
+    getResponse(response);
   }, 1000);
+}
+
+function getResponse(response) {
+  console.log(response);
+  if (response.status === "ok") {
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatedEvent);
+  }
+  else {
+    errorFeedback.showError(response.message);
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.errorEvent);
+    enableForm();
+  }
 }
 
 const init = () => {

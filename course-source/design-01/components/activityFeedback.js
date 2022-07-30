@@ -29,6 +29,18 @@ function init() {
     htmlComponents.pdpSaveError.classList.add("pdp-activity-feedback-show");
     setText("Error");
   });
+
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.updating, function (event) {
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveSaving.classList.add("pdp-activity-feedback-show");
+    setText("Saving update");
+  });
+
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.updated, function (event) {
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveTick.classList.add("pdp-activity-feedback-show");
+    setText("Update saved");
+  });
 }
 
 export { init }

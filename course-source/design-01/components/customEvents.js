@@ -10,9 +10,7 @@ export const updating = 'updating';
 export const updatingEvent = new CustomEvent(updating);
 
 export const updated = 'updated';
-export const updatedEvent = function (id) {
-  return new CustomEvent(updated, { detail: { id } });
-}
+export const updatedEvent = new CustomEvent(updated);
 
 export const saved = 'saved';
 export const savedEvent = new CustomEvent(saved);

@@ -36,7 +36,7 @@ function createObjective(id) {
       description: "",
       actions: "",
       insights: "",
-      competency: "",
+      competencies: "",
       listPosition: 0
     }
   )

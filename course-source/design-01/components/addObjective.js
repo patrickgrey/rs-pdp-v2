@@ -18,7 +18,6 @@ import * as htmlComponents from './htmlComponents.js';
 import * as errorFeedback from './errorFeedback.js';
 import * as autosave from './autosave.js';
 
-
 function disableForm() {
   htmlComponents.pdpTitleAdd.disabled = true;
   htmlComponents.pdpTitleAddButton.disabled = true;
@@ -73,8 +72,8 @@ function addTree(container, id) {
         children: pdpTreeData
       }
     ],
-    onChange: function () {
-      // setTreeValue(this.values);
+    onChange: function (event) {
+      autosave.startSave(id, "competencies", this.values);
     }
   });
 }
@@ -91,7 +90,8 @@ function connectInputAndLabel(clone, selector, id) {
 
 function setLabelsAndIDs(clone, id, title) {
   clone.dataset.objectiveId = id;
-  clone.querySelector("summary span:first-child").textContent = title;
+  const summary = clone.querySelector("summary span:first-child");
+  summary.textContent = title;
 
   const titleInput = clone.querySelector(".pdp-fieldset-edit-title input");
   const titleLabel = clone.querySelector(".pdp-fieldset-edit-title label");
@@ -100,6 +100,8 @@ function setLabelsAndIDs(clone, id, title) {
 
   titleInput.addEventListener("keyup", function (event) {
     autosave.startSave(id, titleInput.dataset.objectiveType, titleInput.value);
+    // Update summary
+    summary.textContent = titleInput.value;
   })
 
   connectInputAndLabel(clone, "description", id)
