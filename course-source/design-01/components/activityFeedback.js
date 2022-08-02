@@ -41,6 +41,12 @@ function init() {
     htmlComponents.pdpSaveTick.classList.add("pdp-activity-feedback-show");
     setText("Update saved");
   });
+
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.error, function (event) {
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveError.classList.add("pdp-activity-feedback-show");
+    setText("Error");
+  });
 }
 
 export { init }

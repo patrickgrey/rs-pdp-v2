@@ -344,7 +344,7 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
 }
 
 #pdpFormObjectives #pdpObjectivesLive .pdp-objective-form-container {
-  padding: 0.5rem;
+  padding: 1rem;
 }
 
 #pdpFormObjectives #pdpObjectivesLive .pdp-fieldset-edit-title {

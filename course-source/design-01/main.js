@@ -12,12 +12,6 @@ import * as helpers from './components/helpers.js';
 
 
 // TODO
-// Mock autosave properly
-//    *Something* triggers a call to save
-//    Start a timer running
-//    If timer not reset, send data and await response
-//        Response is timeout function
-//        Set flag so function can't be called again until response.
 // Start with 0 objectives
 //    On add, mock wait, on success build model and clone hidden to list and open
 //    serverWait should respond with an id and the title.
@@ -25,14 +19,17 @@ import * as helpers from './components/helpers.js';
 //    Build model with IDs. Show only selected tree items.
 // Start with 2 objectives server side rendered
 //    Extract drag order IDs.
-// On drag, close details DONE
 // Mark an objective Remedial
 // Tree
 //    Need to add dataset for each tree
 //    Toggle all DONE - removed feature
+// On drag, close details DONE
 // Save button align DONE
 // pdp-autosave structure DONE
 // Toggle errors DONE
+// -Page closes before saved?
+// --Warn user to press save button if not saved yet.
+
 
 // AUTOSAVE
 // How should it function?
@@ -48,75 +45,6 @@ import * as helpers from './components/helpers.js';
 // Sanitize input client or server? Server. textContent 
 
 
-// What if...
-// -Page closes before saved?
-// --Warn user to press save button if not saved yet.
-
-// const savingDelay = 2000;
-// const pdpFormNew = document.querySelector("#pdpFormNew");
-// const pdpFormObjectives = document.querySelector("#pdpFormObjectives");
-// let objectiveCount = 0;
-
-// const savingOptions = {
-//   saved: "saved",
-//   saving: "saving",
-//   error: "error"
-// }
-
-// These should be put into an array or add button function on tree creation?
-// function initTree() {
-//   // let tree = new Tree('.pdp-tree-container', {
-//   //   data: [
-//   //     {
-//   //       id: '-1',
-//   //       text: 'root',
-//   //       children: data
-//   //     }
-//   //   ],
-//   //   // closeDepth: 3,
-//   //   loaded: function () {
-//   //     this.values = ['0-0-0', '0-1-1'];
-//   //     setTreeValue(this.values);
-//   //   },
-//   //   onChange: function () {
-//   //     setTreeValue(this.values);
-//   //   }
-//   // });
-
-//   // tree.disables = ['0-1'];
-
-//   // tree.expandAll();
-
-//   // function handleTreeToggle(event) {
-//   //   // console.log(event.target.closest(".pdp-tree-container"));
-//   //   console.log(event.target.parentElement.querySelector(".pdp-tree-container"));
-//   // }
-
-//   // document.querySelectorAll(".pdp-tree-toggle").forEach(button => {
-//   //   button.addEventListener("click", handleTreeToggle)
-//   // })
-
-// }
-
-// function setTreeValue(data) {
-//   // const pdpTreeData = document.querySelector("#pdpTreeData");
-//   // pdpTreeData.value = data.toString();
-// }
-
-// function setSavingState(state) {
-//   if (state === savingOptions.saved) {
-//     // Tick
-//     console.log(savingOptions.saved);
-//   }
-//   else if (state === savingOptions.saving) {
-//     // Rotate
-//     console.log(savingOptions.saving);
-//   }
-//   else if (state === savingOptions.error) {
-//     // Warn and instruct
-//     console.log(savingOptions.error);
-//   }
-// }
 
 // https://simonplend.com/how-to-use-fetch-to-post-form-data-as-json-to-your-api/
 /**
@@ -174,38 +102,9 @@ async function handleFormSubmit(event) {
   }
 }
 
-// function saveForm() {
-//   // NEED TO PREVENT OVERLAPPING SAVES!!
-//   // document.querySelector("#pdpSubmitButton").click();
-// }
-
-// let timer = null;
-
-// function timerStart() {
-//   setSavingState(savingOptions.saving);
-//   if (timer != null) {
-//     clearTimeout(timer);
-//     timer = null;
-//   }
-//   // Update component to "saving.."
-//   timer = setTimeout(saveForm, savingDelay);
-// }
-
-
-
-// function setHiddenOrder() {
-//   let orderArray = [];
-//   document.querySelectorAll("#pdpObjectivesLive > li").forEach(li => {
-//     orderArray.push(li.dataset.order);
-//   });
-//   document.querySelector(".pd-obj-live-order").value = orderArray.toString();
-// }
-
 var pageModule = (function () {
   var module = {};
   module.init = function () {
-    // JUST FOR DEV
-    htmlComponents.pdpTitleAdd.value = helpers.generateString(5);
 
     customElements.define("duet-date-picker", DuetDatePicker);
 
@@ -219,10 +118,11 @@ var pageModule = (function () {
     });
 
     document.querySelector("#pdpError").addEventListener("click", function (event) {
-      // document.querySelector("body").classList.toggle("pdp-show-error");
       errorFeedback.toggleError();
     });
 
+    // JUST FOR DEV
+    htmlComponents.pdpTitleAdd.value = helpers.generateString(5);
     // JUST FOR DEV
     htmlComponents.pdpTitleAddButton.click();
 
@@ -248,10 +148,6 @@ var pageModule = (function () {
     // document.addEventListener("keyup", event => {
     //   timerStart();
     // });
-
-    // initTree();
-
-
   };
   return module;
 })();

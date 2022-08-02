@@ -83,9 +83,10 @@ function connectInputAndLabel(clone, selector, id) {
   const text = clone.querySelector(`.pdp-objective-edit-${selector} textarea`);
   // Use selector string but with uppercase first letter for id
   text.id = label.htmlFor = `pdp${selector.charAt(0).toUpperCase() + selector.slice(1)}Objective${id}`;
-  text.addEventListener("keyup", function (event) {
-    autosave.startSave(id, text.dataset.objectiveType, text.value);
-  })
+  // This should be moved to autosave. Catch events at a form level.
+  // text.addEventListener("keyup", function (event) {
+  //   autosave.startSave(id, text.dataset.objectiveType, text.value);
+  // })
 }
 
 function setLabelsAndIDs(clone, id, title) {
@@ -97,9 +98,9 @@ function setLabelsAndIDs(clone, id, title) {
   const titleLabel = clone.querySelector(".pdp-fieldset-edit-title label");
   titleInput.value = title;
   titleInput.id = titleLabel.htmlFor = `pdpTitleObjective${id}`;
-
+  // THIS MUST BE DESTROYED ON DESTROY :-) 
   titleInput.addEventListener("keyup", function (event) {
-    autosave.startSave(id, titleInput.dataset.objectiveType, titleInput.value);
+    // autosave.startSave(id, titleInput.dataset.objectiveType, titleInput.value);
     // Update summary
     summary.textContent = titleInput.value;
   })
