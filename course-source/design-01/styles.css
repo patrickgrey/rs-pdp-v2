@@ -354,6 +354,7 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   padding-left: calc(var(--pdp-objective-drag-size) + 0.5rem);
   border-top-right-radius: calc(var(--border-radius) - 1px);
   border-top-left-radius: calc(var(--border-radius) - 1px);
+  border-bottom: 1px solid #eee;
 }
 
 #pdpFormObjectives #pdpObjectivesLive .pdp-objective-form-container {
@@ -431,6 +432,10 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   border-radius: var(--border-radius);
   margin-top: 1rem;
   cursor: pointer;
+}
+
+.pdp-objective-satisfied:hover {
+  background-color: var(--ians-colour-blue-mid);
 }
 
 .pdp-objective-satisfied input[type="checkbox"] {

@@ -72,6 +72,11 @@ const init = () => {
     startSave();
   });
 
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.dueDateChanged, function (event) {
+    updateObjective(event.detail.target);
+    startSave();
+  });
+
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.updated, function (event) {
     isSaving = false;
   });

@@ -294,26 +294,27 @@
         <details open>
           <summary>
             <span>Title</span>
-            <span class="pdp-remedial pdp-remedial-label"> Remedial</span></summary>
+            <span class="pdp-remedial pdp-remedial-label"> Remedial</span>
+          </summary>
           <div class="pdp-objective-form-container">
 
-            <div class="pdp-fieldset-edit-title">
-              <label for="">Title</label>
-              <input data-objective-type="title" id="" autocomplete="off" required type="text">
+            <div class="pdp-objective-satisfied-container">
+              <label class="pdp-objective-satisfied" for=""><input type="checkbox">I am satisfied</label>
             </div>
 
-            <div class="ians-grid-2  mt-1">
+            <div class="ians-grid-2 pdp-fieldset-edit-title mt-2">
+              <div class="">
+                <label for="">Title</label>
+                <input data-objective-type="title" id="" autocomplete="off" required type="text">
+              </div>
 
               <div class="pdp-edit-datepicker">
                 <label for="">
                   <strong>Due date:</strong>
                 </label>
+                <input data-objective-type="duedate" id="" type="hidden">
                 <div class="pdp-date-picker-container"></div>
                 <p class="pdp-validation-label pdp-remedial">* required</p>
-              </div>
-
-              <div class="pdp-objective-satisfied-container">
-                <label class="pdp-objective-satisfied" for=""><input type="checkbox">I am satisfied</label>
               </div>
             </div>
 

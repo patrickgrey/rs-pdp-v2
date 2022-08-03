@@ -29,19 +29,20 @@ function enableForm() {
   htmlComponents.pdpTitleAddButton.disabled = false;
 }
 
-function addDatePicker(container, id) {
+function addDatePicker(container, id, hidden) {
   const picker = document.createElement("duet-date-picker");
   picker.identifier = `pdpDatePickerObjective${id}`;
   picker.expand = true;
+  picker.direction = "left";
   container.appendChild(picker);
   picker.addEventListener("duetChange", function (event) {
-    // This should be an event dispatch
-    // autosave.startSave(id, "dueDate", event.detail.value);
+    hidden.value = event.detail.value;
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
   });
 }
 
 // NEED TO TIE IN HIDDEN INPUT
-function addTree(container, id, dateHidden) {
+function addTree(container, id, competencyHidden) {
   let tree = new Tree(container, {
     data: [
       {
@@ -53,8 +54,8 @@ function addTree(container, id, dateHidden) {
     onChange: function (event) {
       // This should be an event dispatch
       // autosave.startSave(id, "competencies", this.values);
-      dateHidden.value = this.values;
-      htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(dateHidden));
+      competencyHidden.value = this.values;
+      htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
     }
   });
 }
@@ -89,16 +90,20 @@ function setLabelsAndIDs(clone, id, title) {
   connectInputAndLabel(clone, "insights", id)
 
   clone.querySelector(".pdp-tree-container").id = `pdpCompetencyObjective${id}`;
-  const dateHidden = clone.querySelector(`input[data-objective-type="competency"]`);
-  dateHidden.id = `pdpCompetencyHiddenObjective${id}`;
+  const competencyHidden = clone.querySelector(`input[data-objective-type="competency"]`);
+  competencyHidden.id = `pdpCompetencyHiddenObjective${id}`;
+
+  const dueDateHidden = clone.querySelector(`input[data-objective-type="duedate"]`);
+  dueDateHidden.id = `pdpdueDateHiddenObjective${id}`;
 }
 
 function cloneObjective(id, title) {
   const clone = htmlComponents.pdpCloneDaddy.querySelector("li").cloneNode(true);
   document.querySelector("#pdpObjectivesLive").prepend(clone);
-  addDatePicker(clone.querySelector(".pdp-date-picker-container"), id);
-  const dateHidden = clone.querySelector(`input[data-objective-type="competency"]`);
-  addTree(".pdp-tree-container", id, dateHidden);
+  const dueDateHidden = clone.querySelector(`input[data-objective-type="duedate"]`);
+  addDatePicker(clone.querySelector(".pdp-date-picker-container"), id, dueDateHidden);
+  const competencyHidden = clone.querySelector(`input[data-objective-type="competency"]`);
+  addTree(".pdp-tree-container", id, competencyHidden);
   setLabelsAndIDs(clone, id, title);
   document.querySelector("body").dataset.objectiveCount++;
 }

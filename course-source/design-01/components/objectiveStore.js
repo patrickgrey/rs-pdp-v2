@@ -59,20 +59,8 @@ function getObjectiveData(id) {
 }
 
 function updateObjective(id, type, newValue) {
-  // console.log(getObjectiveData(id)[type]);
   getObjectiveData(id)[type] = newValue;
   console.table(objectives[0]);
-  // Loop through IDs
-  // Get data from form.
-
-  // This should be done by getting the fields by ID
-  // let objective = objectives[getObjectiveIndex(data.id)];
-  // objective.id = data.id;
-  // objective.title = data.title;
-  // objective.description = data.description || "";
-  // objective.actions = data.actions || "";
-  // objective.insights = data.insights || "";
-  // objective.competency = data.competency || "";
 }
 
 function saveObjective(changedIds) {

@@ -12,6 +12,11 @@ export const updatingEvent = new CustomEvent(updating);
 export const updated = 'updated';
 export const updatedEvent = new CustomEvent(updated);
 
+export const dueDateChanged = 'dueDateChanged';
+export const dueDateChangedEvent = function (target) {
+  return new CustomEvent(dueDateChanged, { detail: { target } });
+}
+
 export const competencyChanged = 'competencyChanged';
 export const competencyChangedEvent = function (target) {
   return new CustomEvent(competencyChanged, { detail: { target } });
