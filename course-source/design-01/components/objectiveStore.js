@@ -1,19 +1,78 @@
 import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
 import * as errorFeedback from './errorFeedback.js';
+import * as helpers from './helpers.js';
 
 let objectives = [];
 let objectivesOrder = [];
-const serverDelay = 100;
+const serverDelay = 1000;
 
-function postToNewServer(title) {
+function postUpdateToServer(objective) {
   setTimeout(function () {
-    const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok", id: 22, title: title };
-    getNewResponse(response);
+    const response = errorFeedback.isError ? { status: "error", message: "Adding new objective went horribly wrong!" } : { status: "ok", id: 22 };
+    getUpdateResponse(response);
   }, serverDelay);
 }
 
-function getNewResponse(response) {
+function getUpdateResponse(response) {
+  if (response.status === "ok") {
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatedEvent);
+  }
+  else {
+    errorFeedback.showError(response.message);
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.errorEvent);
+  }
+}
+
+// function getObjectiveIndex(id) {
+//   return objectives.findIndex(object => {
+//     return object.id === id;
+//   });
+// }
+
+function getObjectiveData(id) {
+  return objectives.find(obj => obj.id.toString() === id.toString())
+}
+
+function updateObjective(id, type, newValue) {
+  getObjectiveData(id)[type] = newValue;
+}
+
+async function saveObjective(changedIds) {
+
+  htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);
+
+  let dataToSend = [];
+
+  for (let index = 0; index < changedIds.length; index++) {
+    const id = changedIds[index];
+    dataToSend.push(getObjectiveData(id));
+  }
+
+  console.log(JSON.stringify(dataToSend));
+
+  // Mock send update objective to server
+  await helpers.asyncTimeout(serverDelay);
+  // Mock response
+  const response = errorFeedback.isError ? { status: "error", message: "Update when wrong!" } : { status: "ok" };
+
+  if (response.status === "ok") {
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatedEvent);
+  }
+  else {
+    errorFeedback.showError(response.message);
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.errorEvent);
+  }
+}
+
+async function addObjective(title) {
+  htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
+
+  // Mock send new objective to server
+  await helpers.asyncTimeout(serverDelay);
+  // Mock response
+  const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok", id: 22, title: title };
+
   if (response.status === "ok") {
     objectives.push({
       id: response.id,
@@ -29,48 +88,6 @@ function getNewResponse(response) {
     errorFeedback.showError(response.message);
     htmlComponents.pdpFormNew.dispatchEvent(customEvents.errorEvent);
   }
-}
-
-function postUpdateToServer(objective) {
-  setTimeout(function () {
-    const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok", id: 22 };
-    getUpdateResponse(response);
-  }, serverDelay);
-}
-
-function getUpdateResponse(response) {
-  if (response.status === "ok") {
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatedEvent);
-  }
-  else {
-    errorFeedback.showError(response.message);
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.errorEvent);
-  }
-}
-
-function getObjectiveIndex(id) {
-  return objectives.findIndex(object => {
-    return object.id === id;
-  });
-}
-
-function getObjectiveData(id) {
-  return objectives.find(obj => obj.id.toString() === id.toString())
-}
-
-function updateObjective(id, type, newValue) {
-  getObjectiveData(id)[type] = newValue;
-  console.table(objectives[0]);
-}
-
-function saveObjective(changedIds) {
-
-}
-
-function addObjective(title) {
-  htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
-  postToNewServer(htmlComponents.pdpFormNew.querySelector("input").value);
-
 }
 
 function deleteObjective(id) {

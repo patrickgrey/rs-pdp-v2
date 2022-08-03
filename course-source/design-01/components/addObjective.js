@@ -15,8 +15,6 @@
 import Tree from '@widgetjs/tree';
 import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
-import * as errorFeedback from './errorFeedback.js';
-import * as autosave from './autosave.js';
 import * as objectiveStore from './objectiveStore.js';
 
 function disableForm() {
@@ -41,7 +39,6 @@ function addDatePicker(container, id, hidden) {
   });
 }
 
-// NEED TO TIE IN HIDDEN INPUT
 function addTree(container, id, competencyHidden) {
   let tree = new Tree(container, {
     data: [
@@ -52,8 +49,6 @@ function addTree(container, id, competencyHidden) {
       }
     ],
     onChange: function (event) {
-      // This should be an event dispatch
-      // autosave.startSave(id, "competencies", this.values);
       competencyHidden.value = this.values;
       htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
     }
