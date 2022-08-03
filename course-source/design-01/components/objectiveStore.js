@@ -7,29 +7,6 @@ let objectives = [];
 let objectivesOrder = [];
 const serverDelay = 1000;
 
-function postUpdateToServer(objective) {
-  setTimeout(function () {
-    const response = errorFeedback.isError ? { status: "error", message: "Adding new objective went horribly wrong!" } : { status: "ok", id: 22 };
-    getUpdateResponse(response);
-  }, serverDelay);
-}
-
-function getUpdateResponse(response) {
-  if (response.status === "ok") {
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatedEvent);
-  }
-  else {
-    errorFeedback.showError(response.message);
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.errorEvent);
-  }
-}
-
-// function getObjectiveIndex(id) {
-//   return objectives.findIndex(object => {
-//     return object.id === id;
-//   });
-// }
-
 function getObjectiveData(id) {
   return objectives.find(obj => obj.id.toString() === id.toString())
 }
@@ -95,9 +72,6 @@ function deleteObjective(id) {
 }
 
 const init = () => {
-  // htmlComponents.pdpFormNew.addEventListener(customEvents.added, function (event) {
-  //   addObjective(event.detail.id);
-  // });
 
   pdpObjectivesLive.addEventListener(customEvents.objectiveOrderChanged, function (event) {
     // Update hidden text field

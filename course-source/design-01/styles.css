@@ -291,6 +291,8 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
 #pdpFormObjectives #pdpObjectivesLive {
   padding-left: 0;
   margin-top: 0;
+  overflow: hidden;
+  border-radius: var(--border-radius);
 }
 
 #pdpFormObjectives #pdpObjectivesLive > li {
@@ -343,7 +345,36 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   border-bottom-left-radius: 0;
 }
 
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-delete-objective {
+  background-color: red;
+  color: white;
+  border: 0;
+  border-radius: var(--border-radius);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  position: absolute;
+  top: 0;
+  right: -4.5rem;
+  height: var(--pdp-objective-drag-size);
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 1rem;
+  transition: right 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-delete-objective:hover {
+  right: 0;
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-delete-objective img {
+  max-width: 2rem;
+  margin-right: 0.5rem;
+}
+
 #pdpFormObjectives #pdpObjectivesLive > li summary {
+  position: relative;
   font-size: 1.2rem;
   cursor: pointer;
   max-height: var(--pdp-objective-drag-size);
@@ -355,6 +386,40 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   border-top-right-radius: calc(var(--border-radius) - 1px);
   border-top-left-radius: calc(var(--border-radius) - 1px);
   border-bottom: 1px solid #eee;
+  /* box-shadow: inset -20px 0 0 -5px red; */
+}
+
+/* Hide flash of white when delete button bounces in. */
+#pdpFormObjectives #pdpObjectivesLive > li summary::after {
+  content: "";
+  width: 20px;
+  height: 100%;
+  background-color: red;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-top-right-radius: calc(var(--border-radius) - 1px);
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li summary span:first-child {
+  display: inline-block;
+  /* background-color: green; */
+  max-width: calc(100% - 4.2rem);
+  max-height: var(--pdp-objective-drag-size);
+  overflow: hidden;
+  position: relative;
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li summary span:first-child::before {
+  content: "";
+  width: 40px;
+  height: 100%;
+  /* background-color: green; */
+  box-shadow: inset -40px 0 40px -20px white;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
 }
 
 #pdpFormObjectives #pdpObjectivesLive .pdp-objective-form-container {

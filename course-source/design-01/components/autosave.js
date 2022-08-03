@@ -1,12 +1,11 @@
 import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
 import * as objectiveStore from './objectiveStore.js';
-import * as errorFeedback from './errorFeedback.js';
 
 // let isSaving = false;
 let changedIds = [];
 let timer = null;
-const savingDelay = 100;
+const savingDelay = 3000;
 let isSaving = false;
 
 // Only want to save if targeted elements AND there has been a change.
@@ -42,6 +41,7 @@ function startSave() {
 // DO WE WANT TO TRIGGER ANOTHER SAVE WHILE WAITING FOR SUCCESS OF THE LAST ONE?
 // NO, WHAT IF ERROR.
 function timeoutHander(event) {
+  // Check if a save to server is already going on.
   if (isSaving) {
     resetTimer();
     return;

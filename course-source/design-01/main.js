@@ -13,9 +13,12 @@ import * as customEvents from './components/customEvents.js';
 
 
 // TODO
+// Delete objective button
+// Fade end of summary objective title
+// COmplete objective and move to another list.
 // Start with 0 objectives
-//    On add, mock wait, on success build model and clone hidden to list and open
-//    serverWait should respond with an id and the title.
+//    On add, mock wait, on success build model and clone hidden to list and open DONE
+//    serverWait should respond with an id and the title. DONE
 // Start with 1 objective server side rendered
 //    Build model with IDs.
 //    Get change updates from date and tree
