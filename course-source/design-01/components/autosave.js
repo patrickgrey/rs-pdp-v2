@@ -7,7 +7,7 @@ import * as errorFeedback from './errorFeedback.js';
 let changedIds = [];
 let timer = null;
 const savingDelay = 100;
-
+let isSaving = false;
 
 // Only want to save if targeted elements AND there has been a change.
 // Can I do this efficiently
@@ -24,16 +24,33 @@ function checkValueHasChanged(id, type, newValue) {
   return objectiveStore.getObjectiveData(id)[type] != newValue;
 }
 
-function startSave(id, type, newValue) {
-  // if (isSaving) return;
+function updateObjective(target) {
+  const id = target.closest("li").dataset.objectiveId;
+  const type = target.dataset.objectiveType;
+  const newValue = target.value;
   if (!checkValueHasChanged(id, type, newValue)) return;
-  console.log("Starting save");
-  // htmlComponents.pdpFormObjectives
-  htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);
-  // isSaving = true;
-  console.log(changedIds);
   if (!changedIds.includes(id)) changedIds.push(id);
+  objectiveStore.updateObjective(id, type, newValue);
+}
+
+function startSave() {
+  // if (!checkValueHasChanged(id, type, newValue)) return;
+  htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);
   resetTimer();
+}
+
+// DO WE WANT TO TRIGGER ANOTHER SAVE WHILE WAITING FOR SUCCESS OF THE LAST ONE?
+// NO, WHAT IF ERROR.
+function timeoutHander(event) {
+  if (isSaving) {
+    resetTimer();
+    return;
+  }
+  else {
+    isSaving = true;
+    objectiveStore.saveObjective(changedIds);
+    changedIds = [];
+  }
 }
 
 function resetTimer() {
@@ -41,57 +58,23 @@ function resetTimer() {
     clearTimeout(timer);
     timer = null;
   }
-  timer = setTimeout(postData, savingDelay);
-}
-
-function getObjective(data) {
-
-}
-
-function postData() {
-  console.log("posting");
-  // build object array to post as JSON based on array.
-  // Or can I get this from the store?
-  // Do we need the store? All data is stored as is on the page and at DB
-  // after save.
-  // It does take some code out of other components.
-  // If more than one component depends on store, it is worth it?
-  // We need to add, update and delete objectives. Should server call
-  // be with objectives too?
-  // If we need to add new features in future or other tools need
-  // more features based on this code, it is probably worth extracting objectives.
-  // When should the store be updated?
-  // Need to refactor to take post code out of here.
-  let postJSON = [];
-  changedIds.forEach(id => {
-    const objective = document.querySelector(`li[data-objective-id="${id}"]`);
-    console.log(objective);
-
-  })
-  serverWait();
-}
-
-function serverWait() {
-  setTimeout(function () {
-    const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok" };
-    getResponse(response);
-  }, 1000);
-}
-
-function getResponse(response) {
-  if (response.status === "ok") {
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatedEvent);
-  }
-  else {
-    errorFeedback.showError(response.message);
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.errorEvent);
-  }
+  timer = setTimeout(timeoutHander, savingDelay);
 }
 
 const init = () => {
   htmlComponents.pdpFormObjectives.addEventListener("input", function (event) {
-    console.log("input: ", event.target);
-  })
+    updateObjective(event.target);
+    startSave();
+  });
+
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.competencyChanged, function (event) {
+    updateObjective(event.detail.target);
+    startSave();
+  });
+
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.updated, function (event) {
+    isSaving = false;
+  });
 };
 
 export { init, startSave }

@@ -17,6 +17,7 @@ import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
 import * as errorFeedback from './errorFeedback.js';
 import * as autosave from './autosave.js';
+import * as objectiveStore from './objectiveStore.js';
 
 function disableForm() {
   htmlComponents.pdpTitleAdd.disabled = true;
@@ -28,42 +29,19 @@ function enableForm() {
   htmlComponents.pdpTitleAddButton.disabled = false;
 }
 
-function postForm() {
-  serverWait();
-}
-
-function serverWait() {
-  setTimeout(function () {
-    const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok", id: 22, title: htmlComponents.pdpFormNew.querySelector("input").value };
-    getResponse(response);
-  }, 50);
-}
-
-function getResponse(response) {
-  if (response.status === "ok") {
-    cloneObjective(response.id, response.title);
-    htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent(response.id));
-    htmlComponents.pdpFormNew.querySelector("input").value = "";
-    enableForm();
-  }
-  else {
-    errorFeedback.showError(response.message);
-    htmlComponents.pdpFormNew.dispatchEvent(customEvents.errorEvent);
-    enableForm();
-  }
-}
-
 function addDatePicker(container, id) {
   const picker = document.createElement("duet-date-picker");
   picker.identifier = `pdpDatePickerObjective${id}`;
+  picker.expand = true;
   container.appendChild(picker);
   picker.addEventListener("duetChange", function (event) {
-    autosave.startSave(id, "dueDate", event.detail.value);
+    // This should be an event dispatch
+    // autosave.startSave(id, "dueDate", event.detail.value);
   });
 }
 
 // NEED TO TIE IN HIDDEN INPUT
-function addTree(container, id) {
+function addTree(container, id, dateHidden) {
   let tree = new Tree(container, {
     data: [
       {
@@ -73,7 +51,10 @@ function addTree(container, id) {
       }
     ],
     onChange: function (event) {
-      autosave.startSave(id, "competencies", this.values);
+      // This should be an event dispatch
+      // autosave.startSave(id, "competencies", this.values);
+      dateHidden.value = this.values;
+      htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(dateHidden));
     }
   });
 }
@@ -83,10 +64,6 @@ function connectInputAndLabel(clone, selector, id) {
   const text = clone.querySelector(`.pdp-objective-edit-${selector} textarea`);
   // Use selector string but with uppercase first letter for id
   text.id = label.htmlFor = `pdp${selector.charAt(0).toUpperCase() + selector.slice(1)}Objective${id}`;
-  // This should be moved to autosave. Catch events at a form level.
-  // text.addEventListener("keyup", function (event) {
-  //   autosave.startSave(id, text.dataset.objectiveType, text.value);
-  // })
 }
 
 function setLabelsAndIDs(clone, id, title) {
@@ -98,38 +75,53 @@ function setLabelsAndIDs(clone, id, title) {
   const titleLabel = clone.querySelector(".pdp-fieldset-edit-title label");
   titleInput.value = title;
   titleInput.id = titleLabel.htmlFor = `pdpTitleObjective${id}`;
+
+  const satisfiedLabel = clone.querySelector(".pdp-objective-satisfied");
+  const satisfiedCheckbox = satisfiedLabel.querySelector("input");
+  satisfiedCheckbox.id = satisfiedLabel.htmlFor = `pdpSatisfiedObjective${id}`;
   // THIS MUST BE DESTROYED ON DESTROY :-) 
   titleInput.addEventListener("keyup", function (event) {
-    // autosave.startSave(id, titleInput.dataset.objectiveType, titleInput.value);
-    // Update summary
     summary.textContent = titleInput.value;
   })
 
   connectInputAndLabel(clone, "description", id)
   connectInputAndLabel(clone, "actions", id)
   connectInputAndLabel(clone, "insights", id)
+
+  clone.querySelector(".pdp-tree-container").id = `pdpCompetencyObjective${id}`;
+  const dateHidden = clone.querySelector(`input[data-objective-type="competency"]`);
+  dateHidden.id = `pdpCompetencyHiddenObjective${id}`;
 }
 
 function cloneObjective(id, title) {
   const clone = htmlComponents.pdpCloneDaddy.querySelector("li").cloneNode(true);
-
   document.querySelector("#pdpObjectivesLive").prepend(clone);
   addDatePicker(clone.querySelector(".pdp-date-picker-container"), id);
-  addTree(".pdp-tree-container", id);
+  const dateHidden = clone.querySelector(`input[data-objective-type="competency"]`);
+  addTree(".pdp-tree-container", id, dateHidden);
   setLabelsAndIDs(clone, id, title);
   document.querySelector("body").dataset.objectiveCount++;
 }
 
 function init() {
+  htmlComponents.pdpFormNew.addEventListener(customEvents.added, function (event) {
+    cloneObjective(event.detail.id, event.detail.title);
+    htmlComponents.pdpFormNew.querySelector("input").value = "";
+    enableForm();
+  });
+
+  htmlComponents.pdpFormNew.addEventListener(customEvents.error, function (event) {
+    enableForm();
+  })
+
   htmlComponents.pdpTitleAddButton.addEventListener("click", function (event) {
     event.preventDefault();
     if (htmlComponents.pdpFormNew.querySelector("input").value === "") {
-      htmlComponents.pdpFormNew.reportValidity()
+      htmlComponents.pdpFormNew.reportValidity();
     }
     else {
       disableForm();
-      htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
-      postForm();
+      objectiveStore.addObjective(htmlComponents.pdpFormNew.querySelector("input").value);
     }
   });
 }

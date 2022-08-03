@@ -4,6 +4,7 @@ export const pdpTitleAddButton = document.querySelector("#pdpTitleAddButton");
 export const pdpFormNew = document.querySelector("#pdpFormNew");
 export const pdpFormObjectives = document.querySelector("#pdpFormObjectives");
 export const pdpActivityFeedback = document.querySelector("#pdpActivityFeedback");
+export const pdpObjLiveOrder = document.querySelector("#pdpObjLiveOrder");
 export const pdpCloneDaddy = document.querySelector(".pdp-objective-clone-daddy");
 export const pdpObjectivesLive = document.querySelector("#pdpObjectivesLive");
 export const pdpSaveTick = pdpActivityFeedback.querySelector(".pdp-save-tick");

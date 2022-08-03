@@ -322,6 +322,19 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   color: white;
 }
 
+/* #pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle[disabled] {
+  background-color: #999;
+  cursor: not-allowed;
+  display: none;
+} */
+
+/* body[data-objective-count="1"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  button.pdp-drag-handle {
+} */
+
 #pdpFormObjectives
   #pdpObjectivesLive
   li
@@ -353,12 +366,44 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
 
 .pdp-tree-container {
   /* height: 80%; */
-  max-height: 55vh;
+  max-height: 54.1vh;
   overflow-y: auto;
+  background-color: var(--pdp-input-background);
+  border: 1px solid var(--pdp-input-border);
+  outline-color: var(--pdp-input-outline);
+  padding: var(--pdp-input-padding-vertical) 0.5rem;
+  border-radius: var(--border-radius);
 }
 
 .pdp-tree-container ul:first-child {
   padding-left: 0;
+}
+
+.treejs .treejs-checkbox:before {
+  background-color: #fff;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+.pdp-tree-container {
+  scrollbar-width: auto;
+  scrollbar-color: var(--ians-colour-blue-light) #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+.pdp-tree-container::-webkit-scrollbar {
+  width: 18px;
+}
+
+.pdp-tree-container::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: var(--border-radius);
+}
+
+.pdp-tree-container::-webkit-scrollbar-thumb {
+  background-color: var(--ians-colour-blue-light);
+  border-radius: var(--border-radius);
+  border: 3px solid #ffffff;
 }
 
 /* .pdp-tree-toggle, */
@@ -368,6 +413,29 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   margin-top: 1rem;
   margin-right: 0;
   margin-left: auto;
+}
+
+.pdp-objective-satisfied-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.pdp-objective-satisfied {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  color: white;
+  background-color: var(--ians-colour-blue-light);
+  /* border: 1px solid var(--pdp-input-border); */
+  outline-color: var(--pdp-input-outline);
+  border-radius: var(--border-radius);
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.pdp-objective-satisfied input[type="checkbox"] {
+  margin-right: 1rem;
+  cursor: pointer;
 }
 
 .pdp-save-objective {
@@ -385,3 +453,7 @@ footer {
 .pdp-objective-clone-daddy {
   display: none;
 }
+/* 
+* {
+  outline: 1px solid red;
+} */

@@ -13,7 +13,7 @@ const dev = process.env.NODE_ENV !== "production";
     entryPoints,
     nodePaths: [`${source}/_shared`],
     bundle: true,
-    minify: true,
+    minify: dev ? false : true,
     outdir: publish,
     watch: dev
   });

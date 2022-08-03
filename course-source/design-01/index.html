@@ -233,7 +233,7 @@
             </h2>
 
             <div class="pd-obj-live-container">
-              <input type="hidden" class="pd-obj-live-order" type="text">
+              <input type="hidden" id="pdpObjLiveOrder" type="text">
               <ul id="pdpObjectivesLive"></ul>
             </div>
 
@@ -297,19 +297,23 @@
             <span class="pdp-remedial pdp-remedial-label"> Remedial</span></summary>
           <div class="pdp-objective-form-container">
 
-            <div class="ians-grid-2 pdp-fieldset-edit-title mt-1">
-              <div>
-                <label for="">Title</label>
-                <input data-objective-type="title" id="" autocomplete="off" required type="text">
-              </div>
+            <div class="pdp-fieldset-edit-title">
+              <label for="">Title</label>
+              <input data-objective-type="title" id="" autocomplete="off" required type="text">
+            </div>
+
+            <div class="ians-grid-2  mt-1">
 
               <div class="pdp-edit-datepicker">
                 <label for="">
                   <strong>Due date:</strong>
                 </label>
-                <span class="pdp-date-picker-container"></span>
-                {# <duet-date-picker required identifier=""></duet-date-picker> #}
+                <div class="pdp-date-picker-container"></div>
                 <p class="pdp-validation-label pdp-remedial">* required</p>
+              </div>
+
+              <div class="pdp-objective-satisfied-container">
+                <label class="pdp-objective-satisfied" for=""><input type="checkbox">I am satisfied</label>
               </div>
             </div>
 

@@ -14,6 +14,20 @@ export const emptyElement = el => {
   }
 }
 
+// Mock server wait
+export const asyncTimeout = (ms) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+};
+
+// Use:
+// async function doStuff() {
+//   // doing stuff up here...
+//   await asyncTimeout(1000);
+//   // After waiting a second, continues doing stuff.
+//   }
+
 // declare all characters
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 

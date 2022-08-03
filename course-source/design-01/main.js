@@ -9,6 +9,7 @@ import * as activityFeedback from './components/activityFeedback.js';
 import * as errorFeedback from './components/errorFeedback.js';
 import * as htmlComponents from './components/htmlComponents.js';
 import * as helpers from './components/helpers.js';
+import * as customEvents from './components/customEvents.js';
 
 
 // TODO
@@ -16,7 +17,9 @@ import * as helpers from './components/helpers.js';
 //    On add, mock wait, on success build model and clone hidden to list and open
 //    serverWait should respond with an id and the title.
 // Start with 1 objective server side rendered
-//    Build model with IDs. Show only selected tree items.
+//    Build model with IDs.
+//    Get change updates from date and tree
+//    
 // Start with 2 objectives server side rendered
 //    Extract drag order IDs.
 // Mark an objective Remedial
@@ -112,7 +115,10 @@ var pageModule = (function () {
     activityFeedback.init();
     objectiveStore.init();
     autosave.init();
+    objectiveDrag.init();
 
+
+    // JUST FOR DEV
     document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
       document.querySelector("body").classList.toggle("pdp-show-remedial");
     });
@@ -121,10 +127,14 @@ var pageModule = (function () {
       errorFeedback.toggleError();
     });
 
-    // JUST FOR DEV
+
     htmlComponents.pdpTitleAdd.value = helpers.generateString(5);
-    // JUST FOR DEV
+
     htmlComponents.pdpTitleAddButton.click();
+    // JUST FOR DEV
+
+
+
 
     // Init form
     // pdpFormNew.addEventListener("submit", handleFormSubmit);

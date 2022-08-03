@@ -5,6 +5,7 @@
  */
 
 import Sortable from 'sortablejs';
+import * as customEvents from './customEvents.js';
 
 function closeAllObjectives() {
   document.querySelectorAll("#pdpObjectivesLive li details[open]").forEach(detail => {
@@ -17,10 +18,10 @@ function setHiddenOrder() {
   document.querySelectorAll("#pdpObjectivesLive > li").forEach(li => {
     orderArray.push(li.dataset.order);
   });
-  document.querySelector(".pd-obj-live-order").value = orderArray.toString();
+  if (orderArray.length > 0) document.querySelector(".pd-obj-live-order").value = orderArray.toString();
 }
 
-function init(timerStart) {
+function init() {
   return sortable = Sortable.create(document.getElementById('pdpObjectivesLive'), {
     handle: '.pdp-drag-handle',
     onChoose: function () {
@@ -28,7 +29,7 @@ function init(timerStart) {
     },
     onEnd: function () {
       setHiddenOrder();
-      timerStart();
+      htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.objectiveOrderChangedEvent);
     }
   });
 }
