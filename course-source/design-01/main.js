@@ -4,6 +4,7 @@ import Sortable from 'sortablejs';
 import * as autosave from './components/autosave.js';
 import * as objectiveDrag from './components/objectiveDrag.js';
 import * as addObjective from './components/addObjective.js';
+import * as deleteObjective from './components/deleteObjective.js';
 import * as objectiveStore from './components/objectiveStore.js';
 import * as activityFeedback from './components/activityFeedback.js';
 import * as errorFeedback from './components/errorFeedback.js';
@@ -13,8 +14,10 @@ import * as customEvents from './components/customEvents.js';
 
 
 // TODO
-// Delete objective button
-// Fade end of summary objective title
+// Test on Mac
+// Delete objective button DONE
+// Fade end of summary objective title DONE
+// Move drag button in on 2+ - Can't get transition to work.
 // COmplete objective and move to another list.
 // Start with 0 objectives
 //    On add, mock wait, on success build model and clone hidden to list and open DONE
@@ -119,7 +122,7 @@ var pageModule = (function () {
     objectiveStore.init();
     autosave.init();
     objectiveDrag.init();
-
+    deleteObjective.init();
 
     // JUST FOR DEV
     document.querySelector("#pdpRemedial").addEventListener("click", function (event) {

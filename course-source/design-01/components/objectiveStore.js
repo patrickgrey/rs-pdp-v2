@@ -7,12 +7,21 @@ let objectives = [];
 let objectivesOrder = [];
 const serverDelay = 1000;
 
+async function callServer(url, serverDelay) {
+  await helpers.asyncTimeout(serverDelay);
+  return true;
+}
+
 function getObjectiveData(id) {
   return objectives.find(obj => obj.id.toString() === id.toString())
 }
 
 function updateObjective(id, type, newValue) {
   getObjectiveData(id)[type] = newValue;
+}
+
+function updateObjectiveCount() {
+  document.querySelector("body").dataset.objectiveCount = objectives.length.toString();
 }
 
 async function saveObjective(changedIds) {
@@ -29,7 +38,8 @@ async function saveObjective(changedIds) {
   console.log(JSON.stringify(dataToSend));
 
   // Mock send update objective to server
-  await helpers.asyncTimeout(serverDelay);
+  callServer("API Call", serverDelay);
+  // await helpers.asyncTimeout(serverDelay);
   // Mock response
   const response = errorFeedback.isError ? { status: "error", message: "Update when wrong!" } : { status: "ok" };
 
@@ -44,9 +54,9 @@ async function saveObjective(changedIds) {
 
 async function addObjective(title) {
   htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
-
   // Mock send new objective to server
-  await helpers.asyncTimeout(serverDelay);
+  await callServer("API Call", serverDelay);
+  // await helpers.asyncTimeout(serverDelay);
   // Mock response
   const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok", id: 22, title: title };
 
@@ -59,6 +69,7 @@ async function addObjective(title) {
       insights: "",
       competency: ""
     });
+    updateObjectiveCount();
     htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent(response.id, response.title));
   }
   else {
@@ -67,8 +78,29 @@ async function addObjective(title) {
   }
 }
 
-function deleteObjective(id) {
+async function deleteObjective(id) {
+  await callServer("Delete API Call", serverDelay);
+  const response = errorFeedback.isError ? { status: "error", message: "Delete went horribly wrong!" } : { status: "ok", id: 22 };
+  // Remove from local
 
+  // Update objectives count.
+  if (response.status === "ok") {
+    console.log(objectives);
+    for (let index = 0; index < objectives.length; index++) {
+      const element = objectives[index];
+      if (element.id.toString() === id.toString()) {
+        objectives.splice(index, 1);
+        break;
+      }
+    }
+    console.log(objectives);
+    updateObjectiveCount();
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletedEvent(id));
+  }
+  else {
+    errorFeedback.showError(response.message);
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.errorEvent);
+  }
 }
 
 const init = () => {

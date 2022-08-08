@@ -42,6 +42,18 @@ function init() {
     setText("Update saved");
   });
 
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.deleting, function (event) {
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveSaving.classList.add("pdp-activity-feedback-show");
+    setText("Deleting objective");
+  });
+
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.deleted, function (event) {
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveTick.classList.add("pdp-activity-feedback-show");
+    setText("Objective deleted");
+  });
+
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.error, function (event) {
     removeShowClassFromAll();
     htmlComponents.pdpSaveError.classList.add("pdp-activity-feedback-show");

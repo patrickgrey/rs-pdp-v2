@@ -1,6 +1,6 @@
 :root {
   --col-max-width: 1024px;
-  --border-radius: 5px;
+  --border-radius: 0px;
 
   --pdp-input-outline: hotpink;
   --pdp-input-border: dodgerblue;
@@ -8,6 +8,7 @@
   --pdp-input-padding-vertical: 14px;
   --pdp-header-height: 85px;
   --pdp-objective-drag-size: 60px;
+  --pdp-animation-time: 3s;
 
   --duet-color-primary: var(--pdp-input-outline);
   --duet-color-text: #333;
@@ -70,7 +71,7 @@ header {
   padding: 0 0.5rem;
   position: fixed;
   top: var(--ilp-height);
-  z-index: 200;
+  z-index: 300;
 }
 
 header > div:nth-child(1) {
@@ -299,12 +300,14 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   position: relative;
   background-color: white;
   color: var(--ians-colour-blue-mid);
-  border-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
   padding: 0;
   list-style: none;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   font-weight: bold;
   min-height: var(--pdp-objective-drag-size);
+  overflow: hidden;
 }
 
 #pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle {
@@ -317,11 +320,25 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   left: 0;
   top: 0;
   border: 0;
-  /* border-right: 1px solid var(--pdp-input-background); */
+  margin-left: 0;
   border-top-left-radius: calc(var(--border-radius) - 1px);
   border-bottom-left-radius: calc(var(--border-radius) - 1px);
   background-color: var(--ians-colour-blue-light);
   color: white;
+  transition: margin-left var(--pdp-animation-time);
+}
+
+body[data-objective-count="0"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  button.pdp-drag-handle,
+body[data-objective-count="1"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  button.pdp-drag-handle {
+  margin-left: calc(var(--pdp-objective-drag-size) * -1);
 }
 
 /* #pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle[disabled] {
@@ -362,6 +379,7 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   align-items: center;
   padding-right: 1rem;
   transition: right 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+  z-index: 200;
 }
 
 #pdpFormObjectives #pdpObjectivesLive > li button.pdp-delete-objective:hover {
@@ -386,7 +404,21 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   border-top-right-radius: calc(var(--border-radius) - 1px);
   border-top-left-radius: calc(var(--border-radius) - 1px);
   border-bottom: 1px solid #eee;
+  transition: padding-left var(--pdp-animation-time);
   /* box-shadow: inset -20px 0 0 -5px red; */
+}
+
+body[data-objective-count="0"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  summary,
+body[data-objective-count="1"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  summary {
+  padding-left: 1rem;
 }
 
 /* Hide flash of white when delete button bounces in. */
@@ -401,26 +433,37 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   border-top-right-radius: calc(var(--border-radius) - 1px);
 }
 
+#pdpFormObjectives #pdpObjectivesLive > li summary::before {
+  content: "";
+  width: 40px;
+  height: 100%;
+  /* background-color: green; */
+  box-shadow: inset -80px 0 40px -40px white;
+  position: absolute;
+  right: 2.8rem;
+  top: 0;
+  z-index: 100;
+}
+
 #pdpFormObjectives #pdpObjectivesLive > li summary span:first-child {
-  display: inline-block;
+  /* display: inline-block; */
   /* background-color: green; */
   max-width: calc(100% - 4.2rem);
   max-height: var(--pdp-objective-drag-size);
   overflow: hidden;
   position: relative;
+  width: 100%;
 }
 
-#pdpFormObjectives #pdpObjectivesLive > li summary span:first-child::before {
+/* #pdpFormObjectives #pdpObjectivesLive > li summary span:first-child::before {
   content: "";
   width: 40px;
   height: 100%;
-  /* background-color: green; */
   box-shadow: inset -40px 0 40px -20px white;
   position: absolute;
   right: 0;
   top: 0;
-  z-index: 100;
-}
+} */
 
 #pdpFormObjectives #pdpObjectivesLive .pdp-objective-form-container {
   padding: 1rem;

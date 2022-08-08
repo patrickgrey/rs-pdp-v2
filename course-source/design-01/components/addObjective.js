@@ -78,7 +78,9 @@ function setLabelsAndIDs(clone, id, title) {
   // THIS MUST BE DESTROYED ON DESTROY :-) 
   titleInput.addEventListener("keyup", function (event) {
     summary.textContent = titleInput.value;
-  })
+  });
+
+
 
   connectInputAndLabel(clone, "description", id)
   connectInputAndLabel(clone, "actions", id)
@@ -97,10 +99,15 @@ function cloneObjective(id, title) {
   document.querySelector("#pdpObjectivesLive").prepend(clone);
   const dueDateHidden = clone.querySelector(`input[data-objective-type="duedate"]`);
   addDatePicker(clone.querySelector(".pdp-date-picker-container"), id, dueDateHidden);
+  const deleteObjectiveButton = clone.querySelector(`.pdp-delete-objective`);
+  deleteObjectiveButton.addEventListener("click", function (event) {
+    event.preventDefault();
+    const id = event.target.closest("li").dataset.objectiveId;
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletingEvent(id));
+  })
   const competencyHidden = clone.querySelector(`input[data-objective-type="competency"]`);
   addTree(".pdp-tree-container", id, competencyHidden);
   setLabelsAndIDs(clone, id, title);
-  document.querySelector("body").dataset.objectiveCount++;
 }
 
 function init() {

@@ -6,6 +6,16 @@ export const addedEvent = function (id, title) {
   return new CustomEvent(added, { detail: { id, title } });
 }
 
+export const deleting = 'deleting';
+export const deletingEvent = function (id) {
+  return new CustomEvent(deleting, { detail: { id } });
+}
+
+export const deleted = 'deleted';
+export const deletedEvent = function (id) {
+  return new CustomEvent(deleted, { detail: { id } });
+}
+
 export const updating = 'updating';
 export const updatingEvent = new CustomEvent(updating);
 
