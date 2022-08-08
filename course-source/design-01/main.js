@@ -16,20 +16,21 @@ import * as customEvents from './components/customEvents.js';
 
 // TODO
 // Test on Mac
-// Delete objective button DONE
-// Fade end of summary objective title DONE
+// DONE Delete objective button 
+// DONE Fade end of summary objective title DONE
 // Move drag button in on 2+ - Can't get transition to work.
 // COmplete objective and move to another list.
-// Start with 0 objectives
-//    On add, mock wait, on success build model and clone hidden to list and open DONE
-//    serverWait should respond with an id and the title. DONE
+// DONE Start with 0 objectives
+//    DONE On add, mock wait, on success build model and clone hidden to list and open DONE
+//    DONE serverWait should respond with an id and the title. DONE
 // Start with 1 objective server side rendered
-//    Build model with IDs.
-//    Get change updates from date and tree
+//    DONE Trees not working. Maybe use ID instead of class for containers.
+//    Get change updates from date
+//    Get satisfied updates
+//    DONE Delete not working - need to add listener and prevent DONE
+//    DONE Build model with IDs.
 //    
 // Start with 2 objectives server side rendered
-//    Trees not working. Maybe use ID instead of class for containers.
-//    Delete not working
 //    Extract drag order IDs.
 // Mark an objective Remedial
 // Tree
@@ -58,61 +59,7 @@ import * as customEvents from './components/customEvents.js';
 
 
 
-// https://simonplend.com/how-to-use-fetch-to-post-form-data-as-json-to-your-api/
-/**
- * Helper function for POSTing data as JSON with fetch.
- *
- * @param {Object} options
- * @param {string} options.url - URL to POST data to
- * @param {FormData} options.formData - `FormData` instance
- * @return {Object} - Response body from URL that was POSTed to
- */
-async function postFormDataAsJson({ url, formData }) {
-  const plainFormData = Object.fromEntries(formData.entries());
-  const formDataJsonString = JSON.stringify(plainFormData);
 
-  const fetchOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: formDataJsonString,
-  };
-
-  const response = await fetch(url, fetchOptions);
-
-  if (!response.ok) {
-    const errorMessage = await response.text();
-    throw new Error(errorMessage);
-  }
-
-  return response.json();
-}
-
-/**
- * Event handler for a form submit event.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event
- *
- * @param {SubmitEvent} event
- */
-async function handleFormSubmit(event) {
-  event.preventDefault();
-
-  const form = event.currentTarget;
-  const url = form.action;
-
-  try {
-    const formData = new FormData(form);
-    const responseData = await postFormDataAsJson({ url, formData });
-    if (responseData.success) setSavingState(savingOptions.saved);
-    // console.table({ responseData });
-  } catch (error) {
-    console.error(error);
-    setSavingState(savingOptions.error);
-  }
-}
 
 var pageModule = (function () {
   var module = {};
@@ -125,8 +72,11 @@ var pageModule = (function () {
       // Build model
       objectiveStore.buildModel();
 
-      document.querySelectorAll(".pdp-tree-container").forEach(function (container) {
-        const competencyHidden = container.parentElement.querySelector(`input[data-objective-type="competency"]`);
+      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container").forEach(function (container) {
+        const li = container.closest("li")
+        const id = li.dataset.objectiveId;
+        console.log(id);
+        const competencyHidden = li.querySelector(`input[data-objective-type="competency"]`);
         let tree = new Tree(".pdp-tree-container", {
           data: [
             {
@@ -137,7 +87,6 @@ var pageModule = (function () {
           ],
           onChange: function () {
             competencyHidden.value = this.values;
-            console.log(competencyHidden);
             htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
           }
         });

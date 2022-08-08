@@ -36,7 +36,9 @@ function getObjectiveData(id) {
 }
 
 function updateObjective(id, type, newValue) {
+  console.log(objectives);
   getObjectiveData(id)[type] = newValue;
+  console.log(objectives);
 }
 
 function updateObjectiveCount() {
@@ -54,7 +56,7 @@ async function saveObjective(changedIds) {
     dataToSend.push(getObjectiveData(id));
   }
 
-  console.log(JSON.stringify(dataToSend));
+  // console.log(JSON.stringify(dataToSend));
 
   // Mock send update objective to server
   await callServer("API Call", serverDelay);
@@ -92,7 +94,6 @@ async function addObjective(title) {
     });
     updateObjectiveCount();
     htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent(response.id, response.title));
-    console.log(objectives);
   }
   else {
     errorFeedback.showError(response.message);
@@ -107,7 +108,6 @@ async function deleteObjective(id) {
 
   // Update objectives count.
   if (response.status === "ok") {
-    console.log(objectives);
     for (let index = 0; index < objectives.length; index++) {
       const element = objectives[index];
       if (element.id.toString() === id.toString()) {
@@ -115,7 +115,6 @@ async function deleteObjective(id) {
         break;
       }
     }
-    console.log(objectives);
     updateObjectiveCount();
     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletedEvent(id));
   }
@@ -132,5 +131,61 @@ const init = () => {
     // htmlComponents.pdpObjLiveOrder
   });
 };
+
+// https://simonplend.com/how-to-use-fetch-to-post-form-data-as-json-to-your-api/
+/**
+ * Helper function for POSTing data as JSON with fetch.
+ *
+ * @param {Object} options
+ * @param {string} options.url - URL to POST data to
+ * @param {FormData} options.formData - `FormData` instance
+ * @return {Object} - Response body from URL that was POSTed to
+ */
+async function postFormDataAsJson({ url, formData }) {
+  const plainFormData = Object.fromEntries(formData.entries());
+  const formDataJsonString = JSON.stringify(plainFormData);
+
+  const fetchOptions = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: formDataJsonString,
+  };
+
+  const response = await fetch(url, fetchOptions);
+
+  if (!response.ok) {
+    const errorMessage = await response.text();
+    throw new Error(errorMessage);
+  }
+
+  return response.json();
+}
+
+/**
+ * Event handler for a form submit event.
+ *
+ * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event
+ *
+ * @param {SubmitEvent} event
+ */
+async function handleFormSubmit(event) {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const url = form.action;
+
+  try {
+    const formData = new FormData(form);
+    const responseData = await postFormDataAsJson({ url, formData });
+    if (responseData.success) setSavingState(savingOptions.saved);
+    // console.table({ responseData });
+  } catch (error) {
+    console.error(error);
+    setSavingState(savingOptions.error);
+  }
+}
 
 export { init, addObjective, updateObjective, saveObjective, deleteObjective, getObjectiveData, buildModel }

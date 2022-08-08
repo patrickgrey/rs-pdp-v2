@@ -18,6 +18,14 @@ const init = () => {
     objectiveStore.deleteObjective(id);
   });
 
+  document.querySelectorAll(`.pdp-delete-objective`).forEach((button) => {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      const id = event.target.closest("li").dataset.objectiveId;
+      htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletingEvent(id));
+    })
+  })
+
 };
 
 export { init }
