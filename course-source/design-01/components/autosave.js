@@ -2,7 +2,6 @@ import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
 import * as objectiveStore from './objectiveStore.js';
 
-// let isSaving = false;
 let changedIds = [];
 let timer = null;
 const savingDelay = 3000;

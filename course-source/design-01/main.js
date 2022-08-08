@@ -1,6 +1,7 @@
 import { DuetDatePicker } from "@duetds/date-picker/custom-element";
 import Sortable from 'sortablejs';
 import Tree from '@widgetjs/tree';
+import autoAnimate from '@formkit/auto-animate'
 
 import * as autosave from './components/autosave.js';
 import * as objectiveDrag from './components/objectiveDrag.js';
@@ -24,7 +25,10 @@ import * as customEvents from './components/customEvents.js';
 //    DONE On add, mock wait, on success build model and clone hidden to list and open DONE
 //    DONE serverWait should respond with an id and the title. DONE
 // Start with 1 objective server side rendered
+//    Delete always seems to remove the first item, not the selected one.
+//      This may only apply to dynamically added objs.
 //    DONE Trees not working. Maybe use ID instead of class for containers.
+//    DONE confirm deletes
 //    Get change updates from date
 //    Get satisfied updates
 //    DONE Delete not working - need to add listener and prevent DONE
@@ -66,6 +70,7 @@ var pageModule = (function () {
   module.init = function () {
 
     customElements.define("duet-date-picker", DuetDatePicker);
+    autoAnimate(pdpObjectivesLive);
 
     if (document.querySelector("body").dataset.objectiveCount > 0) {
 

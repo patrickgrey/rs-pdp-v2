@@ -102,8 +102,11 @@ function cloneObjective(id, title) {
   const deleteObjectiveButton = clone.querySelector(`.pdp-delete-objective`);
   deleteObjectiveButton.addEventListener("click", function (event) {
     event.preventDefault();
-    const id = event.target.closest("li").dataset.objectiveId;
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletingEvent(id));
+    if (window.confirm("Are you sure you want to delete this objective?")) {
+      deleteObjectiveButton.disabled = true;
+      const id = event.target.closest("li").dataset.objectiveId;
+      htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletingEvent(id));
+    }
   })
   const competencyHidden = clone.querySelector(`input[data-objective-type="competency"]`);
   addTree(".pdp-tree-container", id, competencyHidden);
