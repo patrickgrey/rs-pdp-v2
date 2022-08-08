@@ -25,12 +25,15 @@ import * as customEvents from './components/customEvents.js';
 //    DONE On add, mock wait, on success build model and clone hidden to list and open DONE
 //    DONE serverWait should respond with an id and the title. DONE
 // Start with 1 objective server side rendered
-//    Delete always seems to remove the first item, not the selected one.
+//    Get change updates from date
+//    Get satisfied updates
+//    Drag broken - using classes again?
+//    Due date format
+//    DONE Close existing objectives if a new one is added.
+//    DONE THIS IS BECAUSE THE ID IS ALWAYS THE SAME!! Delete always seems to remove the first item, not the selected one.
 //      This may only apply to dynamically added objs.
 //    DONE Trees not working. Maybe use ID instead of class for containers.
 //    DONE confirm deletes
-//    Get change updates from date
-//    Get satisfied updates
 //    DONE Delete not working - need to add listener and prevent DONE
 //    DONE Build model with IDs.
 //    
@@ -61,10 +64,6 @@ import * as customEvents from './components/customEvents.js';
 
 // Sanitize input client or server? Server. textContent 
 
-
-
-
-
 var pageModule = (function () {
   var module = {};
   module.init = function () {
@@ -77,10 +76,22 @@ var pageModule = (function () {
       // Build model
       objectiveStore.buildModel();
 
+      // Init dates
+      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container duet-date-picker").forEach((picker) => {
+        picker.addEventListener("duetChange", function (event) {
+          const li = picker.closest("li");
+          const hidden = li.querySelector(`input[data-objective-type="duedate"]`);
+          hidden.value = event.detail.value;
+          htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
+        });
+      });
+
+
+
+      // init trees
       htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container").forEach(function (container) {
         const li = container.closest("li")
         const id = li.dataset.objectiveId;
-        console.log(id);
         const competencyHidden = li.querySelector(`input[data-objective-type="competency"]`);
         let tree = new Tree(".pdp-tree-container", {
           data: [
@@ -120,7 +131,7 @@ var pageModule = (function () {
     });
 
 
-    htmlComponents.pdpTitleAdd.value = helpers.generateString(5);
+    htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
 
     htmlComponents.pdpTitleAddButton.click();
     // JUST FOR DEV

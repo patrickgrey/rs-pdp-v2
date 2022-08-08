@@ -6,6 +6,7 @@ import * as helpers from './helpers.js';
 let objectives = [];
 let objectivesOrder = [];
 const serverDelay = 1000;
+let currentID = 1;
 
 function buildModel() {
   // Loop through list and extract data
@@ -79,7 +80,8 @@ async function addObjective(title) {
   await callServer("API Call", serverDelay);
   // await helpers.asyncTimeout(serverDelay);
   // Mock response
-  const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok", id: 22, title: title };
+  currentID++;
+  const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok", id: currentID, title: title };
 
   if (response.status === "ok") {
     objectives.push({

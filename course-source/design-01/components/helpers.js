@@ -29,7 +29,7 @@ export const asyncTimeout = (ms) => {
 //   }
 
 // declare all characters
-const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';
 
 export const generateString = length => {
   let result = ' ';
@@ -39,4 +39,10 @@ export const generateString = length => {
   }
 
   return result;
+}
+
+export const closeAllObjectives = function () {
+  document.querySelectorAll("#pdpObjectivesLive li details[open]").forEach(detail => {
+    detail.open = false;
+  });
 }

@@ -262,6 +262,8 @@ aside ul {
   height: calc(100% - 2px);
   min-height: 0;
   position: absolute;
+  padding-left: 1rem;
+  padding-right: 1rem;
   right: -1px;
   top: 1px;
   border: 0;
@@ -469,8 +471,11 @@ body[data-objective-count="1"]
   padding: 1rem;
 }
 
-#pdpFormObjectives #pdpObjectivesLive .pdp-fieldset-edit-title {
+#pdpFormObjectives #pdpObjectivesLive .pdp-fieldset-edit-satisfied {
   grid-template-columns: 1fr 12rem;
+  padding: 1rem;
+  padding-top: 0.5rem;
+  background-color: lightgreen;
 }
 
 .pdp-tree-container {

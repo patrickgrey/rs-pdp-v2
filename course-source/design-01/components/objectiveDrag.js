@@ -6,6 +6,7 @@
 
 import Sortable from 'sortablejs';
 import * as customEvents from './customEvents.js';
+import * as helpers from './helpers.js';
 
 function closeAllObjectives() {
   document.querySelectorAll("#pdpObjectivesLive li details[open]").forEach(detail => {
@@ -25,7 +26,7 @@ function init() {
   return sortable = Sortable.create(document.getElementById('pdpObjectivesLive'), {
     handle: '.pdp-drag-handle',
     onChoose: function () {
-      closeAllObjectives();
+      helpers.closeAllObjectives();
     },
     onEnd: function () {
       setHiddenOrder();

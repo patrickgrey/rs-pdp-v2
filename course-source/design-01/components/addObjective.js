@@ -16,6 +16,7 @@ import Tree from '@widgetjs/tree';
 import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
 import * as objectiveStore from './objectiveStore.js';
+import * as helpers from './helpers.js';
 
 function disableForm() {
   htmlComponents.pdpTitleAdd.disabled = true;
@@ -65,11 +66,11 @@ function connectInputAndLabel(clone, selector, id) {
 function setLabelsAndIDs(clone, id, title) {
   clone.dataset.objectiveId = id;
   const summary = clone.querySelector("summary span:first-child");
-  summary.textContent = title;
+  // summary.textContent = title;
 
-  const titleInput = clone.querySelector(".pdp-fieldset-edit-title input");
-  const titleLabel = clone.querySelector(".pdp-fieldset-edit-title label");
-  titleInput.value = title;
+  const titleInput = clone.querySelector(".pdp-edit-title input");
+  const titleLabel = clone.querySelector(".pdp-edit-title label");
+  titleInput.value = summary.textContent = `${title}: This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
   titleInput.id = titleLabel.htmlFor = `pdpTitleObjective${id}`;
 
   const satisfiedLabel = clone.querySelector(".pdp-objective-satisfied");
@@ -79,8 +80,6 @@ function setLabelsAndIDs(clone, id, title) {
   titleInput.addEventListener("keyup", function (event) {
     summary.textContent = titleInput.value;
   });
-
-
 
   connectInputAndLabel(clone, "description", id)
   connectInputAndLabel(clone, "actions", id)
@@ -115,6 +114,7 @@ function cloneObjective(id, title) {
 
 function init() {
   htmlComponents.pdpFormNew.addEventListener(customEvents.added, function (event) {
+    // helpers.closeAllObjectives();
     cloneObjective(event.detail.id, event.detail.title);
     htmlComponents.pdpFormNew.querySelector("input").value = "";
     enableForm();
