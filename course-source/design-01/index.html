@@ -170,7 +170,7 @@
     </script>
 
   </head>
-  <body data-objective-count="0">
+  <body data-objective-count="1">
     <div class="pdp-ilp-header">
       <button id="pdpRemedial">Toggle remedial</button>
       {# <button id="pdpObjectiveCount">Change objective count: 0</button> #}
@@ -234,7 +234,75 @@
 
             <div class="pd-obj-live-container">
               <input type="hidden" id="pdpObjLiveOrder" type="text">
-              <ul id="pdpObjectivesLive"></ul>
+              <ul id="pdpObjectivesLive">
+                <li data-objective-id="111">
+                  <details open>
+                    <summary>
+                      <span>1111</span>
+                      <span class="pdp-remedial pdp-remedial-label"> Remedial</span>
+                    </summary>
+                    <div class="pdp-objective-form-container">
+
+                      <div class="pdp-objective-satisfied-container">
+                        <label class="pdp-objective-satisfied" for="sa1"><input type="checkbox" id="sat1" checked data-objective-type="satisfied">I am satisfied</label>
+                      </div>
+
+                      <div class="ians-grid-2 pdp-fieldset-edit-title mt-2">
+                        <div class="">
+                          <label for="pdpSatisfiedObjective111">Title</label>
+                          <input data-objective-type="title" id="pdpSatisfiedObjective111" autocomplete="off" required type="text" value="1111">
+                        </div>
+
+                        <div class="pdp-edit-datepicker">
+                          <label for="due1">
+                            <strong>Due date:</strong>
+                          </label>
+                          <input data-objective-type="duedate" id="due1" type="hidden">
+                          <div class="pdp-date-picker-container">
+                            <duet-date-picker direction="left"></duet-date-picker>
+                          </div>
+                          <p class="pdp-validation-label pdp-remedial">* required</p>
+                        </div>
+                      </div>
+
+                      <div class="ians-grid-2 mt-1-5">
+                        <div>
+                          <div class="pdp-objective-edit-description">
+                            <label for="desc1">Description<span>What is the goal and desired results that you would like to achieve?</span></label>
+                            <textarea data-objective-type="description" id="desc1" rows="5"></textarea>
+                          </div>
+                          <div class="mt-1-5 pdp-objective-edit-actions">
+                            <label for="action1">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                            <textarea data-objective-type="actions" id="action1" rows="5"></textarea>
+                          </div>
+                          <div class="mt-1-5 pdp-objective-edit-insights">
+                            <label for="pers1">Personal Insights<span>What is the goal and desired results that you would like to achieve?</span></label>
+                            <textarea data-objective-type="insights" id="pers1" rows="5"></textarea>
+                          </div>
+                        </div>
+                        <div class="pdp-tree-fieldset">
+                          <label for="tree1">Competency<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                          <input data-objective-type="competency" data-id="tree1" id="tree1" type="hidden" value="0-0-1">
+                          <div class="pdp-tree-container"></div>
+                        </div>
+                      </div>
+
+                      <button type="submit" class="pdp-save-objective">Save Objective</button>
+                    </div>
+                  </details>
+
+                  <button class="pdp-drag-handle">
+                    <img aria-hidden="true" src="images/pdp-icon-drag.svg" alt="Drag me!">
+                    <span class="ians-visually-hidden">Drag</span>
+                  </button>
+
+                  <button class="pdp-delete-objective">
+                    <img aria-hidden="true" src="images/pdp-delete.svg" alt="Delete objective">
+          Delete
+        </button>
+                </li>
+
+              </ul>
             </div>
 
           </form>

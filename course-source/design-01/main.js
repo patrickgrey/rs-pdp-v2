@@ -1,5 +1,6 @@
 import { DuetDatePicker } from "@duetds/date-picker/custom-element";
 import Sortable from 'sortablejs';
+import Tree from '@widgetjs/tree';
 
 import * as autosave from './components/autosave.js';
 import * as objectiveDrag from './components/objectiveDrag.js';
@@ -27,6 +28,8 @@ import * as customEvents from './components/customEvents.js';
 //    Get change updates from date and tree
 //    
 // Start with 2 objectives server side rendered
+//    Trees not working. Maybe use ID instead of class for containers.
+//    Delete not working
 //    Extract drag order IDs.
 // Mark an objective Remedial
 // Tree
@@ -116,6 +119,35 @@ var pageModule = (function () {
   module.init = function () {
 
     customElements.define("duet-date-picker", DuetDatePicker);
+
+    if (document.querySelector("body").dataset.objectiveCount > 0) {
+
+      // Build model
+      objectiveStore.buildModel();
+
+      document.querySelectorAll(".pdp-tree-container").forEach(function (container) {
+        const competencyHidden = container.parentElement.querySelector(`input[data-objective-type="competency"]`);
+        let tree = new Tree(".pdp-tree-container", {
+          data: [
+            {
+              id: '-1',
+              text: 'root',
+              children: pdpTreeData
+            }
+          ],
+          onChange: function () {
+            competencyHidden.value = this.values;
+            console.log(competencyHidden);
+            htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
+          }
+        });
+      })
+
+    }
+
+    // If obj count > 0
+    //    Build model
+    //    Init trees
 
     addObjective.init();
     activityFeedback.init();

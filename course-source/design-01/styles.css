@@ -8,7 +8,7 @@
   --pdp-input-padding-vertical: 14px;
   --pdp-header-height: 85px;
   --pdp-objective-drag-size: 60px;
-  --pdp-animation-time: 3s;
+  --pdp-animation-time: 0.3s;
 
   --duet-color-primary: var(--pdp-input-outline);
   --duet-color-text: #333;

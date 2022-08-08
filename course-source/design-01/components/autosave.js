@@ -20,6 +20,8 @@ let isSaving = false;
 
 
 function checkValueHasChanged(id, type, newValue) {
+  console.log(id);
+  console.log(type);
   return objectiveStore.getObjectiveData(id)[type] != newValue;
 }
 
@@ -68,6 +70,7 @@ const init = () => {
   });
 
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.competencyChanged, function (event) {
+    console.log(event);
     updateObjective(event.detail.target);
     startSave();
   });

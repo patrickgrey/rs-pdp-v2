@@ -7,6 +7,25 @@ let objectives = [];
 let objectivesOrder = [];
 const serverDelay = 1000;
 
+function buildModel() {
+  // Loop through list and extract data
+  // const objectiveList = 
+  document.querySelectorAll("#pdpObjectivesLive li").forEach((li) => {
+
+    objectives.push({
+      id: li.dataset.objectiveId,
+      title: "" || li.querySelector(`input[data-objective-type="title"]`).value,
+      satisfied: li.querySelector(`input[data-objective-type="satisfied"]`).checked,
+      duedate: "" || li.querySelector(`input[data-objective-type="duedate"]`).value,
+      description: "" || li.querySelector(`textarea[data-objective-type="description"]`).value,
+      actions: "" || li.querySelector(`textarea[data-objective-type="actions"]`).value,
+      insights: "" || li.querySelector(`textarea[data-objective-type="insights"]`).value,
+      competency: "" || li.querySelector(`input[data-objective-type="competency"]`).value
+    });
+  });
+
+}
+
 async function callServer(url, serverDelay) {
   await helpers.asyncTimeout(serverDelay);
   return true;
@@ -38,7 +57,7 @@ async function saveObjective(changedIds) {
   console.log(JSON.stringify(dataToSend));
 
   // Mock send update objective to server
-  callServer("API Call", serverDelay);
+  await callServer("API Call", serverDelay);
   // await helpers.asyncTimeout(serverDelay);
   // Mock response
   const response = errorFeedback.isError ? { status: "error", message: "Update when wrong!" } : { status: "ok" };
@@ -62,8 +81,10 @@ async function addObjective(title) {
 
   if (response.status === "ok") {
     objectives.push({
-      id: response.id,
+      id: response.id.toString(),
       title: response.title,
+      satisfied: false,
+      duedate: "",
       description: "",
       actions: "",
       insights: "",
@@ -71,6 +92,7 @@ async function addObjective(title) {
     });
     updateObjectiveCount();
     htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent(response.id, response.title));
+    console.log(objectives);
   }
   else {
     errorFeedback.showError(response.message);
@@ -111,4 +133,4 @@ const init = () => {
   });
 };
 
-export { init, addObjective, updateObjective, saveObjective, deleteObjective, getObjectiveData }
+export { init, addObjective, updateObjective, saveObjective, deleteObjective, getObjectiveData, buildModel }
