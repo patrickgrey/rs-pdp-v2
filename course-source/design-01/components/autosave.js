@@ -25,7 +25,7 @@ function checkValueHasChanged(id, type, newValue) {
 function updateObjective(target) {
   const id = target.closest("li").dataset.objectiveId;
   const type = target.dataset.objectiveType;
-  const newValue = target.value;
+  const newValue = type === "satisfied" ? target.checked : target.value;
   if (!checkValueHasChanged(id, type, newValue)) return;
   if (!changedIds.includes(id)) changedIds.push(id);
   objectiveStore.updateObjective(id, type, newValue);

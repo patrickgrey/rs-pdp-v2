@@ -25,7 +25,7 @@ import * as customEvents from './components/customEvents.js';
 //    DONE On add, mock wait, on success build model and clone hidden to list and open DONE
 //    DONE serverWait should respond with an id and the title. DONE
 // Start with 1 objective server side rendered
-//    Get change updates from date
+//    DONE Get change updates from date
 //    Get satisfied updates
 //    Drag broken - using classes again?
 //    Due date format
@@ -85,8 +85,6 @@ var pageModule = (function () {
           htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
         });
       });
-
-
 
       // init trees
       htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container").forEach(function (container) {
