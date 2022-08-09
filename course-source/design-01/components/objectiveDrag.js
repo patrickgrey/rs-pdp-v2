@@ -1,30 +1,20 @@
-/**
- * Handle form submit
- * emit events for saved, saving, error
- * prevent overlap
- */
-
 import Sortable from 'sortablejs';
 import * as customEvents from './customEvents.js';
 import * as helpers from './helpers.js';
-
-function closeAllObjectives() {
-  document.querySelectorAll("#pdpObjectivesLive li details[open]").forEach(detail => {
-    detail.open = false;
-  });
-}
+import * as htmlComponents from './htmlComponents.js';
 
 function setHiddenOrder() {
   let orderArray = [];
   document.querySelectorAll("#pdpObjectivesLive > li").forEach(li => {
-    orderArray.push(li.dataset.order);
+    orderArray.push(li.dataset.objectiveId);
   });
-  if (orderArray.length > 0) document.querySelector(".pd-obj-live-order").value = orderArray.toString();
+  if (orderArray.length > 0) htmlComponents.pdpObjLiveOrder.value = orderArray.toString();
 }
 
 function init() {
-  return sortable = Sortable.create(document.getElementById('pdpObjectivesLive'), {
+  return sortable = Sortable.create(htmlComponents.pdpObjectivesLive, {
     handle: '.pdp-drag-handle',
+    animation: 150,
     onChoose: function () {
       helpers.closeAllObjectives();
     },

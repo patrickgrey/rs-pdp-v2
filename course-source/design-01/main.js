@@ -1,5 +1,4 @@
 import { DuetDatePicker } from "@duetds/date-picker/custom-element";
-import Sortable from 'sortablejs';
 import Tree from '@widgetjs/tree';
 import autoAnimate from '@formkit/auto-animate'
 
@@ -26,11 +25,9 @@ import * as customEvents from './components/customEvents.js';
 //    DONE serverWait should respond with an id and the title. DONE
 // Start with 1 objective server side rendered
 //    Move satisfied to another list
-//    Style date boxes
 //    Drag broken - using classes again?
 //    Due date format
 //    Update summary on title input 
-//    Fix satisfied alignment on required
 //    DONE Fix remedial - attach icon to text in header then just use icon
 //    DONE Get satisfied updates
 //    DONE Get change updates from date
@@ -76,7 +73,13 @@ var pageModule = (function () {
     customElements.define("duet-date-picker", DuetDatePicker);
     autoAnimate(pdpObjectivesLive);
 
+    // Objectives already on the page from the server so need to 
+    // be initialised.
     if (document.querySelector("body").dataset.objectiveCount > 0) {
+      // Summary listener
+      htmlComponents.pdpFormObjectives.querySelectorAll(`input[data-objective-type="title"]`).forEach((title) => {
+
+      });
 
       // Build model
       objectiveStore.buildModel();
@@ -112,10 +115,6 @@ var pageModule = (function () {
       })
 
     }
-
-    // If obj count > 0
-    //    Build model
-    //    Init trees
 
     addObjective.init();
     activityFeedback.init();

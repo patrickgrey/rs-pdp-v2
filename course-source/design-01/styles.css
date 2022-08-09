@@ -9,6 +9,7 @@
   --pdp-header-height: 85px;
   --pdp-objective-drag-size: 60px;
   --pdp-animation-time: 0.3s;
+  --pdp-satisfied-box-colour: #b9e4b1;
 
   --duet-color-primary: var(--pdp-input-outline);
   --duet-color-text: #333;
@@ -393,7 +394,7 @@ body[data-objective-count="1"]
 }
 
 #pdpFormObjectives #pdpObjectivesLive > li button.pdp-delete-objective {
-  background-color: red;
+  background-color: #ed4442;
   color: white;
   border: 0;
   border-radius: var(--border-radius);
@@ -503,7 +504,7 @@ body[data-objective-count="1"]
   grid-template-columns: 1fr 12rem;
   padding: 1rem;
   padding-top: 0.5rem;
-  background-color: lightgreen;
+  background-color: var(--pdp-satisfied-box-colour);
 }
 
 .pdp-tree-container {
