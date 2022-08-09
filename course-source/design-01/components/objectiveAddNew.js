@@ -102,7 +102,8 @@ function setLabelsAndIDs(clone, id, title) {
 
   const titleInput = clone.querySelector(".pdp-edit-title input");
   const titleLabel = clone.querySelector(".pdp-edit-title label");
-  titleInput.value = summary.textContent = `${title}: This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
+  // titleInput.value = summary.textContent = `${title}: This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
+  titleInput.value = summary.textContent = title;
   titleInput.id = titleLabel.htmlFor = `pdpTitleObjective${id}`;
 
   const satisfiedLabel = clone.querySelector(".pdp-objective-satisfied");
@@ -146,6 +147,7 @@ function init() {
     cloneObjective(event.detail.id, event.detail.title);
     htmlComponents.pdpFormNew.querySelector("input").value = "";
     enableForm();
+    htmlComponents.pdpFormNew.querySelector("input").focus();
   });
 
   htmlComponents.pdpFormNew.addEventListener(customEvents.error, function (event) {

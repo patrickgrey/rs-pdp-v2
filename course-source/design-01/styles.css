@@ -376,6 +376,12 @@ body[data-objective-archive-count="1"]
   transition: margin-left var(--pdp-animation-time);
 }
 
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle img {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding-top: 0.25rem;
+}
+
 #pdpObjectivesArchived > li button.pdp-drag-handle {
   display: none;
 }

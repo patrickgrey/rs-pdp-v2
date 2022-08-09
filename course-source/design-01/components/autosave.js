@@ -4,7 +4,7 @@ import * as objectiveStore from './objectiveStore.js';
 
 let changedIds = [];
 let timer = null;
-const savingDelay = 3000;
+const savingDelay = 1000;
 let isSaving = false;
 
 // Only want to save if targeted elements AND there has been a change.

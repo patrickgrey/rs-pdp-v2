@@ -19,6 +19,7 @@ import * as objectiveArchive from './components/objectiveArchive.js';
 
 // TODO
 // Test on Mac
+// Add full comments
 // DONE Delete objective button 
 // DONE Fade end of summary objective title DONE
 // Move drag button in on 2+ - Can't get transition to work.
@@ -27,10 +28,11 @@ import * as objectiveArchive from './components/objectiveArchive.js';
 //    DONE On add, mock wait, on success build model and clone hidden to list and open DONE
 //    DONE serverWait should respond with an id and the title. DONE
 // Start with 1 objective server side rendered
-//    Move satisfied to another list
-//    Archived - action feedback
+//    Archived - action feedback - part of autosve
+//    Update satisfied in model on move back
 //    Deal with order list when moved
-//    Update archived count on add/remove
+//    DONE Move satisfied to another list
+//    DONE Update archived count on add/remove
 //    DONE Drag broken - using classes again?
 //    DONE Ignore just now. Due date format
 //    DONE Update summary on title input 
@@ -46,15 +48,15 @@ import * as objectiveArchive from './components/objectiveArchive.js';
 //    DONE Build model with IDs.
 //    
 // Start with 2 objectives server side rendered
-//    Extract drag order IDs.
-// Mark an objective Remedial
+//    DONE Extract drag order IDs.
+//    DONE Mark an objective Remedial
 // Tree
 //    Need to add dataset for each tree
 //    Toggle all DONE - removed feature
-// On drag, close details DONE
-// Save button align DONE
-// pdp-autosave structure DONE
-// Toggle errors DONE
+//    DONE On drag, close details DONE
+//    DONE Save button align DONE
+//    DONE pdp-autosave structure DONE
+//    DONE Toggle errors DONE
 // -Page closes before saved?
 // --Warn user to press save button if not saved yet.
 
@@ -114,7 +116,6 @@ var pageModule = (function () {
           }
         });
       })
-
     }
 
     addObjective.init();
@@ -135,36 +136,10 @@ var pageModule = (function () {
     });
 
 
-    htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
+    // htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
 
-    htmlComponents.pdpTitleAddButton.click();
+    // htmlComponents.pdpTitleAddButton.click();
     // JUST FOR DEV
-
-
-
-
-    // Init form
-    // pdpFormNew.addEventListener("submit", handleFormSubmit);
-    // // Init date input
-    // // https://www.duetds.com/components/collapsible/
-    // // Init sortable objectives, setting order and triggering save
-    // // var sortable = Sortable.create(document.getElementById('pdpObjectivesLive'), {
-    // //   handle: '.pdp-drag-handle',
-    // //   onChoose: function () {
-    // //     closeAllObjectives();
-    // //   },
-    // //   onEnd: function () {
-    // //     setHiddenOrder();
-    // //     timerStart();
-    // //   }
-    // // });
-    // objectiveDrag.init(timerStart);
-    // // Record objectives order
-    // objectiveDrag.setHiddenOrder();
-    // // Capture key up to trigger save
-    // document.addEventListener("keyup", event => {
-    //   timerStart();
-    // });
   };
   return module;
 })();

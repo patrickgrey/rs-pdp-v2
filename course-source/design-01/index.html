@@ -14,102 +14,102 @@
       let pdpTreeData = [
         {
           "id": "0",
-          "text": "node-0",
+          "text": "Compentencies",
           "children": [
             {
               "id": "0-0",
-              "text": "node-0-0",
+              "text": "competency-0-0",
               "children": [
                 {
                   "id": "0-0-0",
-                  "text": "node-0-0-0"
+                  "text": "competency-0-0-0"
                 }, {
                   "id": "0-0-1",
-                  "text": "node-0-0-1"
+                  "text": "competency-0-0-1"
                 }, {
                   "id": "0-0-2",
-                  "text": "node-0-0-2"
+                  "text": "competency-0-0-2"
                 }
               ]
             }, {
               "id": "0-1",
-              "text": "node-0-1",
+              "text": "competency-0-1",
               "children": [
                 {
                   "id": "0-1-0",
-                  "text": "node-0-1-0"
+                  "text": "competency-0-1-0"
                 }, {
                   "id": "0-1-1",
-                  "text": "node-0-1-1"
+                  "text": "competency-0-1-1"
                 }, {
                   "id": "0-1-2",
-                  "text": "node-0-1-2"
+                  "text": "competency-0-1-2"
                 }
               ]
             }, {
               "id": "0-2",
-              "text": "node-0-2",
+              "text": "competency-0-2",
               "children": [
                 {
                   "id": "0-2-0",
-                  "text": "node-0-2-0"
+                  "text": "competency-0-2-0"
                 }, {
                   "id": "0-2-1",
-                  "text": "node-0-2-1"
+                  "text": "competency-0-2-1"
                 }, {
                   "id": "0-2-2",
-                  "text": "node-0-2-2"
+                  "text": "competency-0-2-2"
                 }
               ]
             }
           ]
         }, {
           "id": "1",
-          "text": "node-1",
+          "text": "competency-1",
           "children": [
             {
               "id": "1-0",
-              "text": "node-1-0",
+              "text": "competency-1-0",
               "children": [
                 {
                   "id": "1-0-0",
-                  "text": "node-1-0-0"
+                  "text": "competency-1-0-0"
                 }, {
                   "id": "1-0-1",
-                  "text": "node-1-0-1"
+                  "text": "competency-1-0-1"
                 }, {
                   "id": "1-0-2",
-                  "text": "node-1-0-2"
+                  "text": "competency-1-0-2"
                 }
               ]
             }, {
               "id": "1-1",
-              "text": "node-1-1",
+              "text": "competency-1-1",
               "children": [
                 {
                   "id": "1-1-0",
-                  "text": "node-1-1-0"
+                  "text": "competency-1-1-0"
                 }, {
                   "id": "1-1-1",
-                  "text": "node-1-1-1"
+                  "text": "competency-1-1-1"
                 }, {
                   "id": "1-1-2",
-                  "text": "node-1-1-2"
+                  "text": "competency-1-1-2"
                 }
               ]
             }, {
               "id": "1-2",
-              "text": "node-1-2",
+              "text": "competency-1-2",
               "children": [
                 {
                   "id": "1-2-0",
-                  "text": "node-1-2-0"
+                  "text": "competency-1-2-0"
                 }, {
                   "id": "1-2-1",
-                  "text": "node-1-2-1"
+                  "text": "competency-1-2-1"
                 }, {
                   "id": "1-2-2",
-                  "text": "node-1-2-2"
+                  "text": "competency-1-2-2"
                 }
               ]
             }
@@ -170,7 +170,7 @@
     </script>
 
   </head>
-  <body data-objective-count="1"  data-objective-archive-count="0">
+  <body data-objective-count="0"  data-objective-archive-count="0">
     <div class="pdp-ilp-header">
       <button id="pdpRemedial">Toggle remedial</button>
       {# <button id="pdpObjectiveCount">Change objective count: 0</button> #}
@@ -230,7 +230,7 @@
               <input type="hidden" id="pdpObjLiveOrder" type="text">
               <ul id="pdpObjectivesLive">
 
-                <li data-objective-id="1">
+                {# <li data-objective-id="1">
                   <details >
                     <summary>
                       <span class="pdp-remedial-icon">This objective is called  1 and the aim is to  JZgl2zU1BVYkhFYDLz3j</span>
@@ -279,8 +279,6 @@
                           <input data-objective-type="competency" id="pdpCompetencyHiddenObjective1" type="hidden">
                           <div class="pdp-tree-container" id="pdpCompetencyObjective1"></div>
                         </div>
-
-                        {# <button type="submit" class="pdp-save-objective">Save Objective</button> #}
                       </div>
                     </details>
 
@@ -293,139 +291,139 @@
                       <img aria-hidden="true" src="images/pdp-delete.svg" alt="Delete objective">
           Delete
         </button>
-                  </li>
+                  </li> #}
 
-                </ul>
-              </div>
+              </ul>
+            </div>
 
-            </form>
+          </form>
 
-            <div id="pdpObjectivesArchivedContainer">
-              <h2>
+          <div id="pdpObjectivesArchivedContainer">
+            <h2>
                  Archived Objective<span>s</span>
-              </h2>
-              <div class="pd-obj-archived-container">
-                <input type="hidden" id="pdpObjArchivedOrder" type="text">
-                <ul id="pdpObjectivesArchived"></ul>
+            </h2>
+            <div class="pd-obj-archived-container">
+              <input type="hidden" id="pdpObjArchivedOrder" type="text">
+              <ul id="pdpObjectivesArchived"></ul>
+            </div>
+          </div>
+        </article>
+
+        <aside>
+          <p>
+            <strong>Help</strong>
+          </p>
+          <ul>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+          </ul>
+          <hr>
+          <p>
+            <strong>Information</strong>
+          </p>
+          <ul>
+            <li>Unit: EXT/LUX</li>
+            <li>Email: <a href="mailto:patrick.grey.ext@eurocontrol.int">patrick.grey.ext@eurocontrol.int</a>
+            </li>
+          </ul>
+          <hr>
+
+          <label for="pdpNextMeetingDate">
+            <strong>Date of next meeting:</strong>
+          </label>
+          <duet-date-picker identifier="pdpNextMeetingDate"></duet-date-picker>
+          <noscript>
+            <input id="pdpNextMeetingDate" type="date">
+          </noscript>
+          <hr>
+          <ul>
+            <li>My coach: N/A </li>
+            <li>My mentor: N/A</li>
+          </ul>
+        </aside>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; EUROCONTROL</p>
+    </footer>
+
+    <div class="pdp-objective-clone-daddy">
+      <li data-objective-id="">
+        <details open>
+          <summary>
+            <span class="pdp-remedial-icon">Title</span>
+          </summary>
+          <div class="pdp-objective-form-container">
+
+            <div class="ians-grid-2 pdp-fieldset-edit-satisfied">
+              <div class="pdp-objective-satisfied-container">
+                <label class="pdp-objective-satisfied" for=""><input type="checkbox" data-objective-type="satisfied">I am satisfied</label>
+              </div>
+
+              <div class="pdp-edit-datepicker">
+                <label for="">
+                  <strong>Due date:</strong>
+                </label>
+                <input data-objective-type="duedate" id="" type="hidden">
+                <div class="pdp-date-picker-container"></div>
+                <p class="pdp-validation-label pdp-remedial">* required</p>
               </div>
             </div>
-          </article>
 
-          <aside>
-            <p>
-              <strong>Help</strong>
-            </p>
-            <ul>
-              <li>
-                <a href="#">Linkety link link</a>
-              </li>
-              <li>
-                <a href="#">Linkety link link</a>
-              </li>
-              <li>
-                <a href="#">Linkety link link</a>
-              </li>
-              <li>
-                <a href="#">Linkety link link</a>
-              </li>
-            </ul>
-            <hr>
-            <p>
-              <strong>Information</strong>
-            </p>
-            <ul>
-              <li>Unit: EXT/LUX</li>
-              <li>Email: <a href="mailto:patrick.grey.ext@eurocontrol.int">patrick.grey.ext@eurocontrol.int</a>
-              </li>
-            </ul>
-            <hr>
-
-            <label for="pdpNextMeetingDate">
-              <strong>Date of next meeting:</strong>
-            </label>
-            <duet-date-picker identifier="pdpNextMeetingDate"></duet-date-picker>
-            <noscript>
-              <input id="pdpNextMeetingDate" type="date">
-            </noscript>
-            <hr>
-            <ul>
-              <li>My coach: N/A </li>
-              <li>My mentor: N/A</li>
-            </ul>
-          </aside>
-        </div>
-      </main>
-
-      <footer>
-        <p>&copy; EUROCONTROL</p>
-      </footer>
-
-      <div class="pdp-objective-clone-daddy">
-        <li data-objective-id="">
-          <details open>
-            <summary>
-              <span class="pdp-remedial-icon">Title</span>
-            </summary>
-            <div class="pdp-objective-form-container">
-
-              <div class="ians-grid-2 pdp-fieldset-edit-satisfied">
-                <div class="pdp-objective-satisfied-container">
-                  <label class="pdp-objective-satisfied" for=""><input type="checkbox" data-objective-type="satisfied">I am satisfied</label>
-                </div>
-
-                <div class="pdp-edit-datepicker">
-                  <label for="">
-                    <strong>Due date:</strong>
-                  </label>
-                  <input data-objective-type="duedate" id="" type="hidden">
-                  <div class="pdp-date-picker-container"></div>
-                  <p class="pdp-validation-label pdp-remedial">* required</p>
-                </div>
-              </div>
-
-              <div class="pdp-edit-title mt-2">
-                <label for="">Title</label>
-                <input data-objective-type="title" id="" autocomplete="off" required type="text">
-              </div>
-
-              <div class="ians-grid-2 mt-1-5">
-                <div>
-                  <div class="pdp-objective-edit-description">
-                    <label for="">Description<span>What is the goal and desired results that you would like to achieve?</span></label>
-                    <textarea data-objective-type="description" id="" rows="5"></textarea>
-                  </div>
-                  <div class="mt-1-5 pdp-objective-edit-actions">
-                    <label for="">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
-                    <textarea data-objective-type="actions" id="" rows="5"></textarea>
-                  </div>
-                  <div class="mt-1-5 pdp-objective-edit-insights">
-                    <label for="">Personal Insights<span>What is the goal and desired results that you would like to achieve?</span></label>
-                    <textarea data-objective-type="insights" id="" rows="5"></textarea>
-                  </div>
-                </div>
-                <div class="pdp-tree-fieldset">
-                  <label for="">Competency<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
-                  <input data-objective-type="competency" id="" type="hidden">
-                  <div class="pdp-tree-container"></div>
-                </div>
-              </div>
-
-              {# <button type="submit" class="pdp-save-objective">Save Objective</button> #}
+            <div class="pdp-edit-title mt-2">
+              <label for="">Title</label>
+              <input data-objective-type="title" id="" autocomplete="off" required type="text">
             </div>
-          </details>
 
-          <button class="pdp-drag-handle">
-            <img aria-hidden="true" src="images/pdp-icon-drag.svg" alt="Drag me!">
-            <span class="ians-visually-hidden">Drag</span>
-          </button>
+            <div class="ians-grid-2 mt-1-5">
+              <div>
+                <div class="pdp-objective-edit-description">
+                  <label for="">Description<span>What is the goal and desired results that you would like to achieve?</span></label>
+                  <textarea data-objective-type="description" id="" rows="5"></textarea>
+                </div>
+                <div class="mt-1-5 pdp-objective-edit-actions">
+                  <label for="">Actions<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                  <textarea data-objective-type="actions" id="" rows="5"></textarea>
+                </div>
+                <div class="mt-1-5 pdp-objective-edit-insights">
+                  <label for="">Personal Insights<span>What is the goal and desired results that you would like to achieve?</span></label>
+                  <textarea data-objective-type="insights" id="" rows="5"></textarea>
+                </div>
+              </div>
+              <div class="pdp-tree-fieldset">
+                <label for="">Competency<span>What methods will you use to achieve them? e.g. training, coaching, mentoring, peer support, on-the-job experiences.</span></label>
+                <input data-objective-type="competency" id="" type="hidden">
+                <div class="pdp-tree-container"></div>
+              </div>
+            </div>
 
-          <button class="pdp-delete-objective">
-            <img aria-hidden="true" src="images/pdp-delete.svg" alt="Delete objective">
+            {# <button type="submit" class="pdp-save-objective">Save Objective</button> #}
+          </div>
+        </details>
+
+        <button class="pdp-drag-handle">
+          <img aria-hidden="true" src="images/pdp-drag-icon.svg" alt="Drag me!">
+          <span class="ians-visually-hidden">Drag</span>
+        </button>
+
+        <button class="pdp-delete-objective">
+          <img aria-hidden="true" src="images/pdp-delete.svg" alt="Delete objective">
           Delete
         </button>
-        </li>
-      </div>
+      </li>
+    </div>
 
-      <script src="main.js"></script>
-    </body>
-  </html>
+    <script src="main.js"></script>
+  </body>
+</html>
