@@ -1,6 +1,6 @@
 import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
-import * as errorFeedback from './errorFeedback.js';
+import * as errorFeedback from './feedbackError.js';
 import * as helpers from './helpers.js';
 
 let objectives = [];
@@ -9,8 +9,6 @@ const serverDelay = 1000;
 let currentID = 1;
 
 function buildModel() {
-  // Loop through list and extract data
-  // const objectiveList = 
   document.querySelectorAll("#pdpObjectivesLive li").forEach((li) => {
 
     objectives.push({

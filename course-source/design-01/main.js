@@ -4,14 +4,17 @@ import autoAnimate from '@formkit/auto-animate'
 
 import * as autosave from './components/autosave.js';
 import * as objectiveDrag from './components/objectiveDrag.js';
-import * as addObjective from './components/addObjective.js';
-import * as deleteObjective from './components/deleteObjective.js';
+import * as addObjective from './components/objectiveAddNew.js';
+import * as deleteObjective from './components/objectiveDelete.js';
 import * as objectiveStore from './components/objectiveStore.js';
-import * as activityFeedback from './components/activityFeedback.js';
-import * as errorFeedback from './components/errorFeedback.js';
+import * as activityFeedback from './components/feedbackActions.js';
+import * as errorFeedback from './components/feedbackError.js';
 import * as htmlComponents from './components/htmlComponents.js';
 import * as helpers from './components/helpers.js';
 import * as customEvents from './components/customEvents.js';
+import * as objectiveArchive from './components/objectiveArchive.js';
+
+
 
 
 // TODO
@@ -25,9 +28,9 @@ import * as customEvents from './components/customEvents.js';
 //    DONE serverWait should respond with an id and the title. DONE
 // Start with 1 objective server side rendered
 //    Move satisfied to another list
-//    Drag broken - using classes again?
-//    Due date format
-//    Update summary on title input 
+//    DONE Drag broken - using classes again?
+//    DONE Ignore just now. Due date format
+//    DONE Update summary on title input 
 //    DONE Fix remedial - attach icon to text in header then just use icon
 //    DONE Get satisfied updates
 //    DONE Get change updates from date
@@ -76,11 +79,6 @@ var pageModule = (function () {
     // Objectives already on the page from the server so need to 
     // be initialised.
     if (document.querySelector("body").dataset.objectiveCount > 0) {
-      // Summary listener
-      htmlComponents.pdpFormObjectives.querySelectorAll(`input[data-objective-type="title"]`).forEach((title) => {
-
-      });
-
       // Build model
       objectiveStore.buildModel();
 
@@ -122,6 +120,7 @@ var pageModule = (function () {
     autosave.init();
     objectiveDrag.init();
     deleteObjective.init();
+    objectiveArchive.init();
 
     // JUST FOR DEV
     document.querySelector("#pdpRemedial").addEventListener("click", function (event) {

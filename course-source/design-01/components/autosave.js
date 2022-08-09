@@ -62,7 +62,12 @@ function resetTimer() {
 
 const init = () => {
   htmlComponents.pdpFormObjectives.addEventListener("input", function (event) {
-    updateObjective(event.target);
+    const input = event.target;
+    if (input.dataset.objectiveType === "title") {
+      console.log("hi");
+      input.closest(`li`).querySelector(`summary span:first-child`).textContent = input.value;
+    }
+    updateObjective(input);
     startSave();
   });
 

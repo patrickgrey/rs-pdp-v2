@@ -170,7 +170,7 @@
     </script>
 
   </head>
-  <body data-objective-count="1">
+  <body data-objective-count="1"  data-objective-archive-count="2">
     <div class="pdp-ilp-header">
       <button id="pdpRemedial">Toggle remedial</button>
       {# <button id="pdpObjectiveCount">Change objective count: 0</button> #}
@@ -231,7 +231,7 @@
               <ul id="pdpObjectivesLive">
 
                 <li data-objective-id="1">
-                  <details open>
+                  <details >
                     <summary>
                       <span class="pdp-remedial-icon">This objective is called  1 and the aim is to  JZgl2zU1BVYkhFYDLz3j</span>
                     </summary>
@@ -280,7 +280,7 @@
                           <div class="pdp-tree-container" id="pdpCompetencyObjective1"></div>
                         </div>
 
-                        <button type="submit" class="pdp-save-objective">Save Objective</button>
+                        {# <button type="submit" class="pdp-save-objective">Save Objective</button> #}
                       </div>
                     </details>
 
@@ -299,6 +299,16 @@
               </div>
 
             </form>
+
+            <div id="pdpObjectivesArchivedContainer">
+              <h2>
+                 Archived Objective<span>s</span>
+              </h2>
+              <div class="pd-obj-archived-container">
+                <input type="hidden" id="pdpObjArchivedOrder" type="text">
+                <ul id="pdpObjectivesArchived"></ul>
+              </div>
+            </div>
           </article>
 
           <aside>
@@ -360,7 +370,7 @@
 
               <div class="ians-grid-2 pdp-fieldset-edit-satisfied">
                 <div class="pdp-objective-satisfied-container">
-                  <label class="pdp-objective-satisfied" for=""><input type="checkbox">I am satisfied</label>
+                  <label class="pdp-objective-satisfied" for=""><input type="checkbox" data-objective-type="satisfied">I am satisfied</label>
                 </div>
 
                 <div class="pdp-edit-datepicker">
@@ -400,7 +410,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="pdp-save-objective">Save Objective</button>
+              {# <button type="submit" class="pdp-save-objective">Save Objective</button> #}
             </div>
           </details>
 

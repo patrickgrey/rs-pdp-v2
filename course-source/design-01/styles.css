@@ -224,7 +224,7 @@ aside ul {
 }
 
 /* 
-* NEW OBJECTIVE FORM
+* OBJECTIVES
 */
 
 #pdpFormNew {
@@ -234,14 +234,16 @@ aside ul {
   margin-bottom: 1.5rem;
 }
 
-#pdpFormNew label {
+#pdpFormNew label,
+#pdpObjectivesArchived label {
   display: block;
   color: var(--ians-colour-blue-mid);
   margin-bottom: 0.25em;
 }
 
 #pdpFormNew label > span,
-#pdpFormObjectives label > span {
+#pdpFormObjectives label > span,
+#pdpObjectivesArchived label > span {
   font-size: small;
   font-weight: normal;
   color: #999;
@@ -255,7 +257,10 @@ aside ul {
 #pdpFormNew textarea,
 #pdpFormObjectives input[type="text"],
 #pdpFormObjectives input[type="date"],
-#pdpFormObjectives textarea {
+#pdpFormObjectives textarea,
+#pdpObjectivesArchived input[type="text"],
+#pdpObjectivesArchived input[type="date"],
+#pdpObjectivesArchived textarea {
   display: block;
   width: calc(100% - 1rem);
   resize: vertical;
@@ -276,7 +281,12 @@ aside ul {
 #pdpFormObjectives input[type="date"]:focus,
 #pdpFormObjectives textarea:focus,
 #pdpFormObjectives #pdpObjectivesLive > li summary:focus,
-#pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle:focus {
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle:focus,
+#pdpObjectivesArchived input[type="text"]:focus,
+#pdpObjectivesArchived input[type="date"]:focus,
+#pdpObjectivesArchived textarea:focus,
+#pdpObjectivesArchived > li summary:focus,
+#pdpObjectivesArchived > li button.pdp-drag-handle:focus {
   border-color: var(--duet-color-primary);
   box-shadow: 0 0 0 1px var(--duet-color-primary);
   outline: 0;
@@ -307,27 +317,34 @@ aside ul {
 /* 
 * Show hide objectives section and plural for title
 */
-body[data-objective-count="0"] #pdpFormObjectives {
-  /* body[data-objective-count="99"] #pdpFormObjectives { */
+body[data-objective-count="0"] #pdpFormObjectives,
+body[data-objective-archive-count="0"] #pdpObjectivesArchivedContainer {
   display: none;
 }
 
-#pdpFormObjectives h2:first-child > span {
+#pdpFormObjectives h2:first-child > span,
+#pdpObjectivesArchivedContainer h2:first-child > span {
   display: inline;
 }
 
-body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
+body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span,
+body[data-objective-archive-count="1"]
+  #pdpObjectivesArchivedContainer
+  h2:first-child
+  > span {
   display: none;
 }
 
-#pdpFormObjectives #pdpObjectivesLive {
+#pdpFormObjectives #pdpObjectivesLive,
+#pdpObjectivesArchived {
   padding-left: 0;
   margin-top: 0;
   overflow: hidden;
   border-radius: var(--border-radius);
 }
 
-#pdpFormObjectives #pdpObjectivesLive > li {
+#pdpFormObjectives #pdpObjectivesLive > li,
+#pdpObjectivesArchived > li {
   position: relative;
   background-color: white;
   color: var(--ians-colour-blue-mid);
@@ -357,6 +374,10 @@ body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span {
   background-color: var(--ians-colour-blue-light);
   color: white;
   transition: margin-left var(--pdp-animation-time);
+}
+
+#pdpObjectivesArchived > li button.pdp-drag-handle {
+  display: none;
 }
 
 body[data-objective-count="0"]
@@ -413,6 +434,10 @@ body[data-objective-count="1"]
   z-index: 200;
 }
 
+#pdpObjectivesArchived > li button.pdp-delete-objective {
+  display: none;
+}
+
 #pdpFormObjectives #pdpObjectivesLive > li button.pdp-delete-objective:hover {
   right: 0;
 }
@@ -422,7 +447,8 @@ body[data-objective-count="1"]
   margin-right: 0.5rem;
 }
 
-#pdpFormObjectives #pdpObjectivesLive > li summary {
+#pdpFormObjectives #pdpObjectivesLive > li summary,
+#pdpObjectivesArchived > li summary {
   position: relative;
   font-size: 1.2rem;
   cursor: pointer;
@@ -437,6 +463,10 @@ body[data-objective-count="1"]
   border-bottom: 1px solid #eee;
   transition: padding-left var(--pdp-animation-time);
   /* box-shadow: inset -20px 0 0 -5px red; */
+}
+
+#pdpObjectivesArchived > li summary {
+  padding-left: 1rem;
 }
 
 body[data-objective-count="0"]
@@ -464,19 +494,25 @@ body[data-objective-count="1"]
   border-top-right-radius: calc(var(--border-radius) - 1px);
 }
 
-#pdpFormObjectives #pdpObjectivesLive > li summary::before {
+#pdpFormObjectives #pdpObjectivesLive > li summary::before,
+#pdpObjectivesArchived > li summary::before {
   content: "";
   width: 40px;
   height: 100%;
   /* background-color: green; */
   box-shadow: inset -80px 0 40px -40px white;
   position: absolute;
-  right: 2.8rem;
+  right: 2.7rem;
   top: 0;
   z-index: 100;
 }
 
-#pdpFormObjectives #pdpObjectivesLive > li summary span:first-child {
+#pdpObjectivesArchived > li summary::before {
+  right: 0;
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li summary span:first-child,
+#pdpObjectivesArchived > li summary span:first-child {
   /* display: inline-block; */
   /* background-color: green; */
   max-width: calc(100% - 4.2rem);
@@ -496,11 +532,13 @@ body[data-objective-count="1"]
   top: 0;
 } */
 
-#pdpFormObjectives #pdpObjectivesLive .pdp-objective-form-container {
+#pdpFormObjectives #pdpObjectivesLive .pdp-objective-form-container,
+#pdpObjectivesArchived .pdp-objective-form-container {
   padding: 1rem;
 }
 
-#pdpFormObjectives #pdpObjectivesLive .pdp-fieldset-edit-satisfied {
+#pdpFormObjectives #pdpObjectivesLive .pdp-fieldset-edit-satisfied,
+#pdpObjectivesArchived .pdp-fieldset-edit-satisfied {
   grid-template-columns: 1fr 12rem;
   padding: 1rem;
   padding-top: 0.5rem;
@@ -558,12 +596,14 @@ body[data-objective-count="1"]
   margin-left: auto;
 }
 
-.pdp-objective-satisfied-container {
+.pdp-objective-satisfied-container,
+#pdpObjectivesArchived .pdp-objective-satisfied-container {
   display: flex;
   align-items: flex-end;
 }
 
-.pdp-objective-satisfied {
+.pdp-objective-satisfied,
+#pdpObjectivesArchived .pdp-objective-satisfied {
   display: block;
   width: 100%;
   padding: 0.7rem;
@@ -573,6 +613,7 @@ body[data-objective-count="1"]
   outline-color: var(--pdp-input-outline);
   border-radius: var(--border-radius);
   margin-top: 1rem;
+  margin-bottom: 0;
   cursor: pointer;
 }
 
@@ -580,11 +621,13 @@ body.pdp-show-remedial .pdp-objective-satisfied {
   margin-bottom: 1.75rem;
 }
 
-.pdp-objective-satisfied:hover {
+.pdp-objective-satisfied:hover,
+#pdpObjectivesArchived .pdp-objective-satisfied:hover {
   background-color: var(--ians-colour-blue-mid);
 }
 
-.pdp-objective-satisfied input[type="checkbox"] {
+.pdp-objective-satisfied input[type="checkbox"],
+#pdpObjectivesArchived .pdp-objective-satisfied input[type="checkbox"] {
   margin-right: 1rem;
   cursor: pointer;
 }
@@ -592,6 +635,50 @@ body.pdp-show-remedial .pdp-objective-satisfied {
 .pdp-save-objective {
   margin: 1rem auto;
 }
+
+/* 
+* ARCHIVED OBJECTIVES
+*/
+#pdpObjectivesArchived > li {
+  background-color: #999;
+}
+
+#pdpObjectivesArchived > li summary,
+#pdpObjectivesArchived > li summary span:first-child {
+  color: #eee;
+}
+
+#pdpObjectivesArchived > li summary::before {
+  box-shadow: inset -80px 0 40px -40px #999;
+}
+
+#pdpObjectivesArchived input[type="text"],
+#pdpObjectivesArchived textarea,
+#pdpObjectivesArchived .duet-date__input,
+#pdpObjectivesArchived .pdp-tree-container {
+  background-color: #eee;
+  border: 1px solid #666;
+  cursor: not-allowed;
+}
+
+#pdpObjectivesArchived .pdp-tree-container ul,
+#pdpObjectivesArchived .pdp-tree-container li,
+#pdpObjectivesArchived .pdp-tree-container span,
+#pdpObjectivesArchived .pdp-tree-container div {
+  cursor: not-allowed;
+}
+
+#pdpObjectivesArchived label > span {
+  color: white;
+}
+
+#pdpObjectivesArchived .pdp-fieldset-edit-satisfied {
+  background-color: #e5efe4;
+}
+
+/* 
+* ARCHIVED OBJECTIVES
+*/
 
 footer {
   background-color: var(--colour-ians-darkblue);
