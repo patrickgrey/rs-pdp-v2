@@ -25,10 +25,15 @@ import * as customEvents from './components/customEvents.js';
 //    DONE On add, mock wait, on success build model and clone hidden to list and open DONE
 //    DONE serverWait should respond with an id and the title. DONE
 // Start with 1 objective server side rendered
-//    DONE Get change updates from date
-//    Get satisfied updates
+//    Move satisfied to another list
+//    Style date boxes
 //    Drag broken - using classes again?
 //    Due date format
+//    Update summary on title input 
+//    Fix satisfied alignment on required
+//    DONE Fix remedial - attach icon to text in header then just use icon
+//    DONE Get satisfied updates
+//    DONE Get change updates from date
 //    DONE Close existing objectives if a new one is added.
 //    DONE THIS IS BECAUSE THE ID IS ALWAYS THE SAME!! Delete always seems to remove the first item, not the selected one.
 //      This may only apply to dynamically added objs.
