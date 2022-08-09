@@ -28,6 +28,9 @@ import * as objectiveArchive from './components/objectiveArchive.js';
 //    DONE serverWait should respond with an id and the title. DONE
 // Start with 1 objective server side rendered
 //    Move satisfied to another list
+//    Archived - action feedback
+//    Deal with order list when moved
+//    Update archived count on add/remove
 //    DONE Drag broken - using classes again?
 //    DONE Ignore just now. Due date format
 //    DONE Update summary on title input 
