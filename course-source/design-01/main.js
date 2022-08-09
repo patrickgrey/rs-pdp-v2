@@ -126,6 +126,8 @@ var pageModule = (function () {
     deleteObjective.init();
     objectiveArchive.init();
 
+    htmlComponents.pdpFormNew.querySelector("input").focus();
+
     // JUST FOR DEV
     document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
       document.querySelector("body").classList.toggle("pdp-show-remedial");

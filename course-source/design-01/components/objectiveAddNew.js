@@ -124,6 +124,7 @@ function setLabelsAndIDs(clone, id, title) {
 
 function cloneObjective(id, title) {
   const clone = htmlComponents.pdpCloneDaddy.querySelector("li").cloneNode(true);
+  helpers.closeAllObjectives();
   document.querySelector("#pdpObjectivesLive").prepend(clone);
   const dueDateHidden = clone.querySelector(`input[data-objective-type="duedate"]`);
   addDatePicker(clone.querySelector(".pdp-date-picker-container"), id, dueDateHidden);

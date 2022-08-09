@@ -292,6 +292,11 @@ aside ul {
   outline: 0;
 }
 
+#pdpFormObjectives #pdpObjectivesLive > li summary:focus {
+  border-color: #eee;
+  box-shadow: none;
+}
+
 #pdpFormNew .pdp-fieldset-title {
   position: relative;
 }
@@ -680,6 +685,10 @@ body.pdp-show-remedial .pdp-objective-satisfied {
 
 #pdpObjectivesArchived .pdp-fieldset-edit-satisfied {
   background-color: #e5efe4;
+}
+
+#pdpObjectivesArchived .pdp-remedial-icon::before {
+  display: none !important;
 }
 
 /* 

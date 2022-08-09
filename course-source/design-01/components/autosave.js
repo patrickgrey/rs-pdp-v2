@@ -71,6 +71,10 @@ const init = () => {
     startSave();
   });
 
+  htmlComponents.pdpFormObjectives.addEventListener("submit", function (event) {
+    event.preventDefault();
+  });
+
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.competencyChanged, function (event) {
     updateObjective(event.detail.target);
     startSave();
