@@ -13,57 +13,6 @@
       // prettier-ignore
       let pdpTreeData = [
         {
-          "id": "0",
-          "text": "Compentencies",
-          "children": [
-            {
-              "id": "0-0",
-              "text": "competency-0-0",
-              "children": [
-                {
-                  "id": "0-0-0",
-                  "text": "competency-0-0-0"
-                }, {
-                  "id": "0-0-1",
-                  "text": "competency-0-0-1"
-                }, {
-                  "id": "0-0-2",
-                  "text": "competency-0-0-2"
-                }
-              ]
-            }, {
-              "id": "0-1",
-              "text": "competency-0-1",
-              "children": [
-                {
-                  "id": "0-1-0",
-                  "text": "competency-0-1-0"
-                }, {
-                  "id": "0-1-1",
-                  "text": "competency-0-1-1"
-                }, {
-                  "id": "0-1-2",
-                  "text": "competency-0-1-2"
-                }
-              ]
-            }, {
-              "id": "0-2",
-              "text": "competency-0-2",
-              "children": [
-                {
-                  "id": "0-2-0",
-                  "text": "competency-0-2-0"
-                }, {
-                  "id": "0-2-1",
-                  "text": "competency-0-2-1"
-                }, {
-                  "id": "0-2-2",
-                  "text": "competency-0-2-2"
-                }
-              ]
-            }
-          ]
-        }, {
           "id": "1",
           "text": "competency-1",
           "children": [
@@ -116,51 +65,51 @@
           ]
         }, {
           "id": "2",
-          "text": "node-2",
+          "text": "competency-2",
           "children": [
             {
               "id": "2-0",
-              "text": "node-2-0",
+              "text": "competency-2-0",
               "children": [
                 {
                   "id": "2-0-0",
-                  "text": "node-2-0-0"
+                  "text": "competency-2-0-0"
                 }, {
                   "id": "2-0-1",
-                  "text": "node-2-0-1"
+                  "text": "competency-2-0-1"
                 }, {
                   "id": "2-0-2",
-                  "text": "node-2-0-2"
+                  "text": "competency-2-0-2"
                 }
               ]
             }, {
               "id": "2-1",
-              "text": "node-2-1",
+              "text": "competency-2-1",
               "children": [
                 {
                   "id": "2-1-0",
-                  "text": "node-2-1-0"
+                  "text": "competency-2-1-0"
                 }, {
                   "id": "2-1-1",
-                  "text": "node-2-1-1"
+                  "text": "competency-2-1-1"
                 }, {
                   "id": "2-1-2",
-                  "text": "node-2-1-2"
+                  "text": "competency-2-1-2"
                 }
               ]
             }, {
               "id": "2-2",
-              "text": "node-2-2",
+              "text": "competency-2-2",
               "children": [
                 {
                   "id": "2-2-0",
-                  "text": "node-2-2-0"
+                  "text": "competency-2-2-0"
                 }, {
                   "id": "2-2-1",
-                  "text": "node-2-2-1"
+                  "text": "competency-2-2-1"
                 }, {
                   "id": "2-2-2",
-                  "text": "node-2-2-2"
+                  "text": "competency-2-2-2"
                 }
               ]
             }
@@ -178,7 +127,7 @@
     </div>
     <header>
       <div>
-        <h1>Patrick Grey</h1>
+        <h1>Patrick GREY</h1>
         <img src="images/profile.jpg" alt="Profile photo">
         <p class="pdp-remedial pdp-remedial-label">
           Remedial<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-triangle" width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -212,9 +161,11 @@
       <div class="ians-grid-2 pdp-layout">
 
         <article>
-          <h2>Add an Objective</h2>
+          {# <h2>Add an Objective</h2> #}
           <form action="https://reqbin.com/echo/post/json" id="pdpFormNew">
-            <label for="pdpTitleAdd">Title</label>
+            <label for="pdpTitleAdd">
+              <strong>Add a new Objective</strong>
+            </label>
             <div class="pdp-fieldset-title">
               <input id="pdpTitleAdd" required type="text">
               <button id="pdpTitleAddButton" type="submit">Add</button>
@@ -223,7 +174,7 @@
 
           <form action="https://reqbin.com/echo/post/json" id="pdpFormObjectives">
             <h2>
-               Edit Objective<span>s</span>
+               Current Objective<span>s</span>
             </h2>
 
             <div class="pd-obj-live-container">
@@ -300,7 +251,7 @@
 
           <div id="pdpObjectivesArchivedContainer">
             <h2>
-                 Archived Objective<span>s</span>
+                 Satisfied Objective<span>s</span>
             </h2>
             <div class="pd-obj-archived-container">
               <input type="hidden" id="pdpObjArchivedOrder" type="text">
@@ -366,7 +317,7 @@
           </summary>
           <div class="pdp-objective-form-container">
 
-            <div class="ians-grid-2 pdp-fieldset-edit-satisfied">
+            <div class="ians-grid-2 pdp-fieldset-edit-satisfied ">
               <div class="pdp-objective-satisfied-container">
                 <label class="pdp-objective-satisfied" for=""><input type="checkbox" data-objective-type="satisfied">I am satisfied</label>
               </div>
@@ -381,12 +332,12 @@
               </div>
             </div>
 
-            <div class="pdp-edit-title mt-2">
+            <div class="pdp-edit-title mt-1-5">
               <label for="">Title</label>
               <input data-objective-type="title" id="" autocomplete="off" required type="text">
             </div>
 
-            <div class="ians-grid-2 mt-1-5">
+            <div class=" mt-1-5">
               <div>
                 <div class="pdp-objective-edit-description">
                   <label for="">Description<span>What is the goal and desired results that you would like to achieve?</span></label>

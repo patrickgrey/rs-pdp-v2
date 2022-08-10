@@ -10,13 +10,14 @@
   --pdp-objective-drag-size: 60px;
   --pdp-animation-time: 0.3s;
   --pdp-satisfied-box-colour: #b9e4b1;
+  --pdp-color-gold: #ffcc00;
 
   --duet-color-primary: var(--pdp-input-outline);
   --duet-color-text: #333;
   --duet-color-text-active: #fff;
   --duet-color-placeholder: #666;
-  --duet-color-button: #f5f5f5;
-  --duet-color-surface: var(--pdp-input-background);
+  --duet-color-button: var(--pdp-color-gold);
+  --duet-color-surface: white;
   --duet-color-overlay: rgba(0, 0, 0, 0.8);
   --duet-color-border: var(--pdp-input-border);
   --duet-font: var(--ians-font-family);
@@ -204,6 +205,14 @@ h2 svg {
   order: -1;
 }
 
+aside a {
+  color: #2990ea;
+}
+
+aside a:hover {
+  color: #0a58ca;
+}
+
 aside,
 article {
   padding-left: 0.5rem;
@@ -231,16 +240,17 @@ aside ul {
 */
 
 #pdpFormNew {
-  padding: 0.5rem 1rem 0.25rem 1rem;
-  background-color: white;
-  border-radius: var(--border-radius);
+  margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem 0.25rem 1rem;
+  background-color: var(--pdp-input-background);
+  border-radius: var(--border-radius);
 }
 
 #pdpFormNew label,
-#pdpObjectivesArchived label {
+#pdpFormObjectives #pdpObjectivesLive > li label {
   display: block;
-  color: var(--ians-colour-blue-mid);
+  color: black;
   margin-bottom: 0.25em;
 }
 
@@ -270,11 +280,16 @@ aside ul {
   font-family: var(--ians-font-family);
   font-size: 1rem;
   margin-bottom: 1rem;
-  background-color: var(--pdp-input-background);
+
+  background-color: white;
   border: 1px solid var(--pdp-input-border);
   outline-color: var(--pdp-input-outline);
   padding: var(--pdp-input-padding-vertical) 0.5rem;
   border-radius: var(--border-radius);
+}
+
+#pdpFormObjectives .duet-date__input {
+  background-color: white;
 }
 
 #pdpFormNew input[type="text"]:focus,
@@ -295,6 +310,7 @@ aside ul {
   outline: 0;
 }
 
+#pdpObjectivesArchived #pdpObjectivesLive > li summary:focus,
 #pdpFormObjectives #pdpObjectivesLive > li summary:focus {
   border-color: #eee;
   box-shadow: none;
@@ -316,6 +332,9 @@ aside ul {
   border: 0;
   border-top-right-radius: calc(var(--border-radius) - 1px);
   border-bottom-right-radius: calc(var(--border-radius) - 1px);
+  background-color: var(--pdp-color-gold);
+  color: black;
+  font-weight: bold;
 }
 
 /* 
@@ -355,15 +374,18 @@ body[data-objective-archive-count="1"]
 #pdpObjectivesArchived > li {
   position: relative;
   background-color: white;
+  background-color: var(--pdp-input-background);
   color: var(--ians-colour-blue-mid);
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);
   padding: 0;
   list-style: none;
-  margin-bottom: 0.75rem;
+  margin-bottom: 2rem;
   font-weight: bold;
   min-height: var(--pdp-objective-drag-size);
   overflow: hidden;
+  /* border-bottom: 1rem solid var(--ians-colour-blue-dark); */
+  /* border-bottom: 1rem solid white; */
 }
 
 #pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle {
@@ -476,6 +498,8 @@ body[data-objective-count="1"]
   border-top-left-radius: calc(var(--border-radius) - 1px);
   border-bottom: 1px solid #eee;
   transition: padding-left var(--pdp-animation-time);
+  background-color: var(--ians-colour-blue-dark);
+  color: white;
   /* box-shadow: inset -20px 0 0 -5px red; */
 }
 
@@ -508,18 +532,17 @@ body[data-objective-count="1"]
   border-top-right-radius: calc(var(--border-radius) - 1px);
 }
 
-#pdpFormObjectives #pdpObjectivesLive > li summary::before,
+/* #pdpFormObjectives #pdpObjectivesLive > li summary::before,
 #pdpObjectivesArchived > li summary::before {
   content: "";
   width: 40px;
   height: 100%;
-  /* background-color: green; */
   box-shadow: inset -80px 0 40px -40px white;
   position: absolute;
   right: 2.7rem;
   top: 0;
   z-index: 100;
-}
+} */
 
 #pdpObjectivesArchived > li summary::before {
   right: 0;
@@ -556,7 +579,8 @@ body[data-objective-count="1"]
   grid-template-columns: 1fr 12rem;
   padding: 1rem;
   padding-top: 0.5rem;
-  background-color: var(--pdp-satisfied-box-colour);
+  /* background-color: var(--pdp-satisfied-box-colour); */
+  border: 5px solid var(--pdp-satisfied-box-colour);
 }
 
 .pdp-tree-container {
@@ -624,9 +648,12 @@ body[data-objective-count="1"]
   color: white;
   background-color: var(--ians-colour-blue-light);
   /* border: 1px solid var(--pdp-input-border); */
+  background-color: var(--pdp-color-gold);
+  color: black;
+  font-weight: bold;
   outline-color: var(--pdp-input-outline);
   border-radius: var(--border-radius);
-  margin-top: 1rem;
+  margin-top: 1.95rem;
   margin-bottom: 0;
   cursor: pointer;
 }
@@ -635,9 +662,11 @@ body.pdp-show-remedial .pdp-objective-satisfied {
   margin-bottom: 1.75rem;
 }
 
-.pdp-objective-satisfied:hover,
+#pdpFormObjectives #pdpObjectivesLive > li label.pdp-objective-satisfied:hover,
 #pdpObjectivesArchived .pdp-objective-satisfied:hover {
   background-color: var(--ians-colour-blue-mid);
+  /* background-color: black; */
+  color: var(--pdp-color-gold);
 }
 
 .pdp-objective-satisfied input[type="checkbox"],
@@ -660,6 +689,7 @@ body.pdp-show-remedial .pdp-objective-satisfied {
 #pdpObjectivesArchived > li summary,
 #pdpObjectivesArchived > li summary span:first-child {
   color: #eee;
+  background-color: #999;
 }
 
 #pdpObjectivesArchived > li summary::before {

@@ -77,10 +77,11 @@ function addTree(container, id, competencyHidden) {
     data: [
       {
         id: '-1',
-        text: 'root',
+        text: 'Competencies',
         children: pdpTreeData
       }
     ],
+    closeDepth: 2,
     onChange: function (event) {
       competencyHidden.value = this.values;
       htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
