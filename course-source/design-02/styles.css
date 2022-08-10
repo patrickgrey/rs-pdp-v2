@@ -489,9 +489,6 @@ body[data-objective-count="1"]
   font-size: 1.2rem;
   cursor: pointer;
   max-height: var(--pdp-objective-drag-size);
-  word-break: break-all;
-  overflow: hidden;
-  text-overflow: ellipsis;
   line-height: var(--pdp-objective-drag-size);
   padding-left: calc(var(--pdp-objective-drag-size) + 0.5rem);
   border-top-right-radius: calc(var(--border-radius) - 1px);
@@ -500,6 +497,10 @@ body[data-objective-count="1"]
   transition: padding-left var(--pdp-animation-time);
   background-color: var(--ians-colour-blue-dark);
   color: white;
+  /* width: 80%;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis; */
   /* box-shadow: inset -20px 0 0 -5px red; */
 }
 
@@ -550,13 +551,45 @@ body[data-objective-count="1"]
 
 #pdpFormObjectives #pdpObjectivesLive > li summary span:first-child,
 #pdpObjectivesArchived > li summary span:first-child {
-  /* display: inline-block; */
+  position: absolute;
+  top: -0.15rem;
+  left: calc(2rem + var(--pdp-objective-drag-size));
+  /* left: 2.4rem; */
+  display: inline-block;
   /* background-color: green; */
   max-width: calc(100% - 4.2rem);
   max-height: var(--pdp-objective-drag-size);
   overflow: hidden;
-  position: relative;
-  width: 100%;
+  width: calc(100% - 150px);
+  /* width: 60%; */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body[data-objective-count="0"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  summary
+  span:first-child,
+body[data-objective-count="0"]
+  #pdpObjectivesArchived
+  > li
+  summary
+  span:first-child,
+body[data-objective-count="1"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  summary
+  span:first-child,
+body[data-objective-count="1"]
+  #pdpObjectivesArchived
+  > li
+  summary
+  span:first-child {
+  left: 2.4rem;
 }
 
 /* #pdpFormObjectives #pdpObjectivesLive > li summary span:first-child::before {
