@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 182 62">
+  <defs>
+    <style>
+      .pdp-drag-circle-color {
+        fill: #c4c4c4;
+      }
+    </style>
+  </defs>
+  <circle class="pdp-drag-circle-color" cx="11" cy="11" r="11"/>
+  <circle class="pdp-drag-circle-color" cx="11" cy="51" r="11"/>
+  <circle class="pdp-drag-circle-color" cx="51" cy="11" r="11"/>
+  <circle class="pdp-drag-circle-color" cx="51" cy="51" r="11"/>
+  <circle class="pdp-drag-circle-color" cx="91" cy="11" r="11"/>
+  <circle class="pdp-drag-circle-color" cx="91" cy="51" r="11"/>
+  <circle class="pdp-drag-circle-color" cx="131" cy="11" r="11"/>
+  <circle class="pdp-drag-circle-color" cx="131" cy="51" r="11"/>
+  <circle class="pdp-drag-circle-color" cx="171" cy="11" r="11"/>
+  <circle class="pdp-drag-circle-color" cx="171" cy="51" r="11"/>
+</svg>
