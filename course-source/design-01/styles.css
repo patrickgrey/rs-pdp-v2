@@ -118,11 +118,14 @@ header > div:nth-child(1) h1 {
   padding-right: 1rem;
   margin-right: 1rem;
   border-right: thin solid #ccc;
+  font-size: clamp(0.8rem, 0.364rem + 2.18vw, 2rem);
 }
 
 header > div:nth-child(1) img {
   width: calc(var(--pdp-header-height) - 20px);
   height: calc(var(--pdp-header-height) - 20px);
+  width: clamp(2.813rem, 2.358rem + 2.27vw, 4.063rem);
+  height: clamp(2.813rem, 2.358rem + 2.27vw, 4.063rem);
   object-fit: cover;
   border-radius: 50%;
 }
