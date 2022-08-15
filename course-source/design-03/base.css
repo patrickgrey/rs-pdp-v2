@@ -41,6 +41,16 @@
   --ilp-height: 85px;
 }
 
+/* 
+.####.##.......########.
+..##..##.......##.....##
+..##..##.......##.....##
+..##..##.......########.
+..##..##.......##.......
+..##..##.......##.......
+.####.########.##.......
+*/
+
 .pdp-ilp-header {
   background-image: url(images/ilp.jpg);
   width: 100%;
@@ -55,6 +65,16 @@
 .pdp-ilp-header button {
   margin-right: 0.25rem;
 }
+
+/* 
+..######...##........#######..########.....###....##......
+.##....##..##.......##.....##.##.....##...##.##...##......
+.##........##.......##.....##.##.....##..##...##..##......
+.##...####.##.......##.....##.########..##.....##.##......
+.##....##..##.......##.....##.##.....##.#########.##......
+.##....##..##.......##.....##.##.....##.##.....##.##......
+..######...########..#######..########..##.....##.########
+*/
 
 html,
 body {
@@ -105,6 +125,11 @@ h2 {
   border-left: 5px solid var(--ians-colour-blue-light); */
 }
 
+h2 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 h3 {
   color: var(--ians-colour-blue-dark);
   font-size: var(--size-100);
@@ -121,9 +146,9 @@ button {
   cursor: pointer;
   font-family: var(--ians-font-family);
   font-size: 1rem;
-  background-color: var(--ians-colour-blue-light);
-
-  color: white;
+  font-weight: bold;
+  color: black;
+  background-color: var(--ians-colour-highlight-mid);
   outline-color: var(--pdp-input-outline);
   padding: v14px 1rem;
 }
@@ -136,6 +161,7 @@ button:focus {
 
 button:hover {
   background-color: var(--ians-colour-blue-mid);
+  color: var(--pdp-color-gold);
 }
 
 button[disabled] {
@@ -148,14 +174,12 @@ input[disabled] {
   cursor: not-allowed;
 }
 
-.ians-visually-hidden:not(:focus):not(:active) {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+footer {
+  background-color: var(--colour-ians-darkblue);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*
@@ -300,7 +324,7 @@ input[disabled] {
   display: inline-block;
 }
 
-.a2-visually-hidden:not(:focus):not(:active) {
+.ians-visually-hidden:not(:focus):not(:active) {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;

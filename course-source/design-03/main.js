@@ -22,11 +22,10 @@ import * as objectiveArchive from './components/objectiveArchive.js';
 // Add full comments
 // DONE Delete objective button 
 // DONE Fade end of summary objective title DONE
-// Move drag button in on 2+ - Can't get transition to work.
-// COmplete objective and move to another list.
+// DONE Complete objective and move to another list.
 // DONE Start with 0 objectives
 //    DONE On add, mock wait, on success build model and clone hidden to list and open DONE
-//    DONE serverWait should respond with an id and the title. DONE
+//    DONE serverWait should respond with an id and the title.
 // Start with 1 objective server side rendered
 //    Archived - action feedback - part of autosve
 //    Update satisfied in model on move back

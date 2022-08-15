@@ -28,7 +28,13 @@
 }
 
 /* 
-* REMEDIAL
+.########..########.##.....##.########.########..####....###....##......
+.##.....##.##.......###...###.##.......##.....##..##....##.##...##......
+.##.....##.##.......####.####.##.......##.....##..##...##...##..##......
+.########..######...##.###.##.######...##.....##..##..##.....##.##......
+.##...##...##.......##.....##.##.......##.....##..##..#########.##......
+.##....##..##.......##.....##.##.......##.....##..##..##.....##.##......
+.##.....##.########.##.....##.########.########..####.##.....##.########
 */
 
 .pdp-remedial {
@@ -90,7 +96,13 @@ body.pdp-show-remedial .pdp-remedial-icon::before {
 }
 
 /* 
-* HEADER
+.##.....##.########....###....########..########.########.
+.##.....##.##.........##.##...##.....##.##.......##.....##
+.##.....##.##........##...##..##.....##.##.......##.....##
+.#########.######...##.....##.##.....##.######...########.
+.##.....##.##.......#########.##.....##.##.......##...##..
+.##.....##.##.......##.....##.##.....##.##.......##....##.
+.##.....##.########.##.....##.########..########.##.....##
 */
 
 header {
@@ -132,7 +144,13 @@ header > div:nth-child(1) > img {
 }
 
 /* 
-* AUTOSAVE
+....###....##.....##.########..#######...######.....###....##.....##.########
+...##.##...##.....##....##....##.....##.##....##...##.##...##.....##.##......
+..##...##..##.....##....##....##.....##.##........##...##..##.....##.##......
+.##.....##.##.....##....##....##.....##..######..##.....##.##.....##.######..
+.#########.##.....##....##....##.....##.......##.#########..##...##..##......
+.##.....##.##.....##....##....##.....##.##....##.##.....##...##.##...##......
+.##.....##..#######.....##.....#######...######..##.....##....###....########
 */
 
 header .pdp-activity-feedback {
@@ -164,6 +182,16 @@ header .pdp-activity-feedback img.pdp-activity-feedback-show {
   display: block;
 }
 
+/* 
+.########.########..########...#######..########.
+.##.......##.....##.##.....##.##.....##.##.....##
+.##.......##.....##.##.....##.##.....##.##.....##
+.######...########..########..##.....##.########.
+.##.......##...##...##...##...##.....##.##...##..
+.##.......##....##..##....##..##.....##.##....##.
+.########.##.....##.##.....##..#######..##.....##
+*/
+
 header .pdp-error {
   display: none;
   background-color: red;
@@ -177,6 +205,16 @@ header .pdp-error {
   display: block;
 }
 
+/* 
+..######...##........#######..########.....###....##......
+.##....##..##.......##.....##.##.....##...##.##...##......
+.##........##.......##.....##.##.....##..##...##..##......
+.##...####.##.......##.....##.########..##.....##.##......
+.##....##..##.......##.....##.##.....##.#########.##......
+.##....##..##.......##.....##.##.....##.##.....##.##......
+..######...########..#######..########..##.....##.########
+*/
+
 main {
   position: relative;
   padding: 0 0.5rem;
@@ -185,17 +223,22 @@ main {
   margin-top: calc(var(--ilp-height) + var(--pdp-header-height));
 }
 
-h2 {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-}
-
 h2 svg {
   width: var(--size-200);
   vertical-align: middle;
   padding-bottom: 0.5rem;
   margin-right: 0.5rem;
 }
+
+/* 
+.##..........###....##....##..#######..##.....##.########
+.##.........##.##....##..##..##.....##.##.....##....##...
+.##........##...##....####...##.....##.##.....##....##...
+.##.......##.....##....##....##.....##.##.....##....##...
+.##.......#########....##....##.....##.##.....##....##...
+.##.......##.....##....##....##.....##.##.....##....##...
+.########.##.....##....##.....#######...#######.....##...
+*/
 
 .pdp-layout {
   grid-template-columns: 25% 1fr;
@@ -236,21 +279,35 @@ aside ul {
 }
 
 /* 
-* OBJECTIVES
+....###....########..########.....##....##.########.##......##
+...##.##...##.....##.##.....##....###...##.##.......##..##..##
+..##...##..##.....##.##.....##....####..##.##.......##..##..##
+.##.....##.##.....##.##.....##....##.##.##.######...##..##..##
+.#########.##.....##.##.....##....##..####.##.......##..##..##
+.##.....##.##.....##.##.....##....##...###.##.......##..##..##
+.##.....##.########..########.....##....##.########..###..###.
 */
 
 #pdpFormNew {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   padding: 0.5rem 1rem 0.25rem 1rem;
-  /* background-color: var(--pdp-input-background); */
   background-color: white;
   border-radius: var(--border-radius);
 }
 
+/* 
+.####.##....##.########..##.....##.########..######.
+..##..###...##.##.....##.##.....##....##....##....##
+..##..####..##.##.....##.##.....##....##....##......
+..##..##.##.##.########..##.....##....##.....######.
+..##..##..####.##........##.....##....##..........##
+..##..##...###.##........##.....##....##....##....##
+.####.##....##.##.........#######.....##.....######.
+*/
+
 #pdpFormNew label,
 #pdpFormObjectives #pdpObjectivesLive > li label {
-  /* display: block; */
   color: black;
   margin-bottom: 0.25em;
 }
@@ -287,10 +344,6 @@ aside ul {
   padding: var(--pdp-input-padding-vertical) 0.5rem;
   border-radius: var(--border-radius);
 }
-
-/* #pdpFormObjectives .duet-date__input {
-  background-color: white;
-} */
 
 #pdpFormNew input[type="text"]:focus,
 #pdpFormNew input[type="date"]:focus,
@@ -332,18 +385,18 @@ aside ul {
   border: 0;
   border-top-right-radius: calc(var(--border-radius) - 1px);
   border-bottom-right-radius: calc(var(--border-radius) - 1px);
-  background-color: var(--pdp-color-gold);
-  color: black;
-  font-weight: bold;
 }
 
 /* 
-* EXISTING OBJECTIVE FORM
+..#######..########........##..######.....########..#######..########..##.....##
+.##.....##.##.....##.......##.##....##....##.......##.....##.##.....##.###...###
+.##.....##.##.....##.......##.##..........##.......##.....##.##.....##.####.####
+.##.....##.########........##..######.....######...##.....##.########..##.###.##
+.##.....##.##.....##.##....##.......##....##.......##.....##.##...##...##.....##
+.##.....##.##.....##.##....##.##....##....##.......##.....##.##....##..##.....##
+..#######..########...######...######.....##........#######..##.....##.##.....##
 */
 
-/* 
-* Show hide objectives section and plural for title
-*/
 body[data-objective-count="0"] #pdpFormObjectives,
 body[data-objective-archive-count="0"] #pdpObjectivesArchivedContainer {
   display: none;
@@ -370,6 +423,16 @@ body[data-objective-archive-count="1"]
   border-radius: var(--border-radius);
 }
 
+/* 
+..#######..########...######.....##.......####..######.
+.##.....##.##.....##.##....##....##........##..##....##
+.##.....##.##.....##.##..........##........##..##......
+.##.....##.########...######.....##........##...######.
+.##.....##.##.....##.......##....##........##........##
+.##.....##.##.....##.##....##....##........##..##....##
+..#######..########...######.....########.####..######.
+*/
+
 #pdpFormObjectives #pdpObjectivesLive > li,
 #pdpObjectivesArchived > li {
   position: relative;
@@ -384,8 +447,6 @@ body[data-objective-archive-count="1"]
   font-weight: bold;
   min-height: var(--pdp-objective-drag-size);
   overflow: hidden;
-  /* border-bottom: 1rem solid var(--ians-colour-blue-dark); */
-  /* border-bottom: 1rem solid white; */
 }
 
 #pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle {
@@ -428,19 +489,6 @@ body[data-objective-count="1"]
   button.pdp-drag-handle {
   margin-left: calc(var(--pdp-objective-drag-size) * -1);
 }
-
-/* #pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle[disabled] {
-  background-color: #999;
-  cursor: not-allowed;
-  display: none;
-} */
-
-/* body[data-objective-count="1"]
-  #pdpFormObjectives
-  #pdpObjectivesLive
-  > li
-  button.pdp-drag-handle {
-} */
 
 #pdpFormObjectives
   #pdpObjectivesLive
@@ -497,11 +545,6 @@ body[data-objective-count="1"]
   transition: padding-left var(--pdp-animation-time);
   background-color: var(--ians-colour-blue-dark);
   color: white;
-  /* width: 80%;
-  word-break: break-all;
-  overflow: hidden;
-  text-overflow: ellipsis; */
-  /* box-shadow: inset -20px 0 0 -5px red; */
 }
 
 #pdpObjectivesArchived > li summary {
@@ -533,18 +576,6 @@ body[data-objective-count="1"]
   border-top-right-radius: calc(var(--border-radius) - 1px);
 }
 
-/* #pdpFormObjectives #pdpObjectivesLive > li summary::before,
-#pdpObjectivesArchived > li summary::before {
-  content: "";
-  width: 40px;
-  height: 100%;
-  box-shadow: inset -80px 0 40px -40px white;
-  position: absolute;
-  right: 2.7rem;
-  top: 0;
-  z-index: 100;
-} */
-
 #pdpObjectivesArchived > li summary::before {
   right: 0;
 }
@@ -554,18 +585,17 @@ body[data-objective-count="1"]
   position: absolute;
   top: -0.15rem;
   left: calc(2rem + var(--pdp-objective-drag-size));
-  /* left: 2.4rem; */
   display: inline-block;
-  /* background-color: green; */
   max-width: calc(100% - 4.2rem);
   max-height: var(--pdp-objective-drag-size);
   overflow: hidden;
   width: calc(100% - 150px);
-  /* width: 60%; */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Position title if drag button shows */
 
 body[data-objective-count="0"]
   #pdpFormObjectives
@@ -592,16 +622,6 @@ body[data-objective-count="1"]
   left: 2.4rem;
 }
 
-/* #pdpFormObjectives #pdpObjectivesLive > li summary span:first-child::before {
-  content: "";
-  width: 40px;
-  height: 100%;
-  box-shadow: inset -40px 0 40px -20px white;
-  position: absolute;
-  right: 0;
-  top: 0;
-} */
-
 #pdpFormObjectives #pdpObjectivesLive .pdp-objective-form-container,
 #pdpObjectivesArchived .pdp-objective-form-container {
   padding: 1rem;
@@ -612,12 +632,20 @@ body[data-objective-count="1"]
   grid-template-columns: 1fr 12rem;
   padding: 1rem;
   padding-top: 0.5rem;
-  /* background-color: var(--pdp-satisfied-box-colour); */
   border: 5px solid var(--pdp-satisfied-box-colour);
 }
 
+/* 
+.########.########..########.########
+....##....##.....##.##.......##......
+....##....##.....##.##.......##......
+....##....########..######...######..
+....##....##...##...##.......##......
+....##....##....##..##.......##......
+....##....##.....##.########.########
+*/
+
 .pdp-tree-container {
-  /* height: 80%; */
   max-height: 54.1vh;
   overflow-y: auto;
   background-color: var(--pdp-input-background);
@@ -635,8 +663,15 @@ body[data-objective-count="1"]
   background-color: #fff;
 }
 
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
+/* 
+..######...######..########...#######..##.......##.......########.
+.##....##.##....##.##.....##.##.....##.##.......##.......##.....##
+.##.......##.......##.....##.##.....##.##.......##.......##.....##
+..######..##.......########..##.....##.##.......##.......########.
+.......##.##.......##...##...##.....##.##.......##.......##.....##
+.##....##.##....##.##....##..##.....##.##.......##.......##.....##
+..######...######..##.....##..#######..########.########.########.
+*/
 .pdp-tree-container {
   scrollbar-width: auto;
   scrollbar-color: var(--ians-colour-blue-light) #ffffff;
@@ -658,7 +693,6 @@ body[data-objective-count="1"]
   border: 3px solid #ffffff;
 }
 
-/* .pdp-tree-toggle, */
 .pdp-save-objective {
   display: block;
   padding: 0.5rem 1rem;
@@ -666,6 +700,16 @@ body[data-objective-count="1"]
   margin-right: 0;
   margin-left: auto;
 }
+
+/* 
+..######.....###....########.####..######.
+.##....##...##.##......##.....##..##....##
+.##........##...##.....##.....##..##......
+..######..##.....##....##.....##...######.
+.......##.#########....##.....##........##
+.##....##.##.....##....##.....##..##....##
+..######..##.....##....##....####..######.
+*/
 
 .pdp-objective-satisfied-container,
 #pdpObjectivesArchived .pdp-objective-satisfied-container {
@@ -680,7 +724,6 @@ body[data-objective-count="1"]
   padding: 0.7rem;
   color: white;
   background-color: var(--ians-colour-blue-light);
-  /* border: 1px solid var(--pdp-input-border); */
   background-color: var(--pdp-color-gold);
   color: black;
   font-weight: bold;
@@ -713,7 +756,13 @@ body.pdp-show-remedial .pdp-objective-satisfied {
 }
 
 /* 
-* ARCHIVED OBJECTIVES
+....###....########...######..##.....##
+...##.##...##.....##.##....##.##.....##
+..##...##..##.....##.##.......##.....##
+.##.....##.########..##.......#########
+.#########.##...##...##.......##.....##
+.##.....##.##....##..##....##.##.....##
+.##.....##.##.....##..######..##.....##
 */
 #pdpObjectivesArchived > li {
   background-color: #999;
@@ -755,18 +804,6 @@ body.pdp-show-remedial .pdp-objective-satisfied {
 
 #pdpObjectivesArchived .pdp-remedial-icon::before {
   display: none !important;
-}
-
-/* 
-* ARCHIVED OBJECTIVES
-*/
-
-footer {
-  background-color: var(--colour-ians-darkblue);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .pdp-objective-clone-daddy {
