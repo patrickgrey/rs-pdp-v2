@@ -130,6 +130,17 @@ module.exports = function (eleventyConfig) {
     return html;
   });
 
+  eleventyConfig.addNunjucksShortcode("ilpBanner", function () {
+    let html = ``;
+    if (process.env.NODE_ENV === "development") {
+      html = `<div class="pdp-ilp-header">
+      <button id="pdpRemedial">Toggle remedial</button>
+      <button id="pdpError">Toggle error</button>
+    </div>`;
+    }
+    return html;
+  });
+
   return {
     templateFormats: ["njk", "html"],
 

@@ -20,8 +20,8 @@ import * as objectiveArchive from './components/objectiveArchive.js';
 // TODO
 // Test on Mac
 // Add full comments
-// Archive broken.
-// Add title
+// Make ILP header dev only with shortcode
+// DONE Add title
 // DONE Delete objective button 
 // DONE Fade end of summary objective title DONE
 // DONE Complete objective and move to another list.

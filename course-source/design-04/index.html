@@ -5,11 +5,21 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Design v3</title>
+    <title>Design v4</title>
     <link rel="stylesheet" href="base.css"/>
     <link rel="stylesheet" href="datepicker.css"/>
     <link rel="stylesheet" href="styles.css"/>
 
+    <!-- 
+      ***SERVER SIDE INJECT***
+      ID: COMPETENCY-STRUCTURE-DATA
+      DESCRIPTION: Hard code an array of competency data.
+      FORMAT: Array of Objects.
+              Each object must have a consistent ID
+              text = the title of each node
+              children = an array of objects for nested nodes in same format
+      RELATED: COMPETENCY-SELECTION-DATA
+    -->
     <script>
       // prettier-ignore
       let pdpTreeData = [
@@ -120,16 +130,33 @@
     </script>
 
   </head>
+  <!-- 
+    ***SERVER SIDE INJECT***
 
+    ID: OBJECTIVE-COUNTS
+    DESCRIPTION: Front end codes uses these counts to init the interface
+    @param {integer} data-objective-count - Number of ongoing objectives
+    @param {integer} data-objective-count - Number of 'satisfied' objectives
+
+    ****
+
+    ID: REMEDIAL-FLAG
+    DESCRIPTION: If admin has flagged user as in remedial state,
+                 this flag should be added to the <body> tag.
+    @param {string} class="pdp-show-remedial"
+  -->
   <body data-objective-count="0" data-objective-archive-count="0">
-    <div class="pdp-ilp-header">
-      <button id="pdpRemedial">Toggle remedial</button>
-      <button id="pdpError">Toggle error</button>
-    </div>
+    <!-- DEV ONLY - REMOVED IN PRODUCTION -->
+    {% ilpBanner %}
     <header>
       <div>
         <img src="images/profile.jpg" alt="Profile photo">
         <div>
+          <!-- 
+            ***SERVER SIDE INJECT***
+            ID: USER-NAME
+            DESCRIPTION: Users name in the <H1> tag.
+          -->
           <h1>Patrick GREY</h1>
           <p class="pdp-title">Personal Development Plan</p>
           <p class="pdp-title-remedial">
@@ -181,7 +208,25 @@
             </h2>
 
             <div class="pd-obj-live-container">
+              <!-- 
+                ***SERVER SIDE INJECT***
+                ID: OBJECTIVES-LIVE-LIST-ORDER
+                DESCRIPTION: A hidden input that contains and array of objective
+                             IDs in the order they have been arranged.
+              -->
               <input type="hidden" id="pdpObjLiveOrder" type="text">
+              <!-- 
+                ***SERVER SIDE INJECT***
+                ID: OBJECTIVES-LIVE-LIST
+                DESCRIPTION: The list of ongoing objectives.
+                FORMAT: A list of <LI> tags, one for each ongoing objective.
+                        The <LI> tag should mirror the template <LI>
+                        found in the <div class="pdp-objective-clone-daddy">
+                        container found below.
+                        See the template for guidance on completing
+                        element IDs and content.
+                SEE: OBJECTIVE-TEMPLATE
+              -->
               <ul id="pdpObjectivesLive"></ul>
             </div>
 
@@ -192,7 +237,18 @@
             Satisfied Objective<span>s</span>
             </h2>
             <div class="pd-obj-archived-container">
-              <input type="hidden" id="pdpObjArchivedOrder" type="text">
+              <!-- 
+                ***SERVER SIDE INJECT***
+                ID: OBJECTIVES-SATISFIED-LIST
+                DESCRIPTION: The list of satisfied objectives.
+                FORMAT: A list of <LI> tags, one for each satisfied objective.
+                        The <LI> tag should mirror the template <LI>
+                        found in the <div class="pdp-objective-clone-daddy">
+                        container found below.
+                        See the template for guidance on completing
+                        element IDs and content.
+                SEE: OBJECTIVE-TEMPLATE
+              -->
               <ul id="pdpObjectivesArchived"></ul>
             </div>
           </div>
@@ -221,7 +277,17 @@
             <strong>Information</strong>
           </p>
           <ul>
+            <!-- 
+              ***SERVER SIDE INJECT***
+              ID: ASIDE-UNIT
+              DESCRIPTION: Unit text
+            -->
             <li>Unit: EXT/LUX</li>
+            <!-- 
+              ***SERVER SIDE INJECT***
+              ID: ASIDE-EMAIL
+              DESCRIPTION: User email
+            -->
             <li>Email: <a
               href="mailto:patrick.grey.ext@eurocontrol.int">patrick.grey.ext@eurocontrol.int</a>
             </li>
@@ -231,11 +297,22 @@
           <label for="pdpNextMeetingDate">
             <strong>Date of next meeting:</strong>
           </label>
-          <duet-date-picker identifier="pdpNextMeetingDate"></duet-date-picker>
+          <!-- 
+            ***SERVER SIDE INJECT***
+            ID: ASIDE-DATE (optional)
+            DESCRIPTION: Date of the next meeting
+            @param {string} value - in yyyy-mm-dd format
+          -->
+          <duet-date-picker value="2022-08-15" identifier="pdpNextMeetingDate"></duet-date-picker>
           <noscript>
             <input id="pdpNextMeetingDate" type="date">
           </noscript>
           <hr>
+          <!-- 
+              ***SERVER SIDE INJECT***
+              ID: ASIDE-DATA
+              DESCRIPTION: Not sure if this is needed yet
+            -->
           <ul>
             <li>My coach: N/A </li>
             <li>My mentor: N/A</li>
@@ -249,6 +326,34 @@
     </footer>
 
     <div class="pdp-objective-clone-daddy">
+      <!-- 
+        ***SERVER SIDE TEMPLATE***
+
+        ID: OBJECTIVE-TEMPLATE
+        DESCRIPTION: This is the template used by the front end
+                     to add new objectives dynamically. It is the pattern
+                     that should be used to build existing objectives
+                     on the server side. 
+                     
+                     Each significant field has a 
+                     data-objective-type attribute. The value of that 
+                     attribute is used as a param name below to indicate what value the input should hold. 
+                     
+                     Most inputs have a label associated with them that have
+                     "for" attributes. The ID generated for each input should
+                     be repeated in this attribute to associate each
+                     label with an input. See the comments below for ID formats.
+
+        @param {string} <summary> -> <span> - The objective title
+        @param {boolean} data-objective-type="satisfied" - checked attribute - Should be false if objective is live and true if satisfied.
+        @param {date} data-objective-type="duedate" - value= "yyyy-mm-dd"
+        @param {string} data-objective-type="title" - value= The objective title
+        @param {string} data-objective-type="description" - The objective description text inside the textarea tag.
+        @param {string} data-objective-type="actions" - The objective actions text inside the textarea tag.
+        @param {string} data-objective-type="insights" - The objective insights text inside the textarea tag.
+        @param {array} data-objective-type="competency" - value= IDs of selected competencies for this objective for this user.
+      -->
+      <!-- ID format the ID (or proxy) associated with the objective in the database. ID represented by XXXX below.-->
       <li data-objective-id="">
         <details open>
           <summary>
@@ -258,15 +363,19 @@
 
             <div class="ians-grid-2 pdp-fieldset-edit-satisfied ">
               <div class="pdp-objective-satisfied-container">
-                <label class="pdp-objective-satisfied" for=""><input
-                  type="checkbox" data-objective-type="satisfied">I am
+                <!-- [for] format = "pdpSatisfiedXXXX" -->
+                <label class="pdp-objective-satisfied" for="">
+                  <!-- [id] format = "pdpSatisfiedXXXX" -->
+                  <input id="" type="checkbox" data-objective-type="satisfied">I am
                 satisfied</label>
               </div>
 
               <div class="pdp-edit-datepicker">
+                <!-- [for] format = "pdpDueDateXXXX" -->
                 <label for="">
                   <strong>Due date:</strong>
                 </label>
+                <!-- [id] format = "pdpDueDateXXXX" -->
                 <input data-objective-type="duedate" id="" type="hidden">
                 <div class="pdp-date-picker-container"></div>
                 <p class="pdp-validation-label pdp-remedial">* required</p>
@@ -274,7 +383,9 @@
             </div>
 
             <div class="pdp-edit-title mt-1-5">
+              <!-- [for] format = "pdpTitleXXXX" -->
               <label for="">Title</label>
+              <!-- [id] format = "pdpTitleXXXX" -->
               <input data-objective-type="title" id="" autocomplete="off" required
               type="text">
             </div>
@@ -282,36 +393,42 @@
             <div class=" mt-1-5">
               <div>
                 <div class="pdp-objective-edit-description">
+                  <!-- [for] format = "pdpDescriptionXXXX" -->
                   <label for="">Description<span>What is the goal and desired
                     results that you would like to achieve?</span></label>
+                  <!-- [id] format = "pdpDescriptionXXXX" -->
                   <textarea data-objective-type="description" id=""
                   rows="5"></textarea>
                 </div>
                 <div class="mt-1-5 pdp-objective-edit-actions">
+                  <!-- [for] format = "pdpActionsXXXX" -->
                   <label for="">Actions<span>What methods will you use to achieve
                     them? e.g. training, coaching, mentoring, peer support,
                     on-the-job experiences.</span></label>
+                  <!-- [id] format = "pdpActionsXXXX" -->
                   <textarea data-objective-type="actions" id=""
                   rows="5"></textarea>
                 </div>
                 <div class="mt-1-5 pdp-objective-edit-insights">
+                  <!-- [for] format = "pdpInsightsXXXX" -->
                   <label for="">Personal Insights<span>What is the goal and
                     desired results that you would like to
                     achieve?</span></label>
+                  <!-- [id] format = "pdpInsightsXXXX" -->
                   <textarea data-objective-type="insights" id=""
                   rows="5"></textarea>
                 </div>
               </div>
               <div class="pdp-tree-fieldset">
+                <!-- [for] format = "pdpCompetenciesXXXX" -->
                 <label for="">Competency<span>What methods will you use to achieve
                   them? e.g. training, coaching, mentoring, peer support,
                   on-the-job experiences.</span></label>
+                <!-- [id] format = "pdpCompetenciesXXXX" -->
                 <input data-objective-type="competency" id="" type="hidden">
                 <div class="pdp-tree-container"></div>
               </div>
             </div>
-
-            {# <button type="submit" class="pdp-save-objective">Save Objective</button> #}
           </div>
         </details>
 
