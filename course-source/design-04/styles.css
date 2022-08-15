@@ -187,7 +187,7 @@ header .pdp-activity-feedback {
   width: fit-content;
   background-color: white;
   margin: 0;
-  padding: 0 0.5rem;
+  padding: 0 0 0 0.5rem;
 }
 
 header .pdp-activity-feedback p {

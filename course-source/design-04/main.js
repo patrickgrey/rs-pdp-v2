@@ -51,7 +51,7 @@ import * as errorFeedback from './components/feedbackError.js';
 // 
 // REFACTOR
 //    The following should use the pattern above:
-//        Add new
+//        Add new DONE
 //        Autosave
 //        Delete - delete WORKS! It's just the handler that is tied but
 //                 that is OK as it's a shared handler with existing Os.

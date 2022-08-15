@@ -36,7 +36,19 @@ function init() {
     setText("Saving update");
   });
 
-  htmlComponents.pdpFormObjectives.addEventListener(customEvents.updated, function (event) {
+  // htmlComponents.pdpFormObjectives.addEventListener(customEvents.updated, function (event) {
+  //   removeShowClassFromAll();
+  //   htmlComponents.pdpSaveTick.classList.add("pdp-activity-feedback-show");
+  //   setText("Update saved");
+  // });
+
+  // htmlComponents.pdpFormObjectives.addEventListener(customEvents.saving, function (event) {
+  //   removeShowClassFromAll();
+  //   htmlComponents.pdpSaveSaving.classList.add("pdp-activity-feedback-show");
+  //   setText("Saving update");
+  // });
+
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.saved, function (event) {
     removeShowClassFromAll();
     htmlComponents.pdpSaveTick.classList.add("pdp-activity-feedback-show");
     setText("Update saved");

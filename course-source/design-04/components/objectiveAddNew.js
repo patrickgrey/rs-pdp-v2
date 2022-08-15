@@ -5,7 +5,6 @@
 import Tree from '@widgetjs/tree';
 import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
-import * as objectiveStore from './objectiveStore.js';
 import * as objectiveDelete from './objectiveDelete.js';
 import * as helpers from './helpers.js';
 

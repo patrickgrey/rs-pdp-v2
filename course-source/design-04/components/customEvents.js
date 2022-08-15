@@ -36,6 +36,14 @@ export const updatingEvent = new CustomEvent(updating);
 export const updated = 'updated';
 export const updatedEvent = new CustomEvent(updated);
 
+export const saving = 'saving';
+export const savingEvent = function (changedIds) {
+  return new CustomEvent(saving, { detail: { changedIds } });
+}
+
+export const saved = 'saved';
+export const savedEvent = new CustomEvent(saved);
+
 export const dueDateChanged = 'dueDateChanged';
 export const dueDateChangedEvent = function (target) {
   return new CustomEvent(dueDateChanged, { detail: { target } });

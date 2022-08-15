@@ -81,7 +81,7 @@ function updateObjectiveCount() {
  */
 async function saveObjective(changedIds) {
 
-  htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);
+  // htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);
 
   let dataToSend = [];
 
@@ -170,6 +170,10 @@ const init = () => {
 
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.deleting, function (event) {
     deleteObjective(event.detail.id);
+  });
+
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.saving, function (event) {
+    saveObjective(event.detail.changedIds);
   });
 
   htmlComponents.pdpFormNew.addEventListener(customEvents.adding,
