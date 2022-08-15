@@ -1,3 +1,7 @@
+/**
+ * Create and manage a local model of all objectives.
+ */
+
 import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
 import * as errorFeedback from './feedbackError.js';

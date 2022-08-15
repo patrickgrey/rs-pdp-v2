@@ -1,36 +1,34 @@
-export const delegate = (el, selector, event, handler) => {
-  el.addEventListener(event, e => {
-    if (e.target.matches(selector)) handler(e, el);
-  });
-}
+/**
+ * Utility methods.
+ */
 
-export const insertHTML = (el, markup) => {
-  el.insertAdjacentHTML('afterbegin', markup);
-}
-
-export const emptyElement = el => {
-  while (el.hasChildNodes()) {
-    el.removeChild(el.lastChild);
-  }
-}
-
-// Mock server wait
+/**
+ * Mocking API call delay
+ *
+ * @param {Integer} ms - milliseconds to delay
+ * @return {Promise} - A resolved promise
+ * @use 
+ *  async function callServer(url, serverDelay) {
+      // Do stuff
+      await helpers.asyncTimeout(serverDelay);
+      // This code delayed until after the helper.
+    }
+ */
 export const asyncTimeout = (ms) => {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });
 };
 
-// Use:
-// async function doStuff() {
-//   // doing stuff up here...
-//   await asyncTimeout(1000);
-//   // After waiting a second, continues doing stuff.
-//   }
 
-// declare all characters
+// declare all characters that generated string can use
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';
-
+/**
+ * Generate random strings with set length
+ *
+ * @param {Integer} length - Length of returned string
+ * @return {String} - Random string
+ */
 export const generateString = length => {
   let result = ' ';
   const charactersLength = characters.length;
@@ -41,6 +39,9 @@ export const generateString = length => {
   return result;
 }
 
+/**
+ * Close all details elements
+ */
 export const closeAllObjectives = function () {
   document.querySelectorAll("#pdpObjectivesLive li details[open]").forEach(detail => {
     detail.open = false;

@@ -1,18 +1,38 @@
+// Date inputs
 import { DuetDatePicker } from "@duetds/date-picker/custom-element";
+// Competencies trees
 import Tree from '@widgetjs/tree';
+// Automatically adds animation when elements are added or removed from the DOM.
 import autoAnimate from '@formkit/auto-animate'
 
-import * as autosave from './components/autosave.js';
-import * as objectiveDrag from './components/objectiveDrag.js';
-import * as addObjective from './components/objectiveAddNew.js';
-import * as deleteObjective from './components/objectiveDelete.js';
-import * as objectiveStore from './components/objectiveStore.js';
-import * as activityFeedback from './components/feedbackActions.js';
-import * as errorFeedback from './components/feedbackError.js';
+// Proxy names for HTML elements in case the IDs change in future so they can be changed in one place.
 import * as htmlComponents from './components/htmlComponents.js';
-import * as helpers from './components/helpers.js';
+// Custom events used to trigger actions and pass data
 import * as customEvents from './components/customEvents.js';
+// Utility methods
+import * as helpers from './components/helpers.js';
+// A local model of a users objectives with manipulation methods
+import * as objectiveStore from './components/objectiveStore.js';
+// UI behaviour for adding a new objective
+import * as objectiveAddNew from './components/objectiveAddNew.js';
+// UI behaviour for deleting an objective
+import * as objectiveDelete from './components/objectiveDelete.js';
+// Add dragging behaviour to live objectives
+import * as objectiveDrag from './components/objectiveDrag.js';
+// UI behaviour for Archived objectives
 import * as objectiveArchive from './components/objectiveArchive.js';
+// UI behaviour and timings for autosave
+import * as autosave from './components/autosave.js';
+// UI behaviour for feedback section
+import * as activityFeedback from './components/feedbackActions.js';
+// UI behaviour when an error occurs
+import * as errorFeedback from './components/feedbackError.js';
+
+/**
+ * ARCHITECTURE:
+ * HTML elements are used to emit custom events, passing data and triggering other parts of the page.
+ * 
+ */
 
 
 
@@ -79,16 +99,18 @@ var pageModule = (function () {
   var module = {};
   module.init = function () {
 
+    // Init date pickers
     customElements.define("duet-date-picker", DuetDatePicker);
+    // Init autoAnimate
     autoAnimate(pdpObjectivesLive);
 
-    // Objectives already on the page from the server so need to 
-    // be initialised.
+    // Initialise SSR Objectives
     if (document.querySelector("body").dataset.objectiveCount > 0) {
       // Build model
       objectiveStore.buildModel();
 
       // Init dates
+      // Changes in the component are sent to the associated hidden field
       htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container duet-date-picker").forEach((picker) => {
         picker.addEventListener("duetChange", function (event) {
           const li = picker.closest("li");
@@ -99,6 +121,7 @@ var pageModule = (function () {
       });
 
       // init trees
+      // Changes in the component are sent to the associated hidden field
       htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container").forEach(function (container) {
         const li = container.closest("li")
         const id = li.dataset.objectiveId;
@@ -119,17 +142,17 @@ var pageModule = (function () {
       })
     }
 
-    addObjective.init();
+    objectiveAddNew.init();
     activityFeedback.init();
     objectiveStore.init();
     autosave.init();
     objectiveDrag.init();
-    deleteObjective.init();
+    objectiveDelete.init();
     objectiveArchive.init();
 
     htmlComponents.pdpFormNew.querySelector("input").focus();
 
-    // JUST FOR DEV
+    // JUST FOR DEV - automatically add a new objective
     document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
       document.querySelector("body").classList.toggle("pdp-show-remedial");
     });

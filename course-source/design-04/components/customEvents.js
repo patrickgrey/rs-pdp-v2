@@ -1,3 +1,8 @@
+/**
+ * A series of custom events that help identify what is happening
+ * and also allows us to pass data where needed.
+ */
+
 export const adding = 'adding';
 export const addingEvent = new CustomEvent(adding);
 

@@ -1,3 +1,7 @@
+/**
+ * Proxy variables for element IDs. This allows us to change
+ * ID values in one place if needed.
+ */
 export const pdpErrorFeedback = document.querySelector("#pdpErrorFeedback");
 export const pdpTitleAdd = document.querySelector("#pdpTitleAdd");
 export const pdpTitleAddButton = document.querySelector("#pdpTitleAddButton");
