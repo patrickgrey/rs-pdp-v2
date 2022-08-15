@@ -28,6 +28,61 @@
   --duet-z-index: 600;
 }
 
+.pdp-validation-label {
+  color: red;
+  font-size: smaller;
+  margin: 0;
+}
+
+/* 
+.##.....##.########....###....########..########.########.
+.##.....##.##.........##.##...##.....##.##.......##.....##
+.##.....##.##........##...##..##.....##.##.......##.....##
+.#########.######...##.....##.##.....##.######...########.
+.##.....##.##.......#########.##.....##.##.......##...##..
+.##.....##.##.......##.....##.##.....##.##.......##....##.
+.##.....##.########.##.....##.########..########.##.....##
+*/
+
+header {
+  width: 100%;
+  background-color: white;
+  min-height: var(--pdp-header-height);
+  border-bottom: thin solid #ccc;
+  padding: 0 0.5rem;
+  position: fixed;
+  top: var(--ilp-height);
+  z-index: 300;
+}
+
+header > div:nth-child(1) {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: var(--col-max-width);
+  height: var(--pdp-header-height);
+  margin: 0 auto;
+}
+
+header > div:nth-child(1) h1 {
+  margin: 0;
+  /* padding-right: 1rem; */
+  margin-left: 1rem;
+  margin-bottom: 0.25rem;
+  /* border-right: thin solid #ccc; */
+  font-size: clamp(0.8rem, 0.364rem + 2.18vw, 2rem);
+}
+
+header > div:nth-child(1) > img {
+  width: calc(var(--pdp-header-height) - 20px);
+  height: calc(var(--pdp-header-height) - 20px);
+  width: clamp(2.813rem, 2.358rem + 2.27vw, 4.063rem);
+  height: clamp(2.813rem, 2.358rem + 2.27vw, 4.063rem);
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 /* 
 .########..########.##.....##.########.########..####....###....##......
 .##.....##.##.......###...###.##.......##.....##..##....##.##...##......
@@ -90,66 +145,26 @@ body.pdp-show-remedial .pdp-remedial-icon::before {
   display: inline-block;
 }
 
-.pdp-validation-label {
-  color: red;
-  font-size: smaller;
-  margin: 0;
-}
-
-/* 
-.##.....##.########....###....########..########.########.
-.##.....##.##.........##.##...##.....##.##.......##.....##
-.##.....##.##........##...##..##.....##.##.......##.....##
-.#########.######...##.....##.##.....##.######...########.
-.##.....##.##.......#########.##.....##.##.......##...##..
-.##.....##.##.......##.....##.##.....##.##.......##....##.
-.##.....##.########.##.....##.########..########.##.....##
-*/
-
-header {
-  width: 100%;
-  background-color: white;
-  min-height: var(--pdp-header-height);
-  border-bottom: thin solid #ccc;
-  padding: 0 0.5rem;
-  position: fixed;
-  top: var(--ilp-height);
-  z-index: 300;
-}
-
-header > div:nth-child(1) {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  max-width: var(--col-max-width);
-  height: var(--pdp-header-height);
-  margin: 0 auto;
-}
-
-header > div:nth-child(1) h1 {
-  margin: 0;
-  /* padding-right: 1rem; */
-  margin-right: 1rem;
-  /* border-right: thin solid #ccc; */
-  font-size: clamp(0.8rem, 0.364rem + 2.18vw, 2rem);
-}
-
-header > div:nth-child(1) > img {
-  width: calc(var(--pdp-header-height) - 20px);
-  height: calc(var(--pdp-header-height) - 20px);
-  width: clamp(2.813rem, 2.358rem + 2.27vw, 4.063rem);
-  height: clamp(2.813rem, 2.358rem + 2.27vw, 4.063rem);
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-header .pdp-title {
+header .pdp-title,
+header .pdp-title-remedial {
   margin: 0;
   margin-left: 1rem;
   font-size: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
   line-height: 1;
   color: var(--ians-colour-blue-mid);
+}
+
+header .pdp-title-remedial {
+  display: none;
+  color: #9f1931;
+}
+
+body.pdp-show-remedial header .pdp-title {
+  display: none;
+}
+
+body.pdp-show-remedial header .pdp-title-remedial {
+  display: block;
 }
 
 /* 
