@@ -191,8 +191,8 @@ function init() {
     }
     else {
       disableForm();
-      // This should be an event dispatch
-      objectiveStore.addObjective(htmlComponents.pdpFormNew.querySelector("input").value);
+      const title = htmlComponents.pdpFormNew.querySelector("input").value;
+      htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent(title));
     }
   });
 }

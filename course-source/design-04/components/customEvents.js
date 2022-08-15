@@ -4,7 +4,9 @@
  */
 
 export const adding = 'adding';
-export const addingEvent = new CustomEvent(adding);
+export const addingEvent = function (title) {
+  return new CustomEvent(adding, { detail: { title } });
+}
 
 /**
  * API call was successful

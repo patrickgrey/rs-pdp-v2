@@ -113,8 +113,6 @@ async function saveObjective(changedIds) {
  * @param {string} title - New objectile added by user.
  */
 async function addObjective(title) {
-  // Trigger feedback update
-  htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
   // Mock send new objective to server
   await callServer("API Call", serverDelay);
   // Mock response
@@ -171,9 +169,14 @@ async function deleteObjective(id) {
 const init = () => {
 
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.deleting, function (event) {
-    console.log(event.detail.id);
     deleteObjective(event.detail.id);
   });
+
+  htmlComponents.pdpFormNew.addEventListener(customEvents.adding,
+    function (event) {
+      addObjective(event.detail.title);
+    });
+
 };
 
 export { init, addObjective, updateObjective, saveObjective, deleteObjective, getObjectiveData, buildModel }
