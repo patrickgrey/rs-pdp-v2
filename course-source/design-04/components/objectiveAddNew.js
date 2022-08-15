@@ -1,21 +1,12 @@
-// Prevent submit DONE
-// Disable button & input DONE
-// Emit 'adding' status event DONE
-// Send data and await response DONE
-//    Settimeout with OK and ID and error responses. DONE
-// On error, emit 'error' event DONE
-// On OK, clone objective with ID and init
-//    Need to tie in tree and date to hidden fields
-// Emit 'added' event.
-
-// For autosave, can we use the id to only update this objective?
-// Create a store (modern version of model it seems)
-// Using ID, build then update store and send.
+/**
+ * Clone objective template, add values and IDs and add to DOM.
+ */
 
 import Tree from '@widgetjs/tree';
 import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
 import * as objectiveStore from './objectiveStore.js';
+import * as objectiveDelete from './objectiveDelete.js';
 import * as helpers from './helpers.js';
 
 function disableForm() {
@@ -28,6 +19,13 @@ function enableForm() {
   htmlComponents.pdpTitleAddButton.disabled = false;
 }
 
+/**
+ * Initialise a dynamically added date picker for the clone.
+ * 
+ * @param {HTMLElement} container - Container for the date picker
+ * @param {string} id - Objective ID
+ * @param {HTMLElement} hidden - The hidden input associated with this picker that should update on date picker change.
+ */
 function addDatePicker(container, id, hidden) {
   const picker = document.createElement("duet-date-picker");
 
@@ -72,6 +70,13 @@ function addDatePicker(container, id, hidden) {
   });
 }
 
+/**
+ * Initialise a dynamically added competency tree to the clone.
+ * 
+ * @param {HTMLElement} container - Container for the tree
+ * @param {string} id - Objective ID
+ * @param {HTMLElement} competencyHidden - The hidden input associated with this tree that should update on tree change.
+ */
 function addTree(container, id, competencyHidden) {
   let tree = new Tree(container, {
     data: [
@@ -89,6 +94,13 @@ function addTree(container, id, competencyHidden) {
   });
 }
 
+/**
+ * Utility method to set text area labels and IDs.
+ * 
+ * @param {HTMLElement} clone - Copy of the template <li> tag
+ * @param {string} selector - String to identify the element type
+ * @param {string} id - Objective ID
+ */
 function connectInputAndLabel(clone, selector, id) {
   const label = clone.querySelector(`.pdp-objective-edit-${selector} label`);
   const text = clone.querySelector(`.pdp-objective-edit-${selector} textarea`);
@@ -96,14 +108,20 @@ function connectInputAndLabel(clone, selector, id) {
   text.id = label.htmlFor = `pdp${selector.charAt(0).toUpperCase() + selector.slice(1)}Objective${id}`;
 }
 
+/**
+ * Set the IDs on all clone elements.
+ * 
+ * @param {HTMLElement} clone - Copy of the template <li> tag
+ * @param {string} id - Objective ID
+ * @param {string} title - The objective title
+ */
 function setLabelsAndIDs(clone, id, title) {
   clone.dataset.objectiveId = id;
   const summary = clone.querySelector("summary span:first-child");
-  // summary.textContent = title;
 
   const titleInput = clone.querySelector(".pdp-edit-title input");
   const titleLabel = clone.querySelector(".pdp-edit-title label");
-  // titleInput.value = summary.textContent = `${title}: This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
+
   titleInput.value = summary.textContent = title;
   titleInput.id = titleLabel.htmlFor = `pdpTitleObjective${id}`;
 
@@ -123,46 +141,57 @@ function setLabelsAndIDs(clone, id, title) {
   dueDateHidden.id = `pdpdueDateHiddenObjective${id}`;
 }
 
+/**
+ * Clone the template element adding IDs and listeners.
+ * 
+ * @param {string} id - Objective ID
+ * @param {string} title - The objective title
+ */
 function cloneObjective(id, title) {
   const clone = htmlComponents.pdpCloneDaddy.querySelector("li").cloneNode(true);
+  // Design decision. Close the existing objectives on adding new as it makes it more obvious that it's an orderable list.
   helpers.closeAllObjectives();
+
   document.querySelector("#pdpObjectivesLive").prepend(clone);
+
   const dueDateHidden = clone.querySelector(`input[data-objective-type="duedate"]`);
   addDatePicker(clone.querySelector(".pdp-date-picker-container"), id, dueDateHidden);
+
   const deleteObjectiveButton = clone.querySelector(`.pdp-delete-objective`);
-  deleteObjectiveButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    if (window.confirm("Are you sure you want to delete this objective?")) {
-      deleteObjectiveButton.disabled = true;
-      const id = event.target.closest("li").dataset.objectiveId;
-      htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletingEvent(id));
-    }
-  })
+  deleteObjectiveButton.addEventListener("click", objectiveDelete.buttonHandler);
+
   const competencyHidden = clone.querySelector(`input[data-objective-type="competency"]`);
   addTree(".pdp-tree-container", id, competencyHidden);
   setLabelsAndIDs(clone, id, title);
 }
 
+/**
+ * Add listeners
+ */
 function init() {
+  // Detect submit from new objective form
   htmlComponents.pdpFormNew.addEventListener(customEvents.added, function (event) {
-    // helpers.closeAllObjectives();
     cloneObjective(event.detail.id, event.detail.title);
     htmlComponents.pdpFormNew.querySelector("input").value = "";
     enableForm();
     htmlComponents.pdpFormNew.querySelector("input").focus();
   });
 
+  // Re-enable form so user can try again.
   htmlComponents.pdpFormNew.addEventListener(customEvents.error, function (event) {
     enableForm();
-  })
+  });
 
+  // New objective submitted
   htmlComponents.pdpTitleAddButton.addEventListener("click", function (event) {
     event.preventDefault();
+    // Force show validation message.
     if (htmlComponents.pdpFormNew.querySelector("input").value === "") {
       htmlComponents.pdpFormNew.reportValidity();
     }
     else {
       disableForm();
+      // This should be an event dispatch
       objectiveStore.addObjective(htmlComponents.pdpFormNew.querySelector("input").value);
     }
   });

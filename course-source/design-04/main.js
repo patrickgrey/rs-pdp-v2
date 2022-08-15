@@ -30,14 +30,37 @@ import * as errorFeedback from './components/feedbackError.js';
 
 /**
  * ARCHITECTURE:
- * HTML elements are used to emit custom events, passing data and triggering other parts of the page.
  * 
+ * Components deal with initialising local UI for existing objectives, 
+ * this includes dispatching events from the UI. 
+ * They listen for confirmations from the objectiveStore that 
+ * API calls were successful and update the UI to reflect the new model.
+ * 
+ * They dispatch events to trigger objectiveStore actions, never directly,
+ * to ensure a decoupled architecture.
+ * 
+ * The objectiveStore creates and manages a local model of objectives.
+ * It also deals with all API calls and dispatches events relating
+ * to model changes.
  */
 
 
 
 
 // TODO
+// 
+// REFACTOR
+//    The following should use the pattern above:
+//        Add new
+//        Autosave
+//        Delete - delete WORKS! It's just the handler that is tied but
+//                 that is OK as it's a shared handler with existing Os.
+//                 The handler only dispatches an event.
+//        Drag
+//        Satisfied
+// 
+// 
+// 
 // Test on Mac
 // Add full comments
 // Make ILP header dev only with shortcode

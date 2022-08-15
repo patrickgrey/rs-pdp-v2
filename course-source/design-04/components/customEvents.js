@@ -6,6 +6,13 @@
 export const adding = 'adding';
 export const addingEvent = new CustomEvent(adding);
 
+/**
+ * API call was successful
+ *
+ * @param {string} id - objective ID
+ * @param {string} title - objective ID
+ * @return {CustomEvent} detail object with id and title
+ */
 export const added = 'added';
 export const addedEvent = function (id, title) {
   return new CustomEvent(added, { detail: { id, title } });

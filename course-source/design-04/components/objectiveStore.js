@@ -1,5 +1,6 @@
 /**
- * Create and manage a local model of all objectives.
+ * Create and manage a local model of all objectives. 
+ * All server API calls are made from here.
  */
 
 import * as customEvents from './customEvents.js';
@@ -7,14 +8,19 @@ import * as htmlComponents from './htmlComponents.js';
 import * as errorFeedback from './feedbackError.js';
 import * as helpers from './helpers.js';
 
+// An array of objective objects
 let objectives = [];
+// The current order of objectives by ID
 let objectivesOrder = [];
 const serverDelay = 1000;
+// Temporary variable to ID objectives until I get IDs back from API
 let currentID = 1;
 
+/**
+ * Build the local model in memory based on SSR objectives on page.
+ */
 function buildModel() {
   document.querySelectorAll("#pdpObjectivesLive li").forEach((li) => {
-
     objectives.push({
       id: li.dataset.objectiveId,
       title: "" || li.querySelector(`input[data-objective-type="title"]`).value,
@@ -26,28 +32,53 @@ function buildModel() {
       competency: "" || li.querySelector(`input[data-objective-type="competency"]`).value
     });
   });
-
 }
 
+/**
+ * Mock a server call.
+ */
 async function callServer(url, serverDelay) {
   await helpers.asyncTimeout(serverDelay);
   return true;
 }
 
+/**
+ * Find an objective in the model by ID
+ * 
+ * @param {string} id - objective ID
+ */
 function getObjectiveData(id) {
   return objectives.find(obj => obj.id.toString() === id.toString())
 }
 
+/**
+ * Update an objective property
+ * 
+ * @param {string} id - objective ID
+ * @param {string} type - objective property to update
+ * @param {string} newValue - the new value
+ */
 function updateObjective(id, type, newValue) {
   console.log(objectives);
   getObjectiveData(id)[type] = newValue;
   console.log(objectives);
 }
 
+/**
+ * Update the dataset attribute on the body tag to show the objective count.
+ */
 function updateObjectiveCount() {
   document.querySelector("body").dataset.objectiveCount = objectives.length.toString();
 }
 
+/**
+ * Triggered by the autosave component.
+ * Once the set delay time is reached, a snapshot of the objectives
+ * that have changed is sent to the server to be updated.
+ * On successful reply, trigger custom event to let observers know.
+ * 
+ * @param {array} changedIds - a list of objective IDs that have changed while autosave is throttling calls.
+ */
 async function saveObjective(changedIds) {
 
   htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);
@@ -76,11 +107,16 @@ async function saveObjective(changedIds) {
   }
 }
 
+/**
+ * Call the API to add a new objective. If successful, add the objective to the model then dispatch events to update the UI.
+ * 
+ * @param {string} title - New objectile added by user.
+ */
 async function addObjective(title) {
+  // Trigger feedback update
   htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
   // Mock send new objective to server
   await callServer("API Call", serverDelay);
-  // await helpers.asyncTimeout(serverDelay);
   // Mock response
   currentID++;
   const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok", id: currentID, title: title };
@@ -105,12 +141,16 @@ async function addObjective(title) {
   }
 }
 
+/**
+ * Call the API to delete an objective. If successful, remove the objective from the model then dispatch events to update the UI.
+ * 
+ * @param {string} id - ID of objective to be deleted
+ */
 async function deleteObjective(id) {
   await callServer("Delete API Call", serverDelay);
-  const response = errorFeedback.isError ? { status: "error", message: "Delete went horribly wrong!" } : { status: "ok", id: 22 };
-  // Remove from local
 
-  // Update objectives count.
+  const response = errorFeedback.isError ? { status: "error", message: "Delete went horribly wrong!" } : { status: "ok", id: 22 };
+
   if (response.status === "ok") {
     for (let index = 0; index < objectives.length; index++) {
       const element = objectives[index];
@@ -130,66 +170,10 @@ async function deleteObjective(id) {
 
 const init = () => {
 
-  pdpObjectivesLive.addEventListener(customEvents.objectiveOrderChanged, function (event) {
-    // Update hidden text field
-    // htmlComponents.pdpObjLiveOrder
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.deleting, function (event) {
+    console.log(event.detail.id);
+    deleteObjective(event.detail.id);
   });
 };
-
-// https://simonplend.com/how-to-use-fetch-to-post-form-data-as-json-to-your-api/
-/**
- * Helper function for POSTing data as JSON with fetch.
- *
- * @param {Object} options
- * @param {string} options.url - URL to POST data to
- * @param {FormData} options.formData - `FormData` instance
- * @return {Object} - Response body from URL that was POSTed to
- */
-async function postFormDataAsJson({ url, formData }) {
-  const plainFormData = Object.fromEntries(formData.entries());
-  const formDataJsonString = JSON.stringify(plainFormData);
-
-  const fetchOptions = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: formDataJsonString,
-  };
-
-  const response = await fetch(url, fetchOptions);
-
-  if (!response.ok) {
-    const errorMessage = await response.text();
-    throw new Error(errorMessage);
-  }
-
-  return response.json();
-}
-
-/**
- * Event handler for a form submit event.
- *
- * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event
- *
- * @param {SubmitEvent} event
- */
-async function handleFormSubmit(event) {
-  event.preventDefault();
-
-  const form = event.currentTarget;
-  const url = form.action;
-
-  try {
-    const formData = new FormData(form);
-    const responseData = await postFormDataAsJson({ url, formData });
-    if (responseData.success) setSavingState(savingOptions.saved);
-    // console.table({ responseData });
-  } catch (error) {
-    console.error(error);
-    setSavingState(savingOptions.error);
-  }
-}
 
 export { init, addObjective, updateObjective, saveObjective, deleteObjective, getObjectiveData, buildModel }
