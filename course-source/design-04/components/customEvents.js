@@ -4,28 +4,30 @@
  */
 
 export const adding = 'adding';
-export const addingEvent = function (title) {
-  return new CustomEvent(adding, { detail: { title } });
-}
+export const addingEvent = new CustomEvent(adding);
 
+export const added = 'added';
 /**
- * API call was successful
+ * API call adding an objective was successful
  *
  * @param {string} id - objective ID
  * @param {string} title - objective ID
  * @return {CustomEvent} detail object with id and title
  */
-export const added = 'added';
 export const addedEvent = function (id, title) {
   return new CustomEvent(added, { detail: { id, title } });
 }
 
 export const deleting = 'deleting';
-export const deletingEvent = function (id) {
-  return new CustomEvent(deleting, { detail: { id } });
-}
+export const deletingEvent = new CustomEvent(deleting);
 
 export const deleted = 'deleted';
+/**
+ * API call deleting an objective was successful
+ *
+ * @param {string} id - objective ID
+ * @return {CustomEvent} detail object with id
+ */
 export const deletedEvent = function (id) {
   return new CustomEvent(deleted, { detail: { id } });
 }
@@ -37,6 +39,12 @@ export const updated = 'updated';
 export const updatedEvent = new CustomEvent(updated);
 
 export const saving = 'saving';
+/**
+ * API call saving an objective was successful
+ *
+ * @param {array} changedIds - A list of objective IDs
+ * @return {CustomEvent} detail object with id
+ */
 export const savingEvent = function (changedIds) {
   return new CustomEvent(saving, { detail: { changedIds } });
 }
@@ -45,11 +53,23 @@ export const saved = 'saved';
 export const savedEvent = new CustomEvent(saved);
 
 export const dueDateChanged = 'dueDateChanged';
+/**
+ * Due date was changed.
+ *
+ * @param {HTMLElement} target - The element sending the event. Hmmm. no need for custom?
+ * @return {CustomEvent} detail object with target
+ */
 export const dueDateChangedEvent = function (target) {
   return new CustomEvent(dueDateChanged, { detail: { target } });
 }
 
 export const competencyChanged = 'competencyChanged';
+/**
+ * A competency was changed.
+ *
+ * @param {HTMLElement} target - The element sending the event. Hmmm. no need for custom?
+ * @return {CustomEvent} detail object with target
+ */
 export const competencyChangedEvent = function (target) {
   return new CustomEvent(competencyChanged, { detail: { target } });
 }

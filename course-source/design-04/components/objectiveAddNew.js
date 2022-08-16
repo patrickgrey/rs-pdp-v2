@@ -6,6 +6,8 @@ import Tree from '@widgetjs/tree';
 import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
 import * as objectiveDelete from './objectiveDelete.js';
+import * as objectiveDrag from './objectiveDrag.js';
+import * as objectiveStore from './objectiveStore.js';
 import * as helpers from './helpers.js';
 
 function disableForm() {
@@ -171,6 +173,7 @@ function init() {
   // Detect submit from new objective form
   htmlComponents.pdpFormNew.addEventListener(customEvents.added, function (event) {
     cloneObjective(event.detail.id, event.detail.title);
+    objectiveDrag.setHiddenOrder();
     htmlComponents.pdpFormNew.querySelector("input").value = "";
     enableForm();
     htmlComponents.pdpFormNew.querySelector("input").focus();
@@ -191,7 +194,8 @@ function init() {
     else {
       disableForm();
       const title = htmlComponents.pdpFormNew.querySelector("input").value;
-      htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent(title));
+      objectiveStore.addObjective(title);
+      htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
     }
   });
 }

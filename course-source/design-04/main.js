@@ -36,9 +36,6 @@ import * as errorFeedback from './components/feedbackError.js';
  * They listen for confirmations from the objectiveStore that 
  * API calls were successful and update the UI to reflect the new model.
  * 
- * They dispatch events to trigger objectiveStore actions, never directly,
- * to ensure a decoupled architecture.
- * 
  * The objectiveStore creates and manages a local model of objectives.
  * It also deals with all API calls and dispatches events relating
  * to model changes.
@@ -49,6 +46,8 @@ import * as errorFeedback from './components/feedbackError.js';
 
 // TODO
 // 
+// Objs order needs to be filled in if there are already 1+ or 1+ is added.
+// See where restored objs come back in. Should it be top?
 // REFACTOR
 //    The following should use the pattern above:
 //        Add new DONE
@@ -131,7 +130,8 @@ var pageModule = (function () {
     autoAnimate(pdpObjectivesLive);
 
     // Initialise SSR Objectives
-    if (document.querySelector("body").dataset.objectiveCount > 0) {
+    const objCount = document.querySelector("body").dataset.objectiveCount;
+    if (objCount > 0) {
       // Build model
       objectiveStore.buildModel();
 
@@ -167,10 +167,12 @@ var pageModule = (function () {
         });
       })
     }
+    else if (objCount > 1) {
+      objectiveDrag.setHiddenOrder();
+    }
 
     objectiveAddNew.init();
     activityFeedback.init();
-    objectiveStore.init();
     autosave.init();
     objectiveDrag.init();
     objectiveDelete.init();

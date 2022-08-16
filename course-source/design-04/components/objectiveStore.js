@@ -75,8 +75,6 @@ function updateObjective(id, type, newValue) {
  */
 async function saveObjective(changedIds) {
 
-  // htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);
-
   let dataToSend = [];
 
   for (let index = 0; index < changedIds.length; index++) {
@@ -187,20 +185,4 @@ async function updateOrder(order) {
   }
 }
 
-/**
- * Add listeners
- */
-const init = () => {
-
-  htmlComponents.pdpFormObjectives.addEventListener(customEvents.deleting, function (event) {
-    deleteObjective(event.detail.id);
-  });
-
-  htmlComponents.pdpFormNew.addEventListener(customEvents.adding,
-    function (event) {
-      addObjective(event.detail.title);
-    });
-
-};
-
-export { init, addObjective, updateObjective, saveObjective, deleteObjective, updateOrder, getObjectiveData, buildModel }
+export { addObjective, updateObjective, saveObjective, deleteObjective, updateOrder, getObjectiveData, buildModel, updateObjectiveCount }

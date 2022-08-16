@@ -37,4 +37,4 @@ function init() {
   });
 }
 
-export { init }
+export { init, setHiddenOrder }
