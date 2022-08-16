@@ -56,7 +56,7 @@ import * as errorFeedback from './components/feedbackError.js';
 //        Delete - delete WORKS! It's just the handler that is tied but
 //                 that is OK as it's a shared handler with existing Os.
 //                 The handler only dispatches an event.
-//        Drag
+//        Drag DONE
 //        Satisfied
 // 
 // 

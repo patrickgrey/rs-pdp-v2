@@ -1,3 +1,6 @@
+/**
+ * Listen for various events and show user feedback.
+ */
 import * as customEvents from './customEvents.js';
 import * as htmlComponents from './htmlComponents.js';
 
@@ -40,6 +43,12 @@ function init() {
     removeShowClassFromAll();
     htmlComponents.pdpSaveTick.classList.add("pdp-activity-feedback-show");
     setText("Update saved");
+  });
+
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.objectiveOrderChanged, function (event) {
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveTick.classList.add("pdp-activity-feedback-show");
+    setText("Order change saved");
   });
 
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.deleting, function (event) {

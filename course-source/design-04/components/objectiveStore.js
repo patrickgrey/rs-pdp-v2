@@ -167,6 +167,26 @@ async function deleteObjective(id) {
   }
 }
 
+/**
+ * Update the order of the objectives
+ * 
+ * @param {string} order - array of IDs in order
+ */
+async function updateOrder(order) {
+  // Mock send update objective to server
+  await callServer("API Call", serverDelay);
+  // Mock response
+  const response = errorFeedback.isError ? { status: "error", message: "Update when wrong!" } : { status: "ok" };
+
+  if (response.status === "ok") {
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.objectiveOrderChangedEvent);
+  }
+  else {
+    errorFeedback.showError(response.message);
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.errorEvent);
+  }
+}
+
 const init = () => {
 
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.deleting, function (event) {
@@ -180,4 +200,4 @@ const init = () => {
 
 };
 
-export { init, addObjective, updateObjective, saveObjective, deleteObjective, getObjectiveData, buildModel }
+export { init, addObjective, updateObjective, saveObjective, deleteObjective, updateOrder, getObjectiveData, buildModel }
