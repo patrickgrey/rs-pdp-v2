@@ -187,6 +187,9 @@ async function updateOrder(order) {
   }
 }
 
+/**
+ * Add listeners
+ */
 const init = () => {
 
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.deleting, function (event) {
