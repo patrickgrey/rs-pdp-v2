@@ -607,7 +607,7 @@ body[data-objective-count="1"]
 #pdpFormObjectives #pdpObjectivesLive > li summary span:first-child,
 #pdpObjectivesArchived > li summary span:first-child {
   position: absolute;
-  top: -0.15rem;
+  top: 0;
   left: calc(2rem + var(--pdp-objective-drag-size));
   display: inline-block;
   max-width: calc(100% - 4.2rem);
