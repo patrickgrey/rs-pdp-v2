@@ -88,7 +88,14 @@ const init = () => {
       input.closest(`li`).querySelector(`summary span:first-child`).textContent = input.value;
     }
     updateObjective(input);
-    // startSave();
+  });
+
+  // Detect change events from satisfied checkbox from already satisfied obs.
+  htmlComponents.pdpObjectivesArchived.addEventListener("input", function (event) {
+    const input = event.target;
+    if (input.dataset.objectiveType === "satisfied") {
+      updateObjective(input);
+    }
   });
 
   // Detect change events from tree.
