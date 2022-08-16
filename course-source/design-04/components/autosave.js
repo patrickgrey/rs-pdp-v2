@@ -31,9 +31,10 @@ function checkValueHasChanged(id, type, newValue) {
 }
 
 /**
- * Update the local model of the objective if it's a new value.
+ * Update the local model of the objective if it's a new value
+ * and reset the timer as input continues.
  *
- * @param {HTMLElement} target - the element that firec the event.
+ * @param {HTMLElement} target - the element that fired the event.
  */
 function updateObjective(target) {
   const id = target.closest("li").dataset.objectiveId;
@@ -41,11 +42,10 @@ function updateObjective(target) {
   const newValue = type === "satisfied" ? target.checked : target.value;
   if (!checkValueHasChanged(id, type, newValue)) return;
   if (!changedIds.includes(id)) changedIds.push(id);
-  // This should be an event dispatch
   htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);
-  // objectiveStore.updateObjective(id, type, newValue);
+  objectiveStore.updateObjective(id, type, newValue);
+  resetTimer();
 }
-
 
 /**
  * Trigger a store save.
@@ -58,21 +58,10 @@ function timeoutHander(event) {
   }
   else {
     isSaving = true;
-    // This should be an event dispatch
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.savingEvent(changedIds));
-    // objectiveStore.saveObjective(changedIds);
+    objectiveStore.saveObjective(changedIds);
     changedIds = [];
   }
 }
-
-/**
- * Start timer to save the objective
- */
-function startSave() {
-  htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);
-  resetTimer();
-}
-
 
 function resetTimer() {
   if (timer != null) {
@@ -86,6 +75,12 @@ function resetTimer() {
  * Add listeners
  */
 const init = () => {
+
+  // Prevent the form navigating to the form URL if the enter key is used.
+  htmlComponents.pdpFormObjectives.addEventListener("submit", function (event) {
+    event.preventDefault();
+  });
+
   // Detect change events from inputs.
   htmlComponents.pdpFormObjectives.addEventListener("input", function (event) {
     const input = event.target;
@@ -93,30 +88,23 @@ const init = () => {
       input.closest(`li`).querySelector(`summary span:first-child`).textContent = input.value;
     }
     updateObjective(input);
-    startSave();
-  });
-
-  // Prevent the form navigating to the form URL if the enter key is used.
-  htmlComponents.pdpFormObjectives.addEventListener("submit", function (event) {
-    event.preventDefault();
+    // startSave();
   });
 
   // Detect change events from tree.
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.competencyChanged, function (event) {
     updateObjective(event.detail.target);
-    startSave();
   });
 
   // Detect change events from due date.
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.dueDateChanged, function (event) {
     updateObjective(event.detail.target);
-    startSave();
   });
 
   // Reset flag once server visit is done.
-  htmlComponents.pdpFormObjectives.addEventListener(customEvents.updated, function (event) {
+  htmlComponents.pdpFormObjectives.addEventListener(customEvents.saved, function (event) {
     isSaving = false;
   });
 };
 
-export { init, startSave }
+export { init }

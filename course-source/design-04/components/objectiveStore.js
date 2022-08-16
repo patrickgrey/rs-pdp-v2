@@ -59,17 +59,11 @@ function getObjectiveData(id) {
  * @param {string} newValue - the new value
  */
 function updateObjective(id, type, newValue) {
-  console.log(objectives);
+  // console.log(objectives);
   getObjectiveData(id)[type] = newValue;
   console.log(objectives);
 }
 
-/**
- * Update the dataset attribute on the body tag to show the objective count.
- */
-function updateObjectiveCount() {
-  document.querySelector("body").dataset.objectiveCount = objectives.length.toString();
-}
 
 /**
  * Triggered by the autosave component.
@@ -99,12 +93,19 @@ async function saveObjective(changedIds) {
   const response = errorFeedback.isError ? { status: "error", message: "Update when wrong!" } : { status: "ok" };
 
   if (response.status === "ok") {
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatedEvent);
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.savedEvent);
   }
   else {
     errorFeedback.showError(response.message);
     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.errorEvent);
   }
+}
+
+/**
+ * Update the dataset attribute on the body tag to show the objective count.
+ */
+function updateObjectiveCount() {
+  document.querySelector("body").dataset.objectiveCount = objectives.length.toString();
 }
 
 /**
@@ -170,10 +171,6 @@ const init = () => {
 
   htmlComponents.pdpFormObjectives.addEventListener(customEvents.deleting, function (event) {
     deleteObjective(event.detail.id);
-  });
-
-  htmlComponents.pdpFormObjectives.addEventListener(customEvents.saving, function (event) {
-    saveObjective(event.detail.changedIds);
   });
 
   htmlComponents.pdpFormNew.addEventListener(customEvents.adding,
