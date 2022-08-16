@@ -57,10 +57,10 @@ import * as errorFeedback from './components/feedbackError.js';
 //                 that is OK as it's a shared handler with existing Os.
 //                 The handler only dispatches an event.
 //        Drag DONE
-//        Satisfied on return to LIVE
+//        Satisfied on return to LIVE DONE
 //  STYLE
 //    padding on satisfied no drag
-//    Align summary text
+//    Align summary text DONE
 // 
 // 
 // 

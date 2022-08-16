@@ -802,6 +802,10 @@ body.pdp-show-remedial .pdp-objective-satisfied {
   box-shadow: inset -80px 0 40px -40px #999;
 }
 
+#pdpObjectivesArchived > li summary span:first-child {
+  left: 2rem;
+}
+
 #pdpObjectivesArchived input[type="text"],
 #pdpObjectivesArchived textarea,
 #pdpObjectivesArchived .duet-date__input,
@@ -829,6 +833,8 @@ body.pdp-show-remedial .pdp-objective-satisfied {
 #pdpObjectivesArchived .pdp-remedial-icon::before {
   display: none !important;
 }
+
+/* CLONE TEMPLATE */
 
 .pdp-objective-clone-daddy {
   display: none;
