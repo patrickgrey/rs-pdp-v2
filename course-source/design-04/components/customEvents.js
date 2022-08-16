@@ -77,6 +77,9 @@ export const competencyChangedEvent = function (target) {
 export const nextMeetingChanged = 'nextMeetingChanged';
 export const nextMeetingChangedEvent = new CustomEvent(nextMeetingChanged);
 
+export const nextMeetingSaved = 'nextMeetingSaved';
+export const nextMeetingSavedEvent = new CustomEvent(nextMeetingSaved);
+
 export const objectiveOrderChanged = 'objectiveOrderChanged';
 export const objectiveOrderChangedEvent = new CustomEvent(objectiveOrderChanged);
 

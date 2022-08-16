@@ -46,8 +46,9 @@ import * as errorFeedback from './components/feedbackError.js';
 
 // TODO
 // 
-// Objs order needs to be filled in if there are already 1+ or 1+ is added.
-// See where restored objs come back in. Should it be top?
+// Date of next meeting not hooked up
+// DONE Objs order needs to be filled in if there are already 1+ or 1+ is added.
+// DONE See where restored objs come back in. Should it be top?
 // REFACTOR
 //    The following should use the pattern above:
 //        Add new DONE
@@ -179,6 +180,10 @@ var pageModule = (function () {
     objectiveArchive.init();
 
     htmlComponents.pdpFormNew.querySelector("input").focus();
+
+    htmlComponents.pdpNextMeetingDate.addEventListener("duetChange", function (event) {
+      console.log("Need to hook this up");
+    })
 
     // JUST FOR DEV - automatically add a new objective
     document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
