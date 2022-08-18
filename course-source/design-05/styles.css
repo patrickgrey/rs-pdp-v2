@@ -1,0 +1,862 @@
+:root {
+  --col-max-width: 1024px;
+  --border-radius: 0px;
+
+  --pdp-title-color: #777;
+  --pdp-input-outline: hotpink;
+  --pdp-input-border: dodgerblue;
+  --pdp-input-background: #e6f8ff;
+  --pdp-input-padding-vertical: 14px;
+  --pdp-header-height: 85px;
+  --pdp-objective-drag-size: 60px;
+  --pdp-animation-time: 0.3s;
+  --pdp-satisfied-box-colour: #b9e4b1;
+  --pdp-color-gold: #ffcc00;
+
+  --duet-color-primary: var(--pdp-input-outline);
+  --duet-color-text: #333;
+  --duet-color-text-active: #fff;
+  --duet-color-placeholder: #666;
+  --duet-color-button: var(--pdp-color-gold);
+  /* --duet-color-surface: var(--pdp-input-background); */
+  --duet-color-surface: white;
+  --duet-color-overlay: rgba(0, 0, 0, 0.8);
+  --duet-color-border: var(--pdp-input-border);
+  --duet-font: var(--ians-font-family);
+  --duet-font-normal: 400;
+  --duet-font-bold: 600;
+  --duet-radius: var(--border-radius);
+  --duet-z-index: 600;
+}
+
+.pdp-validation-label {
+  color: red;
+  font-size: smaller;
+  margin: 0;
+}
+
+/* 
+.##.....##.########....###....########..########.########.
+.##.....##.##.........##.##...##.....##.##.......##.....##
+.##.....##.##........##...##..##.....##.##.......##.....##
+.#########.######...##.....##.##.....##.######...########.
+.##.....##.##.......#########.##.....##.##.......##...##..
+.##.....##.##.......##.....##.##.....##.##.......##....##.
+.##.....##.########.##.....##.########..########.##.....##
+*/
+
+header {
+  width: 100%;
+  background-color: white;
+  min-height: var(--pdp-header-height);
+  border-bottom: thin solid #ccc;
+  padding: 0 0.5rem;
+  position: fixed;
+  top: var(--ilp-height);
+  /* top: 0; */
+  z-index: 300;
+}
+
+header > div:nth-child(1) {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: var(--col-max-width);
+  height: var(--pdp-header-height);
+  margin: 0 auto;
+}
+
+header > div:nth-child(1) h1 {
+  margin: 0;
+  /* padding-right: 1rem; */
+  margin-left: 1rem;
+  margin-bottom: 0.25rem;
+  /* border-right: thin solid #ccc; */
+  font-size: clamp(0.8rem, 0.364rem + 2.18vw, 2rem);
+}
+
+header > div:nth-child(1) > img {
+  width: calc(var(--pdp-header-height) - 20px);
+  height: calc(var(--pdp-header-height) - 20px);
+  width: clamp(2.813rem, 2.358rem + 2.27vw, 4.063rem);
+  height: clamp(2.813rem, 2.358rem + 2.27vw, 4.063rem);
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* 
+.########..########.##.....##.########.########..####....###....##......
+.##.....##.##.......###...###.##.......##.....##..##....##.##...##......
+.##.....##.##.......####.####.##.......##.....##..##...##...##..##......
+.########..######...##.###.##.######...##.....##..##..##.....##.##......
+.##...##...##.......##.....##.##.......##.....##..##..#########.##......
+.##....##..##.......##.....##.##.......##.....##..##..##.....##.##......
+.##.....##.########.##.....##.########.########..####.##.....##.########
+*/
+
+.pdp-remedial {
+  display: none;
+}
+
+body.pdp-show-remedial .pdp-remedial {
+  display: inline-block;
+}
+
+.pdp-remedial-label {
+  margin: 0 0 0 1rem;
+  background-color: #9f1931;
+  color: white;
+  border-radius: var(--border-radius);
+  padding-left: 0.5rem;
+  padding-right: 0.25rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-left: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  width: fit-content;
+  line-height: 1.5rem;
+}
+
+.pdp-remedial-label svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-left: 0.25rem;
+  vertical-align: middle;
+}
+
+.pdp-remedial-icon::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  vertical-align: middle;
+  display: none;
+  background-color: #9f1931;
+  color: white;
+  line-height: 1rem;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  background-image: url("images/pdp-icon-remedial.svg");
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+body.pdp-show-remedial .pdp-remedial-icon::before {
+  display: inline-block;
+}
+
+header .pdp-title,
+header .pdp-title-remedial {
+  margin: 0;
+  margin-left: 1rem;
+  font-size: clamp(1rem, 0.818rem + 0.91vw, 1.5rem);
+  line-height: 1;
+  color: var(--ians-colour-blue-mid);
+}
+
+header .pdp-title-remedial {
+  display: none;
+  color: #9f1931;
+}
+
+body.pdp-show-remedial header .pdp-title {
+  display: none;
+}
+
+body.pdp-show-remedial header .pdp-title-remedial {
+  display: block;
+}
+
+/* 
+....###....##.....##.########..#######...######.....###....##.....##.########
+...##.##...##.....##....##....##.....##.##....##...##.##...##.....##.##......
+..##...##..##.....##....##....##.....##.##........##...##..##.....##.##......
+.##.....##.##.....##....##....##.....##..######..##.....##.##.....##.######..
+.#########.##.....##....##....##.....##.......##.#########..##...##..##......
+.##.....##.##.....##....##....##.....##.##....##.##.....##...##.##...##......
+.##.....##..#######.....##.....#######...######..##.....##....###....########
+*/
+
+header .pdp-activity-feedback {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  right: 1rem;
+  bottom: 0;
+  width: fit-content;
+  background-color: white;
+  margin: 0;
+  padding: 0 0 0 0.5rem;
+}
+
+header .pdp-activity-feedback p {
+  margin: 0;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  color: var(--ians-colour-blue-light);
+}
+
+header .pdp-activity-feedback img {
+  height: 1.25rem;
+  display: none;
+}
+
+header .pdp-activity-feedback img.pdp-activity-feedback-show {
+  display: block;
+}
+
+/* 
+.########.########..########...#######..########.
+.##.......##.....##.##.....##.##.....##.##.....##
+.##.......##.....##.##.....##.##.....##.##.....##
+.######...########..########..##.....##.########.
+.##.......##...##...##...##...##.....##.##...##..
+.##.......##....##..##....##..##.....##.##....##.
+.########.##.....##.##.....##..#######..##.....##
+*/
+
+header .pdp-error {
+  display: none;
+  background-color: red;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+  margin-left: -0.5rem;
+}
+
+.pdp-show-error header .pdp-error {
+  display: block;
+}
+
+/* 
+..######...##........#######..########.....###....##......
+.##....##..##.......##.....##.##.....##...##.##...##......
+.##........##.......##.....##.##.....##..##...##..##......
+.##...####.##.......##.....##.########..##.....##.##......
+.##....##..##.......##.....##.##.....##.#########.##......
+.##....##..##.......##.....##.##.....##.##.....##.##......
+..######...########..#######..########..##.....##.########
+*/
+
+main {
+  position: relative;
+  padding: 0 0.5rem;
+  max-width: var(--col-max-width);
+  margin: 0 auto;
+  margin-top: calc(var(--ilp-height) + var(--pdp-header-height));
+}
+
+h2 svg {
+  width: var(--size-200);
+  vertical-align: middle;
+  padding-bottom: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+/* 
+.##..........###....##....##..#######..##.....##.########
+.##.........##.##....##..##..##.....##.##.....##....##...
+.##........##...##....####...##.....##.##.....##....##...
+.##.......##.....##....##....##.....##.##.....##....##...
+.##.......#########....##....##.....##.##.....##....##...
+.##.......##.....##....##....##.....##.##.....##....##...
+.########.##.....##....##.....#######...#######.....##...
+*/
+
+.pdp-layout {
+  grid-template-columns: 25% 1fr;
+}
+
+.pdp-layout aside {
+  order: -1;
+}
+
+aside a {
+  color: #2990ea;
+}
+
+aside a:hover {
+  color: #0a58ca;
+}
+
+aside,
+article {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+aside {
+  word-break: break-all;
+}
+
+@screen md {
+  aside {
+    word-break: break-all;
+    min-height: calc(100vh - var(--pdp-header-height));
+  }
+}
+
+aside ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* 
+....###....########..########.....##....##.########.##......##
+...##.##...##.....##.##.....##....###...##.##.......##..##..##
+..##...##..##.....##.##.....##....####..##.##.......##..##..##
+.##.....##.##.....##.##.....##....##.##.##.######...##..##..##
+.#########.##.....##.##.....##....##..####.##.......##..##..##
+.##.....##.##.....##.##.....##....##...###.##.......##..##..##
+.##.....##.########..########.....##....##.########..###..###.
+*/
+
+#pdpFormNew {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem 0.25rem 1rem;
+  /* background-color: white; */
+  background-color: var(--pdp-input-background);
+  border-radius: var(--border-radius);
+}
+
+/* 
+.####.##....##.########..##.....##.########..######.
+..##..###...##.##.....##.##.....##....##....##....##
+..##..####..##.##.....##.##.....##....##....##......
+..##..##.##.##.########..##.....##....##.....######.
+..##..##..####.##........##.....##....##..........##
+..##..##...###.##........##.....##....##....##....##
+.####.##....##.##.........#######.....##.....######.
+*/
+
+#pdpFormNew label,
+#pdpFormObjectives #pdpObjectivesLive > li label {
+  color: black;
+  margin-bottom: 0.25em;
+}
+
+#pdpFormNew label > span,
+#pdpFormObjectives label > span,
+#pdpObjectivesArchived label > span {
+  font-size: small;
+  font-weight: normal;
+  color: #999;
+  display: block;
+  line-height: 1em;
+  margin-bottom: 0.5em;
+}
+
+#pdpFormNew input[type="text"],
+#pdpFormNew input[type="date"],
+#pdpFormNew textarea,
+#pdpFormObjectives input[type="text"],
+#pdpFormObjectives input[type="date"],
+#pdpFormObjectives textarea,
+#pdpObjectivesArchived input[type="text"],
+#pdpObjectivesArchived input[type="date"],
+#pdpObjectivesArchived textarea {
+  display: block;
+  width: calc(100% - 1rem);
+  resize: vertical;
+  font-family: var(--ians-font-family);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  /* background-color: var(--pdp-input-background); */
+  background-color: white;
+  border: 1px solid var(--pdp-input-border);
+  outline-color: var(--pdp-input-outline);
+  padding: var(--pdp-input-padding-vertical) 0.5rem;
+  border-radius: var(--border-radius);
+}
+
+#pdpFormNew input[type="text"]:focus,
+#pdpFormNew input[type="date"]:focus,
+#pdpFormNew textarea:focus,
+#pdpFormObjectives input[type="text"]:focus,
+#pdpFormObjectives input[type="date"]:focus,
+#pdpFormObjectives textarea:focus,
+#pdpFormObjectives #pdpObjectivesLive > li summary:focus,
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle:focus,
+#pdpObjectivesArchived input[type="text"]:focus,
+#pdpObjectivesArchived input[type="date"]:focus,
+#pdpObjectivesArchived textarea:focus,
+#pdpObjectivesArchived > li summary:focus,
+#pdpObjectivesArchived > li button.pdp-drag-handle:focus {
+  border-color: var(--duet-color-primary);
+  box-shadow: 0 0 0 1px var(--duet-color-primary);
+  outline: 0;
+}
+
+#pdpObjectivesArchived #pdpObjectivesLive > li summary:focus,
+#pdpFormObjectives #pdpObjectivesLive > li summary:focus {
+  border-color: #eee;
+  box-shadow: none;
+}
+
+#pdpFormNew .pdp-fieldset-title {
+  position: relative;
+}
+
+#pdpFormNew #pdpTitleAddButton {
+  width: fit-content;
+  height: calc(100% - 2px);
+  min-height: 0;
+  position: absolute;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  right: -1px;
+  top: 1px;
+  border: 0;
+  border-top-right-radius: calc(var(--border-radius) - 1px);
+  border-bottom-right-radius: calc(var(--border-radius) - 1px);
+}
+
+/* 
+..#######..########........##..######.....########..#######..########..##.....##
+.##.....##.##.....##.......##.##....##....##.......##.....##.##.....##.###...###
+.##.....##.##.....##.......##.##..........##.......##.....##.##.....##.####.####
+.##.....##.########........##..######.....######...##.....##.########..##.###.##
+.##.....##.##.....##.##....##.......##....##.......##.....##.##...##...##.....##
+.##.....##.##.....##.##....##.##....##....##.......##.....##.##....##..##.....##
+..#######..########...######...######.....##........#######..##.....##.##.....##
+*/
+
+body[data-objective-count="0"] #pdpFormObjectives,
+body[data-objective-archive-count="0"] #pdpObjectivesArchivedContainer {
+  display: none;
+}
+
+.pdp-dates-container > div:first-child > p:first-child {
+  margin: 0;
+  color: black;
+}
+
+.pdp-dates-container > div:last-child > label svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: middle;
+  display: none;
+}
+
+#pdpFormObjectives h2:first-child > span,
+#pdpObjectivesArchivedContainer h2:first-child > span {
+  display: inline;
+}
+
+body[data-objective-count="1"] #pdpFormObjectives h2:first-child > span,
+body[data-objective-archive-count="1"]
+  #pdpObjectivesArchivedContainer
+  h2:first-child
+  > span {
+  display: none;
+}
+
+#pdpFormObjectives #pdpObjectivesLive,
+#pdpObjectivesArchived {
+  padding-left: 0;
+  margin-top: 0;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+}
+
+/* 
+..#######..########...######.....##.......####..######.
+.##.....##.##.....##.##....##....##........##..##....##
+.##.....##.##.....##.##..........##........##..##......
+.##.....##.########...######.....##........##...######.
+.##.....##.##.....##.......##....##........##........##
+.##.....##.##.....##.##....##....##........##..##....##
+..#######..########...######.....########.####..######.
+*/
+
+#pdpFormObjectives #pdpObjectivesLive > li,
+#pdpObjectivesArchived > li {
+  position: relative;
+  /* background-color: white; */
+  background-color: var(--pdp-input-background);
+  color: var(--ians-colour-blue-mid);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  padding: 0;
+  list-style: none;
+  margin-bottom: 0.75rem;
+  font-weight: bold;
+  min-height: var(--pdp-objective-drag-size);
+  overflow: hidden;
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle {
+  cursor: n-resize;
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  width: var(--pdp-objective-drag-size);
+  height: var(--pdp-objective-drag-size);
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0;
+  margin-left: 0;
+  border-top-left-radius: calc(var(--border-radius) - 1px);
+  border-bottom-left-radius: calc(var(--border-radius) - 1px);
+  background-color: var(--ians-colour-blue-light);
+  color: white;
+  transition: margin-left var(--pdp-animation-time);
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-drag-handle img {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding-top: 0.25rem;
+}
+
+#pdpObjectivesArchived > li button.pdp-drag-handle {
+  display: none;
+}
+
+body[data-objective-count="0"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  button.pdp-drag-handle,
+body[data-objective-count="1"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  button.pdp-drag-handle {
+  margin-left: calc(var(--pdp-objective-drag-size) * -1);
+}
+
+#pdpFormObjectives
+  #pdpObjectivesLive
+  li
+  details[open]
+  ~ button.pdp-drag-handle {
+  border-bottom-left-radius: 0;
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-delete-objective {
+  background-color: #ed4442;
+  color: white;
+  border: 0;
+  border-radius: var(--border-radius);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  position: absolute;
+  top: 0;
+  right: -4.5rem;
+  height: var(--pdp-objective-drag-size);
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 1rem;
+  transition: right 0.5s cubic-bezier(0.47, 1.64, 0.41, 0.8);
+  z-index: 200;
+}
+
+#pdpObjectivesArchived > li button.pdp-delete-objective {
+  display: none;
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-delete-objective:hover {
+  right: 0;
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li button.pdp-delete-objective img {
+  max-width: 2rem;
+  margin-right: 0.5rem;
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li summary,
+#pdpObjectivesArchived > li summary {
+  position: relative;
+  font-size: 1.2rem;
+  cursor: pointer;
+  max-height: var(--pdp-objective-drag-size);
+  line-height: var(--pdp-objective-drag-size);
+  padding-left: calc(var(--pdp-objective-drag-size) + 0.5rem);
+  border-top-right-radius: calc(var(--border-radius) - 1px);
+  border-top-left-radius: calc(var(--border-radius) - 1px);
+  border-bottom: 1px solid #eee;
+  transition: padding-left var(--pdp-animation-time);
+  background-color: var(--ians-colour-blue-dark);
+  color: white;
+}
+
+#pdpObjectivesArchived > li summary {
+  padding-left: 1rem;
+}
+
+body[data-objective-count="0"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  summary,
+body[data-objective-count="1"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  summary {
+  padding-left: 1rem;
+}
+
+/* Hide flash of white when delete button bounces in. */
+#pdpFormObjectives #pdpObjectivesLive > li summary::after {
+  content: "";
+  width: 20px;
+  height: 100%;
+  background-color: red;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-top-right-radius: calc(var(--border-radius) - 1px);
+}
+
+#pdpObjectivesArchived > li summary::before {
+  right: 0;
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li summary span:first-child,
+#pdpObjectivesArchived > li summary span:first-child {
+  position: absolute;
+  top: 0;
+  left: calc(2rem + var(--pdp-objective-drag-size));
+  display: inline-block;
+  max-width: calc(100% - 4.2rem);
+  max-height: var(--pdp-objective-drag-size);
+  overflow: hidden;
+  width: calc(100% - 150px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Position title if drag button shows */
+
+body[data-objective-count="0"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  summary
+  span:first-child,
+body[data-objective-count="0"]
+  #pdpObjectivesArchived
+  > li
+  summary
+  span:first-child,
+body[data-objective-count="1"]
+  #pdpFormObjectives
+  #pdpObjectivesLive
+  > li
+  summary
+  span:first-child,
+body[data-objective-count="1"]
+  #pdpObjectivesArchived
+  > li
+  summary
+  span:first-child {
+  left: 2.4rem;
+}
+
+#pdpFormObjectives #pdpObjectivesLive .pdp-objective-form-container,
+#pdpObjectivesArchived .pdp-objective-form-container {
+  padding: 1rem;
+}
+
+#pdpFormObjectives #pdpObjectivesLive .pdp-fieldset-edit-satisfied,
+#pdpObjectivesArchived .pdp-fieldset-edit-satisfied {
+  grid-template-columns: 1fr 12rem;
+  padding: 1rem;
+  padding-top: 0.5rem;
+  border: 5px solid var(--pdp-satisfied-box-colour);
+}
+
+/* 
+.########.########..########.########
+....##....##.....##.##.......##......
+....##....##.....##.##.......##......
+....##....########..######...######..
+....##....##...##...##.......##......
+....##....##....##..##.......##......
+....##....##.....##.########.########
+*/
+
+.pdp-tree-container {
+  max-height: 54.1vh;
+  overflow-y: auto;
+  /* background-color: var(--pdp-input-background); */
+  background-color: white;
+  border: 1px solid var(--pdp-input-border);
+  outline-color: var(--pdp-input-outline);
+  padding: var(--pdp-input-padding-vertical) 0.5rem;
+  border-radius: var(--border-radius);
+}
+
+.pdp-tree-container ul:first-child {
+  padding-left: 0;
+}
+
+.treejs .treejs-checkbox:before {
+  background-color: #fff;
+}
+
+/* 
+..######...######..########...#######..##.......##.......########.
+.##....##.##....##.##.....##.##.....##.##.......##.......##.....##
+.##.......##.......##.....##.##.....##.##.......##.......##.....##
+..######..##.......########..##.....##.##.......##.......########.
+.......##.##.......##...##...##.....##.##.......##.......##.....##
+.##....##.##....##.##....##..##.....##.##.......##.......##.....##
+..######...######..##.....##..#######..########.########.########.
+*/
+.pdp-tree-container {
+  scrollbar-width: auto;
+  scrollbar-color: var(--ians-colour-blue-light) #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+.pdp-tree-container::-webkit-scrollbar {
+  width: 18px;
+}
+
+.pdp-tree-container::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: var(--border-radius);
+}
+
+.pdp-tree-container::-webkit-scrollbar-thumb {
+  background-color: var(--ians-colour-blue-light);
+  border-radius: var(--border-radius);
+  border: 3px solid #ffffff;
+}
+
+.pdp-save-objective {
+  display: block;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-right: 0;
+  margin-left: auto;
+}
+
+/* 
+..######.....###....########.####..######.
+.##....##...##.##......##.....##..##....##
+.##........##...##.....##.....##..##......
+..######..##.....##....##.....##...######.
+.......##.#########....##.....##........##
+.##....##.##.....##....##.....##..##....##
+..######..##.....##....##....####..######.
+*/
+
+.pdp-objective-satisfied-container,
+#pdpObjectivesArchived .pdp-objective-satisfied-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.pdp-objective-satisfied,
+#pdpObjectivesArchived .pdp-objective-satisfied {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  color: white;
+  background-color: var(--ians-colour-blue-light);
+  background-color: var(--pdp-color-gold);
+  color: black;
+  font-weight: bold;
+  outline-color: var(--pdp-input-outline);
+  border-radius: var(--border-radius);
+  margin-top: 1.65rem;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+body.pdp-show-remedial .pdp-objective-satisfied {
+  margin-bottom: 1.75rem;
+}
+
+#pdpFormObjectives #pdpObjectivesLive > li label.pdp-objective-satisfied:hover,
+#pdpObjectivesArchived .pdp-objective-satisfied:hover {
+  background-color: var(--ians-colour-blue-mid);
+  /* background-color: black; */
+  color: var(--pdp-color-gold);
+}
+
+.pdp-objective-satisfied input[type="checkbox"],
+#pdpObjectivesArchived .pdp-objective-satisfied input[type="checkbox"] {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.pdp-save-objective {
+  margin: 1rem auto;
+}
+
+/* 
+....###....########...######..##.....##
+...##.##...##.....##.##....##.##.....##
+..##...##..##.....##.##.......##.....##
+.##.....##.########..##.......#########
+.#########.##...##...##.......##.....##
+.##.....##.##....##..##....##.##.....##
+.##.....##.##.....##..######..##.....##
+*/
+#pdpObjectivesArchived > li {
+  background-color: #999;
+}
+
+#pdpObjectivesArchived > li summary,
+#pdpObjectivesArchived > li summary span:first-child {
+  color: #eee;
+  background-color: #999;
+}
+
+#pdpObjectivesArchived > li summary::before {
+  box-shadow: inset -80px 0 40px -40px #999;
+}
+
+#pdpObjectivesArchived > li summary span:first-child {
+  left: 2rem;
+}
+
+#pdpObjectivesArchived input[type="text"],
+#pdpObjectivesArchived textarea,
+#pdpObjectivesArchived .duet-date__input,
+#pdpObjectivesArchived .pdp-tree-container {
+  background-color: #eee;
+  border: 1px solid #666;
+  cursor: not-allowed;
+}
+
+#pdpObjectivesArchived .pdp-tree-container ul,
+#pdpObjectivesArchived .pdp-tree-container li,
+#pdpObjectivesArchived .pdp-tree-container span,
+#pdpObjectivesArchived .pdp-tree-container div {
+  cursor: not-allowed;
+}
+
+#pdpObjectivesArchived label > span {
+  color: white;
+}
+
+#pdpObjectivesArchived .pdp-fieldset-edit-satisfied {
+  background-color: #e5efe4;
+}
+
+#pdpObjectivesArchived .pdp-remedial-icon::before {
+  display: none !important;
+}
+
+/* CLONE TEMPLATE */
+
+.pdp-objective-clone-daddy {
+  display: none;
+}
+/* 
+* {
+  outline: 1px solid red;
+} */
