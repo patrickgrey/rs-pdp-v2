@@ -5,10 +5,11 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Design v4</title>
+    <title>Design v5</title>
     <link rel="stylesheet" href="base.css"/>
     <link rel="stylesheet" href="datepicker.css"/>
     <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" media="print" href="print.css"/>
 
     <!-- 
       ***SERVER SIDE INJECT***
@@ -403,60 +404,58 @@
               type="text">
             </div>
 
-            <div class=" mt-1-5">
-              <div>
-                <div class="pdp-objective-edit-description">
-                  <!-- [for] format = "pdpDescriptionObjectiveXXXX" -->
-                  <label for="">Description<span>What is the goal and desired
+            <div class="pdp-print-textareas mt-1-5">
+              <div class="pdp-objective-edit-description">
+                <!-- [for] format = "pdpDescriptionObjectiveXXXX" -->
+                <label for="">Description<span>What is the goal and desired
                     results that you would like to achieve?</span></label>
-                  <!-- [id] format = "pdpDescriptionObjectiveXXXX" -->
-                  <textarea data-objective-type="description" id=""
+                <!-- [id] format = "pdpDescriptionObjectiveXXXX" -->
+                <textarea data-objective-type="description" id=""
                   rows="5"></textarea>
-                </div>
-                <div class="mt-1-5 pdp-objective-edit-actions">
-                  <!-- [for] format = "pdpActionsObjectiveXXXX" -->
-                  <label for="">Actions<span>What methods will you use to achieve
+              </div>
+              <div class="mt-1-5 pdp-objective-edit-actions">
+                <!-- [for] format = "pdpActionsObjectiveXXXX" -->
+                <label for="">Actions<span>What methods will you use to achieve
                     them? e.g. training, coaching, mentoring, peer support,
                     on-the-job experiences.</span></label>
-                  <!-- [id] format = "pdpActionsObjectiveXXXX" -->
-                  <textarea data-objective-type="actions" id=""
+                <!-- [id] format = "pdpActionsObjectiveXXXX" -->
+                <textarea data-objective-type="actions" id=""
                   rows="5"></textarea>
-                </div>
-                <div class="mt-1-5 pdp-objective-edit-insights">
-                  <!-- [for] format = "pdpInsightsObjectiveXXXX" -->
-                  <label for="">Personal Insights<span>What is the goal and
+              </div>
+              <div class="mt-1-5 pdp-objective-edit-insights">
+                <!-- [for] format = "pdpInsightsObjectiveXXXX" -->
+                <label for="">Personal Insights<span>What is the goal and
                     desired results that you would like to
                     achieve?</span></label>
-                  <!-- [id] format = "pdpInsightsObjectiveXXXX" -->
-                  <textarea data-objective-type="insights" id=""
+                <!-- [id] format = "pdpInsightsObjectiveXXXX" -->
+                <textarea data-objective-type="insights" id=""
                   rows="5"></textarea>
-                </div>
-
-                <div class="mt-1-5 pdp-objective-edit-feedback">
-                  <!-- [for] format = "pdpFeedbackObjectiveXXXX" -->
-                  <label for="">Feedback<span>Comments from supervisor etc</span></label>
-                  <!-- [id] format = "pdpFeedbackObjectiveXXXX" -->
-                  <textarea data-objective-type="feedback" id=""
-                  rows="5"></textarea>
-                </div>
               </div>
-              <div class="pdp-tree-fieldset">
-                <!-- [for] format = "pdpCompetencyObjectiveXXXX" -->
-                <label for="">Competency<span>What methods will you use to achieve
+
+              <div class="mt-1-5 pdp-objective-edit-feedback">
+                <!-- [for] format = "pdpFeedbackObjectiveXXXX" -->
+                <label for="">Feedback<span>Comments from supervisor etc</span></label>
+                <!-- [id] format = "pdpFeedbackObjectiveXXXX" -->
+                <textarea data-objective-type="feedback" id=""
+                  rows="5"></textarea>
+              </div>
+            </div>
+            <div class="pdp-tree-fieldset">
+              <!-- [for] format = "pdpCompetencyObjectiveXXXX" -->
+              <label for="">Competency<span>What methods will you use to achieve
                   them? e.g. training, coaching, mentoring, peer support,
                   on-the-job experiences.</span></label>
-                <!-- [id] format = "pdpCompetencyObjectiveXXXX" -->
-                <input data-objective-type="competency" id="" type="hidden">
-                <div class="pdp-tree-container"></div>
-              </div>
+              <!-- [id] format = "pdpCompetencyObjectiveXXXX" -->
+              <input data-objective-type="competency" id="" type="hidden">
+              <div class="pdp-tree-container"></div>
+            </div>
 
-              <div class="pdp-objective-satisfied-container">
-                <!-- [for] format = "pdpSatisfiedObjectiveXXXX" -->
-                <label class="pdp-objective-satisfied" for="">
-                  <!-- [id] format = "pdpSatisfiedObjectiveXXXX" -->
-                  <input id="" type="checkbox" data-objective-type="satisfied">I am
+            <div class="pdp-objective-satisfied-container">
+              <!-- [for] format = "pdpSatisfiedObjectiveXXXX" -->
+              <label class="pdp-objective-satisfied" for="">
+                <!-- [id] format = "pdpSatisfiedObjectiveXXXX" -->
+                <input id="" type="checkbox" data-objective-type="satisfied">I am
                 satisfied</label>
-              </div>
             </div>
           </div>
         </details>

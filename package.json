@@ -59,6 +59,7 @@
     "@duetds/date-picker": "^1.4.0",
     "@formkit/auto-animate": "^1.0.0-beta.1",
     "@widgetjs/tree": "^1.8.3",
+    "print-js": "^1.6.0",
     "sortablejs": "^1.15.0"
   }
 }
