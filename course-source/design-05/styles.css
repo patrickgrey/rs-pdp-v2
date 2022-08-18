@@ -90,7 +90,7 @@ header > div:nth-child(1) > img {
   color: var(--ians-colour-blue-mid);
   border: 0;
   position: absolute;
-  top: 0;
+  top: 0.25rem;
   right: 1rem;
 }
 
