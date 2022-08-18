@@ -85,6 +85,24 @@ header > div:nth-child(1) > img {
   border-radius: 50%;
 }
 
+.pdp-print {
+  background-color: transparent;
+  color: var(--ians-colour-blue-mid);
+  border: 0;
+  position: absolute;
+  top: 0;
+  right: 1rem;
+}
+
+.pdp-print svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.pdp-print:hover {
+  color: white;
+}
+
 /* 
 .########..########.##.....##.########.########..####....###....##......
 .##.....##.##.......###...###.##.......##.....##..##....##.##...##......
