@@ -27,7 +27,7 @@ function enableForm() {
  * @param {string} id - Objective ID
  * @param {HTMLElement} hidden - The hidden input associated with this picker that should update on date picker change.
  */
-function addDatePicker(container, id, hidden) {
+function addDatePicker(container, id, hidden, dueDateWarn) {
   const picker = document.createElement("duet-date-picker");
 
   // picker.localization = {
@@ -62,11 +62,14 @@ function addDatePicker(container, id, hidden) {
   // }
 
   picker.identifier = `pdpDatePickerObjective${id}`;
+  picker.value = `2022-08-17`;
   picker.expand = true;
   picker.direction = "left";
   container.appendChild(picker);
   picker.addEventListener("duetChange", function (event) {
     hidden.value = event.detail.value;
+    const today = new Date().toISOString().slice(0, 10);
+    dueDateWarn.style.display = today > event.detail.value ? "inline-block" : "none";
     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
   });
 }
@@ -141,6 +144,9 @@ function setLabelsAndIDs(clone, id, title) {
 
   const dueDateHidden = clone.querySelector(`input[data-objective-type="duedate"]`);
   dueDateHidden.id = `pdpdueDateHiddenObjective${id}`;
+
+  const dueDateWarn = clone.querySelector(`.pdp-dates-container > div:last-child > label svg`);
+  dueDateWarn.id = `pdpdueDateWarnObjective${id}`;
 }
 
 /**
@@ -157,7 +163,8 @@ function cloneObjective(id, title) {
   document.querySelector("#pdpObjectivesLive").prepend(clone);
 
   const dueDateHidden = clone.querySelector(`input[data-objective-type="duedate"]`);
-  addDatePicker(clone.querySelector(".pdp-date-picker-container"), id, dueDateHidden);
+  const dueDateWarn = clone.querySelector(`.pdp-dates-container > div:last-child > label svg`);
+  addDatePicker(clone.querySelector(".pdp-date-picker-container"), id, dueDateHidden, dueDateWarn);
 
   const deleteObjectiveButton = clone.querySelector(`.pdp-delete-objective`);
   deleteObjectiveButton.addEventListener("click", objectiveDelete.buttonHandler);

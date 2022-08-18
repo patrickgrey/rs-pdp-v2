@@ -48,7 +48,8 @@ import * as errorFeedback from './components/feedbackError.js';
 
 // TODO
 // 
-// Date of next meeting not hooked up
+// on load show date warning
+// DONE Date of next meeting not hooked up
 // DONE Objs order needs to be filled in if there are already 1+ or 1+ is added.
 // DONE See where restored objs come back in. Should it be top?
 // REFACTOR
@@ -143,7 +144,10 @@ var pageModule = (function () {
       htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container duet-date-picker").forEach((picker) => {
         picker.addEventListener("duetChange", function (event) {
           const li = picker.closest("li");
+          const dueDateWarn = li.querySelector(`.pdp-dates-container > div:last-child > label svg`);
           const hidden = li.querySelector(`input[data-objective-type="duedate"]`);
+          const today = new Date().toISOString().slice(0, 10);
+          dueDateWarn.style.display = today > event.detail.value ? "inline-block" : "none";
           hidden.value = event.detail.value;
           htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
         });
