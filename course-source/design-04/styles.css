@@ -51,8 +51,8 @@ header {
   border-bottom: thin solid #ccc;
   padding: 0 0.5rem;
   position: fixed;
-  /* top: var(--ilp-height); */
-  top: 0;
+  top: var(--ilp-height);
+  /* top: 0; */
   z-index: 300;
 }
 
