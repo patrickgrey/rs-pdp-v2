@@ -20,6 +20,11 @@ export const asyncTimeout = (ms) => {
   });
 };
 
+export const callServer = async function (url, serverDelay) {
+  await asyncTimeout(serverDelay);
+  return true;
+}
+
 
 // declare all characters that generated string can use
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 ';

@@ -68,6 +68,24 @@ function init() {
     htmlComponents.pdpSaveError.classList.add("pdp-activity-feedback-show");
     setText("Error");
   });
+
+  htmlComponents.pdpNextMeetingDate.addEventListener(customEvents.nextMeetingChanged, function (event) {
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveSaving.classList.add("pdp-activity-feedback-show");
+    setText("Saving next meeting date");
+  });
+
+  htmlComponents.pdpNextMeetingDate.addEventListener(customEvents.nextMeetingSaved, function (event) {
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveTick.classList.add("pdp-activity-feedback-show");
+    setText("Next meeting date saved");
+  });
+
+  htmlComponents.pdpNextMeetingDate.addEventListener(customEvents.error, function (event) {
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveError.classList.add("pdp-activity-feedback-show");
+    setText("Error saving date.");
+  });
 }
 
 export { init }

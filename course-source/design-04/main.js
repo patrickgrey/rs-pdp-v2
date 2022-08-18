@@ -25,6 +25,8 @@ import * as objectiveArchive from './components/objectiveArchive.js';
 import * as autosave from './components/autosave.js';
 // UI behaviour for feedback section
 import * as activityFeedback from './components/feedbackActions.js';
+// Save changes to next meeting date
+import * as nextMeetingDate from './components/nextMeetingDate.js';
 // UI behaviour when an error occurs
 import * as errorFeedback from './components/feedbackError.js';
 
@@ -182,7 +184,7 @@ var pageModule = (function () {
     htmlComponents.pdpFormNew.querySelector("input").focus();
 
     htmlComponents.pdpNextMeetingDate.addEventListener("duetChange", function (event) {
-      console.log("Need to hook this up");
+      nextMeetingDate.saveTheDate(event.value);
     })
 
     // JUST FOR DEV - automatically add a new objective
