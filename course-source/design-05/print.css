@@ -58,7 +58,11 @@ li,
 
 .pdp-objective-form-container > div > div,
 .pdp-print-textareas > div {
-  break-inside: avoid-page;
+  break-inside: avoid;
+}
+
+.pdp-objective-edit-insights {
+  page-break-after: always;
 }
 
 .pdpCompetenciesPrint {
