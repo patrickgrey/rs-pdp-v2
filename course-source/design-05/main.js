@@ -49,6 +49,7 @@ import * as errorFeedback from './components/feedbackError.js';
 // TODO
 // 
 // on load show date warning
+// Animate details: https://codepen.io/stoumann/pen/ExydEYL
 // DONE Date of next meeting not hooked up
 // DONE Objs order needs to be filled in if there are already 1+ or 1+ is added.
 // DONE See where restored objs come back in. Should it be top?

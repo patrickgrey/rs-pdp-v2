@@ -14,7 +14,8 @@ button,
 summary,
 .pdp-delete-objective,
 .pdp-drag-handle,
-.pdp-objective-satisfied-container {
+.pdp-objective-satisfied-container,
+.pdp-tree-container {
   display: none !important;
 }
 
@@ -58,4 +59,8 @@ li,
 .pdp-objective-form-container > div > div,
 .pdp-print-textareas > div {
   break-inside: avoid-page;
+}
+
+.pdpCompetenciesPrint {
+  display: none;
 }

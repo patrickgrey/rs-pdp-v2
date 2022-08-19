@@ -162,7 +162,7 @@
           <p class="pdp-title">Personal Development Plan</p>
           <p class="pdp-title-remedial">
             Remedial Action Plan</p>
-          <button class="pdp-print">
+          <button class="pdp-print" onclick="print();">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-printer" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2"/>
@@ -447,6 +447,8 @@
                   on-the-job experiences.</span></label>
               <!-- [id] format = "pdpCompetencyObjectiveXXXX" -->
               <input data-objective-type="competency" id="" type="hidden">
+              <!-- [id] format = "pdpCompetencyValuesObjectiveXXXX" -->
+              <input class="pdpCompetenciesPrint" id="" type="text">
               <div class="pdp-tree-container"></div>
             </div>
 
