@@ -1,0 +1,70 @@
+/**
+ * Print Stylesheet for pdp
+* @version         1.0
+* @lastmodified    18.08.2022
+*/
+
+.pdp-ilp-header,
+#pdpActivityFeedback,
+.pdp-print,
+aside,
+#pdpFormNew,
+footer,
+button,
+summary,
+.pdp-delete-objective,
+.pdp-drag-handle,
+.pdp-objective-satisfied-container,
+.pdp-tree-container {
+  display: none !important;
+}
+
+body {
+  background-color: #fff;
+  padding: 1cm;
+}
+
+main {
+  margin-top: 0;
+}
+
+header {
+  position: relative;
+  top: 0;
+}
+
+.pdp-layout {
+  display: block;
+}
+
+li,
+#pdpFormObjectives #pdpObjectivesLive > li,
+#pdpObjectivesArchived > li {
+  background-color: #fff;
+  page-break-after: always;
+}
+
+.pdp-dates-container > div:first-child > p:first-child {
+  margin-bottom: 0.25rem;
+}
+
+.pdp-objective-form-container {
+  display: grid;
+}
+
+.pdp-edit-title {
+  order: -1;
+}
+
+.pdp-objective-form-container > div > div,
+.pdp-print-textareas > div {
+  break-inside: avoid;
+}
+
+.pdp-objective-edit-insights {
+  page-break-after: always;
+}
+
+.pdpCompetenciesPrint {
+  display: none;
+}

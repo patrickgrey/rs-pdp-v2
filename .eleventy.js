@@ -141,6 +141,15 @@ module.exports = function (eleventyConfig) {
     return html;
   });
 
+  eleventyConfig.addNunjucksShortcode("ilpBannerv6", function () {
+    let html = ``;
+    if (process.env.NODE_ENV === "development") {
+      html = `<div class="pdp-ilp-header">
+    </div>`;
+    }
+    return html;
+  });
+
   return {
     templateFormats: ["njk", "html"],
 

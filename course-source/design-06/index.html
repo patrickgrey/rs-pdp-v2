@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Design v6</title>
+    <link rel="stylesheet" href="base.css"/>
+    <link rel="stylesheet" href="datepicker.css"/>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" media="print" href="print.css"/>
+
+    <!-- 
+      ***SERVER SIDE INJECT***
+      ID: COMPETENCY-STRUCTURE-DATA
+      DESCRIPTION: Hard code an array of competency data.
+      FORMAT: Array of Objects.
+              Each object must have a consistent ID
+              text = the title of each node
+              children = an array of objects for nested nodes in same format
+      RELATED: COMPETENCY-SELECTION-DATA
+    -->
+    <script>
+      // prettier-ignore
+      let pdpTreeData = [
+        {
+          "id": "1",
+          "text": "competency-1",
+          "children": [
+            {
+              "id": "1-0",
+              "text": "competency-1-0",
+              "children": [
+                {
+                  "id": "1-0-0",
+                  "text": "competency-1-0-0"
+                }, {
+                  "id": "1-0-1",
+                  "text": "competency-1-0-1"
+                }, {
+                  "id": "1-0-2",
+                  "text": "competency-1-0-2"
+                }
+              ]
+            }, {
+              "id": "1-1",
+              "text": "competency-1-1",
+              "children": [
+                {
+                  "id": "1-1-0",
+                  "text": "competency-1-1-0"
+                }, {
+                  "id": "1-1-1",
+                  "text": "competency-1-1-1"
+                }, {
+                  "id": "1-1-2",
+                  "text": "competency-1-1-2"
+                }
+              ]
+            }, {
+              "id": "1-2",
+              "text": "competency-1-2",
+              "children": [
+                {
+                  "id": "1-2-0",
+                  "text": "competency-1-2-0"
+                }, {
+                  "id": "1-2-1",
+                  "text": "competency-1-2-1"
+                }, {
+                  "id": "1-2-2",
+                  "text": "competency-1-2-2"
+                }
+              ]
+            }
+          ]
+        }, {
+          "id": "2",
+          "text": "competency-2",
+          "children": [
+            {
+              "id": "2-0",
+              "text": "competency-2-0",
+              "children": [
+                {
+                  "id": "2-0-0",
+                  "text": "competency-2-0-0"
+                }, {
+                  "id": "2-0-1",
+                  "text": "competency-2-0-1"
+                }, {
+                  "id": "2-0-2",
+                  "text": "competency-2-0-2"
+                }
+              ]
+            }, {
+              "id": "2-1",
+              "text": "competency-2-1",
+              "children": [
+                {
+                  "id": "2-1-0",
+                  "text": "competency-2-1-0"
+                }, {
+                  "id": "2-1-1",
+                  "text": "competency-2-1-1"
+                }, {
+                  "id": "2-1-2",
+                  "text": "competency-2-1-2"
+                }
+              ]
+            }, {
+              "id": "2-2",
+              "text": "competency-2-2",
+              "children": [
+                {
+                  "id": "2-2-0",
+                  "text": "competency-2-2-0"
+                }, {
+                  "id": "2-2-1",
+                  "text": "competency-2-2-1"
+                }, {
+                  "id": "2-2-2",
+                  "text": "competency-2-2-2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    </script>
+
+  </head>
+  <!-- 
+    ***SERVER SIDE INJECT***
+
+    ID: OBJECTIVE-COUNTS
+    DESCRIPTION: Front end codes uses these counts to init the interface
+    @param {integer} data-objective-count - Number of ongoing objectives
+    @param {integer} data-objective-count - Number of 'satisfied' objectives
+
+    ****
+
+    ID: REMEDIAL-FLAG
+    DESCRIPTION: If admin has flagged user as in remedial state,
+                 this flag should be added to the <body> tag.
+    @param {string} class="pdp-show-remedial"
+  -->
+  <body data-objective-count="0" data-objective-archive-count="0"
+  {% if devStatus.environment != "development" %} class="pdp-build" {% endif %}>
+    {% ilpBannerv6 %}
+    <header>
+      <div>
+        <img src="images/profile.jpg" alt="Profile photo">
+        <div>
+          <!-- 
+            ***SERVER SIDE INJECT***
+            ID: USER-NAME
+            DESCRIPTION: Users name in the <H1> tag.
+          -->
+          <h1>Patrick GREY</h1>
+          <p class="pdp-title">Personal Development Plan</p>
+          <p class="pdp-title-remedial">
+            Remedial Action Plan</p>
+          <button class="pdp-print" onclick="print();">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-printer" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2"/>
+              <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4"/>
+              <rect x="7" y="13" width="10" height="8" rx="2"/>
+            </svg>
+            <span class="ians-visually-hidden">print</span></button>
+        </div>
+        <div class="pdp-activity-feedback" id="pdpActivityFeedback">
+
+          <img class="pdp-save-tick pdp-activity-feedback-show" aria-hidden="true"
+          src="images/pdp-save-tick.svg" alt="Form saved">
+
+          <img class="pdp-save-saving" aria-hidden="true"
+          src="images/pdp-save-saving.svg" alt="Form saving">
+
+          <img class="pdp-save-warning" aria-hidden="true"
+          src="images/pdp-save-warning.svg" alt="Warning!">
+
+          <img class="pdp-save-error" aria-hidden="true"
+          src="images/pdp-save-error.svg" alt="Error!">
+
+          <p>Ready to add</p>
+        </div>
+      </div>
+
+      <div class="pdp-error" id="pdpErrorFeedback">
+        <p>Please copy this error for debugging: <strong>
+            <span></span></strong>
+        </p>
+        <button>Close</button>
+      </div>
+    </header>
+    <main>
+
+      <div class="ians-grid-2 pdp-layout">
+
+        <article>
+          <form action="https://reqbin.com/echo/post/json" id="pdpFormNew">
+            <label for="pdpTitleAdd">
+              <strong>Add a new Objective</strong>
+            </label>
+            <div class="pdp-fieldset-title">
+              <input id="pdpTitleAdd" required type="text">
+              <button id="pdpTitleAddButton" type="submit">Add</button>
+            </div>
+          </form>
+
+          <form action="https://reqbin.com/echo/post/json" id="pdpFormObjectives">
+            <h2>
+            Current Objective<span>s</span>
+            </h2>
+
+            <div class="pd-obj-live-container">
+              <!-- 
+                ***SERVER SIDE INJECT***
+                ID: OBJECTIVES-LIVE-LIST-ORDER
+                DESCRIPTION: A hidden input that contains and array of objective
+                             IDs in the order they have been arranged.
+              -->
+              <input type="hidden" id="pdpObjLiveOrder" type="text">
+              <!-- 
+                ***SERVER SIDE INJECT***
+                ID: OBJECTIVES-LIVE-LIST
+                DESCRIPTION: The list of ongoing objectives.
+                FORMAT: A list of <LI> tags, one for each ongoing objective.
+                        The <LI> tag should mirror the template <LI>
+                        found in the <div class="pdp-objective-clone-daddy">
+                        container found below.
+                        See the template for guidance on completing
+                        element IDs and content.
+                SEE: OBJECTIVE-TEMPLATE
+              -->
+              <ul id="pdpObjectivesLive"></ul>
+            </div>
+
+          </form>
+
+          <div id="pdpObjectivesArchivedContainer">
+            <h2>
+            Satisfied Objective<span>s</span>
+            </h2>
+            <div class="pd-obj-archived-container">
+              <!-- 
+                ***SERVER SIDE INJECT***
+                ID: OBJECTIVES-SATISFIED-LIST
+                DESCRIPTION: The list of satisfied objectives.
+                FORMAT: A list of <LI> tags, one for each satisfied objective.
+                        The <LI> tag should mirror the template <LI>
+                        found in the <div class="pdp-objective-clone-daddy">
+                        container found below.
+                        See the template for guidance on completing
+                        element IDs and content.
+                SEE: OBJECTIVE-TEMPLATE
+              -->
+              <ul id="pdpObjectivesArchived"></ul>
+            </div>
+          </div>
+        </article>
+
+        <aside>
+          <p>
+            <strong>Help</strong>
+          </p>
+          <ul>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+            <li>
+              <a href="#">Linkety link link</a>
+            </li>
+          </ul>
+          <hr>
+          <p>
+            <strong>Information</strong>
+          </p>
+          <ul>
+            <!-- 
+              ***SERVER SIDE INJECT***
+              ID: ASIDE-UNIT
+              DESCRIPTION: Unit text
+            -->
+            <li>Unit: EXT/LUX</li>
+            <!-- 
+              ***SERVER SIDE INJECT***
+              ID: ASIDE-EMAIL
+              DESCRIPTION: User email
+            -->
+            <li>Email: <a
+              href="mailto:patrick.grey.ext@eurocontrol.int">patrick.grey.ext@eurocontrol.int</a>
+            </li>
+          </ul>
+          <hr>
+
+          <label for="pdpNextMeetingDate">
+            <strong>Date of next meeting:</strong>
+          </label>
+          <!-- 
+            ***SERVER SIDE INJECT***
+            ID: ASIDE-DATE (optional)
+            DESCRIPTION: Date of the next meeting
+            @param {string} value - in yyyy-mm-dd format
+          -->
+          <duet-date-picker value="2022-08-15" identifier="pdpNextMeetingDate"></duet-date-picker>
+          <noscript>
+            <input id="pdpNextMeetingDate" type="date">
+          </noscript>
+          <hr>
+          <!-- 
+              ***SERVER SIDE INJECT***
+              ID: ASIDE-DATA
+              DESCRIPTION: Not sure if this is needed yet
+            -->
+          <ul>
+            <li>My coach: N/A </li>
+            <li>My mentor: N/A</li>
+          </ul>
+        </aside>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; EUROCONTROL</p>
+    </footer>
+
+    <div class="pdp-objective-clone-daddy">
+      <!-- 
+        ***SERVER SIDE TEMPLATE***
+
+        ID: OBJECTIVE-TEMPLATE
+        DESCRIPTION: This is the template used by the front end
+                     to add new objectives dynamically. It is the pattern
+                     that should be used to build existing objectives
+                     on the server side. 
+                     
+                     Each significant field has a 
+                     data-objective-type attribute. The value of that 
+                     attribute is used as a param name below to indicate what value the input should hold. 
+                     
+                     Most inputs have a label associated with them that have
+                     "for" attributes. The ID generated for each input should
+                     be repeated in this attribute to associate each
+                     label with an input. See the comments below for ID formats.
+
+        @param {string} <summary> -> <span> - The objective title
+        @param {boolean} data-objective-type="satisfied" - checked attribute - Should be false if objective is live and true if satisfied.
+        @param {date} data-objective-type="duedate" - value= "yyyy-mm-dd"
+        @param {string} data-objective-type="title" - value= The objective title
+        @param {string} data-objective-type="description" - The objective description text inside the textarea tag.
+        @param {string} data-objective-type="actions" - The objective actions text inside the textarea tag.
+        @param {string} data-objective-type="insights" - The objective insights text inside the textarea tag.
+        @param {array} data-objective-type="competency" - value= IDs of selected competencies for this objective for this user.
+      -->
+      <!-- ID format the ID (or proxy) associated with the objective in the database. ID represented by XXXX below.-->
+      <li data-objective-id="">
+        <details open>
+          <summary>
+            <span class="pdp-remedial-icon">Title</span>
+          </summary>
+          <div class="pdp-objective-form-container">
+
+            <div class="ians-grid-2 pdp-dates-container">
+
+              {# <div class="pdp-edit-datepicker"> #}
+              <div>
+                <p>Date created:</p>
+                <p>2022-08-18</p>
+              </div>
+              <div>
+                <!-- [for] format = "pdpDueDateHiddenObjectiveXXXX" -->
+                <label for="">
+                  <!-- [svg] format = "pdpDueDateWarnObjectiveXXXX" -->
+                  <svg id="" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-triangle" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#f00" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M12 9v2m0 4v.01"/>
+                    <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"/>
+                  </svg>
+                  <strong>Due date:</strong>
+                </label>
+                <!-- [id] format = "pdpDueDateHiddenObjectiveXXXX" -->
+                <input data-objective-type="duedate" id="" type="hidden">
+                <div class="pdp-date-picker-container"></div>
+                <p class="pdp-validation-label pdp-remedial">* required</p>
+              </div>
+            </div>
+            {# </div> #}
+
+            <div class="pdp-edit-title mt-1-5">
+              <!-- [for] format = "pdpTitleObjectiveXXXX" -->
+              <label for="">Title</label>
+              <!-- [id] format = "pdpTitleObjectiveXXXX" -->
+              <input data-objective-type="title" id="" autocomplete="off" required
+              type="text">
+            </div>
+
+            <div class="pdp-print-textareas mt-1-5">
+              <div class="pdp-objective-edit-description">
+                <!-- [for] format = "pdpDescriptionObjectiveXXXX" -->
+                <label for="">Description<span>What is the goal and desired
+                    results that you would like to achieve?</span></label>
+                <!-- [id] format = "pdpDescriptionObjectiveXXXX" -->
+                <textarea data-objective-type="description" id=""
+                  rows="5"></textarea>
+              </div>
+              <div class="mt-1-5 pdp-objective-edit-actions">
+                <!-- [for] format = "pdpActionsObjectiveXXXX" -->
+                <label for="">Actions<span>What methods will you use to achieve
+                    them? e.g. training, coaching, mentoring, peer support,
+                    on-the-job experiences.</span></label>
+                <!-- [id] format = "pdpActionsObjectiveXXXX" -->
+                <textarea data-objective-type="actions" id=""
+                  rows="5"></textarea>
+              </div>
+              <div class="mt-1-5 pdp-objective-edit-insights">
+                <!-- [for] format = "pdpInsightsObjectiveXXXX" -->
+                <label for="">Personal Insights<span>What is the goal and
+                    desired results that you would like to
+                    achieve?</span></label>
+                <!-- [id] format = "pdpInsightsObjectiveXXXX" -->
+                <textarea data-objective-type="insights" id=""
+                  rows="5"></textarea>
+              </div>
+
+              <div class="mt-1-5 pdp-objective-edit-feedback">
+                <!-- [for] format = "pdpFeedbackObjectiveXXXX" -->
+                <label for="">Feedback<span>Comments from supervisor etc</span></label>
+                <!-- [id] format = "pdpFeedbackObjectiveXXXX" -->
+                <textarea data-objective-type="feedback" id=""
+                  rows="5"></textarea>
+              </div>
+            </div>
+            <div class="pdp-tree-fieldset">
+              <!-- [for] format = "pdpCompetencyObjectiveXXXX" -->
+              <label for="">Competency<span>What methods will you use to achieve
+                  them? e.g. training, coaching, mentoring, peer support,
+                  on-the-job experiences.</span></label>
+              <!-- [id] format = "pdpCompetencyObjectiveXXXX" -->
+              <input data-objective-type="competency" id="" type="hidden">
+              <!-- [id] format = "pdpCompetencyValuesObjectiveXXXX" -->
+              <input class="pdpCompetenciesPrint" id="" type="text">
+              <div class="pdp-tree-container"></div>
+            </div>
+
+            <div class="pdp-objective-satisfied-container">
+              <!-- [for] format = "pdpSatisfiedObjectiveXXXX" -->
+              <label class="pdp-objective-satisfied" for="">
+                <!-- [id] format = "pdpSatisfiedObjectiveXXXX" -->
+                <input id="" type="checkbox" data-objective-type="satisfied">I am
+                satisfied</label>
+            </div>
+          </div>
+        </details>
+
+        <button class="pdp-drag-handle">
+          <img aria-hidden="true" src="images/pdp-drag-icon.svg" alt="Drag me!">
+          <span class="ians-visually-hidden">Drag</span>
+        </button>
+
+        <button class="pdp-delete-objective">
+          <img aria-hidden="true" src="images/pdp-delete.svg"
+          alt="Delete objective">
+        Delete
+      </button>
+      </li>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+
+</html>

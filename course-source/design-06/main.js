@@ -52,7 +52,9 @@ import * as errorFeedback from './components/feedbackError.js';
 // Save state, Open all details before print, reinstate state after:
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeprint_event
 // Add fields for managers 
+// Teams link?
 // Replace components with shoelace: https://shoelace.style/components/input 
+// DONE Fix build errors
 // DONE on load show date warning
 // DONE Date of next meeting not hooked up
 // DONE Objs order needs to be filled in if there are already 1+ or 1+ is added.
@@ -73,8 +75,8 @@ import * as errorFeedback from './components/feedbackError.js';
 // 
 // 
 // Test on Mac
-// Add full comments
 // Make ILP header dev only with shortcode
+// DONE Add full comments
 // DONE Add title
 // DONE Delete objective button 
 // DONE Fade end of summary objective title DONE
@@ -197,13 +199,13 @@ var pageModule = (function () {
     })
 
     // JUST FOR DEV - automatically add a new objective
-    document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
-      document.querySelector("body").classList.toggle("pdp-show-remedial");
-    });
+    // document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
+    //   document.querySelector("body").classList.toggle("pdp-show-remedial");
+    // });
 
-    document.querySelector("#pdpError").addEventListener("click", function (event) {
-      errorFeedback.toggleError();
-    });
+    // document.querySelector("#pdpError").addEventListener("click", function (event) {
+    //   errorFeedback.toggleError();
+    // });
 
 
     htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
