@@ -148,7 +148,8 @@
   -->
   <body data-objective-count="0" data-objective-archive-count="0">
     <!-- DEV ONLY - REMOVED IN PRODUCTION -->
-    {% ilpBanner %}
+    {% if devStatus.environment != "development" %} class="pdp-build" {% endif %}>
+    {% ilpBannerv6 %}
     <header>
       <div>
         <img src="images/profile.jpg" alt="Profile photo">
@@ -322,9 +323,31 @@
               ID: ASIDE-DATA
               DESCRIPTION: Not sure if this is needed yet
             -->
-          <ul>
-            <li>My coach: N/A </li>
-            <li>My mentor: N/A</li>
+          <ul class="pdp-supervision-container">
+            <li>
+              <button class="pdp-add-coach">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
+                  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
+                  <line x1="16" y1="5" x2="19" y2="8"/>
+                </svg>
+                <span class="ians-visually-hidden">Edit coach</span></button>
+My coach: N/A
+<input type="text">
+            </li>
+            <li>
+              <button class="pdp-add-coach">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
+                  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
+                  <line x1="16" y1="5" x2="19" y2="8"/>
+                </svg>
+                <span class="ians-visually-hidden">Edit mentor</span></button>
+                My mentor: N/A
+                <input type="text">
+            </li>
           </ul>
         </aside>
       </div>

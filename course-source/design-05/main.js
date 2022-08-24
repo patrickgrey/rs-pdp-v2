@@ -48,10 +48,10 @@ import * as errorFeedback from './components/feedbackError.js';
 
 // TODO
 // 
+// Add fields for managers 
 // Animate details: https://codepen.io/stoumann/pen/ExydEYL
 // Save state, Open all details before print, reinstate state after:
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeprint_event
-// Add fields for managers 
 // Replace components with shoelace: https://shoelace.style/components/input 
 // DONE on load show date warning
 // DONE Date of next meeting not hooked up
@@ -194,16 +194,26 @@ var pageModule = (function () {
 
     htmlComponents.pdpNextMeetingDate.addEventListener("duetChange", function (event) {
       nextMeetingDate.saveTheDate(event.value);
-    })
+    });
+
+    document.querySelectorAll("aside ul.pdp-supervision-container button").forEach((button) => {
+      button.addEventListener("click", function (event) {
+        const input = event.target.parentElement.querySelector("input");
+        input.style.display = (input.style.display === 'block') ? 'none' : 'block';
+      })
+    });
+
 
     // JUST FOR DEV - automatically add a new objective
-    document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
-      document.querySelector("body").classList.toggle("pdp-show-remedial");
-    });
 
-    document.querySelector("#pdpError").addEventListener("click", function (event) {
-      errorFeedback.toggleError();
-    });
+
+    // document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
+    //   document.querySelector("body").classList.toggle("pdp-show-remedial");
+    // });
+
+    // document.querySelector("#pdpError").addEventListener("click", function (event) {
+    //   errorFeedback.toggleError();
+    // });
 
 
     htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;

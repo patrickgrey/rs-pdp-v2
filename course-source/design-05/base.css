@@ -149,6 +149,7 @@ button {
   font-weight: bold;
   color: black;
   background-color: var(--ians-colour-highlight-mid);
+  border-color: transparent;
   outline-color: var(--pdp-input-outline);
   padding: v14px 1rem;
 }

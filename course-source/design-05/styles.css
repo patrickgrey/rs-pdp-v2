@@ -322,6 +322,21 @@ aside ul {
   padding-left: 0;
 }
 
+aside ul.pdp-supervision-container button {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+aside ul.pdp-supervision-container button > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  pointer-events: none;
+}
+
+aside ul.pdp-supervision-container input[type="text"] {
+  display: none;
+}
+
 /* 
 ....###....########..########.....##....##.########.##......##
 ...##.##...##.....##.##.....##....###...##.##.......##..##..##
@@ -376,7 +391,8 @@ aside ul {
 #pdpFormObjectives textarea,
 #pdpObjectivesArchived input[type="text"],
 #pdpObjectivesArchived input[type="date"],
-#pdpObjectivesArchived textarea {
+#pdpObjectivesArchived textarea,
+aside input[type="text"] {
   display: block;
   width: calc(100% - 1rem);
   resize: vertical;
@@ -403,7 +419,8 @@ aside ul {
 #pdpObjectivesArchived input[type="date"]:focus,
 #pdpObjectivesArchived textarea:focus,
 #pdpObjectivesArchived > li summary:focus,
-#pdpObjectivesArchived > li button.pdp-drag-handle:focus {
+#pdpObjectivesArchived > li button.pdp-drag-handle:focus,
+aside input[type="text"]:focus {
   border-color: var(--duet-color-primary);
   box-shadow: 0 0 0 1px var(--duet-color-primary);
   outline: 0;
@@ -788,6 +805,7 @@ body[data-objective-count="1"]
   color: white;
   background-color: var(--ians-colour-blue-light);
   background-color: var(--pdp-color-gold);
+  background-color: var(--pdp-satisfied-box-colour);
   color: black;
   font-weight: bold;
   outline-color: var(--pdp-input-outline);
@@ -805,7 +823,7 @@ body.pdp-show-remedial .pdp-objective-satisfied {
 #pdpObjectivesArchived .pdp-objective-satisfied:hover {
   background-color: var(--ians-colour-blue-mid);
   /* background-color: black; */
-  color: var(--pdp-color-gold);
+  color: var(--pdp-satisfied-box-colour);
 }
 
 .pdp-objective-satisfied input[type="checkbox"],
