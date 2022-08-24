@@ -870,6 +870,7 @@ body.pdp-show-remedial .pdp-objective-satisfied {
   background-color: #eee;
   border: 1px solid #666;
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 #pdpObjectivesArchived .pdp-tree-container ul,

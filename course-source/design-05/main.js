@@ -48,11 +48,12 @@ import * as errorFeedback from './components/feedbackError.js';
 
 // TODO
 // 
-// Add fields for managers 
 // Animate details: https://codepen.io/stoumann/pen/ExydEYL
 // Save state, Open all details before print, reinstate state after:
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeprint_event
 // Replace components with shoelace: https://shoelace.style/components/input 
+// DONE Disable competencies if satisfied
+// DONE Add fields for managers 
 // DONE on load show date warning
 // DONE Date of next meeting not hooked up
 // DONE Objs order needs to be filled in if there are already 1+ or 1+ is added.

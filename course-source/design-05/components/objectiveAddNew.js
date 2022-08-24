@@ -145,8 +145,8 @@ function setLabelsAndIDs(clone, id, title) {
   const dueDateHidden = clone.querySelector(`input[data-objective-type="duedate"]`);
   dueDateHidden.id = `pdpdueDateHiddenObjective${id}`;
 
-  const dueDateWarn = clone.querySelector(`.pdp-dates-container > div:last-child > label svg`);
-  dueDateWarn.id = `pdpdueDateWarnObjective${id}`;
+  // const dueDateWarn = clone.querySelector(`.pdp-dates-container > div:last-child > label svg`);
+  // dueDateWarn.id = `pdpdueDateWarnObjective${id}`;
 }
 
 /**
