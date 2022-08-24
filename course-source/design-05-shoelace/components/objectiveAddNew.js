@@ -60,20 +60,36 @@ function addDatePicker(container, id, hidden, dueDateWarn) {
  * @param {HTMLElement} competencyHidden - The hidden input associated with this tree that should update on tree change.
  */
 function addTree(container, id, competencyHidden) {
-  let tree = new Tree(container, {
-    data: [
-      {
-        id: '-1',
-        text: 'Competencies',
-        children: pdpTreeData
-      }
-    ],
-    closeDepth: 2,
-    onChange: function (event) {
-      competencyHidden.value = this.values;
-      htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
-    }
-  });
+  const tree = document.createElement("sl-tree");
+  tree.selection = "multiple";
+  tree.id = id;
+
+  const treeItemBase = document.createElement("sl-tree-item");
+  treeItemBase.innerText = "Competencies";
+  const treeItem1 = document.createElement("sl-tree-item");
+  treeItem1.innerText = "Competency 1";
+  const treeItem2 = document.createElement("sl-tree-item");
+  treeItem2.innerText = "Competency 2";
+
+  treeItemBase.append(treeItem1);
+  treeItemBase.append(treeItem2);
+
+  tree.append(treeItemBase);
+  document.querySelector(container).append(tree);
+  // let tree = new Tree(container, {
+  //   data: [
+  //     {
+  //       id: '-1',
+  //       text: 'Competencies',
+  //       children: pdpTreeData
+  //     }
+  //   ],
+  //   closeDepth: 2,
+  //   onChange: function (event) {
+  //     competencyHidden.value = this.values;
+  //     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
+  //   }
+  // });
 }
 
 /**

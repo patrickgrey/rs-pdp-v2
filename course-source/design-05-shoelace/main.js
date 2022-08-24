@@ -1,5 +1,7 @@
-// Suite of web components
+// Shoelace web components. Initialised on load.
 import SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
+import SlTreeItem from '@shoelace-style/shoelace/dist/components/tree-item/tree-item.js';
+import SlTree from '@shoelace-style/shoelace/dist/components/tree/tree.js';
 // Date inputs
 import { DuetDatePicker } from "@duetds/date-picker/custom-element";
 // Competencies trees
@@ -137,9 +139,6 @@ import * as errorFeedback from './components/feedbackError.js';
 var pageModule = (function () {
   var module = {};
   module.init = function () {
-
-    // Init Shoelace input
-    // customElements.define("sl-input", SlInput);
 
     // Init date pickers
     customElements.define("duet-date-picker", DuetDatePicker);
