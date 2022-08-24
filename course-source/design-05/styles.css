@@ -450,10 +450,6 @@ aside input[type="text"]:focus {
   border-bottom-right-radius: calc(var(--border-radius) - 1px);
 }
 
-.pdpCompetenciesPrint {
-  display: none;
-}
-
 /* 
 ..#######..########........##..######.....########..#######..########..##.....##
 .##.....##.##.....##.......##.##....##....##.......##.....##.##.....##.###...###
@@ -741,6 +737,10 @@ body[data-objective-count="1"]
 
 .treejs .treejs-checkbox:before {
   background-color: #fff;
+}
+
+.pdp-competencies-print {
+  display: none !important;
 }
 
 /* 

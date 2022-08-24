@@ -81,7 +81,7 @@ function addDatePicker(container, id, hidden, dueDateWarn) {
  * @param {string} id - Objective ID
  * @param {HTMLElement} competencyHidden - The hidden input associated with this tree that should update on tree change.
  */
-function addTree(container, id, competencyHidden) {
+function addTree(container, id, competencyHidden, competencyPrint) {
   let tree = new Tree(container, {
     data: [
       {
@@ -94,6 +94,11 @@ function addTree(container, id, competencyHidden) {
     onChange: function (event) {
       competencyHidden.value = this.values;
       htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
+      let titlesArray = [];
+      this.selectedNodes.forEach((node) => {
+        titlesArray.push(node.text);
+      })
+      competencyPrint.value = titlesArray.join(", ");
     }
   });
 }
@@ -170,7 +175,8 @@ function cloneObjective(id, title) {
   deleteObjectiveButton.addEventListener("click", objectiveDelete.buttonHandler);
 
   const competencyHidden = clone.querySelector(`input[data-objective-type="competency"]`);
-  addTree(".pdp-tree-container", id, competencyHidden);
+  const competencyPrint = clone.querySelector(`textarea.pdp-competencies-print`);
+  addTree(".pdp-tree-container", id, competencyHidden, competencyPrint);
   setLabelsAndIDs(clone, id, title);
 }
 
