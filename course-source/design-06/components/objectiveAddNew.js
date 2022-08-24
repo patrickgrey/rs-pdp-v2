@@ -28,48 +28,26 @@ function enableForm() {
  * @param {HTMLElement} hidden - The hidden input associated with this picker that should update on date picker change.
  */
 function addDatePicker(container, id, hidden, dueDateWarn) {
-  const picker = document.createElement("duet-date-picker");
+  const picker = document.createElement("sl-input");
+  // const pickerIcon = document.createElement("sl-icon");
+  // pickerIcon.name = `calendar`;
+  // pickerIcon.slot = `suffix`;
+  picker.type = `date`;
+  picker.id = `pdpDatePickerObjective${id}`;
+  picker.valueAsDate = new Date(2022, 8, 18);
+  picker.label = `Due date:`;
 
-  // picker.localization = {
-  //   buttonLabel: 'Choose date',
-  //   placeholder: 'DD/MM/YYYY',
-  //   selectedDateMessage: 'Selected date is',
-  //   prevMonthLabel: 'Previous month',
-  //   nextMonthLabel: 'Next month',
-  //   monthSelectLabel: 'Month',
-  //   yearSelectLabel: 'Year',
-  //   closeLabel: 'Close window',
-  //   calendarHeading: 'Choose a date',
-  //   dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  //   monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-  //   monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  //   locale: "en-GB",
-  // }
-
-  // const DATE_FORMAT = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/
-
-  // picker.dateAdapter = {
-  //   parse(value = "", createDate) {
-  //     const matches = value.match(DATE_FORMAT)
-
-  //     if (matches) {
-  //       return createDate(matches[3], matches[2], matches[1])
-  //     }
-  //   },
-  //   format(date) {
-  //     return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`
-  //   },
-  // }
-
-  picker.identifier = `pdpDatePickerObjective${id}`;
-  picker.value = `2022-08-17`;
-  picker.expand = true;
-  picker.direction = "left";
+  // picker.identifier = `pdpDatePickerObjective${id}`;
+  // picker.value = `2022-08-17`;
+  // picker.expand = true;
+  // picker.direction = "left";
+  // picker.appendChild(pickerIcon);
   container.appendChild(picker);
-  picker.addEventListener("duetChange", function (event) {
-    hidden.value = event.detail.value;
-    const today = new Date().toISOString().slice(0, 10);
-    dueDateWarn.style.display = today > event.detail.value ? "inline-block" : "none";
+  picker.addEventListener("sl-change", function (event) {
+    console.log(event.target.value);
+    hidden.value = event.target.value;
+    // const today = new Date().toISOString().slice(0, 10);
+    // dueDateWarn.style.display = today > event.detail.value ? "inline-block" : "none";
     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
   });
 }
@@ -145,8 +123,8 @@ function setLabelsAndIDs(clone, id, title) {
   const dueDateHidden = clone.querySelector(`input[data-objective-type="duedate"]`);
   dueDateHidden.id = `pdpdueDateHiddenObjective${id}`;
 
-  const dueDateWarn = clone.querySelector(`.pdp-dates-container > div:last-child > label svg`);
-  dueDateWarn.id = `pdpdueDateWarnObjective${id}`;
+  // const dueDateWarn = clone.querySelector(`.pdp-dates-container > div:last-child > label svg`);
+  // dueDateWarn.id = `pdpdueDateWarnObjective${id}`;
 }
 
 /**

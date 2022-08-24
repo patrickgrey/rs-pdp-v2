@@ -13,6 +13,17 @@
   --pdp-satisfied-box-colour: #b9e4b1;
   --pdp-color-gold: #ffcc00;
 
+  --sl-border-radius-medium: 0;
+  --sl-input-font-size-medium: 1rem;
+  --sl-input-height-medium: calc(
+    1rem + var(--pdp-input-padding-vertical) * 2 + var(--sl-input-border-width) *
+      2
+  );
+  --sl-input-spacing-medium: var(--pdp-input-padding-vertical);
+  --sl-input-color: #333;
+  --sl-input-border-color: var(--pdp-input-border);
+  --sl-input-font-family: var(--ians-font-family);
+
   --duet-color-primary: var(--pdp-input-outline);
   --duet-color-text: #333;
   --duet-color-text-active: #fff;
@@ -346,6 +357,7 @@ aside ul {
   padding: 0.5rem 1rem 0.25rem 1rem;
   /* background-color: white; */
   background-color: var(--pdp-input-background);
+  /* background-color: hsl(0, 0%, 96%); */
   border-radius: var(--border-radius);
 }
 
@@ -508,6 +520,7 @@ body[data-objective-archive-count="1"]
   position: relative;
   /* background-color: white; */
   background-color: var(--pdp-input-background);
+  /* background-color: hsl(0, 0%, 96%); */
   color: var(--ians-colour-blue-mid);
   border-top-right-radius: var(--border-radius);
   border-bottom-right-radius: var(--border-radius);

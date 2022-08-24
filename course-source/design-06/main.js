@@ -1,3 +1,5 @@
+// Suite of web components
+import SlInput from '@shoelace-style/shoelace/dist/components/input/input.js';
 // Date inputs
 import { DuetDatePicker } from "@duetds/date-picker/custom-element";
 // Competencies trees
@@ -48,12 +50,12 @@ import * as errorFeedback from './components/feedbackError.js';
 
 // TODO
 // 
-// Animate details: https://codepen.io/stoumann/pen/ExydEYL
+// Replace components with shoelace: https://shoelace.style/components/input 
+// Add fields for managers 
 // Save state, Open all details before print, reinstate state after:
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeprint_event
-// Add fields for managers 
 // Teams link?
-// Replace components with shoelace: https://shoelace.style/components/input 
+// Animate details: https://codepen.io/stoumann/pen/ExydEYL
 // DONE Fix build errors
 // DONE on load show date warning
 // DONE Date of next meeting not hooked up
@@ -76,6 +78,7 @@ import * as errorFeedback from './components/feedbackError.js';
 // 
 // Test on Mac
 // Make ILP header dev only with shortcode
+// Move overdue icon to summary
 // DONE Add full comments
 // DONE Add title
 // DONE Delete objective button 
@@ -134,6 +137,9 @@ import * as errorFeedback from './components/feedbackError.js';
 var pageModule = (function () {
   var module = {};
   module.init = function () {
+
+    // Init Shoelace input
+    // customElements.define("sl-input", SlInput);
 
     // Init date pickers
     customElements.define("duet-date-picker", DuetDatePicker);
