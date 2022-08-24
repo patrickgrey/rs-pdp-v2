@@ -57,6 +57,10 @@ header {
   z-index: 300;
 }
 
+body.pdp-build header {
+  top: 0;
+}
+
 header > div:nth-child(1) {
   position: relative;
   display: flex;
@@ -265,6 +269,10 @@ main {
   max-width: var(--col-max-width);
   margin: 0 auto;
   margin-top: calc(var(--ilp-height) + var(--pdp-header-height));
+}
+
+body.pdp-build main {
+  margin-top: var(--pdp-header-height);
 }
 
 h2 svg {

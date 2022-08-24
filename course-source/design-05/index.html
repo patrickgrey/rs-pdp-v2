@@ -146,8 +146,7 @@
                  this flag should be added to the <body> tag.
     @param {string} class="pdp-show-remedial"
   -->
-  <body data-objective-count="0" data-objective-archive-count="0">
-    <!-- DEV ONLY - REMOVED IN PRODUCTION -->
+  <body data-objective-count="0" data-objective-archive-count="0"
     {% if devStatus.environment != "development" %} class="pdp-build" {% endif %}>
     {% ilpBannerv6 %}
     <header>

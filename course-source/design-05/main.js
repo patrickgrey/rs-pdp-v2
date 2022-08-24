@@ -217,9 +217,9 @@ var pageModule = (function () {
     // });
 
 
-    htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
+    // htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
 
-    htmlComponents.pdpTitleAddButton.click();
+    // htmlComponents.pdpTitleAddButton.click();
     // JUST FOR DEV
   };
   return module;
