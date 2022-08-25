@@ -12,7 +12,7 @@ import * as helpers from './helpers.js';
 let objectives = [];
 // The current order of objectives by ID
 let objectivesOrder = [];
-const serverDelay = 1000;
+const serverDelay = 10;
 // Temporary variable to ID objectives until I get IDs back from API
 let currentID = 1;
 

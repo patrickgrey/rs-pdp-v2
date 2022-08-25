@@ -29,6 +29,8 @@ import * as activityFeedback from './components/feedbackActions.js';
 import * as nextMeetingDate from './components/nextMeetingDate.js';
 // UI behaviour when an error occurs
 import * as errorFeedback from './components/feedbackError.js';
+// Deal with printing
+import * as print from './components/print.js';
 
 /**
  * ARCHITECTURE:
@@ -190,6 +192,7 @@ var pageModule = (function () {
     objectiveDrag.init();
     objectiveDelete.init();
     objectiveArchive.init();
+    print.init();
 
     htmlComponents.pdpFormNew.querySelector("input").focus();
 
@@ -216,10 +219,15 @@ var pageModule = (function () {
     //   errorFeedback.toggleError();
     // });
 
+    // for (let index = 0; index < 2; index++) {
+    //   setTimeout(function () {
+    //     htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
+    //     htmlComponents.pdpTitleAddButton.click();
+    //   }, (1500 * index));
+    // }
 
-    htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
 
-    htmlComponents.pdpTitleAddButton.click();
+
     // JUST FOR DEV
   };
   return module;
