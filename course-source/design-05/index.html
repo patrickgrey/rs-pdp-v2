@@ -324,28 +324,37 @@
             -->
           <ul class="pdp-supervision-container">
             <li>
-              <button class="pdp-add-coach">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                  <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
-                  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
-                  <line x1="16" y1="5" x2="19" y2="8"/>
-                </svg>
-                <span class="ians-visually-hidden">Edit coach</span></button>
-My coach: N/A
-<input type="text">
+
+              <label for="pdpCoach">
+                <strong>My coach:</strong>
+              </label>
+              <input id="pdpCoach" type="text" value="Marine HINTZ">
+
+              {# <button class="pdp-add-coach">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
+                    <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
+                    <line x1="16" y1="5" x2="19" y2="8"/>
+                  </svg>
+                  <span class="ians-visually-hidden">Edit coach</span></button> #}
             </li>
             <li>
-              <button class="pdp-add-coach">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                  <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
-                  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
-                  <line x1="16" y1="5" x2="19" y2="8"/>
-                </svg>
-                <span class="ians-visually-hidden">Edit mentor</span></button>
-                My mentor: N/A
-                <input type="text">
+
+              <label for="pdpMentor">
+                <strong>My mentor:</strong>
+              </label>
+              <input id="pdpMentor" type="text" value="Marine HINTZ">
+
+              {# <button class="pdp-add-coach">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
+                    <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
+                    <line x1="16" y1="5" x2="19" y2="8"/>
+                  </svg>
+                  <span class="ians-visually-hidden">Edit mentor</span></button> #}
+
             </li>
           </ul>
         </aside>
@@ -391,13 +400,20 @@ My coach: N/A
             <span class="pdp-remedial-icon">Title</span>
           </summary>
           <div class="pdp-objective-form-container">
+            <p class="pdp-date-created">Date created: 2022-08-18</p>
 
             <div class="ians-grid-2 pdp-dates-container">
 
               {# <div class="pdp-edit-datepicker"> #}
               <div>
-                <p>Date created:</p>
-                <p>2022-08-18</p>
+
+                <div class="pdp-objective-satisfied-container">
+                  <!-- [for] format = "pdpSatisfiedObjectiveXXXX" -->
+                  <label class="pdp-objective-satisfied" for="">
+                    <!-- [id] format = "pdpSatisfiedObjectiveXXXX" -->
+                    <input id="" type="checkbox" data-objective-type="satisfied">I am
+                satisfied</label>
+                </div>
               </div>
               <div>
                 <!-- [for] format = "pdpDueDateHiddenObjectiveXXXX" -->
@@ -471,13 +487,6 @@ My coach: N/A
               <div class="pdp-tree-container"></div>
             </div>
 
-            <div class="pdp-objective-satisfied-container">
-              <!-- [for] format = "pdpSatisfiedObjectiveXXXX" -->
-              <label class="pdp-objective-satisfied" for="">
-                <!-- [id] format = "pdpSatisfiedObjectiveXXXX" -->
-                <input id="" type="checkbox" data-objective-type="satisfied">I am
-                satisfied</label>
-            </div>
           </div>
         </details>
 

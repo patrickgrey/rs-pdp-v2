@@ -293,7 +293,7 @@ h2 svg {
 */
 
 .pdp-layout {
-  grid-template-columns: 25% 1fr;
+  grid-template-columns: 30% 1fr;
 }
 
 .pdp-layout aside {
@@ -342,7 +342,7 @@ aside ul.pdp-supervision-container button > svg {
 }
 
 aside ul.pdp-supervision-container input[type="text"] {
-  display: none;
+  /* display: none; */
 }
 
 /* 
@@ -716,6 +716,15 @@ body[data-objective-count="1"]
   padding: 1rem;
   padding-top: 0.5rem;
   border: 5px solid var(--pdp-satisfied-box-colour);
+}
+
+.pdp-date-created {
+  margin: 0;
+  color: #999;
+  font-size: small;
+  line-height: 1em;
+  margin-bottom: 0.5rem;
+  text-align: right;
 }
 
 /* 
