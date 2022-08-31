@@ -358,7 +358,7 @@ main {
 }
 
 body.pdp-build main {
-  margin-top: var(--pdp-header-height);
+  margin-top: calc(var(--pdp-header-height) + 2rem);
 }
 
 h2 svg {
