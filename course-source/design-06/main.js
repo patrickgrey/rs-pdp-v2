@@ -152,10 +152,16 @@ var pageModule = (function () {
       htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container duet-date-picker").forEach((picker) => {
         picker.addEventListener("duetChange", function (event) {
           const li = picker.closest("li");
-          const dueDateWarn = li.querySelector(`.pdp-dates-container > div:last-child > label svg`);
+          const dueDateWarn = li.querySelector(`summary > span`);
           const hidden = li.querySelector(`input[data-objective-type="duedate"]`);
           const today = new Date().toISOString().slice(0, 10);
-          dueDateWarn.style.display = today > event.detail.value ? "inline-block" : "none";
+          if (today > event.detail.value) {
+            dueDateWarn.classList.add("pdp-remedial-icon");
+          }
+          else {
+            dueDateWarn.classList.remove("pdp-remedial-icon");
+          }
+          htm
           hidden.value = event.detail.value;
           htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
         });
