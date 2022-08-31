@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Design v5</title>
+    <title>Design v6</title>
     <link rel="stylesheet" href="base.css"/>
     <link rel="stylesheet" href="datepicker.css"/>
     <link rel="stylesheet" href="styles.css"/>
@@ -169,7 +169,18 @@
               <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4"/>
               <rect x="7" y="13" width="10" height="8" rx="2"/>
             </svg>
-            <span class="ians-visually-hidden">print</span></button>
+            <span class="ians-visually-hidden">print</span>
+          </button>
+
+          <button id="pdpHelp" class="pdp-help">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <circle cx="12" cy="12" r="9"/>
+              <line x1="12" y1="17" x2="12" y2="17.01"/>
+              <path d="M12 13.5a1.5 1.5 0 0 1 1 -1.5a2.6 2.6 0 1 0 -3 -4"/>
+            </svg>
+            <span class="ians-visually-hidden">help</span>
+          </button>
         </div>
         <div class="pdp-activity-feedback" id="pdpActivityFeedback">
 
@@ -264,106 +275,108 @@
         </article>
 
         <aside>
-          <p>
-            <strong>Help</strong>
-          </p>
-          <ul>
-            <li>
-              <a href="#">Linkety link link</a>
-            </li>
-            <li>
-              <a href="#">Linkety link link</a>
-            </li>
-            <li>
-              <a href="#">Linkety link link</a>
-            </li>
-            <li>
-              <a href="#">Linkety link link</a>
-            </li>
-          </ul>
-          <hr>
-          <p>
-            <strong>Information</strong>
-          </p>
-          <ul>
+          <div class="pdp-aside-inner">
+            <p class="mt-0">
+              <strong>Help</strong>
+            </p>
+            <ul>
+              <li>
+                <a href="#">Linkety link link</a>
+              </li>
+              <li>
+                <a href="#">Linkety link link</a>
+              </li>
+              <li>
+                <a href="#">Linkety link link</a>
+              </li>
+              <li>
+                <a href="#">Linkety link link</a>
+              </li>
+            </ul>
+            <hr>
+            <p>
+              <strong>Information</strong>
+            </p>
+            <ul>
+              <!-- 
+                ***SERVER SIDE INJECT***
+                ID: ASIDE-UNIT
+                DESCRIPTION: Unit text
+              -->
+              <li>Unit: EXT/LUX</li>
+              <!-- 
+                ***SERVER SIDE INJECT***
+                ID: ASIDE-EMAIL
+                DESCRIPTION: User email
+              -->
+              <li>Email: <a
+                href="mailto:patrick.grey.ext@eurocontrol.int">patrick.grey.ext@eurocontrol.int</a>
+              </li>
+            </ul>
+            <hr>
+
+            <label for="pdpNextMeetingDate">
+              <strong>Date of next meeting:</strong>
+            </label>
             <!-- 
               ***SERVER SIDE INJECT***
-              ID: ASIDE-UNIT
-              DESCRIPTION: Unit text
+              ID: ASIDE-DATE (optional)
+              DESCRIPTION: Date of the next meeting
+              @param {string} value - in yyyy-mm-dd format
             -->
-            <li>Unit: EXT/LUX</li>
+            <duet-date-picker value="2022-08-15" identifier="pdpNextMeetingDate"></duet-date-picker>
+            <noscript>
+              <input id="pdpNextMeetingDate" type="date">
+            </noscript>
+            <hr>
             <!-- 
-              ***SERVER SIDE INJECT***
-              ID: ASIDE-EMAIL
-              DESCRIPTION: User email
-            -->
-            <li>Email: <a
-              href="mailto:patrick.grey.ext@eurocontrol.int">patrick.grey.ext@eurocontrol.int</a>
-            </li>
-          </ul>
-          <hr>
+                ***SERVER SIDE INJECT***
+                ID: ASIDE-DATA
+                DESCRIPTION: Not sure if this is needed yet
+              -->
+            <ul class="pdp-supervision-container">
+              <li>
 
-          <label for="pdpNextMeetingDate">
-            <strong>Date of next meeting:</strong>
-          </label>
-          <!-- 
-            ***SERVER SIDE INJECT***
-            ID: ASIDE-DATE (optional)
-            DESCRIPTION: Date of the next meeting
-            @param {string} value - in yyyy-mm-dd format
-          -->
-          <duet-date-picker value="2022-08-15" identifier="pdpNextMeetingDate"></duet-date-picker>
-          <noscript>
-            <input id="pdpNextMeetingDate" type="date">
-          </noscript>
-          <hr>
-          <!-- 
-              ***SERVER SIDE INJECT***
-              ID: ASIDE-DATA
-              DESCRIPTION: Not sure if this is needed yet
-            -->
-          <ul class="pdp-supervision-container">
-            <li>
+                <label for="pdpCoach">
+                  <strong>My coach:</strong>
+                </label>
+                <input id="pdpCoach" type="text" value="Marine HINTZ">
 
-              <label for="pdpCoach">
-                <strong>My coach:</strong>
-              </label>
-              <input id="pdpCoach" type="text" value="Marine HINTZ">
+                {# <button class="pdp-add-coach">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
+                      <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
+                      <line x1="16" y1="5" x2="19" y2="8"/>
+                    </svg>
+                    <span class="ians-visually-hidden">Edit coach</span></button> #}
+              </li>
+              <li>
 
-              {# <button class="pdp-add-coach">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
-                    <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
-                    <line x1="16" y1="5" x2="19" y2="8"/>
-                  </svg>
-                  <span class="ians-visually-hidden">Edit coach</span></button> #}
-            </li>
-            <li>
+                <label for="pdpMentor">
+                  <strong>My mentor:</strong>
+                </label>
+                <input id="pdpMentor" type="text" value="Marine HINTZ">
 
-              <label for="pdpMentor">
-                <strong>My mentor:</strong>
-              </label>
-              <input id="pdpMentor" type="text" value="Marine HINTZ">
+                {# <button class="pdp-add-coach">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
+                      <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
+                      <line x1="16" y1="5" x2="19" y2="8"/>
+                    </svg>
+                    <span class="ians-visually-hidden">Edit mentor</span></button> #}
 
-              {# <button class="pdp-add-coach">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"/>
-                    <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"/>
-                    <line x1="16" y1="5" x2="19" y2="8"/>
-                  </svg>
-                  <span class="ians-visually-hidden">Edit mentor</span></button> #}
-
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </div>
         </aside>
       </div>
     </main>
 
-    <footer>
+    {# <footer>
       <p>&copy; EUROCONTROL</p>
-    </footer>
+    </footer> #}
 
     <div class="pdp-objective-clone-daddy">
       <!-- 
