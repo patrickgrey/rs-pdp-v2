@@ -116,6 +116,83 @@ header > div:nth-child(1) > img {
   color: white;
 }
 
+/* ....###.....######..####.########..########
+/* ...##.##...##....##..##..##.....##.##......
+/* ..##...##..##........##..##.....##.##......
+/* .##.....##..######...##..##.....##.######..
+/* .#########.......##..##..##.....##.##......
+/* .##.....##.##....##..##..##.....##.##......
+/* .##.....##..######..####.########..######## */
+
+aside a {
+  color: #2990ea;
+}
+
+aside a:hover {
+  color: #0a58ca;
+}
+
+aside {
+  word-break: break-all;
+}
+
+@screen md {
+  aside {
+    word-break: break-all;
+    /* min-height: calc(100vh - var(--pdp-header-height)); */
+  }
+}
+
+aside ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+aside ul.pdp-supervision-container button {
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+aside ul.pdp-supervision-container button > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  pointer-events: none;
+}
+
+aside ul.pdp-supervision-container input[type="text"] {
+  /* display: none; */
+}
+
+aside .pdp-next-meeting-guidance {
+  font-size: small;
+  margin-top: 0.5rem;
+}
+
+aside .pdp-aside-button-list li {
+  display: inline-block;
+}
+
+.pdp-aside-button {
+  background-color: transparent;
+  color: var(--ians-colour-blue-mid);
+  border: 0;
+  line-height: 2rem;
+  font-size: 2rem;
+  padding: 0.5rem;
+}
+
+.pdp-aside-button,
+.pdp-aside-button svg {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+}
+
+.pdp-aside-button:hover {
+  color: white;
+  background-color: var(--ians-colour-blue-dark);
+}
+
 /* 
 .########..########.##.....##.########.########..####....###....##......
 .##.....##.##.......###...###.##.......##.....##..##....##.##...##......
@@ -317,48 +394,23 @@ h2 svg {
   padding-top: 0.5rem;
 }
 
-aside a {
-  color: #2990ea;
+@media (min-width: 720px and max-width: 1049px;) {
+  .pdp-layout aside .pdp-aside-inner {
+    position: fixed;
+    top: calc(var(--ilp-height) + var(--pdp-header-height) + 2rem);
+    width: calc(30% - 1rem);
+  }
 }
 
-aside a:hover {
-  color: #0a58ca;
+@media (min-width: 1050px) {
+  .pdp-layout aside .pdp-aside-inner {
+    width: calc((var(--col-max-width) - 2rem) / 100 * 30);
+  }
 }
 
 article {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-}
-
-aside {
-  word-break: break-all;
-}
-
-@screen md {
-  aside {
-    word-break: break-all;
-    min-height: calc(100vh - var(--pdp-header-height));
-  }
-}
-
-aside ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-aside ul.pdp-supervision-container button {
-  margin-right: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-aside ul.pdp-supervision-container button > svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  pointer-events: none;
-}
-
-aside ul.pdp-supervision-container input[type="text"] {
-  /* display: none; */
 }
 
 /* 
