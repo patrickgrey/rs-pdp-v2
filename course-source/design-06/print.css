@@ -4,9 +4,21 @@
 * @lastmodified    18.08.2022
 */
 
+@page {
+  size: A4;
+  margin: 70pt 60pt 70pt;
+}
+
+@page: left {
+  @bottom-left {
+    content: "Page " counter(page) " of " counter(pages);
+  }
+}
+
 .pdp-ilp-header,
 #pdpActivityFeedback,
 .pdp-print,
+.pdp-philosophy,
 aside,
 #pdpFormNew,
 footer,
@@ -15,13 +27,15 @@ summary,
 .pdp-delete-objective,
 .pdp-drag-handle,
 .pdp-objective-satisfied-container,
-.pdp-tree-container {
+.pdp-tree-container,
+#pdpObjectivesArchivedContainer,
+.pd-obj-live-container {
   display: none !important;
 }
 
 body {
   background-color: #fff;
-  padding: 1cm;
+  margin: 1cm;
 }
 
 main {
@@ -72,7 +86,6 @@ label {
 
 .pdp-print-break {
   page-break-inside: avoid;
-  page-break-before: always;
 }
 
 .pdp-objective-form-container {
@@ -91,3 +104,22 @@ label {
 /* #pdpObjectivesArchived input {
   background-color: white;
 } */
+
+.pdp-date-created {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  margin-top: 0;
+}
+
+.pdp-print-label {
+  margin-bottom: 0;
+}
+
+.pdp-privacy {
+  margin-top: 2rem;
+  border: 5px solid red;
+  padding: 1rem;
+}

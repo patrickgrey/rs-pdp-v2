@@ -61,8 +61,10 @@ function addDatePicker(container, id, hidden, dueDateWarn) {
   //   },
   // }
 
+  hidden.value = new Date().toISOString().slice(0, 10);
+
   picker.identifier = `pdpDatePickerObjective${id}`;
-  picker.value = `2022-08-17`;
+  picker.value = new Date().toISOString().slice(0, 10);
   picker.expand = true;
   picker.direction = "left";
   container.appendChild(picker);

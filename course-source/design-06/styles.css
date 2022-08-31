@@ -380,6 +380,39 @@ aside ul.pdp-supervision-container input[type="text"] {
   border-radius: var(--border-radius);
 }
 
+.pdp-philosophy {
+  display: none;
+  position: relative;
+  background-color: var(--pdp-satisfied-box-colour);
+  padding: 1rem;
+}
+
+.pdp-philosophy p:first-child {
+  margin-top: 0;
+}
+
+.pdp-philosophy p:last-child {
+  margin-bottom: 0;
+}
+
+.pdp-philosophy::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-width: 0 10px 17px 10px;
+  border-color: transparent transparent var(--pdp-satisfied-box-colour)
+    transparent;
+  border-style: solid;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+body[data-objective-count="0"] .pdp-philosophy {
+  display: block;
+}
+
 /* 
 .####.##....##.########..##.....##.########..######.
 ..##..###...##.##.....##.##.....##....##....##....##
