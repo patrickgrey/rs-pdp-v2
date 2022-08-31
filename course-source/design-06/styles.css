@@ -400,6 +400,10 @@ h2 svg {
     top: calc(var(--ilp-height) + var(--pdp-header-height) + 2rem);
     width: calc(30% - 1rem);
   }
+
+  body.pdp-build .pdp-layout aside .pdp-aside-inner {
+    top: calc(var(--pdp-header-height) + 2rem);
+  }
 }
 
 @media (min-width: 1050px) {
