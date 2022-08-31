@@ -408,6 +408,7 @@ h2 svg {
 
 @media (min-width: 1050px) {
   .pdp-layout aside .pdp-aside-inner {
+    position: fixed;
     width: calc((var(--col-max-width) - 2rem) / 100 * 30);
   }
 }
