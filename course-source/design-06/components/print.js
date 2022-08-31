@@ -41,6 +41,7 @@ function handleBeforeprint(event) {
   // once no longer needed.
   const privacyElement = document.createElement("p");
   privacyElement.classList.add("pdp-privacy");
+  privacyElement.classList.add("pdp-print-break");
   privacyElement.innerHTML = `<i>Printed on ${new Date()}</i>.</br><strong>Data Privacy: </strong> This document contains personal data, it should be kept private and destroyed once no longer needed.`;
   printContainer.append(privacyElement);
 }
