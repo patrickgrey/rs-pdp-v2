@@ -71,7 +71,13 @@ function addDatePicker(container, id, hidden, dueDateWarn) {
   picker.addEventListener("duetChange", function (event) {
     hidden.value = event.detail.value;
     const today = new Date().toISOString().slice(0, 10);
-    dueDateWarn.style.display = today > event.detail.value ? "inline-block" : "none";
+    // dueDateWarn.style.display = today > event.detail.value ? "inline-block" : "none";
+    if (today > event.detail.value) {
+      dueDateWarn.classList.add("pdp-remedial-icon");
+    }
+    else {
+      dueDateWarn.classList.remove("pdp-remedial-icon");
+    }
     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
   });
 }
@@ -170,7 +176,7 @@ function cloneObjective(id, title) {
   document.querySelector("#pdpObjectivesLive").prepend(clone);
 
   const dueDateHidden = clone.querySelector(`input[data-objective-type="duedate"]`);
-  const dueDateWarn = clone.querySelector(`.pdp-dates-container > div:last-child > label svg`);
+  const dueDateWarn = clone.querySelector(`summary > span`);
   addDatePicker(clone.querySelector(".pdp-date-picker-container"), id, dueDateHidden, dueDateWarn);
 
   const deleteObjectiveButton = clone.querySelector(`.pdp-delete-objective`);

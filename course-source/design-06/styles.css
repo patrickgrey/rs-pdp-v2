@@ -235,11 +235,12 @@ body.pdp-show-remedial .pdp-remedial {
 }
 
 .pdp-remedial-icon::before {
+  /* display: none; */
+  display: inline-block;
   content: "";
   width: 1rem;
   height: 1rem;
   vertical-align: middle;
-  display: none;
   background-color: #9f1931;
   color: white;
   line-height: 1rem;
