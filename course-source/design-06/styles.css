@@ -391,6 +391,7 @@ h2 svg {
 .pdp-layout aside .pdp-aside-inner {
   height: fit-content;
   background-color: hsl(0, 0%, 95%);
+  background-color: white;
   padding: 0.75rem;
   padding-top: 0.5rem;
 }

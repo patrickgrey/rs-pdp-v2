@@ -82,7 +82,8 @@ body {
 }
 
 body {
-  background-color: white;
+  /* background-color: white; */
+  background-color: hsl(0, 0%, 95%);
   color: var(--ians-colour-grey-dark);
   line-height: 1.7;
   font-family: var(--ians-font-family);
