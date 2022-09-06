@@ -133,12 +133,12 @@ aside a:hover {
 }
 
 aside {
-  word-break: break-all;
+  /* word-break: break-all; */
 }
 
 @screen md {
   aside {
-    word-break: break-all;
+    /* word-break: break-all; */
     /* min-height: calc(100vh - var(--pdp-header-height)); */
   }
 }
