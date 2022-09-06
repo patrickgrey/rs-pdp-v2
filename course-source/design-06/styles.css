@@ -12,6 +12,7 @@
   --pdp-animation-time: 0.3s;
   --pdp-satisfied-box-colour: #b9e4b1;
   --pdp-color-gold: #ffcc00;
+  --pdp-aside-button-size: 2rem;
 
   --duet-color-primary: var(--pdp-input-outline);
   --duet-color-text: #333;
@@ -176,21 +177,71 @@ aside .pdp-aside-button-list li {
   background-color: transparent;
   color: var(--ians-colour-blue-mid);
   border: 0;
-  line-height: 2rem;
-  font-size: 2rem;
+  line-height: var(--pdp-aside-button-size);
+  font-size: var(--pdp-aside-button-size);
   padding: 0.5rem;
 }
 
 .pdp-aside-button,
 .pdp-aside-button svg {
   display: block;
-  width: 2rem;
-  height: 2rem;
+  width: var(--pdp-aside-button-size);
+  height: var(--pdp-aside-button-size);
 }
 
 .pdp-aside-button:hover {
   color: white;
   background-color: var(--ians-colour-blue-dark);
+}
+
+.pdp-add-line-manager-edit {
+  position: relative;
+  background-color: #999;
+  color: white;
+  cursor: not-allowed;
+}
+
+.pdp-add-line-manager-edit:hover {
+  background-color: #999;
+}
+
+.pdp-add-line-manager-li {
+  width: 100%;
+}
+
+.pdp-add-line-manager-edit-container {
+  position: relative;
+  width: 100%;
+}
+
+.pdp-add-line-manager-edit-tooltip {
+  --pdp-tooltip-arrow-height: 1rem;
+  position: absolute;
+  top: calc(var(--pdp-aside-button-size) + var(--pdp-tooltip-arrow-height));
+  left: 0;
+  background-color: var(--pdp-satisfied-box-colour);
+  padding: 1rem;
+  width: 100%;
+  font-size: small;
+  display: none;
+}
+
+.pdp-add-line-manager-edit-tooltip::before {
+  content: "";
+  width: 0;
+  height: 0;
+  border-width: 0 10px 17px 10px;
+  border-color: transparent transparent var(--pdp-satisfied-box-colour)
+    transparent;
+  border-style: solid;
+  position: absolute;
+  top: -10px;
+  left: 1rem;
+  transform: translateX(-50%);
+}
+
+.pdp-add-line-manager-edit:hover + .pdp-add-line-manager-edit-tooltip {
+  display: block;
 }
 
 /* 

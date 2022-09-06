@@ -219,10 +219,10 @@
         <article>
           <form action="https://reqbin.com/echo/post/json" id="pdpFormNew">
             <label for="pdpTitleAdd">
-              <strong>Title of the new Objective</strong>
+              <strong>Add new objective</strong>
             </label>
             <div class="pdp-fieldset-title">
-              <input id="pdpTitleAdd" required type="text">
+              <input id="pdpTitleAdd" required type="text" placeholder="Title of the new Objective">
               <button id="pdpTitleAddButton" type="submit">Add</button>
             </div>
           </form>
@@ -294,7 +294,7 @@
                 DESCRIPTION: This section only shows if manager is logged in.
               -->
             <p class="mt-0">
-              <strong>Staff contact</strong>
+              <strong>Employee contact</strong>
             </p>
             <ul class="pdp-aside-button-list">
               <!-- 
@@ -381,6 +381,29 @@
                 ID: ASIDE-DATA
                 DESCRIPTION: Not sure if this is needed yet
               -->
+
+            <p>
+              <strong>Add line manager &amp; contact details:</strong>
+            </p>
+            <ul class="pdp-aside-button-list">
+              <li class="pdp-add-line-manager-li">
+                <!-- 
+                ***SERVER SIDE INJECT***
+                ID: ASIDE-COACH-EDIT
+                DESCRIPTION: Opens edit window
+              -->
+                <div class="pdp-add-line-manager-edit-container">
+                  <a class="pdp-add-line-manager-edit pdp-aside-button" href="#" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"/>
+                      <line x1="13.5" y1="6.5" x2="17.5" y2="10.5"/>
+                    </svg>
+                    <span class="ians-visually-hidden">Edit coach</span></a>
+                  <p class="pdp-add-line-manager-edit-tooltip">If your line manager indicated here is wrong, please contact Maria Zabati from the ePA team to have the line manager corrected in ePA. This will be reflected in Learning Zone the next day.</p>
+                </div>
+              </li>
+            </ul>
 
             <p>
               <strong>My Coach: </strong>Marine HINTZ</p>
@@ -563,7 +586,7 @@
 
             <div class="mt-1-5 pdp-objective-edit-feedback pdp-print-break">
               <!-- [for] format = "pdpFeedbackObjectiveXXXX" -->
-              <label for="">Feedback<span>Comments from line manager, mentor, coach.</span></label>
+              <label for="">Feedback<span>Comments from line manager or coach.</span></label>
               <!-- [id] format = "pdpFeedbackObjectiveXXXX" -->
               <textarea data-objective-type="feedback" id=""
                   rows="5"></textarea>
