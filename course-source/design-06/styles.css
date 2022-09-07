@@ -100,10 +100,19 @@ header > div:nth-child(1) > img {
   position: absolute;
   top: 0.25rem;
   right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .pdp-print {
   right: 4rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.pdp-help {
+  text-align: center;
+  /* vertical-align: middle; */
 }
 
 .pdp-print svg,
@@ -112,9 +121,14 @@ header > div:nth-child(1) > img {
   height: 2rem;
 }
 
+.pdp-help svg {
+  padding-top: 0.15rem;
+}
+
 .pdp-print:hover,
 .pdp-help:hover {
   color: white;
+  background-color: var(--ians-colour-blue-dark);
 }
 
 /* ....###.....######..####.########..########
@@ -206,7 +220,7 @@ aside .pdp-aside-button-list li {
 }
 
 .pdp-add-line-manager-li {
-  width: 100%;
+  /* width: 100%; */
 }
 
 .pdp-add-line-manager-edit-container {
@@ -221,7 +235,7 @@ aside .pdp-aside-button-list li {
   left: 0;
   background-color: var(--pdp-satisfied-box-colour);
   padding: 1rem;
-  width: 100%;
+  width: 20rem;
   font-size: small;
   display: none;
 }

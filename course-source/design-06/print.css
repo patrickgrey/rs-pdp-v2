@@ -45,6 +45,7 @@ main {
 header {
   position: relative;
   top: 0;
+  box-shadow: none;
 }
 
 .pdp-layout {
@@ -61,24 +62,6 @@ li,
 .pdp-dates-container > div:first-child > p:first-child {
   margin-bottom: 0.25rem;
 }
-
-/* .pdp-objective-form-container {
-  display: grid;
-}
-
-.pdp-edit-title {
-  order: -1;
-} */
-
-/* .pdp-objective-form-container > div > div,
-.pdp-objective-form-container > div,
-label {
-  break-inside: avoid;
-}
-
-.pdp-objective-edit-insights {
-  page-break-after: always;
-} */
 
 .pdpCompetenciesPrint {
   display: none;
@@ -100,10 +83,6 @@ label {
   width: calc(100% - 2rem);
   height: 5rem;
 }
-
-/* #pdpObjectivesArchived input {
-  background-color: white;
-} */
 
 .pdp-date-created {
   margin-top: 3rem;
