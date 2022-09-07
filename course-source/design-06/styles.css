@@ -210,8 +210,8 @@ aside .pdp-aside-button-list li {
 
 .pdp-add-line-manager-edit {
   position: relative;
-  background-color: #999;
-  color: white;
+  background-color: white;
+  color: #999;
   cursor: not-allowed;
 }
 
