@@ -1,3 +1,13 @@
+header {
+  position: relative;
+  top: 0;
+  padding: 0;
+}
+
+main {
+  margin-top: 2rem;
+}
+
 h1 {
   margin-left: 0 !important;
 }
@@ -11,6 +21,11 @@ aside {
   padding: 0 1rem 1rem 1rem;
 }
 
+aside ul {
+  list-style-type: disc;
+  padding-left: 1rem;
+}
+
 @media (min-width: 720px) {
   .pdp-layout {
     display: grid;
@@ -22,8 +37,13 @@ aside {
 
 article {
   margin-bottom: 3rem;
+  padding-bottom: 2rem;
 }
 
 .pdp-print {
   right: 1rem;
 }
+
+/* * {
+  border: 1px solid red;
+} */
