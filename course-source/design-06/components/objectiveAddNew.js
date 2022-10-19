@@ -58,19 +58,19 @@ function addDatePicker(container, id, hidden, dueDateWarn) {
  * @param {HTMLElement} competencyHidden - The hidden input associated with this tree that should update on tree change.
  */
 function addTree(container, id, competencyHidden, competencyPrint) {
-  let tree = new Tree(container, {
-    url: '/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency',
-    closeDepth: 2,
-    onChange: function (event) {
-      competencyHidden.value = this.values;
-      htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
-      let titlesArray = [];
-      this.selectedNodes.forEach((node) => {
-        titlesArray.push(node.text);
-      })
-      competencyPrint.value = titlesArray.join(", ");
-    }
-  });
+  // let tree = new Tree(container, {
+  //   url: '/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency',
+  //   closeDepth: 2,
+  //   onChange: function (event) {
+  //     competencyHidden.value = this.values;
+  //     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
+  //     let titlesArray = [];
+  //     this.selectedNodes.forEach((node) => {
+  //       titlesArray.push(node.text);
+  //     })
+  //     competencyPrint.value = titlesArray.join(", ");
+  //   }
+  // });
 }
 
 /**

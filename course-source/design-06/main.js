@@ -149,12 +149,18 @@ var pageModule = (function () {
 
       // Init dates
       // Changes in the component are sent to the associated hidden field
-      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container duet-date-picker").forEach((container) => {
+      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container").forEach((container) => {
         const picker = document.createElement("duet-date-picker");
+        console.log("picker: ", picker);
         const li = picker.closest("li");
+        console.log("li: ", li);
         const dueDateWarn = li.querySelector(`summary > span`);
+        console.log("dueDateWarn: ", dueDateWarn);
         const hidden = li.querySelector(`input[data-objective-type="duedate"]`);
+        console.log("hidden: ", hidden);
+        console.log("hidden.value: ", hidden.value);
         picker.value = hidden.value;
+        container.appendChild(picker);
         picker.addEventListener("duetChange", function (event) {
           const today = new Date().toISOString().slice(0, 10);
           if (today > event.detail.value) {
@@ -170,20 +176,22 @@ var pageModule = (function () {
 
       // init trees
       // Changes in the component are sent to the associated hidden field
-      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container").forEach(function (container) {
-        const li = container.closest("li")
-        const id = li.dataset.objectiveId;
-        const competencyHidden = li.querySelector(`input[data-objective-type="competency"]`);
-        let tree = new Tree(".pdp-tree-container", {
-          url: '/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency',
-          onChange: function () {
-            competencyHidden.value = this.values;
-            htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
-          }
-        });
-        // Still need to tick values from hidden.
-        tree.values = competencyHidden.value.split(",");
-      })
+      // htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container").forEach(function (container) {
+      //   const li = container.closest("li")
+      //   const id = li.dataset.objectiveId;
+      //   const competencyHidden = li.querySelector(`input[data-objective-type="competency"]`);
+      //   let tree = new Tree(".pdp-tree-container", {
+      //     url: '/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency',
+      //     onChange: function () {
+      //       competencyHidden.value = this.values;
+      //       htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
+      //     },
+      //     loaded: function () {
+      //       // Still need to tick values from hidden.
+      //       tree.values = competencyHidden.value.split(",");
+      //     }
+      //   });
+      // })
     }
     else if (objCount > 1) {
       objectiveDrag.setHiddenOrder();
