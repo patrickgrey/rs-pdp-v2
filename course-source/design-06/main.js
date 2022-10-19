@@ -149,11 +149,13 @@ var pageModule = (function () {
 
       // Init dates
       // Changes in the component are sent to the associated hidden field
-      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container duet-date-picker").forEach((picker) => {
+      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container duet-date-picker").forEach((container) => {
+        const picker = document.createElement("duet-date-picker");
+        const li = picker.closest("li");
+        const dueDateWarn = li.querySelector(`summary > span`);
+        const hidden = li.querySelector(`input[data-objective-type="duedate"]`);
+        picker.value = hidden.value;
         picker.addEventListener("duetChange", function (event) {
-          const li = picker.closest("li");
-          const dueDateWarn = li.querySelector(`summary > span`);
-          const hidden = li.querySelector(`input[data-objective-type="duedate"]`);
           const today = new Date().toISOString().slice(0, 10);
           if (today > event.detail.value) {
             dueDateWarn.classList.add("pdp-remedial-icon");
@@ -161,7 +163,6 @@ var pageModule = (function () {
           else {
             dueDateWarn.classList.remove("pdp-remedial-icon");
           }
-          htm
           hidden.value = event.detail.value;
           htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
         });
@@ -174,18 +175,14 @@ var pageModule = (function () {
         const id = li.dataset.objectiveId;
         const competencyHidden = li.querySelector(`input[data-objective-type="competency"]`);
         let tree = new Tree(".pdp-tree-container", {
-          data: [
-            {
-              id: '-1',
-              text: 'root',
-              children: pdpTreeData
-            }
-          ],
+          url: '/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency',
           onChange: function () {
             competencyHidden.value = this.values;
             htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
           }
         });
+        // Still need to tick values from hidden.
+        tree.values = competencyHidden.value.split(",");
       })
     }
     else if (objCount > 1) {

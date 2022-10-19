@@ -59,13 +59,7 @@ function addDatePicker(container, id, hidden, dueDateWarn) {
  */
 function addTree(container, id, competencyHidden, competencyPrint) {
   let tree = new Tree(container, {
-    data: [
-      {
-        id: '-1',
-        text: 'Competencies',
-        children: pdpTreeData
-      }
-    ],
+    url: '/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency',
     closeDepth: 2,
     onChange: function (event) {
       competencyHidden.value = this.values;
