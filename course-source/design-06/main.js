@@ -134,68 +134,14 @@ import * as print from './components/print.js';
 
 var pageModule = (function () {
   var module = {};
-  module.init = function () {
+  module.init = async function () {
+
+    console.log("Version 20/10 0747");
 
     // Init date pickers
     customElements.define("duet-date-picker", DuetDatePicker);
     // Init autoAnimate
     autoAnimate(pdpObjectivesLive);
-
-    // Initialise SSR Objectives
-    const objCount = document.querySelector("body").dataset.objectiveCount;
-    if (objCount > 0) {
-      // Build model
-      objectiveStore.buildModel();
-
-      // Init dates
-      // Changes in the component are sent to the associated hidden field
-      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container").forEach((container) => {
-        const picker = document.createElement("duet-date-picker");
-        console.log("picker: ", picker);
-        const li = picker.closest("li");
-        console.log("li: ", li);
-        const dueDateWarn = li.querySelector(`summary > span`);
-        console.log("dueDateWarn: ", dueDateWarn);
-        const hidden = li.querySelector(`input[data-objective-type="duedate"]`);
-        console.log("hidden: ", hidden);
-        console.log("hidden.value: ", hidden.value);
-        picker.value = hidden.value;
-        container.appendChild(picker);
-        picker.addEventListener("duetChange", function (event) {
-          const today = new Date().toISOString().slice(0, 10);
-          if (today > event.detail.value) {
-            dueDateWarn.classList.add("pdp-remedial-icon");
-          }
-          else {
-            dueDateWarn.classList.remove("pdp-remedial-icon");
-          }
-          hidden.value = event.detail.value;
-          htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
-        });
-      });
-
-      // init trees
-      // Changes in the component are sent to the associated hidden field
-      // htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container").forEach(function (container) {
-      //   const li = container.closest("li")
-      //   const id = li.dataset.objectiveId;
-      //   const competencyHidden = li.querySelector(`input[data-objective-type="competency"]`);
-      //   let tree = new Tree(".pdp-tree-container", {
-      //     url: '/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency',
-      //     onChange: function () {
-      //       competencyHidden.value = this.values;
-      //       htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
-      //     },
-      //     loaded: function () {
-      //       // Still need to tick values from hidden.
-      //       tree.values = competencyHidden.value.split(",");
-      //     }
-      //   });
-      // })
-    }
-    else if (objCount > 1) {
-      objectiveDrag.setHiddenOrder();
-    }
 
     objectiveAddNew.init();
     activityFeedback.init();
@@ -217,6 +163,81 @@ var pageModule = (function () {
         input.style.display = (input.style.display === 'block') ? 'none' : 'block';
       })
     });
+
+    async function getTreeData() {
+      let url = `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency`;
+      // let url = `./data/competency.json`;
+      const response = await fetch(url);
+      return response.ok ? await response.json() : [];
+    }
+
+    // Initialise SSR Objectives
+    const objCount = document.querySelector("body").dataset.objectiveCount;
+    if (objCount > 0) {
+      // Build model
+      objectiveStore.buildModel();
+
+      // Init dates
+      // Changes in the component are sent to the associated hidden field
+      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container").forEach((container) => {
+        const picker = document.createElement("duet-date-picker");
+        // console.log("picker: ", picker);
+        container.appendChild(picker);
+        const li = picker.closest("li");
+        // console.log("li: ", li);
+        const dueDateWarn = li.querySelector(`summary > span`);
+        // console.log("dueDateWarn: ", dueDateWarn);
+        const hidden = li.querySelector(`input[data-objective-type="duedate"]`);
+        // console.log("hidden: ", hidden);
+        // console.log("hidden.value: ", hidden.value);
+        picker.value = hidden.value;
+        picker.addEventListener("duetChange", function (event) {
+          const today = new Date().toISOString().slice(0, 10);
+          if (today > event.detail.value) {
+            dueDateWarn.classList.add("pdp-remedial-icon");
+          }
+          else {
+            dueDateWarn.classList.remove("pdp-remedial-icon");
+          }
+          hidden.value = event.detail.value;
+          htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.dueDateChangedEvent(hidden));
+        });
+      });
+
+      // init trees
+      // Changes in the component are sent to the associated hidden field
+      const jsonData = await getTreeData();
+      console.log("jsonData: ", jsonData);
+      objectiveAddNew.setTreeData(jsonData);
+
+      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container").forEach(function (container) {
+        if (jsonData.length > 0) {
+          const li = container.closest("li")
+          const id = li.dataset.objectiveId;
+          const competencyHidden = li.querySelector(`input[data-objective-type="competency"]`);
+          let tree = new Tree(".pdp-tree-container", {
+            data: jsonData,
+            closeDepth: 1,
+            onChange: function () {
+              competencyHidden.value = this.values;
+              htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
+            },
+            loaded: function () {
+              // Still need to tick values from hidden.
+              this.values = competencyHidden.value.split(",");
+            }
+          });
+        }
+        else {
+          container.textContent = "Sorry, there was a problem loading the competencies."
+        }
+      })
+    }
+    else if (objCount > 1) {
+      objectiveDrag.setHiddenOrder();
+    }
+
+
 
 
     // JUST FOR DEV - automatically add a new objective

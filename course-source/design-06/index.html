@@ -146,7 +146,7 @@
                  this flag should be added to the <body> tag.
     @param {string} class="pdp-show-remedial"
   -->
-  <body data-objective-count="0" data-objective-archive-count="0"
+  <body data-objective-count="1" data-objective-archive-count="0"
     {% if devStatus.environment != "development" %} class="pdp-build" {% endif %}>
     {% ilpBannerv6 %}
     <header>
@@ -259,7 +259,100 @@
                         element IDs and content.
                 SEE: OBJECTIVE-TEMPLATE
               -->
-              <ul id="pdpObjectivesLive"></ul>
+              <ul id="pdpObjectivesLive">
+
+                <li data-objective-id="2">
+                  <details open="">
+                    <summary>
+                      <span>aaaaaaaaaa</span>
+                    </summary>
+                    <div class="pdp-objective-form-container">
+                      <p class="pdp-date-created">Date created: 2022-08-18</p>
+
+                      <div class="ians-grid-2 pdp-dates-container">
+                        <div>
+
+                          <div class="pdp-objective-satisfied-container">
+                            <!-- [for] format = "pdpSatisfiedObjectiveXXXX" -->
+                            <label class="pdp-objective-satisfied" for="pdpSatisfiedObjective2">
+                              <!-- [id] format = "pdpSatisfiedObjectiveXXXX" -->
+                              <input id="pdpSatisfiedObjective2" type="checkbox" data-objective-type="satisfied">I am
+                satisfied</label>
+                          </div>
+                        </div>
+                        <div>
+                          <!-- [for] format = "pdpDueDateHiddenObjectiveXXXX" -->
+                          <label for="">
+                            <strong>Due date:</strong>
+                          </label>
+                          <!-- [id] format = "pdpDueDateHiddenObjectiveXXXX" -->
+                          <input data-objective-type="duedate" id="pdpdueDateHiddenObjective2" type="hidden" value="2022-10-20">
+                          <div class="pdp-date-picker-container"></div>
+                          <p class="pdp-validation-label pdp-remedial">* required</p>
+                        </div>
+                      </div>
+
+                      <div class="pdp-edit-title mt-1-5">
+                        <!-- [for] format = "pdpTitleObjectiveXXXX" -->
+                        <label for="pdpTitleObjective2">Title</label>
+                        <!-- [id] format = "pdpTitleObjectiveXXXX" -->
+                        <input data-objective-type="title" id="pdpTitleObjective2" autocomplete="off" required="" type="text">
+                      </div>
+
+                      <div class="pdp-objective-edit-description  mt-1-5">
+                        <!-- [for] format = "pdpDescriptionObjectiveXXXX" -->
+                        <label for="pdpDescriptionObjective2">Description<span>What is the goal and desired
+                    results that you would like to achieve?</span></label>
+                        <!-- [id] format = "pdpDescriptionObjectiveXXXX" -->
+                        <textarea data-objective-type="description" id="pdpDescriptionObjective2" rows="5"></textarea>
+                      </div>
+                      <div class="mt-1-5 pdp-objective-edit-actions">
+                        <!-- [for] format = "pdpActionsObjectiveXXXX" -->
+                        <label for="pdpActionsObjective2">Actions<span>What methods will you use to achieve
+                    them? e.g. training, coaching, mentoring, peer support,
+                    on-the-job experiences.</span></label>
+                        <!-- [id] format = "pdpActionsObjectiveXXXX" -->
+                        <textarea data-objective-type="actions" id="pdpActionsObjective2" rows="5"></textarea>
+                      </div>
+                      <div class="mt-1-5 pdp-objective-edit-insights">
+                        <!-- [for] format = "pdpInsightsObjectiveXXXX" -->
+                        <label for="pdpInsightsObjective2">Personal Insights<span>What is the goal and
+                    desired results that you would like to
+                    achieve?</span></label>
+                        <!-- [id] format = "pdpInsightsObjectiveXXXX" -->
+                        <textarea data-objective-type="insights" id="pdpInsightsObjective2" rows="5"></textarea>
+                      </div>
+
+                      <div class="mt-1-5 pdp-objective-edit-feedback pdp-print-break">
+                        <!-- [for] format = "pdpFeedbackObjectiveXXXX" -->
+                        <label for="pdpFeedbackObjective2">Feedback<span>Comments from line manager or coach.</span></label>
+                        <!-- [id] format = "pdpFeedbackObjectiveXXXX" -->
+                        <textarea data-objective-type="feedback" id="pdpFeedbackObjective2" rows="5"></textarea>
+                      </div>
+                      <div class="pdp-tree-fieldset">
+                        <!-- [for] format = "pdpCompetencyObjectiveXXXX" -->
+                        <label for="">Competency<span>Please select the competency that most closely matches this objective.</span></label>
+                        <!-- [id] format = "pdpCompetencyObjectiveXXXX" -->
+                        <input data-objective-type="competency" id="pdpCompetencyHiddenObjective2" type="hidden">
+                        <textarea class="pdp-competencies-print" rows="5"></textarea>
+                        <div class="pdp-tree-container" id="pdpCompetencyObjective2"></div>
+                      </div>
+
+                    </div>
+                  </details>
+
+                  <button class="pdp-drag-handle">
+                    <img aria-hidden="true" src="images/pdp-icon-draggable.svg" alt="Drag me!">
+                    <span class="ians-visually-hidden">Drag</span>
+                  </button>
+
+                  <button class="pdp-delete-objective">
+                    <img aria-hidden="true" src="images/pdp-delete.svg" alt="Delete objective">
+        Delete
+      </button>
+                </li>
+
+              </ul>
             </div>
 
           </form>

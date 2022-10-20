@@ -12,7 +12,7 @@ import * as objectiveStore from './objectiveStore.js';
 // An array of objective objects
 let changedIds = [];
 let timer = null;
-const savingDelay = 10;
+const savingDelay = 5000;
 // Flag to prevent new autosave when waiting to hear back from the API.
 let isSaving = false;
 
