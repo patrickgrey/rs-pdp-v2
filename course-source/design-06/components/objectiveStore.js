@@ -112,16 +112,27 @@ function updateObjectiveCount() {
  * @param {string} title - New objectile added by user.
  */
 async function addObjective(title) {
+
+  const isDev = false;
   // Mock send new objective to server
   await callServer("API Call", serverDelay);
+  let url = `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Objective`;
+  const response = await fetch(url,
+    {
+      method: 'POST',
+      body: JSON.stringify({ title: title })
+    });
   // Mock response
   currentID++;
-  const response = errorFeedback.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok", id: currentID, title: title };
+  // const response = errorFeedback.isError ? { ok: false, statusText: "It all went horribly wrong!" } : { ok: true, id: currentID };
 
-  if (response.status === "ok") {
+  console.log("response:", response);
+
+  if (response.ok) {
+    const data = isDev ? response : await response.json();
     objectives.push({
-      id: response.id.toString(),
-      title: response.title,
+      id: data.id.toString(),
+      title: title,
       satisfied: false,
       duedate: "",
       description: "",
@@ -130,10 +141,10 @@ async function addObjective(title) {
       competency: ""
     });
     updateObjectiveCount();
-    htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent(response.id, response.title));
+    htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent(response.id, title));
   }
   else {
-    errorFeedback.showError(response.message);
+    errorFeedback.showError(`Failed to add objective:` + response.statusText);
     htmlComponents.pdpFormNew.dispatchEvent(customEvents.errorEvent);
   }
 }

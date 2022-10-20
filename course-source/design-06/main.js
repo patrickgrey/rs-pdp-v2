@@ -165,8 +165,8 @@ var pageModule = (function () {
     });
 
     async function getTreeData() {
-      let url = `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency`;
-      // let url = `./data/competency.json`;
+      // let url = `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency`;
+      let url = `./data/competency.json`;
       const response = await fetch(url);
       return response.ok ? await response.json() : [];
     }
@@ -219,6 +219,7 @@ var pageModule = (function () {
             data: jsonData,
             closeDepth: 1,
             onChange: function () {
+              console.log("id: ", this.selectedNodes);
               competencyHidden.value = this.values;
               htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
             },
