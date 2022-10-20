@@ -27,6 +27,8 @@ import * as autosave from './components/autosave.js';
 import * as activityFeedback from './components/feedbackActions.js';
 // Save changes to next meeting date
 import * as nextMeetingDate from './components/nextMeetingDate.js';
+// Allow coach edit to be saved
+import * as editCoach from './components/editCoach.js';
 // UI behaviour when an error occurs
 import * as errorFeedback from './components/feedbackError.js';
 // Deal with printing
@@ -136,7 +138,7 @@ var pageModule = (function () {
   var module = {};
   module.init = async function () {
 
-    console.log("Version 20/10 0747");
+    console.log("Version 20/10 1221");
 
     // Init date pickers
     customElements.define("duet-date-picker", DuetDatePicker);
@@ -165,8 +167,8 @@ var pageModule = (function () {
     });
 
     async function getTreeData() {
-      // let url = `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency`;
-      let url = `./data/competency.json`;
+      let url = objectiveStore.isDev ? `./data/competency.json` : `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency`;
+      // let url = `./data/competency.json`;
       const response = await fetch(url);
       return response.ok ? await response.json() : [];
     }
@@ -238,7 +240,20 @@ var pageModule = (function () {
       objectiveDrag.setHiddenOrder();
     }
 
+    document.querySelector("#cvEditOpenCoach").addEventListener("click", function (event) {
+      event.preventDefault();
+      document.querySelector("#cvCoachEditGroup").style.display = "block";
+    });
 
+
+    document.querySelector(".pdp-add-line-manager-edit").addEventListener("click", function (event) {
+      event.preventDefault();
+    });
+
+    document.querySelector("#cvEditSaveCoach").addEventListener("click", function (event) {
+      event.preventDefault();
+      editCoach.saveCoachUpdate(document.querySelector("#cvLMEditSelect").value);
+    });
 
 
     // JUST FOR DEV - automatically add a new objective

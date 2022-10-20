@@ -626,7 +626,7 @@
                 ID: ASIDE-COACH-EDIT
                 DESCRIPTION: Opens edit window
               -->
-                <a class="pdp-coach-edit pdp-aside-button" href="#" target="_blank">
+                <a id="cvEditOpenCoach" class="pdp-coach-edit pdp-aside-button" href="#" target="_blank">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"/>
@@ -635,6 +635,22 @@
                   <span class="ians-visually-hidden">Edit coach</span></a>
               </li>
             </ul>
+
+            <div id="cvCoachEditGroup" class="cv-lm-edit-group">
+              <label for="cvLMEditSelect">Please choose a Coach:</label>
+              <div class="cv-lm-edit-container">
+                <select id="cvLMEditSelect">
+                  <option value="none">None</option>
+                  <option value="xxx1">Mr XXXX1</option>
+                  <option value="xxx2">Mr XXXX long name long name long name</option>
+                  <option value="xxx3">Mr XXXX3</option>
+                  <option value="xxx4">Mr XXXX4</option>
+                  <option value="xxx5">Mr XXXX5</option>
+                  <option value="xxx6">Mr XXXX6</option>
+                </select>
+              </div>
+              <button type="button" id="cvEditSaveCoach" class="mt-1">Save</button>
+            </div>
 
           </div>
         </aside>

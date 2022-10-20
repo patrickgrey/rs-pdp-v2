@@ -13,6 +13,7 @@ export const pdpCloneDaddy = document.querySelector(".pdp-objective-clone-daddy"
 export const pdpObjectivesLive = document.querySelector("#pdpObjectivesLive");
 export const pdpObjectivesArchived = document.querySelector("#pdpObjectivesArchived");
 export const pdpNextMeetingDate = document.querySelector(`duet-date-picker[identifier="pdpNextMeetingDate"]`);
+export const cvEditSaveCoach = document.querySelector(`#cvEditSaveCoach`);
 export const pdpSaveTick = pdpActivityFeedback.querySelector(".pdp-save-tick");
 export const pdpSaveSaving = pdpActivityFeedback.querySelector(".pdp-save-saving");
 export const pdpSaveWarning = pdpActivityFeedback.querySelector(".pdp-save-warning");

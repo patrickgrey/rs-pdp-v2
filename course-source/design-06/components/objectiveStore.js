@@ -16,6 +16,8 @@ const serverDelay = 1000;
 // Temporary variable to ID objectives until I get IDs back from API
 let currentID = 1;
 
+const isDev = true;
+
 /**
  * Build the local model in memory based on SSR objectives on page.
  */
@@ -113,9 +115,8 @@ function updateObjectiveCount() {
  */
 async function addObjective(title) {
 
-  const isDev = false;
   // Mock send new objective to server
-  await callServer("API Call", serverDelay);
+  // await callServer("API Call", serverDelay);
   let url = `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Objective`;
   const response = await fetch(url,
     {
@@ -196,4 +197,4 @@ async function updateOrder(order) {
   }
 }
 
-export { addObjective, updateObjective, saveObjective, deleteObjective, updateOrder, getObjectiveData, buildModel, updateObjectiveCount }
+export { addObjective, updateObjective, saveObjective, deleteObjective, updateOrder, getObjectiveData, buildModel, updateObjectiveCount, isDev }
