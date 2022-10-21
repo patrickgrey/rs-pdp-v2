@@ -84,10 +84,10 @@ export const objectiveOrderChanged = 'objectiveOrderChanged';
 export const objectiveOrderChangedEvent = new CustomEvent(objectiveOrderChanged);
 
 export const editCoachChanged = 'editCoachChanged';
-export const editCoachChangedEvent = new CustomEvent(editCoachChanged);
+export const editCoachChangedEvent = new CustomEvent(editCoachChanged, { "bubbles": true });
 
 export const editCoachSaved = 'editCoachSaved';
-export const editCoachSavedEvent = new CustomEvent(editCoachSaved);
+export const editCoachSavedEvent = new CustomEvent(editCoachSaved, { "bubbles": true });
 
 export const error = 'error';
 export const errorEvent = new CustomEvent(error);

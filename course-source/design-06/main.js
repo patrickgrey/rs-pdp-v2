@@ -151,6 +151,7 @@ var pageModule = (function () {
     objectiveDrag.init();
     objectiveDelete.init();
     objectiveArchive.init();
+    editCoach.init();
     print.init();
 
     htmlComponents.pdpFormNew.querySelector("input").focus();
@@ -250,10 +251,7 @@ var pageModule = (function () {
       event.preventDefault();
     });
 
-    document.querySelector("#cvEditSaveCoach").addEventListener("click", function (event) {
-      event.preventDefault();
-      editCoach.saveCoachUpdate(document.querySelector("#cvLMEditSelect").value);
-    });
+
 
 
     // JUST FOR DEV - automatically add a new objective

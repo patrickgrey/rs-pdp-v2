@@ -12,7 +12,7 @@ import * as helpers from './helpers.js';
 let objectives = [];
 // The current order of objectives by ID
 let objectivesOrder = [];
-const serverDelay = 1000;
+const serverDelay = 2000;
 // Temporary variable to ID objectives until I get IDs back from API
 let currentID = 1;
 
@@ -115,18 +115,23 @@ function updateObjectiveCount() {
  */
 async function addObjective(title) {
 
-  // Mock send new objective to server
-  // await callServer("API Call", serverDelay);
-  let url = `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Objective`;
-  const response = await fetch(url,
-    {
-      method: 'POST',
-      body: JSON.stringify({ title: title })
-    });
-  // Mock response
-  currentID++;
-  // const response = errorFeedback.isError ? { ok: false, statusText: "It all went horribly wrong!" } : { ok: true, id: currentID };
-
+  // Call server or mock if dev
+  let response;
+  if (!isDev) {
+    let url = `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Objective`;
+    response = await fetch(url,
+      {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: title })
+      });
+  }
+  else {
+    // Mock response
+    await callServer("API Call", serverDelay);
+    currentID++;
+    response = errorFeedback.isError ? { ok: false, statusText: "It all went horribly wrong!" } : { ok: true, id: currentID };
+  }
   console.log("response:", response);
 
   if (response.ok) {

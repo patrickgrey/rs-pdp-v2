@@ -86,6 +86,20 @@ function init() {
     htmlComponents.pdpSaveError.classList.add("pdp-activity-feedback-show");
     setText("Error saving date.");
   });
+
+  htmlComponents.cvEditOpenCoach.addEventListener(customEvents.editCoachChangedEvent, function (event) {
+    console.log("editCoachChangedEvent: ", customEvents.editCoachChangedEvent);
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveSaving.classList.add("pdp-activity-feedback-show");
+    setText("Saving coach edit");
+  });
+
+  htmlComponents.cvEditOpenCoach.addEventListener(customEvents.editCoachSavedEvent, function (event) {
+    console.log("editCoachSavedEvent: ", customEvents.editCoachSavedEvent);
+    removeShowClassFromAll();
+    htmlComponents.pdpSaveTick.classList.add("pdp-activity-feedback-show");
+    setText("New coach saved");
+  });
 }
 
 export { init }
