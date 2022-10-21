@@ -75,7 +75,9 @@ function updateObjective(id, type, newValue) {
  * @param {object} devResponse - A mock object for use in dev testing
  */
 async function callAPI(URL, data, devResponse = {}) {
-  let response;
+  const h1 = document.querySelector("h1");
+  data.personID = h1.dataset.personid;
+  console.log(data)
   if (!isDev) {
     return await fetch(URL,
       {
