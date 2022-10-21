@@ -168,8 +168,7 @@ var pageModule = (function () {
     });
 
     async function getTreeData() {
-      let url = objectiveStore.isDev ? `./data/competency.json` : `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency`;
-      // let url = `./data/competency.json`;
+      const url = objectiveStore.isDev ? `./data/competency.json` : `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Competency`;
       const response = await fetch(url);
       return response.ok ? await response.json() : [];
     }
