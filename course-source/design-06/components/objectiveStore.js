@@ -16,7 +16,7 @@ const serverDelay = 2000;
 // Temporary variable to ID objectives until I get IDs back from API
 let currentID = 1;
 
-const isDev = true;
+const isDev = false;
 
 /**
  * Build the local model in memory based on SSR objectives on page.

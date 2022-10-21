@@ -17,7 +17,6 @@ let currentID = 1;
  */
 async function saveCoachUpdate(coachID) {
   // console.log("coachID: ", coachID);
-  if (coachID === "none") return;
   htmlComponents.cvEditOpenCoach.dispatchEvent(customEvents.editCoachChangedEvent);
 
   // Call server or mock if dev
@@ -52,6 +51,7 @@ function init() {
   htmlComponents.cvEditSaveCoach.addEventListener("click", function (event) {
     event.preventDefault();
     const select = document.querySelector("#cvLMEditSelect");
+    if (select.value === "none") return;
     saveCoachUpdate(select.value);
     document.querySelector("#cvCoachEditGroup").style.display = "none";
     document.querySelector("#pdpCoachName").textContent = select.options[select.selectedIndex].text;
