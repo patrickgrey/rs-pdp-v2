@@ -6,6 +6,7 @@ import * as htmlComponents from './htmlComponents.js';
 import * as customEvents from './customEvents.js';
 import * as helpers from './helpers.js';
 import * as feedbackError from './feedbackError.js';
+import * as objectiveStore from './objectiveStore.js';
 
 /**
  * Call the API to add / update the next meeting date.
@@ -14,11 +15,10 @@ import * as feedbackError from './feedbackError.js';
  */
 async function saveTheDate(date) {
   htmlComponents.pdpNextMeetingDate.dispatchEvent(customEvents.nextMeetingChangedEvent);
-  // Mock send new objective to server
-  await helpers.callServer("Date change API Call", 2000);
-  const response = feedbackError.isError ? { status: "error", message: "It all went horribly wrong!" } : { status: "ok" };
 
-  if (response.status === "ok") {
+  const response = await objectiveStore.callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/UpdateNextMeeting`, { date: date }, { ok: true, date: date });
+
+  if (response.ok) {
     htmlComponents.pdpNextMeetingDate.dispatchEvent(customEvents.nextMeetingSavedEvent);
   }
   else {
