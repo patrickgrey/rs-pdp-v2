@@ -16,7 +16,7 @@ const serverDelay = 2000;
 // Temporary variable to ID objectives until I get IDs back from API
 let currentID = 1;
 
-const isDev = false;
+const isDev = true;
 
 /**
  * Build the local model in memory based on SSR objectives on page.
@@ -66,6 +66,31 @@ function updateObjective(id, type, newValue) {
   console.log(objectives);
 }
 
+/**
+ * Call an API and return the response
+ * @return response
+ * 
+ * @param {string} URL - API URL
+ * @param {object} data - The POST body
+ * @param {object} devResponse - A mock object for use in dev testing
+ */
+async function callAPI(URL, data, devResponse = {}) {
+  let response;
+  if (!isDev) {
+    return await fetch(URL,
+      {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+  }
+  else {
+    // Mock response
+    await callServer("API Call", serverDelay);
+    currentID++;
+    return errorFeedback.isError ? { ok: false, statusText: "It all went horribly wrong!" } : devResponse;
+  }
+}
 
 /**
  * Triggered by the autosave component.
@@ -84,15 +109,11 @@ async function saveObjective(changedIds) {
     dataToSend.push(getObjectiveData(id));
   }
 
-  // console.log(JSON.stringify(dataToSend));
+  // Call server or mock if dev
+  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/UpdateObjective`, dataToSend, { ok: true, id: currentID });
+  console.log("response:", response);
 
-  // Mock send update objective to server
-  await callServer("API Call", serverDelay);
-  // await helpers.asyncTimeout(serverDelay);
-  // Mock response
-  const response = errorFeedback.isError ? { status: "error", message: "Update when wrong!" } : { status: "ok" };
-
-  if (response.status === "ok") {
+  if (response.ok) {
     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.savedEvent);
   }
   else {
@@ -115,23 +136,7 @@ function updateObjectiveCount() {
  */
 async function addObjective(title) {
 
-  // Call server or mock if dev
-  let response;
-  if (!isDev) {
-    let url = `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Objective`;
-    response = await fetch(url,
-      {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: title })
-      });
-  }
-  else {
-    // Mock response
-    await callServer("API Call", serverDelay);
-    currentID++;
-    response = errorFeedback.isError ? { ok: false, statusText: "It all went horribly wrong!" } : { ok: true, id: currentID };
-  }
+  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Objective`, { title: title }, { ok: true, id: currentID });
   console.log("response:", response);
 
   if (response.ok) {
@@ -161,11 +166,9 @@ async function addObjective(title) {
  * @param {string} id - ID of objective to be deleted
  */
 async function deleteObjective(id) {
-  await callServer("Delete API Call", serverDelay);
+  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/DeleteObjective`, { id: id }, { ok: true, id: id });
 
-  const response = errorFeedback.isError ? { status: "error", message: "Delete went horribly wrong!" } : { status: "ok", id: 22 };
-
-  if (response.status === "ok") {
+  if (response.ok) {
     for (let index = 0; index < objectives.length; index++) {
       const element = objectives[index];
       if (element.id.toString() === id.toString()) {
@@ -188,10 +191,8 @@ async function deleteObjective(id) {
  * @param {string} order - array of IDs in order
  */
 async function updateOrder(order) {
-  // Mock send update objective to server
-  await callServer("API Call", serverDelay);
-  // Mock response
-  const response = errorFeedback.isError ? { status: "error", message: "Update when wrong!" } : { status: "ok" };
+  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/UpdateOrder`, { order: order }, { ok: true, id: currentID });
+  console.log("response:", response);
 
   if (response.status === "ok") {
     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.objectiveOrderChangedEvent);
@@ -202,4 +203,4 @@ async function updateOrder(order) {
   }
 }
 
-export { addObjective, updateObjective, saveObjective, deleteObjective, updateOrder, getObjectiveData, buildModel, updateObjectiveCount, isDev }
+export { callAPI, addObjective, updateObjective, saveObjective, deleteObjective, updateOrder, getObjectiveData, buildModel, updateObjectiveCount, isDev }

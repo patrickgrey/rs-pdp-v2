@@ -19,7 +19,9 @@ const buttonHandler = function (event) {
   isDeleting = true;
   if (window.confirm("Are you sure you want to delete this objective?")) {
     event.target.disabled = true;
-    const id = event.target.closest("li").dataset.objectiveId;
+    const li = event.target.closest("li");
+    const id = li.dataset.objectiveId;
+    li.style.display = "none";
     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletingEvent);
     objectiveStore.deleteObjective(id);
   }

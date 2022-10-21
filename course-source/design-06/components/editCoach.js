@@ -16,26 +16,10 @@ let currentID = 1;
  * @param {string} date - New odate in yyyy-mm-dd format
  */
 async function saveCoachUpdate(coachID) {
-  // console.log("coachID: ", coachID);
   htmlComponents.cvEditOpenCoach.dispatchEvent(customEvents.editCoachChangedEvent);
 
-  // Call server or mock if dev
-  let response;
-  if (!objectiveStore.isDev) {
-    let url = `/ilp/customs/Reports/PersonalDevelopmentPlan/Home/EditCoach`;
-    response = await fetch(url,
-      {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ coachID: coachID })
-      });
-  }
-  else {
-    // Mock response
-    await helpers.asyncTimeout(2000);
-    currentID++;
-    response = feedbackError.isError ? { ok: false, statusText: "It all went horribly wrong!" } : { ok: true, id: currentID };
-  }
+  const response = await objectiveStore.callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/EditCoach`, { coachID: coachID }, { ok: true, id: currentID });
+
   console.log("response:", response);
 
   if (response.ok) {
