@@ -16,7 +16,8 @@ const serverDelay = 2000;
 // Temporary variable to ID objectives until I get IDs back from API
 let currentID = 1;
 
-const isDev = true;
+const isDev = !document.body.classList.contains('pdp-build');
+console.log("isDev: ", isDev)
 
 /**
  * Build the local model in memory based on SSR objectives on page.
@@ -76,7 +77,7 @@ function updateObjective(id, type, newValue) {
  */
 async function callAPI(URL, data, devResponse = {}) {
   const h1 = document.querySelector("h1");
-  data.personID = h1.dataset.personid;
+  data.person_id = h1.dataset.personid;
   console.log(data)
   if (!isDev) {
     return await fetch(URL,
@@ -138,13 +139,14 @@ function updateObjectiveCount() {
  */
 async function addObjective(title) {
 
-  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/Objective`, { title: title }, { ok: true, id: currentID });
+  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/CreateObjective`, { title: title }, { ok: true, id: currentID });
   console.log("response:", response);
 
   if (response.ok) {
     const data = isDev ? response : await response.json();
+    console.log("data: ", data);
     objectives.push({
-      id: data.id.toString(),
+      id: data.toString(),
       title: title,
       satisfied: false,
       duedate: "",

@@ -138,7 +138,7 @@ var pageModule = (function () {
   var module = {};
   module.init = async function () {
 
-    console.log("Version 20/10 1221");
+    console.log("Version: ", new Date());
 
     // Init date pickers
     customElements.define("duet-date-picker", DuetDatePicker);
