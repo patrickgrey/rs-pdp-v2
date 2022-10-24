@@ -157,7 +157,7 @@ var pageModule = (function () {
     htmlComponents.pdpFormNew.querySelector("input").focus();
 
     htmlComponents.pdpNextMeetingDate.addEventListener("duetChange", function (event) {
-      nextMeetingDate.saveTheDate(event.value);
+      nextMeetingDate.saveTheDate(event.detail.value);
     });
 
     document.querySelectorAll("aside ul.pdp-supervision-container button").forEach((button) => {
@@ -209,7 +209,7 @@ var pageModule = (function () {
       // init trees
       // Changes in the component are sent to the associated hidden field
       const jsonData = await getTreeData();
-      console.log("jsonData: ", jsonData);
+      // console.log("jsonData: ", jsonData);
       objectiveAddNew.setTreeData(jsonData);
 
       htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container").forEach(function (container) {
@@ -221,7 +221,7 @@ var pageModule = (function () {
             data: jsonData,
             closeDepth: 1,
             onChange: function () {
-              console.log("id: ", this.selectedNodes);
+              // console.log("id: ", this.selectedNodes);
               competencyHidden.value = this.values;
               htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.competencyChangedEvent(competencyHidden));
             },

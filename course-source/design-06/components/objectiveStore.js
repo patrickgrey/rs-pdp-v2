@@ -14,7 +14,7 @@ let objectives = [];
 let objectivesOrder = [];
 const serverDelay = 2000;
 // Temporary variable to ID objectives until I get IDs back from API
-let currentID = 1;
+let currentID = 3;
 
 const isDev = !document.body.classList.contains('pdp-build');
 console.log("isDev: ", isDev)
@@ -25,7 +25,7 @@ console.log("isDev: ", isDev)
 function buildModel() {
   document.querySelectorAll("#pdpObjectivesLive li").forEach((li) => {
     objectives.push({
-      id: li.dataset.objectiveId,
+      objective_id: li.dataset.objectiveId,
       title: "" || li.querySelector(`input[data-objective-type="title"]`).value,
       satisfied: li.querySelector(`input[data-objective-type="satisfied"]`).checked,
       duedate: "" || li.querySelector(`input[data-objective-type="duedate"]`).value,
@@ -51,6 +51,8 @@ async function callServer(url, serverDelay) {
  * @param {string} id - objective ID
  */
 function getObjectiveData(id) {
+  // console.log("objectives: ", objectives);
+  // console.log("getObjectiveData: ", objectives.find(obj => obj.id.toString() === id.toString()))
   return objectives.find(obj => obj.id.toString() === id.toString())
 }
 
@@ -61,10 +63,10 @@ function getObjectiveData(id) {
  * @param {string} type - objective property to update
  * @param {string} newValue - the new value
  */
-function updateObjective(id, type, newValue) {
+function updateObjective(objective_id, type, newValue) {
   // console.log(objectives);
-  getObjectiveData(id)[type] = newValue;
-  console.log(objectives);
+  getObjectiveData(objective_id)[type] = newValue;
+  console.log("objectives: ", objectives);
 }
 
 /**
@@ -78,7 +80,7 @@ function updateObjective(id, type, newValue) {
 async function callAPI(URL, data, devResponse = {}) {
   const h1 = document.querySelector("h1");
   data.person_id = h1.dataset.personid;
-  console.log(data)
+  // console.log(data)
   if (!isDev) {
     return await fetch(URL,
       {
@@ -105,6 +107,8 @@ async function callAPI(URL, data, devResponse = {}) {
  */
 async function saveObjective(changedIds) {
 
+  console.log("changedIds: ", changedIds)
+
   let dataToSend = [];
 
   for (let index = 0; index < changedIds.length; index++) {
@@ -112,8 +116,10 @@ async function saveObjective(changedIds) {
     dataToSend.push(getObjectiveData(id));
   }
 
+  console.log("dataToSend: ", dataToSend)
+
   // Call server or mock if dev
-  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/UpdateObjective`, dataToSend, { ok: true, id: currentID });
+  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/UpdateObjective`, dataToSend, { ok: true, objective_id: currentID });
   console.log("response:", response);
 
   if (response.ok) {
@@ -139,14 +145,14 @@ function updateObjectiveCount() {
  */
 async function addObjective(title) {
 
-  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/CreateObjective`, { title: title }, { ok: true, id: currentID });
-  console.log("response:", response);
+  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/CreateObjective`, { title: title }, { ok: true, objective_id: currentID });
+  // console.log("response:", response);
 
   if (response.ok) {
     const data = isDev ? response : await response.json();
     console.log("data: ", data);
     objectives.push({
-      id: data.toString(),
+      objective_id: data.objective_id.toString(),
       title: title,
       satisfied: false,
       duedate: "",
@@ -156,7 +162,7 @@ async function addObjective(title) {
       competency: ""
     });
     updateObjectiveCount();
-    htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent(response.id, title));
+    htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent(response.objective_id, title));
   }
   else {
     errorFeedback.showError(`Failed to add objective:` + response.statusText);
@@ -170,7 +176,7 @@ async function addObjective(title) {
  * @param {string} id - ID of objective to be deleted
  */
 async function deleteObjective(id) {
-  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/DeleteObjective`, { id: id }, { ok: true, id: id });
+  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/DeleteObjective`, { objective_id: id }, { ok: true, objective_id: id });
 
   if (response.ok) {
     for (let index = 0; index < objectives.length; index++) {
@@ -181,7 +187,7 @@ async function deleteObjective(id) {
       }
     }
     updateObjectiveCount();
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletedEvent(id));
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletedEvent(objective_id));
   }
   else {
     errorFeedback.showError(response.message);
@@ -195,10 +201,10 @@ async function deleteObjective(id) {
  * @param {string} order - array of IDs in order
  */
 async function updateOrder(order) {
-  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/UpdateOrder`, { order: order }, { ok: true, id: currentID });
+  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/UpdateOrder`, { order: order }, { ok: true, order: order });
   console.log("response:", response);
 
-  if (response.status === "ok") {
+  if (response.ok) {
     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.objectiveOrderChangedEvent);
   }
   else {
