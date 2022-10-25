@@ -119,7 +119,7 @@ async function saveObjective(changedIds) {
   console.log("dataToSend: ", dataToSend)
 
   // Call server or mock if dev
-  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/UpdateObjective`, dataToSend, { ok: true, objective_id: currentID });
+  const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/UpdateObjective`, dataToSend, { ok: true, objective_ids: changedIds });
   console.log("response:", response);
 
   if (response.ok) {
