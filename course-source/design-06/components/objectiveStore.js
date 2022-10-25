@@ -111,9 +111,15 @@ async function saveObjective(changedIds) {
 
   let dataToSend = [];
 
+  const h1 = document.querySelector("h1");
+  const person_id = h1.dataset.personid;
+
   for (let index = 0; index < changedIds.length; index++) {
     const id = changedIds[index];
-    dataToSend.push(getObjectiveData(id));
+    const objective = getObjectiveData(id);
+    console.log(objective)
+    objective.person_id = person_id;
+    dataToSend.push(objective);
   }
 
   console.log("dataToSend: ", dataToSend)
