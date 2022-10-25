@@ -51,9 +51,9 @@ async function callServer(url, serverDelay) {
  * @param {string} id - objective ID
  */
 function getObjectiveData(id) {
-  // console.log("objectives: ", objectives);
-  // console.log("getObjectiveData: ", objectives.find(obj => obj.id.toString() === id.toString()))
-  return objectives.find(obj => obj.id.toString() === id.toString())
+  console.log("objectives: ", objectives);
+  console.log("getObjectiveData: ", objectives.find(obj => obj.objective_id.toString() === id.toString()))
+  return objectives.find(obj => obj.objective_id.toString() === id.toString())
 }
 
 /**
@@ -181,7 +181,8 @@ async function deleteObjective(id) {
   if (response.ok) {
     for (let index = 0; index < objectives.length; index++) {
       const element = objectives[index];
-      if (element.id.toString() === id.toString()) {
+      console.log(element);
+      if (element.objective_id.toString() === id.toString()) {
         objectives.splice(index, 1);
         break;
       }

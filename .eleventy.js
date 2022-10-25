@@ -45,6 +45,10 @@ async function imageShortcode(src, alt, cls, sizes, widths, formats) {
 module.exports = function (eleventyConfig) {
   eleventyConfig.setDataDeepMerge(true);
 
+  eleventyConfig.addGlobalData('generated', () => {
+    return new Date().toLocaleString();
+  });
+
   eleventyConfig.addPassthroughCopy(`${source}/index.css`);
   // Shortcodes take care of copying images.
   // What about images for animations???? Shortcode for animations which deal with this?
