@@ -117,7 +117,6 @@ async function saveObjective(changedIds) {
   for (let index = 0; index < changedIds.length; index++) {
     const id = changedIds[index];
     const objective = getObjectiveData(id);
-    console.log(objective)
     objective.person_id = person_id;
     dataToSend.push(objective);
   }
@@ -168,7 +167,7 @@ async function addObjective(title) {
       competency: ""
     });
     updateObjectiveCount();
-    htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent(response.objective_id, title));
+    htmlComponents.pdpFormNew.dispatchEvent(customEvents.addedEvent(data.objective_id.toString(), title));
   }
   else {
     errorFeedback.showError(`Failed to add objective:` + response.statusText);
