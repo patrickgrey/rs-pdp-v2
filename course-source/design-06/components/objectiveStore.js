@@ -184,6 +184,7 @@ async function deleteObjective(id) {
   const response = await callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/DeleteObjective`, { objective_id: id }, { ok: true, objective_id: id });
 
   if (response.ok) {
+    const data = isDev ? response : await response.json();
     for (let index = 0; index < objectives.length; index++) {
       const element = objectives[index];
       console.log(element);
@@ -193,7 +194,7 @@ async function deleteObjective(id) {
       }
     }
     updateObjectiveCount();
-    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletedEvent(objective_id));
+    htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletedEvent(data.objective_id));
   }
   else {
     errorFeedback.showError(response.message);

@@ -236,10 +236,10 @@ aside .pdp-aside-button-list li {
   --pdp-tooltip-arrow-height: 1rem;
   position: absolute;
   top: calc(var(--pdp-aside-button-size) + var(--pdp-tooltip-arrow-height));
-  left: 0;
+  left: -158px;
   background-color: var(--pdp-satisfied-box-colour);
   padding: 1rem;
-  width: 20rem;
+  width: 17rem;
   font-size: small;
   display: none;
   z-index: 1000;
@@ -255,7 +255,7 @@ aside .pdp-aside-button-list li {
   border-style: solid;
   position: absolute;
   top: -10px;
-  left: 1rem;
+  left: 11.45rem;
   transform: translateX(-50%);
 }
 
@@ -386,7 +386,7 @@ body.pdp-show-remedial .pdp-remedial {
   line-height: 1rem;
   padding: 0.5rem;
   margin-right: 0.5rem;
-  background-image: url("images/pdp-icon-remedial.svg");
+  background-image: url("../images/pdp-icon-remedial.svg");
   background-size: 80%;
   background-repeat: no-repeat;
   background-position: center center;
@@ -541,6 +541,7 @@ h2 svg {
     position: fixed;
     top: calc(var(--ilp-height) + var(--pdp-header-height) + 2rem);
     width: calc(30% - 1rem);
+    z-index: 1000;
   }
 
   body.pdp-build .pdp-layout aside .pdp-aside-inner {

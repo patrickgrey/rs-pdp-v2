@@ -181,7 +181,10 @@ var pageModule = (function () {
 
       // Init dates
       // Changes in the component are sent to the associated hidden field
-      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container").forEach((container) => {
+      const liveDates = htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-date-picker-container");
+      const archivedDates = htmlComponents.pdpObjectivesArchived.querySelectorAll(".pdp-date-picker-container");
+      const mergedDates = new Set([...liveDates, ...archivedDates]);
+      mergedDates.forEach((container) => {
         const picker = document.createElement("duet-date-picker");
         // console.log("picker: ", picker);
         container.appendChild(picker);
@@ -212,12 +215,18 @@ var pageModule = (function () {
       // console.log("jsonData: ", jsonData);
       objectiveAddNew.setTreeData(jsonData);
 
-      htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container").forEach(function (container) {
+      const liveContainers = htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container");
+      const archivedContainers = htmlComponents.pdpObjectivesArchived.querySelectorAll(".pdp-tree-container");
+      const mergedContainers = new Set([...liveContainers, ...archivedContainers]);
+      mergedContainers.forEach(function (container) {
         if (jsonData.length > 0) {
           const li = container.closest("li")
           const id = li.dataset.objectiveId;
           const competencyHidden = li.querySelector(`input[data-objective-type="competency"]`);
-          let tree = new Tree(".pdp-tree-container", {
+          // Bug is calling this class only finds the first one
+          // Also Need to deal with archived obs. Get both arrays and merge
+          // Same for dates!
+          let tree = new Tree(`li[data-objective-id="${id}"] .pdp-tree-container`, {
             data: jsonData,
             closeDepth: 1,
             onChange: function () {
