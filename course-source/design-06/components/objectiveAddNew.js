@@ -157,13 +157,14 @@ function cloneObjective(id, title) {
  * Add listeners
  */
 function init() {
+  const addNewInput = htmlComponents.pdpFormNew.querySelector("input");
   // Detect submit from new objective form
   htmlComponents.pdpFormNew.addEventListener(customEvents.added, function (event) {
     cloneObjective(event.detail.id, event.detail.title);
     objectiveDrag.setHiddenOrder();
-    htmlComponents.pdpFormNew.querySelector("input").value = "";
+    addNewInput.value = "";
     enableForm();
-    htmlComponents.pdpFormNew.querySelector("input").focus();
+    addNewInput.focus();
   });
 
   // Re-enable form so user can try again.
@@ -174,13 +175,16 @@ function init() {
   // New objective submitted
   htmlComponents.pdpTitleAddButton.addEventListener("click", function (event) {
     event.preventDefault();
+    const value = addNewInput.value.replaceAll(" ", "");
     // Force show validation message.
-    if (htmlComponents.pdpFormNew.querySelector("input").value === "") {
+    if (value === "") {
+      addNewInput.value = value;
+      addNewInput.focus();
       htmlComponents.pdpFormNew.reportValidity();
     }
     else {
       disableForm();
-      const title = htmlComponents.pdpFormNew.querySelector("input").value;
+      const title = addNewInput.value;
       objectiveStore.addObjective(title);
       htmlComponents.pdpFormNew.dispatchEvent(customEvents.addingEvent);
     }
