@@ -27,7 +27,7 @@ let isSaving = false;
  * @return {boolean} Is it a change?
  */
 function checkValueHasChanged(id, type, newValue) {
-  console.log("os.getObjectiveData: ", objectiveStore.getObjectiveData(id)[type])
+  // console.log("os.getObjectiveData: ", objectiveStore.getObjectiveData(id)[type])
   return objectiveStore.getObjectiveData(id)[type] != newValue;
 }
 
@@ -39,11 +39,11 @@ function checkValueHasChanged(id, type, newValue) {
  */
 function updateObjective(target) {
   const id = target.closest("li").dataset.objectiveId;
-  console.log("id: ", id);
+  // console.log("id: ", id);
   const type = target.dataset.objectiveType;
-  console.log("type: ", type);
+  // console.log("type: ", type);
   const newValue = type === "satisfied" ? target.checked : target.value;
-  console.log("newValue: ", newValue);
+  // console.log("newValue: ", newValue);
   if (!checkValueHasChanged(id, type, newValue)) return;
   if (!changedIds.includes(id)) changedIds.push(id);
   htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.updatingEvent);

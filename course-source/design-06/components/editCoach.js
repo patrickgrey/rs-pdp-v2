@@ -20,7 +20,7 @@ async function saveCoachUpdate(coachID) {
 
   const response = await objectiveStore.callAPI(`/ilp/customs/Reports/PersonalDevelopmentPlan/Home/EditCoach`, { coachID: coachID }, { ok: true, id: currentID });
 
-  console.log("response:", response);
+  // console.log("response:", response);
 
   if (response.ok) {
     htmlComponents.cvEditOpenCoach.dispatchEvent(customEvents.editCoachSavedEvent);
@@ -35,7 +35,7 @@ function init() {
   htmlComponents.cvEditSaveCoach.addEventListener("click", function (event) {
     event.preventDefault();
     const select = document.querySelector("#cvLMEditSelect");
-    if (select.value === "none") return;
+    // if (select.value === "none") return;
     saveCoachUpdate(select.value);
     document.querySelector("#cvCoachEditGroup").style.display = "none";
     document.querySelector("#pdpCoachName").textContent = select.options[select.selectedIndex].text;
