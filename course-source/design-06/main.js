@@ -173,6 +173,9 @@ var pageModule = (function () {
       return response.ok ? await response.json() : [];
     }
 
+    const jsonData = await getTreeData();
+    objectiveAddNew.setTreeData(jsonData);
+
     // Initialise SSR Objectives
     const objCount = document.querySelector("body").dataset.objectiveCount;
     if (objCount > 0) {
@@ -211,9 +214,7 @@ var pageModule = (function () {
 
       // init trees
       // Changes in the component are sent to the associated hidden field
-      const jsonData = await getTreeData();
-      // console.log("jsonData: ", jsonData);
-      objectiveAddNew.setTreeData(jsonData);
+
 
       const liveContainers = htmlComponents.pdpFormObjectives.querySelectorAll(".pdp-tree-container");
       const archivedContainers = htmlComponents.pdpObjectivesArchived.querySelectorAll(".pdp-tree-container");

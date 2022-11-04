@@ -23,7 +23,7 @@ const isDev = !document.body.classList.contains('pdp-build');
  * Build the local model in memory based on SSR objectives on page.
  */
 function buildModel() {
-  document.querySelectorAll("#pdpObjectivesLive li").forEach((li) => {
+  document.querySelectorAll("#pdpObjectivesLive li, #pdpObjectivesArchivedContainer li").forEach((li) => {
     objectives.push({
       objective_id: li.dataset.objectiveId,
       title: "" || li.querySelector(`input[data-objective-type="title"]`).value,

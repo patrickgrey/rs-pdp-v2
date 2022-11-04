@@ -150,7 +150,7 @@ date: Last Modified
                  this flag should be added to the <body> tag.
     @param {string} class="pdp-show-remedial"
   -->
-  <body data-objective-count="1" data-objective-archive-count="0"
+  <body data-objective-count="0" data-objective-archive-count="0"
     {% if devStatus.environment != "development" %} class="pdp-build" {% endif %}>
     {% ilpBannerv6 %}
     <header>
@@ -265,7 +265,7 @@ date: Last Modified
               -->
               <ul id="pdpObjectivesLive">
 
-                <li data-objective-id="2">
+                {# <li data-objective-id="2">
                   <details open="">
                     <summary>
                       <span>aaaaaaaaaa</span>
@@ -354,7 +354,7 @@ date: Last Modified
                     <img aria-hidden="true" src="images/pdp-delete.svg" alt="Delete objective">
         Delete
       </button>
-                </li>
+                </li> #}
 
               </ul>
             </div>
@@ -571,7 +571,7 @@ date: Last Modified
                 DESCRIPTION: Coach teams address
               -->
               <li>
-                <a class="pdp-coach-teams pdp-aside-button" href="https://teams.microsoft.com/l/chat/0/0?users=user@domain.com" target="_blank">
+                <a id="pdpCoachTeams" class="pdp-coach-teams pdp-aside-button" href="https://teams.microsoft.com/l/chat/0/0?users=user@domain.com" target="_blank">
                   <?xml version="1.0" encoding="utf-8"?>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2228.833 2073.333">
                     <path fill="#5059C9" d="M1554.637,777.5h575.713c54.391,0,98.483,44.092,98.483,98.483c0,0,0,0,0,0v524.398	c0,199.901-162.051,361.952-361.952,361.952h0h-1.711c-199.901,0.028-361.975-162-362.004-361.901c0-0.017,0-0.034,0-0.052V828.971	C1503.167,800.544,1526.211,777.5,1554.637,777.5L1554.637,777.5z"/>
@@ -603,7 +603,7 @@ date: Last Modified
                 DESCRIPTION: Coach email address
               -->
               <li>
-                <a class="pdp-coach-email pdp-aside-button" href="mailto:patrick.grey.ext@eurocontrol.int" target="_blank">
+                <a id="pdpCoachEmail" class="pdp-coach-email pdp-aside-button" href="mailto:patrick.grey.ext@eurocontrol.int" target="_blank">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-mail" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <rect x="3" y="5" width="18" height="14" rx="2"/>
@@ -617,7 +617,7 @@ date: Last Modified
                 DESCRIPTION: Coach phone number
               -->
               <li>
-                <a class="pdp-coach-tel pdp-aside-button" href="tel:000000" target="_blank">
+                <a id="pdpCoachTel" class="pdp-coach-tel pdp-aside-button" href="tel:000000" target="_blank">
                   <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-phone" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/>

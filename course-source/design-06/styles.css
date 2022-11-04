@@ -207,6 +207,10 @@ aside .pdp-aside-button-list li {
   height: var(--pdp-aside-button-size);
 }
 
+.pdp-aside-button svg {
+  pointer-events: none;
+}
+
 .pdp-aside-button:hover {
   color: white;
   background-color: var(--ians-colour-blue-dark);
@@ -261,6 +265,13 @@ aside .pdp-aside-button-list li {
 
 .pdp-add-line-manager-edit:hover + .pdp-add-line-manager-edit-tooltip {
   display: block;
+}
+
+.pdp-link-disabled {
+  /* background-color: #fff;
+  color: #999; */
+  filter: grayscale(100%);
+  cursor: not-allowed;
 }
 
 .cv-lm-edit-group {

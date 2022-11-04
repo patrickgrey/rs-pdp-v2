@@ -27,7 +27,12 @@ let isSaving = false;
  * @return {boolean} Is it a change?
  */
 function checkValueHasChanged(id, type, newValue) {
-  // console.log("os.getObjectiveData: ", objectiveStore.getObjectiveData(id)[type])
+  console.log("id: ", id);
+  console.log("type: ", type);
+  console.log("newValue: ", newValue);
+  console.log("os.getObjectiveData: ", objectiveStore.getObjectiveData)
+  console.log("os.getObjectiveData(id): ", objectiveStore.getObjectiveData(id))
+  console.log("os.getObjectiveData return: ", objectiveStore.getObjectiveData(id)[type])
   return objectiveStore.getObjectiveData(id)[type] != newValue;
 }
 
