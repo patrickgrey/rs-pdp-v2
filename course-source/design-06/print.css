@@ -56,7 +56,7 @@ li,
 #pdpFormObjectives #pdpObjectivesLive > li,
 #pdpObjectivesArchived > li {
   background-color: #fff;
-  page-break-after: always;
+  /* page-break-after: always; */
 }
 
 .pdp-dates-container > div:first-child > p:first-child {
@@ -68,7 +68,7 @@ li,
 }
 
 .pdp-print-break {
-  page-break-inside: avoid;
+  /* page-break-inside: avoid; */
 }
 
 .pdp-objective-form-container {
