@@ -62,6 +62,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy(`${source}/**/*.avif`);
   eleventyConfig.addPassthroughCopy(`${source}/**/*.mp3`);
   eleventyConfig.addPassthroughCopy(`${source}/**/*.pdf`);
+  eleventyConfig.addPassthroughCopy(`${source}/**/*.json`);
 
   // eleventyConfig.addWatchTarget(`./${source}/index.css`);
   // eleventyConfig.addWatchTarget(`./${source}/**/*.css`);

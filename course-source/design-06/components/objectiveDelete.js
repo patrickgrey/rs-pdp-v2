@@ -25,6 +25,9 @@ const buttonHandler = function (event) {
     htmlComponents.pdpFormObjectives.dispatchEvent(customEvents.deletingEvent);
     objectiveStore.deleteObjective(id);
   }
+  else {
+    isDeleting = false;
+  }
 }
 
 const init = () => {
