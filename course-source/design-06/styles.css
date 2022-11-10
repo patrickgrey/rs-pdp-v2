@@ -924,7 +924,7 @@ body[data-objective-count="1"]
   border-top-right-radius: calc(var(--border-radius) - 1px);
 }
 
-body[data-is-manager="true"]
+body[data-is-manager="True"]
   #pdpFormObjectives
   #pdpObjectivesLive
   > li

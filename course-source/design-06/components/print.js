@@ -68,7 +68,21 @@ function handleBeforeprint(event) {
   main.querySelectorAll("li[data-objective-id]").forEach((li) => {
     createPrintElements(printContainer, li);
     // Get data model from add objective
-    const ids = li.querySelector(`[data-objective-type="competency"]`).value.split(",");
+
+    const competenceParagraph = document.createElement("p");
+    competenceParagraph.classList.add("pdp-print-break");
+
+    const hiddenCompetency = li.querySelector(`[data-objective-type="competency"]`);
+
+    if (hiddenCompetency.value === "") {
+      competenceParagraph.innerHTML = `<strong>Competencies</strong>:`;
+      printContainer.append(competenceParagraph);
+      return;
+    };
+
+    const ids = hiddenCompetency.value.split(",");
+
+
 
     let competenceString = ``;
 
@@ -77,8 +91,6 @@ function handleBeforeprint(event) {
     });
     competenceString = competenceString.slice(0, -2);
 
-    const competenceParagraph = document.createElement("p");
-    competenceParagraph.classList.add("pdp-print-break");
     competenceParagraph.innerHTML = `<strong>Competencies</strong>: ${competenceString}`;
     printContainer.append(competenceParagraph);
   });
