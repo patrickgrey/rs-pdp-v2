@@ -191,4 +191,4 @@ function init() {
   });
 }
 
-export { init, setTreeData }
+export { init, setTreeData, treeData }
