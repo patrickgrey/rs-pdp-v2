@@ -250,7 +250,7 @@ var pageModule = (function () {
       objectiveDrag.setHiddenOrder();
     }
 
-    document.querySelector("#cvEditOpenCoach").addEventListener("click", function (event) {
+    document.querySelector("#cvEditOpenCoach")?.addEventListener("click", function (event) {
       event.preventDefault();
       document.querySelector("#cvCoachEditGroup").style.display = "block";
     });

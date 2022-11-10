@@ -145,7 +145,7 @@ function cloneObjective(id, title) {
   addDatePicker(clone.querySelector(".pdp-date-picker-container"), id, dueDateHidden, dueDateWarn);
 
   const deleteObjectiveButton = clone.querySelector(`.pdp-delete-objective`);
-  deleteObjectiveButton.addEventListener("click", objectiveDelete.buttonHandler);
+  deleteObjectiveButton?.addEventListener("click", objectiveDelete.buttonHandler);
 
   const competencyHidden = clone.querySelector(`input[data-objective-type="competency"]`);
   const competencyPrint = clone.querySelector(`textarea.pdp-competencies-print`);

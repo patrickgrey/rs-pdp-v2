@@ -45,7 +45,7 @@ const init = () => {
 
   // Add event listeners to obs already in DOM.
   document.querySelectorAll(`.pdp-delete-objective`).forEach((button) => {
-    button.addEventListener("click", buttonHandler);
+    button?.addEventListener("click", buttonHandler);
   });
 
 };
