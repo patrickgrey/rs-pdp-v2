@@ -1021,9 +1021,68 @@ body[data-objective-count="1"]
   border-radius: var(--border-radius);
 }
 
-.pdp-tree-container ul:first-child {
+.pdp-tree-container > .treejs > ul {
   padding-left: 0;
 }
+
+.treejs .treejs-disable-label {
+  vertical-align: middle;
+  cursor: not-allowed;
+}
+
+.treejs .treejs-disable-checkbox {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  position: relative;
+  cursor: not-allowed;
+}
+
+.treejs .treejs-disable-checkbox:before {
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: absolute;
+  top: 2px;
+  content: " ";
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.treejs .treejs-disable-checkbox:before {
+  background-color: #fff;
+}
+
+/* .pdp-tree-container > .treejs > ul > li {
+  position: relative;
+}
+
+.pdp-tree-container > .treejs > ul > li > span.treejs-checkbox,
+.pdp-tree-container > .treejs > ul > li > span.treejs-label {
+  position: relative;
+  cursor: not-allowed !important;
+  pointer-events: none;
+}
+
+.pdp-tree-container > .treejs > ul > li::after {
+  content: "";
+  display: block;
+  background-color: red;
+  height: 20px;
+  width: calc(100% - 20px);
+  position: absolute;
+  left: 20px;
+  top: 0;
+  cursor: not-allowed !important;
+  pointer-events: none;
+  z-index: 2000;
+} */
 
 .treejs .treejs-checkbox:before {
   background-color: #fff;

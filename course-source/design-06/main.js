@@ -265,22 +265,28 @@ var pageModule = (function () {
 
     // JUST FOR DEV - automatically add a new objective
 
+    // pdp-build
 
-    // document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
-    //   document.querySelector("body").classList.toggle("pdp-show-remedial");
-    // });
+    if (!document.body.classList.contains('pdp-build')) {
+      // do some stuff
 
-    // document.querySelector("#pdpError").addEventListener("click", function (event) {
-    //   errorFeedback.toggleError();
-    // });
 
-    // for (let index = 0; index < 1; index++) {
-    //   setTimeout(function () {
-    //     htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
-    //     htmlComponents.pdpTitleAddButton.click();
-    //   }, (1500 * index));
-    // }
+      // document.querySelector("#pdpRemedial").addEventListener("click", function (event) {
+      //   document.querySelector("body").classList.toggle("pdp-show-remedial");
+      // });
 
+      // document.querySelector("#pdpError").addEventListener("click", function (event) {
+      //   errorFeedback.toggleError();
+      // });
+
+      for (let index = 0; index < 1; index++) {
+        setTimeout(function () {
+          htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
+          htmlComponents.pdpTitleAddButton.click();
+        }, (1500 * index));
+      }
+
+    }
 
 
     // JUST FOR DEV

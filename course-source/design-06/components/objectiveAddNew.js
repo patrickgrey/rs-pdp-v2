@@ -56,6 +56,25 @@ function addDatePicker(container, id, hidden, dueDateWarn) {
   });
 }
 
+function treeDisableTopLevel() {
+  document.querySelectorAll(".pdp-tree-container").forEach(treeContainer => {
+    treeContainer.querySelectorAll(".treejs > .treejs-nodes > li").forEach(firstLevelNode => {
+      const checkbox = firstLevelNode.querySelector(".treejs-checkbox");
+      const label = firstLevelNode.querySelector(".treejs-label");
+      const switcher = firstLevelNode.querySelector(".treejs-switcher");
+
+      checkbox.classList.remove("treejs-checkbox");
+      checkbox.classList.add("treejs-disabled-checkbox");
+      label.classList.remove("treejs-label");
+      label.classList.add("treejs-disabled-label");
+
+      label.addEventListener("click", function (event) {
+        switcher.click();
+      })
+    });
+  });
+}
+
 /**
  * Initialise a dynamically added competency tree to the clone.
  * 
@@ -75,8 +94,13 @@ function addTree(container, id, competencyHidden, competencyPrint) {
         titlesArray.push(node.text);
       })
       competencyPrint.value = titlesArray.join(", ");
+    },
+    loaded: function () {
+      treeDisableTopLevel();
     }
   });
+
+  // tree.disables = ['4605210'];
 }
 
 /**
