@@ -62,6 +62,7 @@ function getObjects(obj, key, val) {
 
 function handleBeforeprint(event) {
   printContainer = document.createElement("div");
+  printContainer.id = "pdpPrintContainer"
   htmlComponents.pdpFormObjectives.append(printContainer);
   const main = document.querySelector("#pdpObjectivesLive");
   const treeData = objectiveAddNew.treeData;

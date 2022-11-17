@@ -150,7 +150,7 @@ date: Last Modified
                  this flag should be added to the <body> tag.
     @param {string} class="pdp-show-remedial"
   -->
-  <body data-is-manager="true" data-objective-count="0" data-objective-archive-count="0"
+  <body data-is-manager="false" data-objective-count="0" data-objective-archive-count="0"
     {% if devStatus.environment != "development" %} class="pdp-build" {% endif %}>
     {% ilpBannerv6 %}
     <header>
@@ -749,9 +749,7 @@ date: Last Modified
             </div>
             <div class="mt-1-5 pdp-objective-edit-insights">
               <!-- [for] format = "pdpInsightsObjectiveXXXX" -->
-              <label for="">Personal Insights<span>What is the goal and
-                    desired results that you would like to
-                    achieve?</span></label>
+              <label for="">Personal Insights<span>Capture accomplishments and reflections on the impact of experiences, skills, and knowledge gained along the way.</span></label>
               <!-- [id] format = "pdpInsightsObjectiveXXXX" -->
               <textarea data-objective-type="insights" id=""
                   rows="5"></textarea>
@@ -781,11 +779,11 @@ date: Last Modified
           <span class="ians-visually-hidden">Drag</span>
         </button>
 
-        {# <button class="pdp-delete-objective">
+        <button class="pdp-delete-objective">
           <img aria-hidden="true" src="images/pdp-delete.svg"
           alt="Delete objective">
         Delete
-      </button> #}
+      </button>
       </li>
     </div>
 

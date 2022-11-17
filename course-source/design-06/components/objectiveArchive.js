@@ -9,8 +9,10 @@ import * as objectiveDrag from './objectiveDrag.js';
  * Update the count attributes for each list in the body tag.
  */
 function updateCount() {
-  document.querySelector(`body`).dataset.objectiveArchiveCount = htmlComponents.pdpObjectivesArchived.querySelectorAll(`li`).length;
-  objectiveStore.updateObjectiveCount();
+  console.log("Updating count")
+  document.querySelector(`body`).dataset.objectiveArchiveCount = htmlComponents.pdpObjectivesArchived.querySelectorAll(`li[data-objective-id]`).length;
+  document.querySelector(`body`).dataset.objectiveCount = htmlComponents.pdpObjectivesLive.querySelectorAll(`li[data-objective-id]`).length;
+  // objectiveStore.updateObjectiveCount();
 }
 
 const init = () => {
@@ -22,6 +24,7 @@ const init = () => {
      * so it can be undone.
      */
     if (input.dataset.objectiveType === "satisfied") {
+
       const li = input.closest(`li`);
       const details = li.querySelector(`details`);
       details.open = false;
