@@ -1025,9 +1025,10 @@ body[data-objective-count="1"]
   padding-left: 0;
 }
 
-.treejs .treejs-disable-label {
-  vertical-align: middle;
-  cursor: not-allowed;
+.treejs .treejs-disabled-label {
+  /* vertical-align: middle;
+  cursor: not-allowed; */
+  color: var(--ians-colour-blue-light);
 }
 
 .treejs .treejs-disable-checkbox {
