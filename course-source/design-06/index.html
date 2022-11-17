@@ -150,7 +150,7 @@ date: Last Modified
                  this flag should be added to the <body> tag.
     @param {string} class="pdp-show-remedial"
   -->
-  <body data-is-manager="false" data-objective-count="0" data-objective-archive-count="0"
+  <body data-is-manager="false" data-objective-count="1" data-objective-archive-count="0"
     {% if devStatus.environment != "development" %} class="pdp-build" {% endif %}>
     {% ilpBannerv6 %}
     <header>
@@ -265,7 +265,7 @@ date: Last Modified
               -->
               <ul id="pdpObjectivesLive">
 
-                {# <li data-objective-id="2">
+                <li data-objective-id="2">
                   <details open="">
                     <summary>
                       <span>aaaaaaaaaa</span>
@@ -354,7 +354,7 @@ date: Last Modified
                     <img aria-hidden="true" src="images/pdp-delete.svg" alt="Delete objective">
         Delete
       </button>
-                </li> #}
+                </li>
 
               </ul>
             </div>
