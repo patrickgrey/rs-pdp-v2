@@ -10,7 +10,10 @@
   --pdp-header-height: 85px;
   --pdp-objective-drag-size: 60px;
   --pdp-animation-time: 0.3s;
-  --pdp-satisfied-box-colour: #b9e4b1;
+  /* --pdp-satisfied-box-colour: #b9e4b1; */
+  /* --pdp-satisfied-box-colour: #a9be45; */
+  /* --pdp-satisfied-box-colour: rgba(169, 190, 69, 0.7); */
+  --pdp-satisfied-box-colour: #becd7c;
   --pdp-color-gold: #ffcc00;
   --pdp-aside-button-size: 2rem;
 
@@ -601,6 +604,8 @@ article {
   position: relative;
   background-color: var(--pdp-satisfied-box-colour);
   padding: 1rem;
+  /* color: white; */
+  /* text-shadow: 1px 1px black; */
 }
 
 .pdp-philosophy p:first-child {
@@ -1146,6 +1151,11 @@ body[data-objective-count="1"]
   display: flex;
   align-items: flex-end;
 }
+
+/* #pdpFormObjectives #pdpObjectivesLive > li label.pdp-objective-satisfied,
+#pdpFormObjectives #pdpObjectivesLive > li label.pdp-objective-satisfied:hover {
+  color: white !important;
+} */
 
 .pdp-objective-satisfied,
 #pdpObjectivesArchived .pdp-objective-satisfied {
