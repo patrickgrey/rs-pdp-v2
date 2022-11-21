@@ -72,6 +72,9 @@ function treeDisableTopLevel() {
     label.classList.remove("treejs-label");
     label.classList.add("treejs-disabled-label");
 
+    // Add class to LI
+    // That class has a pseudo elemet that triggers switcher
+
     label.addEventListener("click", function (event) {
       switcher.click();
     })

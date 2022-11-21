@@ -10,10 +10,10 @@
   --pdp-header-height: 85px;
   --pdp-objective-drag-size: 60px;
   --pdp-animation-time: 0.3s;
-  /* --pdp-satisfied-box-colour: #b9e4b1; */
+  --pdp-satisfied-box-colour: #b9e4b1;
   /* --pdp-satisfied-box-colour: #a9be45; */
   /* --pdp-satisfied-box-colour: rgba(169, 190, 69, 0.7); */
-  --pdp-satisfied-box-colour: #becd7c;
+  /* --pdp-satisfied-box-colour: #becd7c; */
   --pdp-color-gold: #ffcc00;
   --pdp-aside-button-size: 2rem;
 

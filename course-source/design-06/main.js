@@ -280,12 +280,12 @@ var pageModule = (function () {
       //   errorFeedback.toggleError();
       // });
 
-      // for (let index = 0; index < 1; index++) {
-      //   setTimeout(function () {
-      //     htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
-      //     htmlComponents.pdpTitleAddButton.click();
-      //   }, (1500 * index));
-      // }
+      for (let index = 0; index < 1; index++) {
+        setTimeout(function () {
+          htmlComponents.pdpTitleAdd.value = `This objective is called ${helpers.generateString(5)} and the aim is to ${helpers.generateString(20)}`;
+          htmlComponents.pdpTitleAddButton.click();
+        }, (1500 * index));
+      }
 
     }
 
