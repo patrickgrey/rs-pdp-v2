@@ -64,9 +64,12 @@ function handleBeforeprint(event) {
   printContainer = document.createElement("div");
   printContainer.id = "pdpPrintContainer"
   htmlComponents.pdpFormObjectives.append(printContainer);
-  const main = document.querySelector("#pdpObjectivesLive");
+  // const main = document.querySelector("#pdpObjectivesLive");
+  const mergedContainers = new Set([...htmlComponents.pdpObjectivesLive.querySelectorAll("li[data-objective-id]"), ...htmlComponents.pdpObjectivesArchived.querySelectorAll("li[data-objective-id]")]);
+
+
   const treeData = objectiveAddNew.treeData;
-  main.querySelectorAll("li[data-objective-id]").forEach((li) => {
+  mergedContainers.forEach((li) => {
     createPrintElements(printContainer, li);
     // Get data model from add objective
 
