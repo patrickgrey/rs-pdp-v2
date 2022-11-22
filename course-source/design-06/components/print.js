@@ -65,38 +65,44 @@ function handleBeforeprint(event) {
   printContainer.id = "pdpPrintContainer"
   htmlComponents.pdpFormObjectives.append(printContainer);
   // const main = document.querySelector("#pdpObjectivesLive");
-  const mergedContainers = new Set([...htmlComponents.pdpObjectivesLive.querySelectorAll("li[data-objective-id]"), ...htmlComponents.pdpObjectivesArchived.querySelectorAll("li[data-objective-id]")]);
+  // const mergedContainers = new Set([...htmlComponents.pdpObjectivesLive?.querySelectorAll("li[data-objective-id]"), ...htmlComponents.pdpObjectivesArchived?.querySelectorAll("li[data-objective-id]")]);
 
 
   const treeData = objectiveAddNew.treeData;
-  mergedContainers.forEach((li) => {
-    createPrintElements(printContainer, li);
-    // Get data model from add objective
+  // mergedContainers.forEach((li) => {
+  document.querySelectorAll("li[data-objective-id]").forEach((li) => {
+    if (li.dataset.objectiveId != "") {
+      console.log("li: ", li);
 
-    const competenceParagraph = document.createElement("p");
-    competenceParagraph.classList.add("pdp-print-break");
 
-    const hiddenCompetency = li.querySelector(`[data-objective-type="competency"]`);
+      createPrintElements(printContainer, li);
+      // Get data model from add objective
 
-    if (hiddenCompetency.value === "") {
-      competenceParagraph.innerHTML = `<strong>Competencies</strong>:`;
+      const competenceParagraph = document.createElement("p");
+      competenceParagraph.classList.add("pdp-print-break");
+
+      const hiddenCompetency = li.querySelector(`[data-objective-type="competency"]`);
+
+      if (hiddenCompetency.value === "") {
+        competenceParagraph.innerHTML = `<strong>Competencies</strong>:`;
+        printContainer.append(competenceParagraph);
+        return;
+      };
+
+      const ids = hiddenCompetency.value.split(",");
+
+
+
+      let competenceString = ``;
+
+      ids.forEach(id => {
+        competenceString += getObjects(treeData, 'id', id)[0].text + ", ";
+      });
+      competenceString = competenceString.slice(0, -2);
+
+      competenceParagraph.innerHTML = `<strong>Competencies</strong>: ${competenceString}`;
       printContainer.append(competenceParagraph);
-      return;
-    };
-
-    const ids = hiddenCompetency.value.split(",");
-
-
-
-    let competenceString = ``;
-
-    ids.forEach(id => {
-      competenceString += getObjects(treeData, 'id', id)[0].text + ", ";
-    });
-    competenceString = competenceString.slice(0, -2);
-
-    competenceParagraph.innerHTML = `<strong>Competencies</strong>: ${competenceString}`;
-    printContainer.append(competenceParagraph);
+    }
   });
   // Printed on 25/08/2022 16:10 by Nadine HENGEN
   // Data Privacy: This document contains personal data, it should be kept private and destroyed
