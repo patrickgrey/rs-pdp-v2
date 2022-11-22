@@ -130,15 +130,7 @@ function handleBeforeprint(event) {
     }
   });
 
-  if (!hasCurrent) {
-    printContainer.remove();
-    printContainer = null;
-  }
 
-  if (!hasSatisfied) {
-    printContainerSatisfied.remove();
-    printContainerSatisfied = null;
-  }
 
 
   // Printed on 25/08/2022 16:10 by Nadine HENGEN
@@ -148,14 +140,29 @@ function handleBeforeprint(event) {
   privacyElement.classList.add("pdp-privacy");
   privacyElement.classList.add("pdp-print-break");
   privacyElement.innerHTML = `<i>Printed on ${new Date()}</i>.</br><strong>Data Privacy: </strong> This document contains personal data, it should be kept private and destroyed once no longer needed.`;
-  printContainerSatisfied.append(privacyElement);
+
+  if (!hasCurrent) {
+    printContainer.remove();
+    printContainer = null;
+    printContainerSatisfied.append(privacyElement);
+  }
+
+  if (!hasSatisfied) {
+    printContainerSatisfied.remove();
+    printContainerSatisfied = null;
+    printContainer.append(privacyElement);
+  }
 }
 
 function handleAfterprint(event) {
-  printContainer.remove();
-  printContainer = null;
-  printContainerSatisfied.remove();
-  printContainerSatisfied = null;
+  if (printContainer) {
+    printContainer.remove();
+    printContainer = null;
+  }
+  if (printContainerSatisfied) {
+    printContainerSatisfied.remove();
+    printContainerSatisfied = null;
+  }
   // const privacy = document.querySelector(".pdp-privacy");
   // privacy.remove();
   // privacy = null;
