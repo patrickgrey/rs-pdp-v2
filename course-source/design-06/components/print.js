@@ -10,6 +10,7 @@ import * as objectiveAddNew from './objectiveAddNew.js';
 let openObjectives = [];
 const pdpPrint = document.querySelector("#pdpPrint");
 let printContainer;
+let printContainerSatisfied;
 
 function getPrintElement(listItem, selector, newElement, label) {
   const input = listItem.querySelector(`[data-objective-type="${selector}"]`);
@@ -62,8 +63,25 @@ function getObjects(obj, key, val) {
 
 function handleBeforeprint(event) {
   printContainer = document.createElement("div");
-  printContainer.id = "pdpPrintContainer"
-  htmlComponents.pdpFormObjectives.append(printContainer);
+  printContainer.id = "pdpPrintContainer";
+  printContainerH2 = document.createElement("h2");
+  printContainerH2.textContent = "Current Objectives";
+  printContainerH2.classList.add("pdp-print-title");
+  printContainer.append(printContainerH2);
+
+  printContainerSatisfied = document.createElement("div");
+  printContainerSatisfied.id = "pdpPrintContainerSatisfied";
+  printContainerSatisfiedH2 = document.createElement("h2");
+  printContainerSatisfiedH2.textContent = "Satisfied Objectives";
+  printContainerSatisfiedH2.classList.add("pdp-print-title");
+  printContainerSatisfied.append(printContainerSatisfiedH2);
+
+  document.querySelector("main").append(printContainer);
+  document.querySelector("main").append(printContainerSatisfied);
+
+  let hasCurrent = false;
+  let hasSatisfied = false;
+  // htmlComponents.pdpFormObjectives.append(printContainer);
   // const main = document.querySelector("#pdpObjectivesLive");
   // const mergedContainers = new Set([...htmlComponents.pdpObjectivesLive?.querySelectorAll("li[data-objective-id]"), ...htmlComponents.pdpObjectivesArchived?.querySelectorAll("li[data-objective-id]")]);
 
@@ -74,8 +92,17 @@ function handleBeforeprint(event) {
     if (li.dataset.objectiveId != "") {
       console.log("li: ", li);
 
+      const isSatisfied = li.querySelector(`input[data-objective-type="satisfied"]`).checked;
 
-      createPrintElements(printContainer, li);
+      const currentContainer = isSatisfied ? printContainerSatisfied : printContainer;
+
+      if (isSatisfied) {
+        hasSatisfied = true;
+      } else {
+        hasCurrent = true;
+      }
+
+      createPrintElements(currentContainer, li);
       // Get data model from add objective
 
       const competenceParagraph = document.createElement("p");
@@ -85,13 +112,11 @@ function handleBeforeprint(event) {
 
       if (hiddenCompetency.value === "") {
         competenceParagraph.innerHTML = `<strong>Competencies</strong>:`;
-        printContainer.append(competenceParagraph);
+        currentContainer.append(competenceParagraph);
         return;
       };
 
       const ids = hiddenCompetency.value.split(",");
-
-
 
       let competenceString = ``;
 
@@ -101,9 +126,21 @@ function handleBeforeprint(event) {
       competenceString = competenceString.slice(0, -2);
 
       competenceParagraph.innerHTML = `<strong>Competencies</strong>: ${competenceString}`;
-      printContainer.append(competenceParagraph);
+      currentContainer.append(competenceParagraph);
     }
   });
+
+  if (!hasCurrent) {
+    printContainer.remove();
+    printContainer = null;
+  }
+
+  if (!hasSatisfied) {
+    printContainerSatisfied.remove();
+    printContainerSatisfied = null;
+  }
+
+
   // Printed on 25/08/2022 16:10 by Nadine HENGEN
   // Data Privacy: This document contains personal data, it should be kept private and destroyed
   // once no longer needed.
@@ -111,12 +148,17 @@ function handleBeforeprint(event) {
   privacyElement.classList.add("pdp-privacy");
   privacyElement.classList.add("pdp-print-break");
   privacyElement.innerHTML = `<i>Printed on ${new Date()}</i>.</br><strong>Data Privacy: </strong> This document contains personal data, it should be kept private and destroyed once no longer needed.`;
-  printContainer.append(privacyElement);
+  printContainerSatisfied.append(privacyElement);
 }
 
 function handleAfterprint(event) {
   printContainer.remove();
   printContainer = null;
+  printContainerSatisfied.remove();
+  printContainerSatisfied = null;
+  // const privacy = document.querySelector(".pdp-privacy");
+  // privacy.remove();
+  // privacy = null;
   pdpPrint.blur();
 }
 

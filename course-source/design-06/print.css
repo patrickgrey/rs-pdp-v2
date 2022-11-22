@@ -28,9 +28,17 @@ summary,
 .pdp-drag-handle,
 .pdp-objective-satisfied-container,
 .pdp-tree-container,
+.pd-obj-live-container,
+#pdpFormObjectives,
 #pdpObjectivesArchivedContainer,
-.pd-obj-live-container {
+h2 {
   display: none !important;
+}
+
+h2.pdp-print-title {
+  display: block !important;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 body {
@@ -39,7 +47,7 @@ body {
 }
 
 main {
-  margin-top: 0;
+  margin-top: 0 !important;
 }
 
 header {
