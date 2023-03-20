@@ -178,7 +178,8 @@ var pageModule = (function () {
 
     // Initialise SSR Objectives
     const objCount = document.querySelector("body").dataset.objectiveCount;
-    if (objCount > 0) {
+    const objCountSatisfied = document.querySelector("body").dataset.objectiveArchiveCount;
+    if (objCount > 0 || objCountSatisfied > 0) {
       // Build model
       objectiveStore.buildModel();
 

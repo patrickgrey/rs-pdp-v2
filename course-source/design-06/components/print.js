@@ -90,7 +90,7 @@ function handleBeforeprint(event) {
   // mergedContainers.forEach((li) => {
   document.querySelectorAll("li[data-objective-id]").forEach((li) => {
     if (li.dataset.objectiveId != "") {
-      console.log("li: ", li);
+      // console.log("li: ", li);
 
       const isSatisfied = li.querySelector(`input[data-objective-type="satisfied"]`).checked;
 
