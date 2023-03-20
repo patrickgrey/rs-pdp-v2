@@ -575,6 +575,13 @@ h2 svg {
   }
 }
 
+@media (max-height: 820px) {
+  .pdp-layout aside .pdp-aside-inner {
+    position: relative;
+    top: 0;
+  }
+}
+
 article {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
