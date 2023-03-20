@@ -550,7 +550,7 @@ h2 svg {
   padding-top: 0.5rem;
 }
 
-@media (min-width: 720px) and (max-width: 1049px) {
+/* @media (min-width: 720px) and (max-width: 1049px) {
   .pdp-layout aside .pdp-aside-inner {
     position: fixed;
     top: calc(var(--ilp-height) + var(--pdp-header-height) + 2rem);
@@ -581,7 +581,7 @@ h2 svg {
     position: relative;
     top: 0;
   }
-}
+} */
 
 article {
   padding-left: 0.75rem;
